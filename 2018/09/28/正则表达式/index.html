@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="参考链接: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">
+<meta name="keywords" content="正则表达式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://hackycy.github.io/2018/09/28/正则表达式/index.html">
+<meta property="og:site_name" content="小小源Bの博客">
+<meta property="og:description" content="参考链接: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-04T13:35:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:description" content="参考链接: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2018/09/28/正则表达式/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>正则表达式 | 小小源Bの博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小源Bの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">zj&ycy</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2018/09/28/正则表达式/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="一个有女朋友的程序员">
+      <meta itemprop="image" content="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小源Bの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正则表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-28 13:24:50" itemprop="dateCreated datePublished" datetime="2018-09-28T13:24:50+08:00">2018-09-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-04 21:35:34" itemprop="dateModified" datetime="2018-10-04T21:35:34+08:00">2018-10-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/程序人生/" itemprop="url" rel="index"><span itemprop="name">程序人生</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/28/正则表达式/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/28/正则表达式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/09/28/正则表达式/" class="leancloud_visitors" data-flag-title="正则表达式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:3.6k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:15分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接: <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions</a></p>
+<a id="more"></a>
+<h1 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h1><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td>匹配规则将依照下列规则：在非特殊字符之前的反斜杠表示下一个字符是特殊的，不能从字面上解释。例如，没有前面’\’的’b’通常匹配小写’b’，无论它们出现在哪里。如果加了’\’,这个字符变成了特殊意义的字符，意思是匹配一个字符边界。反斜杠也可以将其后的特殊字符，转义为字面量。例如，模式 /a<em>/ 代表会匹配0个或者多个a。相反，模式 /a\</em>/ 将 ‘<em>‘ 的特殊性移除，从而可以匹配像 “a</em>“ 这样的字符串。</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配输入的开始，如果多行标志被设置为true，那么也匹配换行符后紧跟的位置。例如, /^A/ 并不匹配 “an A” 中的 ‘A’，但是会匹配 “An E”中的 ‘A’。当 ‘^’ 作为第一个字符出现在一个字符集合模式时，它将会有不同的含义。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配输入的结束。如果多行标志被设置为true，那么也匹配换行符前的位置。例如， /t$/ 并不会匹配 “eater” 中的 ‘t’,但是会匹配 “eat” 中的 ‘t’。</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前一个表达式0次或者多次。等价于{0,}。例如，/bo*/ 会匹配”A ghost boooooed”中的 ‘booooo’ 和 “A bird warbled” 中的 ‘b’，但是在”A goat grunted” 中将不会匹配任何东西。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面一个表达式1次或者多次。等价于{1,}。例如，/a+/匹配了在”candy”中的’a’，和在”caaaaaaandy”中所有的’a’。</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前面一个表达式0次或者1次。等价于{0,1}。例如，/e?le?/ 匹配”angel”中的’el’，和”angel”中的’el’，和”angle”中的’le’以及”oslo”中的’l’。如果紧跟在任何量词*、+、?或者{}的后面，将会使变量变为非贪婪的（匹配尽量少的字符），和缺省使用的贪婪模式（匹配尽可能多的字符）正好相反。例如，对”123abc”应用 /\d+/ 将会返回’123’，如果使用/\d+?/，则只会匹配到’1’。还可以运用先行断言。</td>
+</tr>
+<tr>
+<td>.</td>
+<td>(小数点)匹配除换行符之外的任何单个字符。例如，/.n/将会匹配”nay, an apple is on the tree”中的’an’和’on’，但是不会匹配’nay’。</td>
+</tr>
+<tr>
+<td>(x)</td>
+<td>匹配’x’并且记住匹配项，就像下面的例子展示的那样。括号被称为捕获括号。模式 <code>/(foo) (var) \1 \2/</code>中的’(foo)’和’(bar)’匹配并记住字符串”foo bar foo bar”中的前两个单词，模式中的\1 和 \2 匹配字符串的后两个单词。注意\1、\2、\n是用在正则表达式的匹配环节。</td>
+</tr>
+<tr>
+<td>(?:x)</td>
+<td>匹配’x’但是不记住匹配项。这种叫做非捕获括号，使得你能够定义为正则表达式运算符一起使用的子表达式。来看表达式/(?:foo){1,2}/。如果表达式是/foo{1,2}/，{1,2}将只对’foo’的最后一个字符’o’生效。如果使用非捕获括号，则{1,2}会匹配整个’foo’单词。</td>
+</tr>
+<tr>
+<td>x(?=y)</td>
+<td>匹配’x’仅仅当’x’后面跟着’y’，这种叫做正向肯定查找。例如，/Jack(?=Spart)/会匹配到’Jack’仅仅当他后面跟着’Spart’。/Jack(?=Spart&#124;Frost)/匹配’Jack’仅仅当它后面跟着’Spart’或者是’Frost’。但是’Spart’和’Frost’都不是匹配结果的一部分。</td>
+</tr>
+<tr>
+<td>x(?!y)</td>
+<td>匹配’x’仅仅当’x’后面不跟着’y’，这个叫做正向否定查找。例如，/\d+(?!.)/匹配一个数字仅仅当这个数字后面没有跟小数点的时候。</td>
+</tr>
+<tr>
+<td>x&#124;y</td>
+<td>匹配’x’或者’y’。例如，/green&#124;red/匹配”green apple”中的’green’和”red apple”中的’red’</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>n是一个正整数，匹配了前面一个字符刚好发生n次。 比如，/a{2}/不会匹配”candy”中的’a’，但是会匹配”caandy”中的所有a，以及”caaandy”中的前两个a。</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>n,m都是整数。匹配前面的字符至少n次，最多m次。如果n和m的值为0，这个值被忽略。例如，/a{1,3}/ 并不匹配”cndy”中的任意字符，匹配”candy”中的’a’，匹配”caandy”中的前两个’a’，也匹配”caaaaaaaandy”中的前三个a。</td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td>一个字符集合。匹配方括号中的任意字符，包括转义字符。你可以使用破折号( - )来指定一个字符范围。对于( . )和星号( * )这样的特许符号在一个字符集中没有特殊的意义/他们不必进行转义，不过转义也是起作用的。例如，[abcd]和[a-d]是一样的。他们都匹配”brisket”中的’b’，也都匹配”city”中的’c’。/[a-z.]+/和/[\w.]+/都匹配”test.i.ng”中的所有字符。</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td>反向字符集。也就是说，它匹配任何没有包含在反括号中的字符。你可以使得破折号( - )来指定一个字符范围。任何普通字符在这里都是起作用的。例如，[^abc]和[^a-c]是一样的。他们匹配”brisker”中的’r’，也匹配”chop”中的’h’。</td>
+</tr>
+<tr>
+<td>[\b]</td>
+<td>匹配一个退格（U+0008）。不要和\b混淆了。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个词的边界。一个词的边界就是一个词不被另外一个“字”字符跟随的位置或者没有其他“字”字符在其前面的位置。注意，一个匹配的词的边界并不包含在匹配的内容中。换句话说，一个匹配的词的边界的内容的长度为0.（不要和[\b]混淆了）。例如，/\bm/匹配”moon”中的”m”，/oo\b/并不匹配”oo”，因为’oo’被一个字符’n’紧跟着。/oon\b/匹配”moon”中的’oon’，因为’oon’是这个字符串的结束部分，这样他没有被一个字符紧跟着。/\w\b\w/将不能匹配任何字符串，因为在一个单词中间的字符永远不可能同时满足没有字符跟随和有字符跟随的两种跟随情况。</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配一个非单词边界。他匹配一个前后字符都是相同类型的位置：都是字符或者都不是字符。一个字符串的开始和结尾都被认为不是字符或者空字符串。例如，/\B../匹配”noonday”中的’oo’，而/y\B../则会匹配”possibly yestarday”中的’yes’。</td>
+</tr>
+<tr>
+<td>\cX</td>
+<td>当X是处于A到Z之间的字符的时候。匹配字符串中的一个控制符。例如，/\cM/匹配字符串中的”control-M”(U+000D)。</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配一个数字，相当于[0-9]。例如，/\d/或者/[0-9]/匹配”B2 is the bigjj”中的’2’。</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配一个非数字字符。相当于[^0-9]。例如，/\D/或者/[^0-9]/匹配”B2 is a jj”中的B。</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配一个换页符(U+000C)。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配一个换行符(U+000A)。</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符(U+000D)。</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配一个空白字符，包括空格、制表符、换页符和换行符。等价于[\f\n\r\t\v\u00a0\u1680\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]。例如，/\s\w*/匹配”foo bar.”中的’bar’。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配一个非空白字符。等价于[^\f\n\r\t\v\u00a0\u1680\u1680\u180e\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]。例如，/\S\w*/匹配”foo bar.”中的’foo’。</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配一个水平制表符(U+0009)。</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配一个垂直制表符(U+000B)。</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配一个单字字符(字母、数字或者下划线)。等价于[A-Za-Z0-9_]。例如，/\w/匹配”apple”中的’a’，”$5.28”中的’5’和”3D”中的’3’。</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配一个非单字字符。等价于[^A-Za-z0-9_]。例如，/\W/或者/[^A-Za-z0-9_]/匹配”50%”中的’%’。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>在正则表达式中，它返回最后的第n个子捕获匹配的子字符串(捕获的数目以左括号计数)。比如/apple(,)\sorange\1/匹配”apple, orange, cherry, peach.”中的’apple, orange’。</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>匹配NULL(U+0000)字符，不要在这后面跟其它小数，因为<code>0&lt;digits&gt;</code>是一个八进制转义序列。</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>与代码hh匹配字符(两个十六进制数字)。</td>
+</tr>
+<tr>
+<td>\uhhhh</td>
+<td>与代码hhhh匹配字符(四个十六进制数字)。</td>
+</tr>
+<tr>
+<td>\u{hhhh}</td>
+<td>(仅当设置了u标志时)使用Unicode值hhhh匹配字符(十六进制数字)。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="常用正则表达式"><a href="#常用正则表达式" class="headerlink" title="常用正则表达式"></a>常用正则表达式</h1><h2 id="校验数字的表达式"><a href="#校验数字的表达式" class="headerlink" title="校验数字的表达式"></a>校验数字的表达式</h2><ul>
+<li>数字：^[0-9]*$</li>
+<li>n位的数字：^\d{n}$</li>
+<li>至少n位的数字：^\d{n,}$</li>
+<li>m-n位的数字：^\d{m,n}$</li>
+<li>零和非零开头的数字：^(0|[1-9][0-9]*)$</li>
+<li>非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$</li>
+<li>带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})$</li>
+<li>正数、负数、和小数：^(-|+)?\d+(.\d+)?$</li>
+<li>有两位小数的正实数：^[0-9]+(.[0-9]{2})?$</li>
+<li>有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$</li>
+<li>非零的正整数：^[1-9]\d<em>$ 或 ^([1-9][0-9]</em>){1,3}$ 或 ^+?[1-9][0-9]*$</li>
+<li>非零的负整数：^-[1-9][]0-9”<em>$ 或 ^-[1-9]\d</em>$</li>
+<li>非负整数：^\d+$ 或 ^[1-9]\d*|0$</li>
+<li>非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$</li>
+<li>非负浮点数：^\d+(.\d+)?$ 或 ^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0$</li>
+<li>非正浮点数：^((-\d+(.\d+)?)|(0+(.0+)?))$ 或 ^(-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>))|0?.0+|0$</li>
+<li>正浮点数：^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>$ 或 ^(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]</em>.[0-9]+)|([0-9]<em>[1-9][0-9]</em>))$</li>
+<li>负浮点数：^-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>)$ 或 ^(-(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]</em>.[0-9]+)|([0-9]<em>[1-9][0-9]</em>)))$</li>
+<li>浮点数：^(-?\d+)(.\d+)?$ 或 ^-?([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0)$</li>
+</ul>
+<h2 id="校验字符的表达式"><a href="#校验字符的表达式" class="headerlink" title="校验字符的表达式"></a>校验字符的表达式</h2><ul>
+<li>汉字：^[\u4e00-\u9fa5]{0,}$</li>
+<li>英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$</li>
+<li>长度为3-20的所有字符：^.{3,20}$</li>
+<li>由26个英文字母组成的字符串：^[A-Za-z]+$</li>
+<li>由26个大写英文字母组成的字符串：^[A-Z]+$</li>
+<li>由26个小写英文字母组成的字符串：^[a-z]+$</li>
+<li>由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$</li>
+<li>由数字、26个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w{3,20}$</li>
+<li>中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$</li>
+<li>中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$</li>
+<li>可以输入含有^%&amp;’,;=?$\”等字符：[^%&amp;’,;=?$\x22]+</li>
+<li>禁止输入含有~的字符：[^~\x22]+</li>
+</ul>
+<h2 id="特殊需求表达式"><a href="#特殊需求表达式" class="headerlink" title="特殊需求表达式"></a>特殊需求表达式</h2><ul>
+<li>Email地址：^\w+([-+.]\w+)<em>@\w+([-.]\w+)</em>.\w+([-.]\w+)*$</li>
+<li>域名：[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(/.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+/.?</li>
+<li>InternetURL：[a-zA-z]+://[^\s]<em> 或 ^http://([\w-]+.)+[\w-]+(/[\w-./?%&amp;=]</em>)?$</li>
+<li>手机号码：^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$</li>
+<li>电话号码(“XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX)：^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$</li>
+<li>国内电话号码(0511-4405222、021-87888822)：\d{3}-\d{8}|\d{4}-\d{7}</li>
+<li>电话号码正则表达式（支持手机号码，3-4位区号，7-8位直播号码，1－4位分机号）: ((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)</li>
+<li>身份证号(15位、18位数字)，最后一位是校验位，可能为数字或字符X：(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)</li>
+<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$</li>
+<li>密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：^[a-zA-Z]\w{5,17}$</li>
+<li>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间)：^(?=.<em>\d)(?=.</em>[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,10}$</li>
+<li>强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)：^(?=.<em>\d)(?=.</em>[a-z])(?=.*[A-Z]).{8,10}$</li>
+<li>日期格式：^\d{4}-\d{1,2}-\d{1,2}</li>
+<li>一年的12个月(01～09和1～12)：^(0?[1-9]|1[0-2])$</li>
+<li>一个月的31天(01～09和1～31)：^((0?[1-9])|((1|2)[0-9])|30|31)$</li>
+<li>xml文件：^([a-zA-Z]+-?)+[a-zA-Z0-9]+\.[x|X][m|M][l|L]$</li>
+<li>中文字符的正则表达式：[\u4e00-\u9fa5]</li>
+<li>双字节字符：[^\x00-\xff] (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))</li>
+<li>空白行的正则表达式：\n\s*\r (可以用来删除空白行)</li>
+<li>HTML标记的正则表达式：&lt;(\S<em>?)[^&gt;]</em>&gt;.<em>?|&lt;.</em>? /&gt; ( 首尾空白字符的正则表达式：^\s<em>|\s</em>$或(^\s<em>)|(\s</em>$) (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)</li>
+<li>腾讯QQ号：[1-9][0-9]{4,} (腾讯QQ号从10000开始)</li>
+<li>中国邮政编码：[1-9]\d{5}(?!\d) (中国邮政编码为6位数字)</li>
+<li>IP地址：((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))</li>
+</ul>
+<h2 id="钱的输入格式"><a href="#钱的输入格式" class="headerlink" title="钱的输入格式"></a>钱的输入格式</h2><ul>
+<li>有四种钱的表示形式我们可以接受:”10000.00” 和 “10,000.00”, 和没有 “分” 的 “10000” 和 “10,000”：^[1-9][0-9]*$</li>
+<li>这表示任意一个不以0开头的数字,但是,这也意味着一个字符”0”不通过,所以我们采用下面的形式：^(0|[1-9][0-9]*)$</li>
+<li>一个0或者一个不以0开头的数字.我们还可以允许开头有一个负号：^(0|-?[1-9][0-9]*)$</li>
+<li>这表示一个0或者一个可能为负的开头不为0的数字.让用户以0开头好了.把负号的也去掉,因为钱总不能是负的吧。下面我们要加的是说明可能的小数部分：^[0-9]+(.[0-9]+)?$</li>
+<li>必须说明的是,小数点后面至少应该有1位数,所以”10.”是不通过的,但是 “10” 和 “10.2” 是通过的：^[0-9]+(.[0-9]{2})?$</li>
+<li>这样我们规定小数点后面必须有两位,如果你认为太苛刻了,可以这样：^[0-9]+(.[0-9]{1,2})?$</li>
+<li>这样就允许用户只写一位小数.下面我们该考虑数字中的逗号了,我们可以这样：^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?$</li>
+<li>1到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$</li>
+<li>“+”可以用”*”替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则表达式/" rel="tag"><i class="fa fa-tag"></i> 正则表达式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/25/Go并发之channel/" rel="next" title="Go并发之channel">
+                <i class="fa fa-chevron-left"></i> Go并发之channel
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/30/Android点击两次返回退出应用/" rel="prev" title="Android点击两次返回退出应用">
+                Android点击两次返回退出应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">一个有女朋友的程序员</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sweetlover.net.cn" title="sweetlover" target="_blank">sweetlover</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://x5.tencent.com/tbs/guide.html" title="腾讯浏览服务" target="_blank">腾讯浏览服务</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://mob.com" title="mob" target="_blank">mob</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://golang.org" title="golang" target="_blank">golang</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊字符"><span class="nav-number">1.</span> <span class="nav-text">特殊字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用正则表达式"><span class="nav-number">2.</span> <span class="nav-text">常用正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#校验数字的表达式"><span class="nav-number">2.1.</span> <span class="nav-text">校验数字的表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#校验字符的表达式"><span class="nav-number">2.2.</span> <span class="nav-text">校验字符的表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊需求表达式"><span class="nav-number">2.3.</span> <span class="nav-text">特殊需求表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#钱的输入格式"><span class="nav-number">2.4.</span> <span class="nav-text">钱的输入格式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>28.5k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2018/09/28/正则表达式/';
+        this.page.identifier = '2018/09/28/正则表达式/';
+        this.page.title = '正则表达式';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz",
+                'X-LC-Key': "Sdkle7a8kQMrDfNvnqsHL3CT",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
