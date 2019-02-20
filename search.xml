@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mac使用HomeBrew安装Maven]]></title>
+    <url>%2F2019%2F02%2F20%2FMac%E4%BD%BF%E7%94%A8HomeBrew%E5%AE%89%E8%A3%85Maven%2F</url>
+    <content type="text"><![CDATA[环境 MacOS10以上 jdk1.6或以上 安装HomeBrewhomebrew官网 链接 1/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 回车安装即可 安装Maven12345678$ brew search maven==&gt; Formulaemaven ✔ maven-shell maven@3.3maven-completion maven@3.2 maven@3.5==&gt; Caskshomebrew/cask-fonts/font-maven-pro$ brew install maven 验证maven是否安装成功1mvn -v 配置Maven仓库setting.xml路径为/usr/local/Cellar/maven/3.5.0/libexec/conf/settings.xml修改即可。]]></content>
+      <categories>
+        <category>Maven</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Maven</tag>
+        <tag>Homebrew</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CocoaPods简单安装和使用]]></title>
     <url>%2F2019%2F01%2F18%2FCocoaPods%E7%AE%80%E5%8D%95%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[什么是CocoaPodsCocoaPods是专门为iOS工程提供对第三方库的依赖的管理工具，通过CocoaPods，我们可以更方便地管理每个第三方库的版本，而且不需要我们做太多的配置。直观、集中和自动化地管理我们项目的第三方库。 安装CocoaPods更新gem1sudo gem update --system 更换镜像删除自带镜像1gem sources --remove https://rubygems.org/ 更换1gem sources -a https://gems.ruby-china.com/ 查看1gem sources -l 如图显示即为替换镜像成功 安装1sudo gem install cocoapods 配置1pod setup 到这里CocoaPods就已经安装完毕了。 使用CocoaPods查找第三方库比如说要查找某个库，直接在终端输入 1pod search QMUIKit 完成后他会自动进入一个新的页面显示搜索结果，上下滑动查看更多，要退出的话按wq就可以了。以后再搜索就不需要建索引了。 引入第三方库到项目中这里演示第三方库为QMUIKit 打开xcode新建一个项目，打开终端，进入项目路径中。 输入1pod init 将自动生成一个Podfile文件，也可以自己生成，命令生成有默认模板 vim编写,添加qmuikit 安装第三方库1pod install 查看项目目录变化 在访达中 原本使用xcodeproj打开项目，但是现在要改变成xcworkspace打开项目了。 这样就可以正常使用该库啦。但是有时候没有只能提示时候，需要更改Build Settings中的User header search paths添加$(SRCROOT)并选择recursive 增加第三方继续编写Podfile文件添加第三方库然后在执行pod install就可以了 更新第三方第三方库们都有人在维护升级，我们需要隔断时间就要更新下我们工程中第三方库的版本。只需要终端输入命令pod update就可以了。如果遇到pod install或者pod update慢的问题，原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少。加参数的命令如下： 12pod install --verbose --no-repo-updatepod update --verbose --no-repo-update 删除第三方当我们需要去掉某个第三方库时，只需要在Podfile删除该引入该库的语句，然后执行pod update或者pod install就可以了。 升级CocoaPods升级CocoaPods版本的命令和安装CocoaPods的命令一样，都是1sudo gem install cocoapods 卸载CocoaPods卸载CocoaPods的命令是1sudo gem uninstall cocoapods CocoaPods Mac AppCocoaPods桌面应用版下载地址：https://cocoapods.org/app 参考 https://juejin.im/entry/5c067eb56fb9a04a0a5ef583?utm_source=gold_browser_extension https://guides.cocoapods.org/syntax/podfile.html#podfile]]></content>
@@ -199,14 +212,6 @@
       <tags>
         <tag>Mysql</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Zj & Yzy 秘密日记]]></title>
-    <url>%2F2018%2F09%2F08%2FZj-Yzy-diary%2F</url>
-    <content type="text"><![CDATA[U2FsdGVkX1/G6lWasZZLHnOXPfVSTI3oGh0Y5v3L9Gme7CAzXRo/wKi4zBBRmW0fShkne99p7LUfq/23xmLr7z83uZZjwCZz5jDlBwvmsjzeXG1sWkjAbZcNmK8tHltaoQU9J2nwRep6YcjPtsa15Cw4RhjStluAJ2+4cNvdBBECyl0YJJr/6FdzmTCZ1/uN6tJMuFPiEiS1dC+WVMGTthNwRa5NGy2jYKlek9hpeluL5V/xg1rL9X4jBW7ZCw6MNDW8rM0+EAK4FSbpae4Drz6nP5Eq1q7GdMvyXwo9l5L10Csc+eMNFpraAvuMnE20mlaDDiJ8SxvvCHjgW+e+xUekINpa98RwORhlxQUzAdqaGCaPGByNq0/dTFc6elo9DDztihy4QGrADcVss31jkVFAVaflLJRIHtEGnNCTJzYTwB98SB9EuxI3bpwB19oy10m5KJ/PDmZRW3heDjQXojTnmpRhHkr5QJ3V+ckkUllxecJbkZF66xhyZfIs73fGhWqHRBYPGPHf/Cu3LwQjqhKabYeFpAjDRlo+sdJ3MIXd7LbjH2H2AhvXxO32+pABeM3uM4+ZJYmttBTTFYY2vFTZlWyp+/dDBeU3D8gIm52N2Nga55ouyfi+9ihAybyEWCEKydeHTqtuRoq340bGIDNzzzWAUFP/hO1iT8v3YNw=var pwd = window.prompt("please input password","");var txt = document.getElementById("enc_content").innerHTML;var bytes = CryptoJS.AES.decrypt(txt, pwd);var plaintext = bytes.toString(CryptoJS.enc.Utf8);document.getElementById("enc_content").innerHTML = plaintext]]></content>
-      <categories>
-        <category>生活实录</category>
-      </categories>
   </entry>
   <entry>
     <title><![CDATA[Centos7安装Mysql5.7]]></title>
