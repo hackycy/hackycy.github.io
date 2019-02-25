@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mac安装Mysql教程]]></title>
+    <url>%2F2019%2F02%2F25%2FMac%E5%AE%89%E8%A3%85Mysql%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[环境 MacOS10以上 下载Mysql这里以Mysql5.7为例 官网为了方便开发，推荐直接选择dmg文件下载安装 安装Mysql直接双击即可，傻瓜式操作。 注意，安装成功后会弹出一个对话框，你直接忽略了可以看通知面板，这个就是Mysql的初始密码如图 启动Mysql安装完毕后系统偏好设置会多出一个选项 点击进去 安装之后，默认MySQL的状态是stopped，关闭的，需要点击“Start MySQL Server”按钮来启动它，启动之后，状态会变成running。下方还有一个复选框按钮，可以设置是否在系统启动的时候自动启动MySQL，默认是勾选的，建议取消，节省开机时间。 终端连接Mysql1vim ~/.bash_profile 添加export PATH=${PATH}:/usr/local/mysql/bin即可 登陆Mysql1mysql -uroot -p 输入刚开始安装对话框中提示的初始密码，登陆成功后请修改密码，否则无法执行其他命令。 1ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';]]></content>
+      <categories>
+        <category>DBA</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>环境搭建</tag>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mac使用HomeBrew安装Composer]]></title>
     <url>%2F2019%2F02%2F25%2FMac%E4%BD%BF%E7%94%A8HomeBrew%E5%AE%89%E8%A3%85Composer%2F</url>
     <content type="text"><![CDATA[环境 MacOS10以上 安装HomeBrewhomebrew官网 链接 1/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 回车安装即可 安装Composer1brew install composer 安装完毕后composer可能不是最新版本，也可以升级 1composer self-update 修改Packagist 镜像修改 composer 的全局配置文件 打开命令行窗口（windows用户）或控制台（Linux、Mac 用户）并执行如下命令：1composer config -g repo.packagist composer https://packagist.phpcomposer.com 使用composer举例我要引用phalcon的开发工具包。在项目文件夹下新建文件composer.json，并添加如下代码 12345&#123; &quot;require&quot;: &#123; &quot;phalcon/devtools&quot;: &quot;dev-master&quot; &#125;&#125; 运行 1composer update 项目文件夹下就会有vendor文件夹，依赖文件都在这下面啦。使用时直接包含autoload.php就可以了 1require 'vendor/autoload.php'; 更多命令可以直接查看官方文档http://docs.phpcomposer.com/03-cli.html 参考链接： https://www.jianshu.com/p/2b96cc9f593e https://pkg.phpcomposer.com/ https://getcomposer.org/]]></content>
