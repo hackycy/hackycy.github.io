@@ -129,25 +129,27 @@
     })();
 </script>
 
-  <meta name="description" content="单例模式什么是单例？就是保证在一个jvm当中只能由一个实例。（区分不是在多个jvm当中。） 单例模式有七种写法。 本文只提出两种，一种懒汉式和饿汉式。">
-<meta name="keywords" content="设计模式,JAVA">
+  <meta name="description" content="WKWebView对比UIWebView的优势 1.WKWebView的内存开销要比UIWebView小很多2.拥有高达60FPS滚动刷新率及内置手势3.支持了更多的HTML5特性4.html页面和WKWebView交互更方便5.Safari相同的JavaScript引擎6.提供常用的属性，如加载网页进度的属性estimatedProgress">
+<meta name="keywords" content="Ios,WKWebView,WebKit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式-JAVA实现">
-<meta property="og:url" content="http://hackycy.github.io/2018/11/20/单例模式-JAVA实现/index.html">
+<meta property="og:title" content="IOS基础 - WKWebView使用">
+<meta property="og:url" content="http://hackycy.github.io/2019/02/28/IOS基础-WKWebView使用/index.html">
 <meta property="og:site_name" content="小小源Bの博客">
-<meta property="og:description" content="单例模式什么是单例？就是保证在一个jvm当中只能由一个实例。（区分不是在多个jvm当中。） 单例模式有七种写法。 本文只提出两种，一种懒汉式和饿汉式。">
+<meta property="og:description" content="WKWebView对比UIWebView的优势 1.WKWebView的内存开销要比UIWebView小很多2.拥有高达60FPS滚动刷新率及内置手势3.支持了更多的HTML5特性4.html页面和WKWebView交互更方便5.Safari相同的JavaScript引擎6.提供常用的属性，如加载网页进度的属性estimatedProgress">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-20T07:01:22.000Z">
+<meta property="og:image" content="http://hackycy.github.io/2019/02/28/IOS基础-WKWebView使用/importwebkit.png">
+<meta property="og:updated_time" content="2019-02-28T07:36:29.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式-JAVA实现">
-<meta name="twitter:description" content="单例模式什么是单例？就是保证在一个jvm当中只能由一个实例。（区分不是在多个jvm当中。） 单例模式有七种写法。 本文只提出两种，一种懒汉式和饿汉式。">
+<meta name="twitter:title" content="IOS基础 - WKWebView使用">
+<meta name="twitter:description" content="WKWebView对比UIWebView的优势 1.WKWebView的内存开销要比UIWebView小很多2.拥有高达60FPS滚动刷新率及内置手势3.支持了更多的HTML5特性4.html页面和WKWebView交互更方便5.Safari相同的JavaScript引擎6.提供常用的属性，如加载网页进度的属性estimatedProgress">
+<meta name="twitter:image" content="http://hackycy.github.io/2019/02/28/IOS基础-WKWebView使用/importwebkit.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://hackycy.github.io/2018/11/20/单例模式-JAVA实现/">
+  <link rel="canonical" href="http://hackycy.github.io/2019/02/28/IOS基础-WKWebView使用/">
 
 
 
@@ -157,7 +159,7 @@
   };
 </script>
 
-  <title>单例模式-JAVA实现 | 小小源Bの博客</title>
+  <title>IOS基础 - WKWebView使用 | 小小源Bの博客</title>
   
 
 
@@ -369,7 +371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2018/11/20/单例模式-JAVA实现/">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/02/28/IOS基础-WKWebView使用/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
@@ -386,7 +388,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例模式-JAVA实现
+          <h1 class="post-title" itemprop="name headline">IOS基础 - WKWebView使用
               
             
           </h1>
@@ -411,7 +413,7 @@
                 
               
 
-              <time title="创建时间：2018-11-20 14:27:22 / 修改时间：15:01:22" itemprop="dateCreated datePublished" datetime="2018-11-20T14:27:22+08:00">2018-11-20</time>
+              <time title="创建时间：2019-02-28 15:25:01 / 修改时间：15:36:29" itemprop="dateCreated datePublished" datetime="2019-02-28T15:25:01+08:00">2019-02-28</time>
             
 
             
@@ -433,7 +435,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -448,9 +450,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/20/单例模式-JAVA实现/#comments" itemprop="discussionUrl">
+                <a href="/2019/02/28/IOS基础-WKWebView使用/#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/20/单例模式-JAVA实现/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/28/IOS基础-WKWebView使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -458,7 +460,7 @@
 
           
           
-             <span id="/2018/11/20/单例模式-JAVA实现/" class="leancloud_visitors" data-flag-title="单例模式-JAVA实现">
+             <span id="/2019/02/28/IOS基础-WKWebView使用/" class="leancloud_visitors" data-flag-title="IOS基础 - WKWebView使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -480,10 +482,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:335字</span>
+              <span>字数统计:457字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:1分</span>
+              <span>阅读时长:2分</span>
             </span>
           
 
@@ -500,18 +502,15 @@
       
 
       
-        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>什么是单例？就是保证在一个jvm当中只能由一个实例。（区分不是在多个jvm当中。）</p>
-<p>单例模式有七种写法。</p>
-<p>本文只提出两种，一种懒汉式和饿汉式。</p>
-<a id="more"></a>
-<h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton mSingleton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (mSingleton == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123; <span class="comment">//加锁，线程不安全，故加上</span></span><br><span class="line">                mSingleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mSingleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br></pre></td></tr></table></figure>
-<p>被需要时才进行初始化，且只有同一个实例，但会发生线程不安全。</p>
-<h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">        System.out.println(Singleton.getInstance());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Singleton mSingleton = <span class="keyword">new</span> Singleton();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mSingleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br><span class="line">cn.net.sweetlover.patern.Singleton@1540e19d</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这两者的区分：懒汉式不是线程安全的，且效率比饿汉式要低（因为加了同步），但是节约内存<br>。但饿汉式是天生线程安全的，因为当class被加载的时候就已经被初始化了。</p>
+        <h1 id="WKWebView对比UIWebView的优势"><a href="#WKWebView对比UIWebView的优势" class="headerlink" title="WKWebView对比UIWebView的优势"></a>WKWebView对比UIWebView的优势</h1><blockquote>
+<p>1.WKWebView的内存开销要比UIWebView小很多<br>2.拥有高达60FPS滚动刷新率及内置手势<br>3.支持了更多的HTML5特性<br>4.html页面和WKWebView交互更方便<br>5.Safari相同的JavaScript引擎<br>6.提供常用的属性，如加载网页进度的属性estimatedProgress</p>
 </blockquote>
+<a id="more"></a>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="倒入库"><a href="#倒入库" class="headerlink" title="倒入库"></a>倒入库</h2><p><img src="importwebkit.png" alt=""></p>
+<h2 id="引入头文件"><a href="#引入头文件" class="headerlink" title="引入头文件"></a>引入头文件</h2><p><code>#import &lt;WebKit/WebKit.h&gt;</code></p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@interface MainViewController () &lt;WKNavigationDelegate&gt;</span><br><span class="line"></span><br><span class="line">@property(strong, nonatomic) WKWebView *webview;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation MainViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    // Do any additional setup after loading the view.</span><br><span class="line">    WKWebView *wv = [[WKWebView alloc] init];</span><br><span class="line">    wv.navigationDelegate = self;</span><br><span class="line">    [self.view addSubview:wv];</span><br><span class="line">    [wv mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">        make.top.equalTo(wv.superview.mas_top).with.offset(0);</span><br><span class="line">        make.left.equalTo(wv.superview.mas_left).with.offset(0);</span><br><span class="line">        make.right.equalTo(wv.superview.mas_right).with.offset(0);</span><br><span class="line">        make.bottom.equalTo(wv.superview.mas_bottom).with.offset(0);</span><br><span class="line">    &#125;];</span><br><span class="line">    self.webview = wv;</span><br><span class="line">    //加载网页</span><br><span class="line">    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@&quot;https://www.baidu.com&quot;]]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="关于WKWebView的代理"><a href="#关于WKWebView的代理" class="headerlink" title="关于WKWebView的代理"></a>关于WKWebView的代理</h1><h2 id="WKNavigationDelegate"><a href="#WKNavigationDelegate" class="headerlink" title="WKNavigationDelegate"></a>WKNavigationDelegate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - WKNavigationDelegate</span><br><span class="line"></span><br><span class="line">// 页面开始加载时调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation;</span><br><span class="line"></span><br><span class="line">// 当内容开始到达时调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation;</span><br><span class="line"></span><br><span class="line">// 页面加载完成之后调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation;</span><br><span class="line"></span><br><span class="line">// 页面加载失败时调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error;</span><br><span class="line"></span><br><span class="line">//收到服务器重定向请求后调用</span><br><span class="line">- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation;</span><br><span class="line"></span><br><span class="line">// 在收到响应开始加载后，决定是否跳转</span><br><span class="line">- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler;</span><br><span class="line"></span><br><span class="line">// 在请求开始加载之前调用，决定是否跳转</span><br><span class="line">- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler;</span><br></pre></td></tr></table></figure>
+<h2 id="WKUIDelegate"><a href="#WKUIDelegate" class="headerlink" title="WKUIDelegate"></a>WKUIDelegate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures;</span><br><span class="line"></span><br><span class="line">// 在js中调用alert函数时，会调用该方法。</span><br><span class="line">- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler;</span><br><span class="line"></span><br><span class="line">// 在js中调用confirm函数时，会调用该方法</span><br><span class="line">- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler;</span><br><span class="line"></span><br><span class="line">// 在js中调用prompt函数时，会调用该方法</span><br><span class="line">- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -561,9 +560,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
-          
-            <a href="/tags/JAVA/" rel="tag"><i class="fa fa-tag"></i> JAVA</a>
+            <a href="/tags/Ios/" rel="tag"><i class="fa fa-tag"></i> Ios</a>
           
         </div>
       
@@ -576,8 +573,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/05/kafka简单入门-概念/" rel="next" title="kafka简单入门(概念)">
-                <i class="fa fa-chevron-left"></i> kafka简单入门(概念)
+              <a href="/2019/02/28/IDEA技巧/" rel="next" title="IDEA技巧">
+                <i class="fa fa-chevron-left"></i> IDEA技巧
               </a>
             
           </div>
@@ -585,10 +582,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/21/Tomcat基本使用/" rel="prev" title="Tomcat基本使用">
-                Tomcat基本使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -848,7 +841,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#懒汉式"><span class="nav-number">1.1.</span> <span class="nav-text">懒汉式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式"><span class="nav-number">1.2.</span> <span class="nav-text">饿汉式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WKWebView对比UIWebView的优势"><span class="nav-number">1.</span> <span class="nav-text">WKWebView对比UIWebView的优势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本使用"><span class="nav-number">2.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#倒入库"><span class="nav-number">2.1.</span> <span class="nav-text">倒入库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入头文件"><span class="nav-number">2.2.</span> <span class="nav-text">引入头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">2.3.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于WKWebView的代理"><span class="nav-number">3.</span> <span class="nav-text">关于WKWebView的代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WKNavigationDelegate"><span class="nav-number">3.1.</span> <span class="nav-text">WKNavigationDelegate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WKUIDelegate"><span class="nav-number">3.2.</span> <span class="nav-text">WKUIDelegate</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1025,9 +1018,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://hackycy.github.io/2018/11/20/单例模式-JAVA实现/';
-        this.page.identifier = '2018/11/20/单例模式-JAVA实现/';
-        this.page.title = '单例模式-JAVA实现';
+        this.page.url = 'http://hackycy.github.io/2019/02/28/IOS基础-WKWebView使用/';
+        this.page.identifier = '2019/02/28/IOS基础-WKWebView使用/';
+        this.page.title = 'IOS基础 - WKWebView使用';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
