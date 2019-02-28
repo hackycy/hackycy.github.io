@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[IDEA技巧]]></title>
     <url>%2F2019%2F02%2F28%2FIDEA%E6%8A%80%E5%B7%A7%2F</url>
-    <content type="text"><![CDATA[WebStorm 常用技巧笔记通用技巧 几乎在所有面板包括弹出窗口里，都能直接键入名字进行快速跳转。例如 在查找结果中增量查找 在 Outline 窗口中快速跳转 在 Project、Recent File 中快速跳转 常用快捷键(Mac)：导航： 打开文件：Shift + ⌘ + O (被我改成了和 Chrome 相同的 ⌘ + O) 文件名前面或后面加上/可打开目录 打开符号：Alt + ⌘ + O 搜索任意：双击 Shift 跳转到声明：⌘ + Alt + B 跳转到实现：⌘ + B 搜索所有引用：我定义的是 Shift + F12 弹出文件结构列表(Outline)：⌘ + F12 弹出最近关闭的文件列表(Recent File)：⌘ + E 之后直接键入文件名可快速跳转到最近关闭的文件，找不到的话按回车则在项目中查找。 跳转到下一查找结果：Alt + ⌘ + Down 文件内代码替换 Ctrl + R 弹出外部资源菜单：(在 Tab 标签上) ⌘ + Click 添加书签：F3，浏览书签：⌘ + F3 跳转到代码块开头：Alt + ⌘ + [ 在左右（花）括号之间跳转：Ctrl + M 视图： 跳转回编辑面板: Esc 切换下一个代码标签：Ctrl + Tab 或 Shift + ⌘ + ] 切换上一个代码标签：Shift + ⌘ + [ 最大化/还原编辑面板：双击标签栏 显示所有视图边栏：显示双击并按住 ⌘ 关闭当前显示查找结果标签页：Ctrl + Shift + F4 编辑： 插入代码片段(Code Snippet)：⌘ + J 重构：Ctrl + T 重命名（变量等）：Shift + F6 重构预览时，从搜索结果中排除：Delete 格式化代码：Alt + ⌘ + L 缩进对齐：Ctrl + Alt + I 弹出 Intention Actions: Alt + Enter 同时选中下一个相同代码块：Ctrl + G 同时选中所有相同代码块：Ctrl + ⌘ + G 一些 Unix 终端快捷键：Ctrl + A/E/K 单纯粘贴（不自动缩进也不格式化代码）：Shift + Alt + ⌘ + V 行注释：⌘ + / 块注释：Alt + ⌘ + / 行操作： 复制(选中)行：⌘ + D 上移(选中)行：Shift + Alt + Up 上移(选中)语句：Shift + ⌘ + Up 在上面插入新行：Alt + ⌘ + Enter 在下面插入新行： Shift + Enter 删除行：⌘ + Delete 显示： 显示方法参数说明：⌘ + P 显示光标处的代码文档：F1 快速查看定义：Alt + Space 高亮当前文件中所有选中字段：Shift + ⌘ + F7 (然后⌘ + G跳转下一个) 扩大选中的代码块：Alt + Up（可以用来选词，按越多次选中的代码块范围越大） 折叠/展开代码块：⌘ + -/= 光标向上/向下移动同时滚动视图(Move Up)：我定义的是 Shift + ⌘ + I/K 其它： 激活搜索框 “Match Case”: Alt + C 激活搜索框 “Words”: Alt + R 重复最近的搜索：焦点在输入框时按 Down 新建草稿文件: ⌘ + Shift + N 调整 Layout 以突出编码区域，更适合宽屏： [Preferences] Appearance &amp; Behavior &gt; Appearance：勾选 Widescreen … layout [Menu] View: 把 Toolbar, Tool Buttons, Status Bar, Navigation bar 全关掉 允许解析 module 等 node 全局变量： [Preferences] Languages &amp; Frameworks &gt; JavaScript &gt; Libraries: 勾选 Node.js Globals 隐藏代码折叠的箭头： [Preferences] Editor &gt; Code Folding: 取消 Show code folding outline 从项目中排除第三方文件，优化代码搜索结果： [Preferences] Project &gt; Directories: 选中不需要的文件夹，点上面的 Excluded，例如这样设置：也可以在 [Project] 面板上的文件夹点击右键，选择 Mark Directory As &gt; Excluded 不在 [Project] 显示已排除的第三方文件： [Project] 点击 “Scope按钮”，选择 Project Files 按文件类型排序： [Project] 点击齿轮下拉菜单，选中 Sort by Type 和 Folders Always on Top 在 [Project] 中定位到当前编辑的脚本： 点击图中的小图标 去掉 spell checking： [Preference] Editor &gt; Inspections: 把 spelling 项的复选去掉 设置缩进和代码格式化操作： [Preference] Editor &gt; General &gt; Smart Keys: 按需设置 屏蔽对象定义时最后多写一个逗号引起的报错： [Preference] Editor &gt; Inspections &gt; JavaScript &gt; General: 取消 Last comma in object literal 减少 jshint 报错 在项目的 .idea/jsLinters/ 目录下添加 jshint.xml Postfix Completion [Preferences] Editor &gt; General &gt; Postfix Completion：启用你喜欢的选项 开启 ES6 支持 [Preferences] Languages &amp; Frameworks &gt; JavaScript：选择 ECMAScript 6（需要重启 WebStorm 才能生效） 自动识别当前文件的缩进类型 [Preferences] Editor &gt; Code Style：选择 Detect and use existing file indents for editing 滚动条快速滚动到选中位置 系统设置中选中该项 WebStrom 作为 merge 工具/Applications/WebStorm.app/Contents/MacOS/webstorm merge $(cd $(dirname &quot;$LOCAL&quot;) &amp;&amp; pwd)/$(basename &quot;$LOCAL&quot;) $(cd $(dirname &quot;$REMOTE&quot;) &amp;&amp; pwd)/$(basename &quot;$REMOTE&quot;) $(cd $(dirname &quot;$BASE&quot;) &amp;&amp; pwd)/$(basename &quot;$BASE&quot;) $(cd $(dirname &quot;$MERGED&quot;) &amp;&amp; pwd)/$(basename &quot;$MERGED&quot;) WebStrom 作为 diff 工具/Applications/WebStorm.app/Contents/MacOS/webstorm diff $(cd $(dirname &quot;$LOCAL&quot;) &amp;&amp; pwd)/$(basename &quot;$LOCAL&quot;) $(cd $(dirname &quot;$REMOTE&quot;) &amp;&amp; pwd)/$(basename &quot;$REMOTE&quot;)]]></content>
+    <content type="text"><![CDATA[IDEA技巧WebStorm 通用技巧 几乎在所有面板包括弹出窗口里，都能直接键入名字进行快速跳转。例如 在查找结果中增量查找 在 Outline 窗口中快速跳转 在 Project、Recent File 中快速跳转 常用快捷键(Mac)：导航： 打开文件：Shift + ⌘ + O (被我改成了和 Chrome 相同的 ⌘ + O) 文件名前面或后面加上/可打开目录 打开符号：Alt + ⌘ + O 搜索任意：双击 Shift 跳转到声明：⌘ + Alt + B 跳转到实现：⌘ + B 搜索所有引用：我定义的是 Shift + F12 弹出文件结构列表(Outline)：⌘ + F12 弹出最近关闭的文件列表(Recent File)：⌘ + E 之后直接键入文件名可快速跳转到最近关闭的文件，找不到的话按回车则在项目中查找。 跳转到下一查找结果：Alt + ⌘ + Down 文件内代码替换 Ctrl + R 弹出外部资源菜单：(在 Tab 标签上) ⌘ + Click 添加书签：F3，浏览书签：⌘ + F3 跳转到代码块开头：Alt + ⌘ + [ 在左右（花）括号之间跳转：Ctrl + M 视图： 跳转回编辑面板: Esc 切换下一个代码标签：Ctrl + Tab 或 Shift + ⌘ + ] 切换上一个代码标签：Shift + ⌘ + [ 最大化/还原编辑面板：双击标签栏 显示所有视图边栏：显示双击并按住 ⌘ 关闭当前显示查找结果标签页：Ctrl + Shift + F4 编辑： 插入代码片段(Code Snippet)：⌘ + J 重构：Ctrl + T 重命名（变量等）：Shift + F6 重构预览时，从搜索结果中排除：Delete 格式化代码：Alt + ⌘ + L 缩进对齐：Ctrl + Alt + I 弹出 Intention Actions: Alt + Enter 同时选中下一个相同代码块：Ctrl + G 同时选中所有相同代码块：Ctrl + ⌘ + G 一些 Unix 终端快捷键：Ctrl + A/E/K 单纯粘贴（不自动缩进也不格式化代码）：Shift + Alt + ⌘ + V 行注释：⌘ + / 块注释：Alt + ⌘ + / 行操作： 复制(选中)行：⌘ + D 上移(选中)行：Shift + Alt + Up 上移(选中)语句：Shift + ⌘ + Up 在上面插入新行：Alt + ⌘ + Enter 在下面插入新行： Shift + Enter 删除行：⌘ + Delete 显示： 显示方法参数说明：⌘ + P 显示光标处的代码文档：F1 快速查看定义：Alt + Space 高亮当前文件中所有选中字段：Shift + ⌘ + F7 (然后⌘ + G跳转下一个) 扩大选中的代码块：Alt + Up（可以用来选词，按越多次选中的代码块范围越大） 折叠/展开代码块：⌘ + -/= 光标向上/向下移动同时滚动视图(Move Up)：我定义的是 Shift + ⌘ + I/K 其它： 激活搜索框 “Match Case”: Alt + C 激活搜索框 “Words”: Alt + R 重复最近的搜索：焦点在输入框时按 Down 新建草稿文件: ⌘ + Shift + N 调整 Layout 以突出编码区域，更适合宽屏： [Preferences] Appearance &amp; Behavior &gt; Appearance：勾选 Widescreen … layout [Menu] View: 把 Toolbar, Tool Buttons, Status Bar, Navigation bar 全关掉 允许解析 module 等 node 全局变量： [Preferences] Languages &amp; Frameworks &gt; JavaScript &gt; Libraries: 勾选 Node.js Globals 隐藏代码折叠的箭头： [Preferences] Editor &gt; Code Folding: 取消 Show code folding outline 从项目中排除第三方文件，优化代码搜索结果： [Preferences] Project &gt; Directories: 选中不需要的文件夹，点上面的 Excluded，例如这样设置：也可以在 [Project] 面板上的文件夹点击右键，选择 Mark Directory As &gt; Excluded 不在 [Project] 显示已排除的第三方文件： [Project] 点击 “Scope按钮”，选择 Project Files 按文件类型排序： [Project] 点击齿轮下拉菜单，选中 Sort by Type 和 Folders Always on Top 在 [Project] 中定位到当前编辑的脚本： 点击图中的小图标 去掉 spell checking： [Preference] Editor &gt; Inspections: 把 spelling 项的复选去掉 设置缩进和代码格式化操作： [Preference] Editor &gt; General &gt; Smart Keys: 按需设置 屏蔽对象定义时最后多写一个逗号引起的报错： [Preference] Editor &gt; Inspections &gt; JavaScript &gt; General: 取消 Last comma in object literal 减少 jshint 报错 在项目的 .idea/jsLinters/ 目录下添加 jshint.xml Postfix Completion [Preferences] Editor &gt; General &gt; Postfix Completion：启用你喜欢的选项 开启 ES6 支持 [Preferences] Languages &amp; Frameworks &gt; JavaScript：选择 ECMAScript 6（需要重启 WebStorm 才能生效） 自动识别当前文件的缩进类型 [Preferences] Editor &gt; Code Style：选择 Detect and use existing file indents for editing 滚动条快速滚动到选中位置 系统设置中选中该项 WebStrom 作为 merge 工具/Applications/WebStorm.app/Contents/MacOS/webstorm merge $(cd $(dirname &quot;$LOCAL&quot;) &amp;&amp; pwd)/$(basename &quot;$LOCAL&quot;) $(cd $(dirname &quot;$REMOTE&quot;) &amp;&amp; pwd)/$(basename &quot;$REMOTE&quot;) $(cd $(dirname &quot;$BASE&quot;) &amp;&amp; pwd)/$(basename &quot;$BASE&quot;) $(cd $(dirname &quot;$MERGED&quot;) &amp;&amp; pwd)/$(basename &quot;$MERGED&quot;) WebStrom 作为 diff 工具/Applications/WebStorm.app/Contents/MacOS/webstorm diff $(cd $(dirname &quot;$LOCAL&quot;) &amp;&amp; pwd)/$(basename &quot;$LOCAL&quot;) $(cd $(dirname &quot;$REMOTE&quot;) &amp;&amp; pwd)/$(basename &quot;$REMOTE&quot;)]]></content>
       <categories>
         <category>程序人生</category>
       </categories>
@@ -25,7 +25,7 @@
   <entry>
     <title><![CDATA[解决AndroidStudio导入项目在 Building gradle project info 一直卡住]]></title>
     <url>%2F2019%2F02%2F28%2F%E8%A7%A3%E5%86%B3AndroidStudio%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE%E5%9C%A8-Building-gradle-project-info-%E4%B8%80%E7%9B%B4%E5%8D%A1%E4%BD%8F%2F</url>
-    <content type="text"><![CDATA[解决AndroidStudio导入项目在 Building gradle project info 一直卡住Android Studio导入项目的时候，一直卡在Building gradle project info这一步，主要原因还是因为被墙的结果。gradle官网虽然可以访问，但是速度连蜗牛都赶不上… 三种解决办法离线包下载导入方式 查看所需gradle版本：打开C:\Users\用户名.gradle\wrapper\dists\gradle-x.xx-all\xxxxxxxxxxxx，如果里面的gradle-xx-all.zip不完整（如0KB），则说明下载不成功，需要下载离线包放置到该目录下。 下载地址：https://services.gradle.org/distributions/ 修改gradle-wrapper.properties方式 1、随便找一个你之前能够运行的AS项目 2、打开项目的/gradle/wrapper/gradle-wrapper.properties文件 3、复制最后一行distributionUrl这一整行的内容，例如：distributionUrl=https\://services.gradle.org/distributions/gradle-2.8-all.zip，替换到你要导入的项目里的gradle-wrapper.properties文件中。 4、重启Android Studio，重新导入项目就可以了~~ 翻墙翻开中国伟大的墙就可以了。本人一直用的蓝灯。]]></content>
+    <content type="text"><![CDATA[Android studio一个小小的痛点 解决AndroidStudio导入项目在 Building gradle project info 一直卡住Android Studio导入项目的时候，一直卡在Building gradle project info这一步，主要原因还是因为被墙的结果。gradle官网虽然可以访问，但是速度连蜗牛都赶不上… 三种解决办法离线包下载导入方式 查看所需gradle版本：打开C:\Users\用户名.gradle\wrapper\dists\gradle-x.xx-all\xxxxxxxxxxxx，如果里面的gradle-xx-all.zip不完整（如0KB），则说明下载不成功，需要下载离线包放置到该目录下。 下载地址：https://services.gradle.org/distributions/ 修改gradle-wrapper.properties方式 1、随便找一个你之前能够运行的AS项目 2、打开项目的/gradle/wrapper/gradle-wrapper.properties文件 3、复制最后一行distributionUrl这一整行的内容，例如：distributionUrl=https\://services.gradle.org/distributions/gradle-2.8-all.zip，替换到你要导入的项目里的gradle-wrapper.properties文件中。 4、重启Android Studio，重新导入项目就可以了~~ 翻墙翻开中国伟大的墙就可以了。本人一直用的蓝灯。]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -56,8 +56,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Composer</tag>
         <tag>Homebrew</tag>
+        <tag>Composer</tag>
       </tags>
   </entry>
   <entry>
@@ -69,8 +69,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Maven</tag>
+        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
@@ -281,8 +281,8 @@
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>Centos7</tag>
+        <tag>Mysql</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
