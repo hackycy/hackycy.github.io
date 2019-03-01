@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Objective-C之深、浅拷贝]]></title>
+    <url>%2F2019%2F03%2F01%2FObjective-C%E4%B9%8B%E6%B7%B1%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%2F</url>
+    <content type="text"><![CDATA[什么是深拷贝和浅拷贝 深拷贝就是对一个对象的拷贝，浅拷贝是对一个对象地址的拷贝。 copy，mutablecopy 原则：copy方法返回的是一个不可变对象，不可变即该对象不能执行增删操作，这也是MutableArray不能用copy修饰的原因。mutablecopy方法返回的是一个可变对象。]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+        <tag>Objective-C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Objective-C之Block]]></title>
+    <url>%2F2019%2F03%2F01%2FObjective-C%E4%B9%8BBlock%2F</url>
+    <content type="text"><![CDATA[关于Block在iOS4.0之后，block横空出世，它本身封装了一段代码并将这段代码当做变量，通过block()的方式进行回调。 block的代码是内联的，效率高于函数调用block对于外部变量默认是只读属性block被Objective-C看成是对象处理 对于block的底层实现在网上已经有很多资料了，其源码更是可以在opensource.apple.com上下载，因此，本文更着重于对于block的基本应用 Block特性MRC环境 认识Block一个简单的block，实现两个数之和1234int(^sum)(int a, int b) = ^(int a, int b)&#123; return a + b; &#125;;NSLog(@&quot;%d&quot;,sum(3,5)); 代码左边是一个block的生命，int为block的返回值类型，^符号后面为block的名称，后面括号里面为参数列表，该block的参数列表有两个，两个都是int类型参数。右边为block的定义。用网上一张图来更好的认识到block。 Block访问外部基本类型数据 静态变量 和 全局变量 在加和不加 block 都会直接引用变量地址。也就意味着 可以修改变量的值。在没有加block 参数的情况下。 基本类型常量时，看一段代码 1234567891011int main(int argc, const char * argv[]) &#123; @autoreleasepool &#123; // insert code here... CGPoint p = CGPointMake(10, 10); void(^bt)(void) = ^()&#123; NSLog(@&quot;%f , %f&quot;, p.x, p.y); &#125;; bt(); &#125; return 0;&#125; 输出122019-03-01 11:35:15.244937+0800 BlockDemo[866:40789] 10.000000 , 10.000000Program ended with exit code: 0 可以看到block可以直接访问到外部的局部变量。但是block内使用外部的变量相当于拷贝了一份外部变量来使用，并不能直接修改外部变量的值，例如 编译器直接进行报错，但是如果想直接修改外部的局部变量的值，那就需要在外部的局部变量前面加上__block的声明。 Block访问外部常量变量NSString *a = @&quot;hello&quot;; a 为常量变量，@“hello”为常量。）—–不加block类型 block 会引用常量的地址（浅拷贝）。加block类型 block会去引用常量变量（如：a变量，a = @”abc”.可以任意修改a 指向的内容。）的地址。 block 会拷贝变量内容到自己的栈内存上，以便执行时可以调用。 但并不是对str 内容做了深拷贝，重新申请内存。 因为str 是栈内存上的变量，指向 一个常量区的@“hello”. 编译器做的优化是 当block 去拷贝str 指向内容时发现是个常量， 所以会去引用 @“hello” 的指针，没必要再取申请一块内存。 Block访问外部对象变量如（MyClass class、Block block）。 这里block 也是”类“对象（类似对象，其包含isa指针,clang 反编译可以查看。因为它不像从NSObject 继承下来的对象都支持 retain、copy、release）。* Block的copy、retain、release操作不同于NSObjec的copy、retain、release操作： Block_copy与copy等效，Block_release与release等效； Block_copy与copy等效，Block_release与release等效； 对Block不管是retain、copy、release都不会改变引用计数retainCount，retainCount始终是1； NSGlobalBlock：retain、copy、release操作都无效； NSStackBlock：retain、release操作无效，必须注意的是，NSStackBlock在函数返回后，Block内存将被回收。即使retain也没用。容易犯的错误是[[mutableAarry addObject:stackBlock]，在函数出栈后，从mutableAarry中取到的stackBlock已经被回收，变成了野指针。正确的做法是先将stackBlock copy到堆上，然后加入数组：[mutableAarry addObject:[[stackBlock copy] autorelease]]。支持copy，copy之后生成新的NSMallocBlock类型对象 NSMallocBlock支持retain、release，虽然retainCount始终是1，但内存管理器中仍然会增加、减少计数。copy之后不会生成新的对象，只是增加了一次引用，类似retain； 尽量不要对Block使用retain操作 Block循环引用最简单也最常出现的,block导致循环引用的现象,就是在block中执行了self.xxx,比如 这个问题大家的见的多了,也都知道怎么解决,声明一个用__weak修饰的self替换block中的self就可以解决问题了,不过下面这个方法也能够解决循环引用的问题 总结Block的特性也赋予了它许多的灵活性，但是也会出现很多的一些内存泄漏，不易调试的问题，还要多多深入探究。]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+        <tag>Objective-C</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IOS基础 - WKWebView使用]]></title>
     <url>%2F2019%2F02%2F28%2FIOS%E5%9F%BA%E7%A1%80-WKWebView%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[WKWebView对比UIWebView的优势 1.WKWebView的内存开销要比UIWebView小很多2.拥有高达60FPS滚动刷新率及内置手势3.支持了更多的HTML5特性4.html页面和WKWebView交互更方便5.Safari相同的JavaScript引擎6.提供常用的属性，如加载网页进度的属性estimatedProgress 基本使用倒入库 引入头文件#import &lt;WebKit/WebKit.h&gt; 初始化123456789101112131415161718192021222324@interface MainViewController () &lt;WKNavigationDelegate&gt;@property(strong, nonatomic) WKWebView *webview;@end@implementation MainViewController- (void)viewDidLoad &#123; [super viewDidLoad]; // Do any additional setup after loading the view. WKWebView *wv = [[WKWebView alloc] init]; wv.navigationDelegate = self; [self.view addSubview:wv]; [wv mas_makeConstraints:^(MASConstraintMaker *make) &#123; make.top.equalTo(wv.superview.mas_top).with.offset(0); make.left.equalTo(wv.superview.mas_left).with.offset(0); make.right.equalTo(wv.superview.mas_right).with.offset(0); make.bottom.equalTo(wv.superview.mas_bottom).with.offset(0); &#125;]; self.webview = wv; //加载网页 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@&quot;https://www.baidu.com&quot;]]];&#125; 关于WKWebView的代理WKNavigationDelegate12345678910111213141516171819202122#pragma mark - WKNavigationDelegate// 页面开始加载时调用- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation;// 当内容开始到达时调用- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation;// 页面加载完成之后调用- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation;// 页面加载失败时调用- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error;//收到服务器重定向请求后调用- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation;// 在收到响应开始加载后，决定是否跳转- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler;// 在请求开始加载之前调用，决定是否跳转- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler; WKUIDelegate12345678910- (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures;// 在js中调用alert函数时，会调用该方法。- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler;// 在js中调用confirm函数时，会调用该方法- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler;// 在js中调用prompt函数时，会调用该方法- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler;]]></content>
@@ -56,8 +80,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Composer</tag>
+        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
@@ -69,8 +93,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Maven</tag>
         <tag>Homebrew</tag>
+        <tag>Maven</tag>
       </tags>
   </entry>
   <entry>
@@ -281,8 +305,8 @@
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
