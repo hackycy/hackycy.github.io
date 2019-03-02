@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HTML5语义性标签兼容解决]]></title>
+    <url>%2F2019%2F03%2F02%2FHTML5%E8%AF%AD%E4%B9%89%E6%80%A7%E6%A0%87%E7%AD%BE%E5%85%BC%E5%AE%B9%E8%A7%A3%E5%86%B3%2F</url>
+    <content type="text"><![CDATA[前言现在大部分的浏览器都能够很好的支持H5，但还是不免得有一些浏览器是不能够支持HTML5的新特性及其一些新标签，特别是在IE8以下的浏览器。 兼容办法第一种通过document.createElement(&quot;nav&quot;);的办法来逐个创建标签元素，但是通过其办法还需要定义好其元素的CSS样式。 第二种使用js插件，这里使用的是html5shiv，BootCDN有提供, 1&lt;script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"&gt;&lt;/script&gt; 终极解决办法单纯使用第二种的时候，有一些浏览器本身就能够支持，所以在代码中进行判断是否需要该js 1234&lt;!-- 终极解决方案 --&gt; &lt;!--[if lte IE 8]&gt; &lt;script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"&gt;&lt;/script&gt; &lt;![endif]--&gt; 是否需要兼容可以看业务是否需要，也可以提示用户进行更换浏览器，毕竟IE是个坑爹的浏览器。]]></content>
+      <categories>
+        <category>HTML</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Objective-C之深、浅拷贝]]></title>
     <url>%2F2019%2F03%2F01%2FObjective-C%E4%B9%8B%E6%B7%B1%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%2F</url>
     <content type="text"><![CDATA[什么是深拷贝和浅拷贝 深拷贝就是对一个对象的拷贝，浅拷贝是对一个对象地址的拷贝。 copy，mutablecopy 原则：copy方法返回的是一个不可变对象，不可变即该对象不能执行增删操作，这也是MutableArray不能用copy修饰的原因。mutablecopy方法返回的是一个可变对象。 大多数NSString、Block都需要copy]]></content>
