@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IOS之自动布局AutoLayout]]></title>
+    <url>%2F2019%2F03%2F04%2FIOS%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80AutoLayout%2F</url>
+    <content type="text"><![CDATA[AutoLayout自动布局介绍UI布局对于iOS开发者来说并不陌生，在iOS6之前，大家都是通过UI控件的Frame属性和Autoresizing Mask来进行UI布局的。AutoLayout则是苹果公司在iOS6推出的一种基于约束的，描述性的布局系统。自从AutoLayout问世以来，逐步得到了iOS开发者们的青睐，尤其是iPhone6机型尺寸的出现。 AutoLayout占据UI布局的主要领导位置依赖于它的特殊性： 基于约束：和以往定义frame的位置和尺寸不同，AutoLayout的位置确定是以所谓相对位置的约束来定义的，比如x坐标为superView的中心，y坐标为屏幕底部上方10像素等 描述性： 约束的定义和各个view的关系使用接近自然语言或者可视化语言（稍后会提到）的方法来进行描述 布局系统：即字面意思，用来负责界面的各个元素的位置。 AutoLayout使用原理创建约束IOS6中新加入了一个类，NSLayoutConstraint,它的约束满足一个公式 1item1.attribute = multiplier ⨉ item2.attribute + constant 相应公式的代码为12345678//view_1(红色)top 距离self.view的topNSLayoutConstraint *view_1TopToSuperViewTop = [NSLayoutConstraint constraintWithItem:view_1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:30]; 这里对应的约束是“view_1的顶部（y）＝ self.view的顶部(y)*1 + 30”。 添加约束在创建约束后，需要将其添加到作用的view上。UIView添加约束的实例方法 12- (void)addConstraint:(NSLayoutConstraint *)constraint NS_AVAILABLE_IOS(6_0);- (void)addConstraints:(NSArray&lt;__kindof NSLayoutConstraint *&gt; *)constraints NS_AVAILABLE_IOS(6_0); UIView中的一个属性translatesAutoresizingMaskIntoConstraints 1234//如果你定义的view想用autolayout，就将translatesAutoresizingMaskIntoConstraints = NO//如果你使用的不是autolayout，就将translatesAutoresizingMaskIntoConstraints = YES 约束的属性 当然，如何添加也有相应的规则。 对其他的view没有任何关系时，添加到自己的view上比如说添加一个按钮的宽和高的约束，对其他的view没有任何关系，则将约束添加到自己身上。 为按钮添加一个宽和高为两百的约束1234567891011121314151617181920#import &quot;ViewController.h&quot;@interface ViewController ()@property (strong, nonatomic) IBOutlet UIButton *btn1;@end@implementation ViewController- (void)viewDidLoad &#123; [super viewDidLoad]; // Do any additional setup after loading the view, typically from a nib. NSLayoutConstraint *c1 = [NSLayoutConstraint constraintWithItem:self.btn1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:200]; NSLayoutConstraint *c2 = [NSLayoutConstraint constraintWithItem:self.btn1 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:200]; self.btn1.translatesAutoresizingMaskIntoConstraints = NO; [self.btn1 addConstraint:c1]; [self.btn1 addConstraint:c2];&#125;@end 对于两个同层级view之间的约束关系，则添加到他们的父View上例如3.1与3.2为同层级view，约束关系则添加到父view2.1上。 添加了一个蓝色view的上边线与绿色view的下边线对其的约束，两个view为同级约束，则添加到了父view上。 对于两个不同层级的view之间的约束关系，则添加到他们最近的共同的父view上。例如3.3与3.5为同层级view，约束关系则添加到父view1上。 但是相对于这种情况应该用的很少。 刷新约束可以通过setNeedsUpdateConstraints和layoutIfNeeded两个方法来刷新约束，使得UIView重新布局。 Masonry框架最后说明一下，在Masonry中能够添加autolayout约束有三个函数： 123456789- (NSArray *)mas_makeConstraints:(void(^)(MASConstraintMaker *make))block;- (NSArray *)mas_updateConstraints:(void(^)(MASConstraintMaker *make))block;- (NSArray *)mas_remakeConstraints:(void(^)(MASConstraintMaker *make))block;/*mas_makeConstraints 只负责新增约束 Autolayout不能同时存在两条针对于同一对象的约束 否则会报错 mas_updateConstraints 针对上面的情况 会更新在block中出现的约束 不会导致出现两个相同约束的情况mas_remakeConstraints 则会清除之前的所有约束 仅保留最新的约束三种函数善加利用 就可以应对各种情况了*/ 常用属性 123456//乘以- (MASConstraint * (^)(CGFloat multiplier))multipliedBy;//除以- (MASConstraint * (^)(CGFloat divider))dividedBy;//优先级- (MASConstraint * (^)(MASLayoutPriority priority))priority;]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HTML5语义性标签兼容解决]]></title>
     <url>%2F2019%2F03%2F02%2FHTML5%E8%AF%AD%E4%B9%89%E6%80%A7%E6%A0%87%E7%AD%BE%E5%85%BC%E5%AE%B9%E8%A7%A3%E5%86%B3%2F</url>
-    <content type="text"><![CDATA[前言现在大部分的浏览器都能够很好的支持H5，但还是不免得有一些浏览器是不能够支持HTML5的新特性及其一些新标签，特别是在IE8以下的浏览器。 兼容办法第一种通过document.createElement(&quot;nav&quot;);的办法来逐个创建标签元素，但是通过其办法还需要定义好其元素的CSS样式。 第二种使用js插件，这里使用的是html5shiv，BootCDN有提供, 1&lt;script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"&gt;&lt;/script&gt; 终极解决办法单纯使用第二种的时候，有一些浏览器本身就能够支持，所以在代码中进行判断是否需要该js 1234&lt;!-- 终极解决方案 --&gt; &lt;!--[if lte IE 8]&gt; &lt;script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"&gt;&lt;/script&gt; &lt;![endif]--&gt; 是否需要兼容可以看业务是否需要，也可以提示用户进行更换浏览器，毕竟IE是个坑爹的浏览器。]]></content>
+    <content type="text"><![CDATA[前言现在大部分的浏览器都能够很好的支持H5，但还是不免得有一些浏览器是不能够支持HTML5的新特性及其一些新标签，特别是在IE8以下的浏览器。 兼容办法第一种通过document.createElement(&quot;nav&quot;);的办法来逐个创建标签元素，但是通过其办法还需要定义好其元素的CSS样式。 第二种使用js插件，这里使用的是html5shiv，BootCDN有提供,链接 1&lt;script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"&gt;&lt;/script&gt; 终极解决办法单纯使用第二种的时候，有一些浏览器本身就能够支持，所以在代码中进行判断是否需要该js 1234&lt;!-- 终极解决方案 --&gt; &lt;!--[if lte IE 8]&gt; &lt;script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"&gt;&lt;/script&gt; &lt;![endif]--&gt; 是否需要兼容可以看业务是否需要，也可以提示用户进行更换浏览器，毕竟IE是个坑爹的浏览器。]]></content>
       <categories>
         <category>HTML</category>
       </categories>
@@ -91,8 +102,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Composer</tag>
         <tag>Homebrew</tag>
+        <tag>Composer</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +115,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Maven</tag>
+        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
