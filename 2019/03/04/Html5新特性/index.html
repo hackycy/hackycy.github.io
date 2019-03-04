@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="01-HTML5基础了解HTML5">
+<meta name="keywords" content="HTML5新特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Html5新特性">
+<meta property="og:url" content="http://hackycy.github.io/2019/03/04/Html5新特性/index.html">
+<meta property="og:site_name" content="小小源Bの博客">
+<meta property="og:description" content="01-HTML5基础了解HTML5">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://hackycy.github.io/2019/03/04/Html5新特性/assets/1526470782861.png">
+<meta property="og:updated_time" content="2019-03-04T07:48:04.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Html5新特性">
+<meta name="twitter:description" content="01-HTML5基础了解HTML5">
+<meta name="twitter:image" content="http://hackycy.github.io/2019/03/04/Html5新特性/assets/1526470782861.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2019/03/04/Html5新特性/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Html5新特性 | 小小源Bの博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小源Bの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">zj&ycy</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/03/04/Html5新特性/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="一个苦逼的程序员">
+      <meta itemprop="image" content="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小源Bの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Html5新特性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 15:46:50 / 修改时间：15:48:04" itemprop="dateCreated datePublished" datetime="2019-03-04T15:46:50+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/04/Html5新特性/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/04/Html5新特性/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/04/Html5新特性/" class="leancloud_visitors" data-flag-title="Html5新特性">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:2.9k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:11分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="01-HTML5基础"><a href="#01-HTML5基础" class="headerlink" title="01-HTML5基础"></a>01-HTML5基础</h1><h2 id="了解HTML5"><a href="#了解HTML5" class="headerlink" title="了解HTML5"></a>了解HTML5</h2><a id="more"></a>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">☞HTML5属于上一代HTML的新迭代语言，设计HTML5最主要的目的是为了在移动设备上支持多媒体！！！</span><br><span class="line">  例如： video 标签和 audio 及 canvas 标记</span><br><span class="line"></span><br><span class="line">☞ 新特性：</span><br><span class="line">     1. 取消了过时的显示效果标记  &lt;font&gt;&lt;/font&gt; 和 &lt;center&gt;&lt;/center&gt; ...</span><br><span class="line">     2. 新表单元素引入</span><br><span class="line">     3. 新语义标签的引入  </span><br><span class="line">     4. canvas标签（图形设计）</span><br><span class="line">     5. 本地数据库（本地存储）</span><br><span class="line">     6. 一些API</span><br><span class="line">☞ 好处：</span><br><span class="line">     1. 跨平台</span><br><span class="line">         例如：比如你开发了一款HTML5的游戏，你可以很轻易地移植到UC的开放平台、Opera的游戏中心、Facebook应用平台，甚至可以通过封装的技术发放到App Store或Google Play上，所以它的跨平台性非常强大，这也是大多数人对HTML5有兴趣的主要原因。</span><br><span class="line"></span><br><span class="line">☞ 缺点：</span><br><span class="line">     1. pc端浏览器支持不是特别友好，造成用户体验不佳</span><br></pre></td></tr></table></figure>
+<h2 id="新语义标签"><a href="#新语义标签" class="headerlink" title="新语义标签"></a>新语义标签</h2><h3 id="网页布局结构标签及兼容处理"><a href="#网页布局结构标签及兼容处理" class="headerlink" title="网页布局结构标签及兼容处理"></a>网页布局结构标签及兼容处理</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">article</span>&gt;</span><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aside</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">section</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">....</span><br><span class="line">http://www.w3school.com.cn/html/html5_semantic_elements.asp</span><br></pre></td></tr></table></figure>
+<h3 id="多媒体标签及属性介绍"><a href="#多媒体标签及属性介绍" class="headerlink" title="多媒体标签及属性介绍"></a>多媒体标签及属性介绍</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">☞ <span class="tag">&lt;<span class="name">video</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span> 视频</span><br><span class="line">     属性：controls 显示控制栏</span><br><span class="line">     属性：autoplay 自动播放  </span><br><span class="line">    属性：loop  设置循环播放</span><br><span class="line">☞ <span class="tag">&lt;<span class="name">audio</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span>  音频</span><br><span class="line">     属性：controls 显示控制栏</span><br><span class="line">     属性：autoplay 自动播放  </span><br><span class="line">    属性：loop  设置循环播放</span><br><span class="line">☞ video标签支持的格式    http://www.w3school.com.cn/html5/html_5_video.asp</span><br><span class="line">☞ 多媒体标签在网页中的兼容效果方式</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">video</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"code/多媒体标签/trailer.mp4"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"trailer.ogg"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"trailer.WebM"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="新表单元素及属性"><a href="#新表单元素及属性" class="headerlink" title="新表单元素及属性"></a>新表单元素及属性</h2><h3 id="智能表单控件"><a href="#智能表单控件" class="headerlink" title="智能表单控件"></a>智能表单控件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">input</span>  <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span></span><br><span class="line"> email: 输入合法的邮箱地址</span><br><span class="line"> url：  输入合法的网址</span><br><span class="line"> number： 只能输入数字</span><br><span class="line"> range： 滑块</span><br><span class="line"> color： 拾色器</span><br><span class="line"> date： 显示日期</span><br><span class="line"> month： 显示月份</span><br><span class="line"> week ： 显示第几周</span><br><span class="line"> time：  显示时间</span><br></pre></td></tr></table></figure>
+<h3 id="表单属性"><a href="#表单属性" class="headerlink" title="表单属性"></a>表单属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"> ◆form属性：   </span><br><span class="line">    autocomplete=on | off          自动完成</span><br><span class="line">    novalidate=true | false        是否关闭校验</span><br><span class="line"></span><br><span class="line">  ◆ input属性：</span><br><span class="line">    *autofocus  ： 自动获取焦点</span><br><span class="line">    form：       </span><br><span class="line">    list：</span><br><span class="line">       <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">list</span>=<span class="string">"abc"</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">"abc"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"123"</span>&gt;</span>12312<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"123"</span>&gt;</span>12312<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"123"</span>&gt;</span>12312<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"123"</span>&gt;</span>12312<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br><span class="line">    multiple：    实现多选效果</span><br><span class="line">    *placeholder ： 占位符  （提示信息）</span><br><span class="line">    *required：    必填项</span><br><span class="line"></span><br><span class="line">作业：</span><br><span class="line">    ◆自己解决required自定义提示信息</span><br><span class="line">    ◆预习和复习</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">留下的疑问：</span><br><span class="line">    ◆ 如何修改表单控件中的默认提示信息 </span><br><span class="line">         1. 表单验证触发oninvalid事件</span><br><span class="line">         2. 通过setCustomValidity方法设置修改内容</span><br></pre></td></tr></table></figure>
+<h2 id="HTMl5中的API"><a href="#HTMl5中的API" class="headerlink" title="HTMl5中的API"></a>HTMl5中的API</h2><h3 id="获取页面元素及类名操作和自定义属性"><a href="#获取页面元素及类名操作和自定义属性" class="headerlink" title="获取页面元素及类名操作和自定义属性"></a>获取页面元素及类名操作和自定义属性</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">☞ <span class="built_in">document</span>.querySelector(<span class="string">"选择器"</span>)；</span><br><span class="line">   备注：</span><br><span class="line">      选择器： 可以是css中的任意一种选择器</span><br><span class="line">       通过该选择器只能选中第一个元素。</span><br><span class="line"></span><br><span class="line">☞ <span class="built_in">document</span>.querySelectorAll(<span class="string">"选择器"</span>);</span><br><span class="line">     备注：</span><br><span class="line">        与<span class="built_in">document</span>.querySelector区别： querySelectorAll 可以选中所有符合选择器规则的元素，返回的是一个列表。querySelector返回的只是单独的一个元素</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">☞ Dom.classList.add(<span class="string">"类名"</span>): 给当前dom元素添加类样式</span><br><span class="line"></span><br><span class="line">☞ Dom.classList.remove(<span class="string">"类名"</span>); 给当前dom元素移除类样式</span><br><span class="line"></span><br><span class="line">☞ classList.contains(<span class="string">"类名"</span>); 检测是否包含类样式</span><br><span class="line"></span><br><span class="line">☞ classList.toggle(<span class="string">"active"</span>);  切换类样式（有就删除，没有就添加）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">☞ 自定义属性           （小案例分析体验自定义属性）</span><br><span class="line"></span><br><span class="line">   data-自定义属性名</span><br><span class="line">   备注：</span><br><span class="line">       在标签中，以data-自定义名称  </span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">   <span class="number">1.</span> 获取自定义属性   Dom.dataset   返回的是一个对象</span><br><span class="line">      Dom.dataset.属性名  或者  Dom.dataset[属性名]</span><br><span class="line">     </span><br><span class="line">      注意： </span><br><span class="line">              属性名是不包含data-</span><br><span class="line"></span><br><span class="line">   <span class="number">2.</span> 设置自定义属性</span><br><span class="line">      Dom.dataset.自定义属性名=值  或者  Dom.dataset[自定义属性名]=值；</span><br></pre></td></tr></table></figure>
+<h3 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> ☞  FileReader</span><br><span class="line">     FileReader             接口有3个用来读取文件方法返回结果在result中</span><br><span class="line">     readAsBinaryString    ---将文件读取为二进制编码</span><br><span class="line">     readAsText           ---将文件读取为文本</span><br><span class="line">     readAsDataURL        ---将文件读取为DataURL</span><br><span class="line"></span><br><span class="line">☞  FileReader 提供的事件模型</span><br><span class="line">    onabort        中断时触发</span><br><span class="line">    onerror        出错时触发</span><br><span class="line">    onload     文件读取成功完成时触发</span><br><span class="line">    onloadend  读取完成触发，无论成功或失败</span><br><span class="line">    onloadstart    读取开始时触发</span><br><span class="line">    onprogress 读取中</span><br><span class="line"></span><br><span class="line">☞ 分析读取图片小案例</span><br></pre></td></tr></table></figure>
+<h3 id="获取网络状态"><a href="#获取网络状态" class="headerlink" title="获取网络状态"></a>获取网络状态</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">☞ 获取当前网络状态</span><br><span class="line">       window.navigator.onLine 返回一个布尔值</span><br><span class="line"></span><br><span class="line">☞ 网络状态事件</span><br><span class="line">       1. window.ononline</span><br><span class="line">       2. window.onoffline</span><br></pre></td></tr></table></figure>
+<h3 id="获取地理定位"><a href="#获取地理定位" class="headerlink" title="获取地理定位"></a>获取地理定位</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">☞  获取一次当前位置</span><br><span class="line">    <span class="built_in">window</span>.navigator.geolocation.getCurrentPosition(success,error);</span><br><span class="line"></span><br><span class="line">     <span class="number">1.</span> coords.latitude   维度</span><br><span class="line">     <span class="number">2.</span> coords.longitude   经度</span><br><span class="line"></span><br><span class="line">☞  实时获取当前位置</span><br><span class="line">    <span class="built_in">window</span>.navigator.geolocation.watchPosition(success,error);</span><br><span class="line"></span><br><span class="line">☞ 分析地理定位小案例</span><br></pre></td></tr></table></figure>
+<h3 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">☞发展：</span><br><span class="line">   随着互联网的快速发展，基于网页的应用越来越普遍，同时也变的越来越复杂，为了满足各种各样的需求，会经常性在本地存储大量的数据，传统方式我们以<span class="built_in">document</span>.cookie来进行存储的，但是由于其存储大小只有<span class="number">4</span>k左右，并且解析也相当的复杂，给开发带来诸多不便，HTML5规范则提出解决方案，使用sessionStorage和localStorage存储数据。 </span><br><span class="line"></span><br><span class="line"> ☞  localStorage：</span><br><span class="line">     <span class="number">1.</span> 永久生效</span><br><span class="line">     <span class="number">2.</span> 多窗口共享</span><br><span class="line">     <span class="number">3.</span> 容量大约为<span class="number">20</span>M</span><br><span class="line">     </span><br><span class="line">     ◆<span class="built_in">window</span>.localStorage.setItem(key,value)  设置存储内容</span><br><span class="line">     ◆<span class="built_in">window</span>.localStorage.getItem(key)        获取内容</span><br><span class="line">     ◆<span class="built_in">window</span>.localStorage.removeItem(key)     删除内容</span><br><span class="line">     ◆<span class="built_in">window</span>.localStorage.clear()            清空内容</span><br><span class="line">     </span><br><span class="line"> ☞ sessionStorage：</span><br><span class="line">       <span class="number">1.</span> 生命周期为关闭当前浏览器窗口</span><br><span class="line">        <span class="number">2.</span> 可以在同一个窗口下访问</span><br><span class="line">        <span class="number">3.</span> 数据大小为<span class="number">5</span>M左右</span><br><span class="line">        </span><br><span class="line">      ◆<span class="built_in">window</span>.sessionStorage.setItem(key,value)</span><br><span class="line">     ◆<span class="built_in">window</span>.sessionStorage.getItem(key)</span><br><span class="line">     ◆<span class="built_in">window</span>.sessionStorage.removeItem(key)</span><br><span class="line">     ◆<span class="built_in">window</span>.sessionStorage.clear()</span><br></pre></td></tr></table></figure>
+<h3 id="操作多媒体"><a href="#操作多媒体" class="headerlink" title="操作多媒体"></a>操作多媒体</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://www.w3school.com.cn/html5/html5_ref_audio_video_dom.asp</span><br><span class="line"></span><br><span class="line">作业：</span><br><span class="line">     完成一个在线音乐播放器或者视频播放器</span><br></pre></td></tr></table></figure>
+<h2 id="Canvas画布"><a href="#Canvas画布" class="headerlink" title="Canvas画布"></a>Canvas画布</h2><h3 id="绘图工具"><a href="#绘图工具" class="headerlink" title="绘图工具"></a>绘图工具</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">☞ 介绍canvas画布</span><br><span class="line">☞ 设置画布大小： 使用属性方式设置</span><br><span class="line">☞ 解决画布重绘问题</span><br><span class="line">     <span class="number">1.</span> 设置一次描边</span><br><span class="line">     <span class="number">2.</span> 开启新的图层</span><br></pre></td></tr></table></figure>
+<h3 id="绘图方法"><a href="#绘图方法" class="headerlink" title="绘图方法"></a>绘图方法</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ctx.moveTo(x,y)    落笔</span><br><span class="line">ctx.lineTo(x,y)    连线</span><br><span class="line">ctx.stroke()       描边</span><br><span class="line"></span><br><span class="line">ctx.beginPath()；   开启新的图层</span><br><span class="line"></span><br><span class="line">演示： strokeStyle="值"</span><br><span class="line">线宽： linewidth="值"   备注：不需要带单位</span><br><span class="line"></span><br><span class="line">线连接方式：   lineJoin: round | bevel | miter (默认)</span><br><span class="line"></span><br><span class="line">线帽（线两端的结束方式）：  lineCap: butt(默认值) | round | square </span><br><span class="line"></span><br><span class="line">闭合路径： ctx.closePath()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--绘制一条直线演示代码</span><br><span class="line"></span><br><span class="line">--作业：</span><br><span class="line">       1. 从200,100的位置绘制宽为200高为150的矩形</span><br><span class="line">        2. 准备一个600*400的画布，三等分这个画布，分别绘制正方形。直角三角形，梯形</span><br></pre></td></tr></table></figure>
+<h3 id="渐变方案"><a href="#渐变方案" class="headerlink" title="渐变方案"></a>渐变方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">☞ 线性渐变</span><br><span class="line">   var grd=ctx.createLinearGradient(x0,y0,x1,y1);</span><br><span class="line">        x0--&gt;渐变开始的x坐标</span><br><span class="line">        y0--&gt;渐变开始的y坐标</span><br><span class="line">        x1--&gt;渐变结束的x坐标</span><br><span class="line">        y1--&gt;渐变结束的y坐标</span><br><span class="line">        </span><br><span class="line">    grd.addColorStop(0,&quot;black&quot;);      设置渐变的开始颜色</span><br><span class="line">    grd.addColorStop(0.1,&quot;yellow&quot;);   设置渐变的中间颜色</span><br><span class="line">    grd.addColorStop(1,&quot;red&quot;);        设置渐变的结束颜色</span><br><span class="line"></span><br><span class="line">    ctx.strokeStyle=grd;</span><br><span class="line">    ctx.stroke();</span><br><span class="line">    </span><br><span class="line">    备注：</span><br><span class="line">       addColorStop(offse,color);</span><br><span class="line">       中渐变的开始位置和结束位置介于0-1之间，0代表开始，1代表结束。中间可以设置任何小数</span><br><span class="line">       </span><br><span class="line">☞ 径向渐变</span><br><span class="line"></span><br><span class="line">          ctx.createradialGradient(x0,y0,r0,x1,y1,r1);</span><br><span class="line"></span><br><span class="line">          (x0,y0)：渐变的开始圆的 x,y 坐标</span><br><span class="line"></span><br><span class="line">          r0：开始圆的半径</span><br><span class="line"></span><br><span class="line">          (x1,y1)：渐变的结束圆的 x,y 坐标</span><br><span class="line"></span><br><span class="line">          r1：结束圆的半径</span><br></pre></td></tr></table></figure>
+<h3 id="填充效果"><a href="#填充效果" class="headerlink" title="填充效果"></a>填充效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.fill();         设置填充效果</span><br><span class="line">ctx.fillstyle=&quot;值&quot;; 设置填充颜色</span><br></pre></td></tr></table></figure>
+<h3 id="非零环绕原则"><a href="#非零环绕原则" class="headerlink" title="非零环绕原则"></a>非零环绕原则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">☞ 绘制一个如下图形</span><br></pre></td></tr></table></figure>
+<p><img src="assets/1526470782861.png" alt="52647078286"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">☞ 非零环绕原则：</span><br><span class="line">     1. 任意找一点，越简单越好</span><br><span class="line">     2. 以点为圆心，绘制一条射线，越简单越好（相交的边越少越好）</span><br><span class="line">     3. 以射线为半径顺时针旋转，相交的边同向记为+1，反方向记为-1，如果相加的区域等于0，则不填充。</span><br><span class="line">     4. 非零区域填充</span><br><span class="line">     </span><br><span class="line">☞ 非零环绕原则案例：</span><br></pre></td></tr></table></figure>
+<h3 id="绘制虚线"><a href="#绘制虚线" class="headerlink" title="绘制虚线"></a>绘制虚线</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">原理：</span><br><span class="line"></span><br><span class="line"> 设置虚线其实就是设置实线与空白部分直接的距离,利用数组描述其中的关系</span><br><span class="line"></span><br><span class="line"> 例如： [<span class="number">10</span>,<span class="number">10</span>]  实线部分<span class="number">10</span>px 空白部分<span class="number">10</span>px</span><br><span class="line"></span><br><span class="line"> 例如： [<span class="number">10</span>,<span class="number">5</span>]  实线部分<span class="number">10</span>px 空白部分<span class="number">5</span>px</span><br><span class="line"></span><br><span class="line"> 例如： [<span class="number">10</span>,<span class="number">5</span>,<span class="number">20</span>]  实线部分<span class="number">10</span>px  空白<span class="number">5</span>px  实线<span class="number">20</span>px  空白部分<span class="number">10</span>px 实线<span class="number">5</span>px 空白<span class="number">20</span>px....</span><br><span class="line"></span><br><span class="line">绘制：</span><br><span class="line"> ctx.setLineDash(数组);</span><br><span class="line"> ctx.stroke();</span><br><span class="line"> </span><br><span class="line"> 例如：</span><br><span class="line">     ctx.moveTo(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">     ctx.lineTo(<span class="number">300</span>, <span class="number">100</span>);</span><br><span class="line">     ctx.setLineDash([<span class="number">2</span>,<span class="number">4</span>]);</span><br><span class="line">     ctx.stroke();</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">    如果要将虚线改为实线，只要将数组改为空数组即可。</span><br></pre></td></tr></table></figure>
+<h3 id="绘制动画效果"><a href="#绘制动画效果" class="headerlink" title="绘制动画效果"></a>绘制动画效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">☞ 绘制一个描边矩形： content.strokeRect(x,y,width,height) </span><br><span class="line">☞ 绘制一个填充矩形： content.fillRect(x,y,width,height)  </span><br><span class="line">☞ 清除：           content.clearRect(x,y,width,height)  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">☞ 实现动画效果： </span><br><span class="line">       1. 先清屏</span><br><span class="line">       2. 绘制图形</span><br><span class="line">       3. 处理变量</span><br></pre></td></tr></table></figure>
+<h3 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">☞ 绘制填充文本</span><br><span class="line">    content.fillText(文本的内容,x,y)</span><br><span class="line"></span><br><span class="line">☞ 绘制镂空文本</span><br><span class="line">     content.strokeText();</span><br><span class="line">     </span><br><span class="line">☞ 设置文字大小：</span><br><span class="line">     content.font=&quot;20px 微软雅黑&quot;</span><br><span class="line">     备注： 该属性设置文字大小，必须按照cssfont属性的方式设置</span><br><span class="line">     </span><br><span class="line">☞ 文字水平对齐方式【文字在圆心点位置的对齐方式】</span><br><span class="line">      content.textalign=&quot;left | right | center&quot;</span><br><span class="line"></span><br><span class="line">☞文字垂直对齐方式</span><br><span class="line">       content.textBaseline=&quot;top | middle | bottom | alphabetic(默认)&quot;</span><br><span class="line"></span><br><span class="line">☞文字阴影效果</span><br><span class="line">       ctx.shadowColor=&quot;red&quot;;  设置文字阴影的颜色</span><br><span class="line"></span><br><span class="line">       ctx.ShadowOffsetX=值;   设置文字阴影的水平偏移量</span><br><span class="line"></span><br><span class="line">       ctx.shadowOffsetY=值;   设置文字阴影的垂直偏移量</span><br><span class="line"></span><br><span class="line">       ctx.shadowBlur=值;      设置文字阴影的模糊度</span><br></pre></td></tr></table></figure>
+<h3 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">☞    </span><br><span class="line">    //将图片绘制到画布的指定位置</span><br><span class="line">   content.drawImage(图片对象,x,y);</span><br><span class="line"></span><br><span class="line">☞ </span><br><span class="line">   //将图片绘制到指定区域大小的位置  x,y指的是矩形区域的位置，width和height指的是矩形区域的大小</span><br><span class="line">   content.drawImage(图片对象,x,y,width,height);</span><br><span class="line">   </span><br><span class="line">☞ </span><br><span class="line">   //将图片的指定区域绘制到指定矩形区域内</span><br><span class="line">   content.drawImage(图片对象,sx,sy,swidth,sheight,dx,dy,dwidth,dheight);</span><br><span class="line">   </span><br><span class="line">   sx,sy 指的是要从图片哪块区域开始绘制，swidth，sheight 是值 截取图片区域的大小</span><br><span class="line">   dx,dy 是指矩形区域的位置，dwidth,dheight是值矩形区域的大小</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"> ☞ </span><br><span class="line">    解决图片绘制到某一个区域的按原比例缩放绘制：</span><br><span class="line">      绘制宽：绘制高==原始宽：原始高</span><br></pre></td></tr></table></figure>
+<h3 id="绘制圆弧"><a href="#绘制圆弧" class="headerlink" title="绘制圆弧"></a>绘制圆弧</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">☞</span><br><span class="line">  content.arc(x,y,radius,startradian,endradian[,direct]);</span><br><span class="line">  </span><br><span class="line">         x,y    圆心的坐标</span><br><span class="line"></span><br><span class="line">          radius 半径</span><br><span class="line"></span><br><span class="line">          startradian   开始弧度</span><br><span class="line"></span><br><span class="line">          endradian     结束弧度</span><br><span class="line">     </span><br><span class="line">          direct        方向（默认顺时针 false）   true 代表逆时针</span><br><span class="line">          </span><br><span class="line">☞ 0度角在哪？</span><br><span class="line">       以圆心为中心向右为0角 顺时针为正，逆时针为负</span><br><span class="line">          </span><br><span class="line">☞ 备注：</span><br><span class="line">     角度 和 弧度的关系： 角度:弧度= 180:pi</span><br><span class="line">     </span><br><span class="line">      特殊值</span><br><span class="line"></span><br><span class="line">        0度 = 0弧度</span><br><span class="line"></span><br><span class="line">        30度 = π/6   (180度的六分之一)</span><br><span class="line"></span><br><span class="line">        45度 = π/4   </span><br><span class="line"></span><br><span class="line">        60度 = π/3</span><br><span class="line"></span><br><span class="line">        90度 = π/2</span><br><span class="line"></span><br><span class="line">        180度 = π</span><br><span class="line"></span><br><span class="line">        360度 = 2π</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"> ☞ 绘制圆上任意点：  </span><br><span class="line">     公式：</span><br><span class="line">        x=ox+r*cos( 弧度 )</span><br><span class="line"></span><br><span class="line">        y=oy+r*sin( 弧度 )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      ox: 圆心的横坐标</span><br><span class="line"></span><br><span class="line">      oy: 圆心的纵坐标</span><br><span class="line"></span><br><span class="line">      r： 圆的半径</span><br></pre></td></tr></table></figure>
+<h3 id="平移【坐标系圆点的平移】"><a href="#平移【坐标系圆点的平移】" class="headerlink" title="平移【坐标系圆点的平移】"></a>平移【坐标系圆点的平移】</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ctx.translate(x,y);</span><br><span class="line"></span><br><span class="line">   特点：</span><br><span class="line">      通过该方法可以将原点的位置进行重新设置。</span><br><span class="line"></span><br><span class="line">   注意：</span><br><span class="line">       1. translate(x,y) 中不能设置一个值</span><br><span class="line"></span><br><span class="line">       2. 与moveTo(x,y) 的区别：</span><br><span class="line"></span><br><span class="line">            moveTo(x,y) 指的是将画笔的落笔点的位置改变，而坐标系中的原点位置并没有发生改变</span><br><span class="line"></span><br><span class="line">            translate(x,y) 是将坐标系中的原点位置发生改变</span><br></pre></td></tr></table></figure>
+<h3 id="旋转【坐标系旋转】"><a href="#旋转【坐标系旋转】" class="headerlink" title="旋转【坐标系旋转】"></a>旋转【坐标系旋转】</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.rotate(弧度)</span><br></pre></td></tr></table></figure>
+<h3 id="伸缩"><a href="#伸缩" class="headerlink" title="伸缩"></a>伸缩</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ctx.scale(x,y)</span><br><span class="line"></span><br><span class="line">  备注：</span><br><span class="line">      沿着x轴和y轴缩放</span><br><span class="line"></span><br><span class="line">      x,y 为倍数  例如： 0.5  1</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML/" rel="tag"><i class="fa fa-tag"></i> HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/04/IOS之自动布局AutoLayout/" rel="next" title="IOS之自动布局AutoLayout">
+                <i class="fa fa-chevron-left"></i> IOS之自动布局AutoLayout
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">一个苦逼的程序员</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sweetlover.net.cn" title="sweetlover" target="_blank">sweetlover</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://x5.tencent.com/tbs/guide.html" title="腾讯浏览服务" target="_blank">腾讯浏览服务</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://mob.com" title="mob" target="_blank">mob</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://golang.org" title="golang" target="_blank">golang</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01-HTML5基础"><span class="nav-number">1.</span> <span class="nav-text">01-HTML5基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解HTML5"><span class="nav-number">1.1.</span> <span class="nav-text">了解HTML5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新语义标签"><span class="nav-number">1.2.</span> <span class="nav-text">新语义标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网页布局结构标签及兼容处理"><span class="nav-number">1.2.1.</span> <span class="nav-text">网页布局结构标签及兼容处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多媒体标签及属性介绍"><span class="nav-number">1.2.2.</span> <span class="nav-text">多媒体标签及属性介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新表单元素及属性"><span class="nav-number">1.3.</span> <span class="nav-text">新表单元素及属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#智能表单控件"><span class="nav-number">1.3.1.</span> <span class="nav-text">智能表单控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单属性"><span class="nav-number">1.3.2.</span> <span class="nav-text">表单属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTMl5中的API"><span class="nav-number">1.4.</span> <span class="nav-text">HTMl5中的API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取页面元素及类名操作和自定义属性"><span class="nav-number">1.4.1.</span> <span class="nav-text">获取页面元素及类名操作和自定义属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件读取"><span class="nav-number">1.4.2.</span> <span class="nav-text">文件读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取网络状态"><span class="nav-number">1.4.3.</span> <span class="nav-text">获取网络状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取地理定位"><span class="nav-number">1.4.4.</span> <span class="nav-text">获取地理定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地存储"><span class="nav-number">1.4.5.</span> <span class="nav-text">本地存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作多媒体"><span class="nav-number">1.4.6.</span> <span class="nav-text">操作多媒体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Canvas画布"><span class="nav-number">1.5.</span> <span class="nav-text">Canvas画布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘图工具"><span class="nav-number">1.5.1.</span> <span class="nav-text">绘图工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘图方法"><span class="nav-number">1.5.2.</span> <span class="nav-text">绘图方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渐变方案"><span class="nav-number">1.5.3.</span> <span class="nav-text">渐变方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填充效果"><span class="nav-number">1.5.4.</span> <span class="nav-text">填充效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非零环绕原则"><span class="nav-number">1.5.5.</span> <span class="nav-text">非零环绕原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制虚线"><span class="nav-number">1.5.6.</span> <span class="nav-text">绘制虚线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制动画效果"><span class="nav-number">1.5.7.</span> <span class="nav-text">绘制动画效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制文本"><span class="nav-number">1.5.8.</span> <span class="nav-text">绘制文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制图片"><span class="nav-number">1.5.9.</span> <span class="nav-text">绘制图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制圆弧"><span class="nav-number">1.5.10.</span> <span class="nav-text">绘制圆弧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平移【坐标系圆点的平移】"><span class="nav-number">1.5.11.</span> <span class="nav-text">平移【坐标系圆点的平移】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转【坐标系旋转】"><span class="nav-number">1.5.12.</span> <span class="nav-text">旋转【坐标系旋转】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伸缩"><span class="nav-number">1.5.13.</span> <span class="nav-text">伸缩</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>36.4k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2019/03/04/Html5新特性/';
+        this.page.identifier = '2019/03/04/Html5新特性/';
+        this.page.title = 'Html5新特性';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz",
+                'X-LC-Key': "Sdkle7a8kQMrDfNvnqsHL3CT",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
