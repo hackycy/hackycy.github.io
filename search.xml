@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IOS模拟器截图/录制屏幕]]></title>
+    <url>%2F2019%2F03%2F06%2FIOS%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%88%AA%E5%9B%BE-%E5%BD%95%E5%88%B6%E5%B1%8F%E5%B9%95%2F</url>
+    <content type="text"><![CDATA[截图 iOS 的模拟器截图，按 Command + S或者通过 File 菜单都可以完成。 录制屏幕终端下运行该命令， 1xcrun simctl io booted recordVideo &lt;filename&gt;.&lt;extension&gt; 运行命令后没有报错则已经开始录制屏幕了，如果想要停止则直接Ctrl + C 停止结束命令即可。默认视频会保存在终端的当前目录下，当然你也可以指定当前目录。 xcrun unable to find simctl解决方法如果出现命令无法执行并报出这个错误xcrun: error: unable to find utility &quot;simctl&quot;, not a developer tool or in PATH 修改一下打开Xcode &gt; Preferences &gt; Locations 更改一下 Command Line Tools选项就可以了,如图]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Android P/9.0 http网络请求异常问题]]></title>
     <url>%2F2019%2F03%2F06%2FAndroid-P-9-0-http%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[使用Android P系统时，app使用http请求出现异常。 异常原因 Google表示，为保证用户数据和设备的安全，针对下一代 Android 系统(Android P)的应用程序，将要求默认使用加密连接，这意味着 Android P 将禁止 App使用所有未加密的连接，因此运行 Android P系统的安卓设备无论是接收或者发送流量，未来都不能明码传输，需要使用下一代(Transport LayerSecurity)传输层安全协议，而 Android Nougat 和 Oreo 则不受影响。 因此在Android P中使用HttpUrlConnection时会报出次异常 1W/System.err: java.io.IOException: Cleartext HTTP traffic to **** not permitted 而使用OKHttp时，同样也会报出异常 1java.net.UnknownServiceException: CLEARTEXT communication ** not permitted by network security policy 在Android P系统的设备上，如果应用使用的是非加密的明文流量的http网络请求，则会导致该应用无法进行网络请求，https则不会受影响，同样地，如果应用嵌套了webview，webview也只能使用https请求。有人认为 Android P 上所有的 App 都需要使用 TLS 加密会降低上网体验，事实上这是一种误解，至于 App 对于少数旧服务器的连接如果非要使用明码传输，开发者需要更改 App 的网络安全配置以允许此类连接。 解决方案APP内所有请求更改为Https将targetSdkVersion改为27以下开启/允许http请求在res下新增一个xml目录，然后创建一个名为：network_security_config.xml 文件（名字自定） ，内容如下，大概意思就是允许开启http请求 1234567&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;network-security-config&gt; &lt;base-config cleartextTrafficPermitted="true" /&gt;&lt;/network-security-config&gt; 然后在AndroidManifest.xml文件中的Application标签下增加一行属性 12345678&lt;application ... android:networkSecurityConfig="@xml/network_security_config" ...&gt; ...&lt;/application&gt; 参考链接https://www.jianshu.com/p/57047a84e559 https://android-developers.googleblog.com/2018/04/protecting-users-with-tls-by-default-in.html https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html]]></content>
