@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IOS9以上中的ATS问题]]></title>
+    <url>%2F2019%2F03%2F06%2FIOS9%E4%BB%A5%E4%B8%8A%E4%B8%AD%E7%9A%84ATS%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[WWDC 15 提出的 ATS (App Transport Security) 是 Apple 在推进网络通讯安全的一个重要方式。在 iOS 9 和 OS X 10.11 中，默认情况下非 HTTPS 的网络访问是被禁止的。 作为参考，这里将有效的 NSAppTransportSecurity 字典结构 123456789101112131415NSAppTransportSecurity : Dictionary &#123; NSAllowsArbitraryLoads : Boolean NSAllowsArbitraryLoadsForMedia : Boolean NSAllowsArbitraryLoadsInWebContent : Boolean NSAllowsLocalNetworking : Boolean NSExceptionDomains : Dictionary &#123; &lt;domain-name-string&gt; : Dictionary &#123; NSIncludesSubdomains : Boolean NSExceptionAllowsInsecureHTTPLoads : Boolean NSExceptionMinimumTLSVersion : String NSExceptionRequiresForwardSecrecy : Boolean // Default value is YES NSRequiresCertificateTransparency : Boolean &#125; &#125;&#125; ATS设定的参照表格 如果网站内没有启用https，如何关闭，在info.plist文件中加入source code下12345&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&lt;dict&gt; &lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt; &lt;true/&gt;&lt;/dict&gt; plist下添加NSAppTransportSecurity字典-&gt;并添加键值对NSAllowsArbitraryLoads=YES来禁用ATS 参照链接https://onevcat.com/2016/06/ios-10-ats/ https://stackoverflow.com/questions/31254725/transport-security-has-blocked-a-cleartext-http]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IOS模拟器截图/录制屏幕]]></title>
     <url>%2F2019%2F03%2F06%2FIOS%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%88%AA%E5%9B%BE-%E5%BD%95%E5%88%B6%E5%B1%8F%E5%B9%95%2F</url>
     <content type="text"><![CDATA[截图 iOS 的模拟器截图，按 Command + S或者通过 File 菜单都可以完成。 录制屏幕终端下运行该命令， 1xcrun simctl io booted recordVideo &lt;filename&gt;.&lt;extension&gt; 运行命令后没有报错则已经开始录制屏幕了，如果想要停止则直接Ctrl + C 停止结束命令即可。默认视频会保存在终端的当前目录下，当然你也可以指定当前目录。 xcrun unable to find simctl解决方法如果出现命令无法执行并报出这个错误xcrun: error: unable to find utility &quot;simctl&quot;, not a developer tool or in PATH 修改一下打开Xcode &gt; Preferences &gt; Locations 更改一下 Command Line Tools选项就可以了,如图]]></content>
@@ -135,8 +146,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Composer</tag>
         <tag>Homebrew</tag>
+        <tag>Composer</tag>
       </tags>
   </entry>
   <entry>
@@ -148,8 +159,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Maven</tag>
+        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
