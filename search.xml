@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Mac显示隐藏文件/文件夹]]></title>
     <url>%2F2019%2F03%2F08%2FMac%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6-%E6%96%87%E4%BB%B6%E5%A4%B9%2F</url>
-    <content type="text"><![CDATA[Mac下一些隐藏文件夹是没有办法可见的，终端下也不会进行显示，例如用户文件下下的.m2 终端执行命令设置隐藏文件可见1$ defaults write com.apple.finder AppleShowAllFiles TRUE 设置隐藏文件不可见1$ defaults write com.apple.finder AppleShowAllFiles FALSE 重启Finder生效1$ killadd Finder]]></content>
+    <content type="text"><![CDATA[Mac下一些隐藏文件夹是没有办法可见的，终端下也不会进行显示，例如用户文件下下的.m2 终端执行命令设置隐藏文件可见1$ defaults write com.apple.finder AppleShowAllFiles TRUE 设置隐藏文件不可见1$ defaults write com.apple.finder AppleShowAllFiles FALSE 重启Finder生效1$ killall Finder]]></content>
       <categories>
         <category>程序人生</category>
       </categories>
