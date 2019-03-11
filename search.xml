@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mysql命令行导入/出数据库]]></title>
+    <url>%2F2019%2F03%2F11%2FMysql%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AF%BC%E5%85%A5-%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[通常开发都会使用Navicat或者PhpMyAdmin来进行数据库管理，即使方便，但是用于部署时就需要知道原生的一些命令。 mysqldump导出数据库1mysqldump -u 数据库用户名 -p 数据库名称 &gt; 导出数据库名称.sql 如：mysqldump -u root -p 1111 &gt; 1111_bak.sql，回车后输入密码导出到当前目录。 mysql导入数据库1mysql -u 数据库用户名 -p 导入数据库名称 &lt; 导入数据库源文件名称.sql 如：mysql -u root -p 1111 &lt; 1111_bak.sql，回车后输入密码从当前目录导入。]]></content>
+      <categories>
+        <category>DBA</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Android无法获取本地服务器(Localhost)解决方案]]></title>
     <url>%2F2019%2F03%2F10%2FAndroid%E6%97%A0%E6%B3%95%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8-Localhost-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
     <content type="text"><![CDATA[在Android开发中通过localhost或127.0.0.1访问本地服务器时，会报java.net.ConnectException: localhost/127.0.0.1:8083 -Connection refused异常。* 为什么会报这个异常呢？因为Android模拟器本身把自己当做了localhost或127.0.0.1，而此时我们又通过localhost或127.0.0.1访问本地服务器，所以会抛出异常了。 解决方案： 使用10.0.2.2来代替localhost和127.0.0.1即可]]></content>
