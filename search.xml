@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PHP之魔术常量]]></title>
+    <url>%2F2019%2F03%2F14%2FPHP%E4%B9%8B%E9%AD%94%E6%9C%AF%E5%B8%B8%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[魔术常量PHP 向它运行的任何脚本提供了大量的预定义常量。不过很多常量都是由不同的扩展库定义的，只有在加载了这些扩展库时才会出现，或者动态加载后，或者在编译时已经包括进去了。 有八个魔术常量它们的值随着它们在代码中的位置改变而改变。例如 __LINE__的值就依赖于它在脚本中所处的行来决定。这些特殊的常量不区分大小写，如下： 几个php的魔术常量 名称 说明 LINE 文件中的当前行号 FILE 文件的完整路径和文件名。如果用在被包含文件中，则返回被包含的文件名。自PHP4.0.2起，FILE总是包含一个绝对路径（如果是符号连接，则是解析后的绝对路径），而在此之前的版本有时会包含一个相对路径。 DIR 文件所在的目录。如果用在被包含的文件中，则返回被包含的文件所在的目录，它等价于dirname(_FILE)。除非是根目录，否则目录名不包括末尾的斜杠。（PHP5.3.0中新增）。 FUNCTION 函数名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该函数被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的。 CLASS 类的名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该类被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的。类名包括其被声明的作用区域（例如 Foo\Bar）。注意自 PHP 5.4 起 CLASS 对 trait 也起作用。当用在 trait 方法中时，CLASS 是调用 trait 方法的类的名字。 TRAIT Trait 的名字（PHP 5.4.0 新加）。自 PHP 5.4 起此常量返回 trait 被定义时的名字（区分大小写）。Trait 名包括其被声明的作用区域（例如 Foo\Bar）。 METHOD 类的方法名（PHP 5.0.0 新加）。返回该方法被定义时的名字（区分大小写）。 NAMESPACE 当前命名空间的名称（区分大小写）。此常量是在编译时定义的（PHP 5.3.0 新增）。 参考资料https://secure.php.net/manual/zh/language.constants.predefined.php]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Js高级-面向对象]]></title>
     <url>%2F2019%2F03%2F11%2FJs%E9%AB%98%E7%BA%A7-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%2F</url>
     <content type="text"><![CDATA[JS基本介绍 JS的用途：Javascript可以实现浏览器端、服务器端(nodejs)。。。 浏览器端JS由以下三个部分组成： ECMAScript：基础语法(数据类型、运算符、函数。。。) BOM(浏览器对象模型)：window、location、history、navigator。。。 DOM(文档对象模型)：div、p、span。。。 ECMAScript又名es，有以下重大版本： 旧时代： es1.0。。。es3.1 新时代： es5 es6(es2015) es7(es2016)、es8(es2017) Js基本数据类型和复杂数据类型一句总结，使用排除法，除掉基本数据类型都是复杂数据类型即字符串、数字、布尔值、null、undefined其余都是对象类型。复杂数据类型例如Date、Array等。 对象的基本使用12345678910111213141516171819202122232425262728293031323334353637383940414243&lt;!DOCTYPE html&gt;&lt;html&gt; &lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;script type="text/javascript"&gt; //创建对象 var person = &#123; name : "张三", age : 18, say : function()&#123; console.log('i am from china'); &#125; &#125;; //获取属性 console.log(person.name); console.log(person.age); person.say(); //设置属性 person.address = "中国广东广州"; console.log(person.address); //清除属性 delete person.address; delete person.adc //无意义,但是也不会报错 console.log(person.address); //delete只能删除对象的属性,而不能删除变量 //清空对象 person=&#123;&#125;; //将person变为null person = null; //两者意义不一样 &lt;/script&gt; &lt;/body&gt;&lt;/html&gt; 输出123张三18i am from china 对象是键值对的集合：对象是由属性和方法构成的 (ps：也有说法为：对象里面皆属性，认为方法也是一个属性) name是属性 age是属性 say是方法 获取属性的方式.语法 person.age获取age属性 person.say获取到一个方法 []语法 person[&quot;name&quot;]等价于person.age person[&quot;say&quot;]等价于person.say 2种方式的差异： .语法更方便，但是坑比较多(有局限性)，比如： .后面不能使用js中的关键字、保留字(class、this、function。。。) .后面不能使用数字123var obj=&#123;&#125;;obj.this=5; //语法错误obj.0=10; //语法错误 []使用更广泛 o1[变量name] [“class”]、[“this”]都可以随意使用 obj[&quot;this&quot;]=10 [0]、[1]、[2]也可以使用 obj[3]=50 = obj[&quot;3&quot;]=50 思考：为什么obj[3]=obj[“3”] 甚至还可以这样用：[“[object Array]”] jquery里面就有这样的实现 也可以这样用：[“{abc}”] 给对象添加了{abc}属性 设置属性 student[&quot;gender&quot;]=&quot;男&quot; 等价于： student.gender=&quot;男&quot; 含义：如果student对象中没有gender属性，就添加一个gender属性，值为”男” 如果student对象中有gender属性，就修改gender属性的值为”男” 案例1：student.isFemale=true 案例2：student[&quot;children&quot;]=[1,2,5] 案例3：123student.toShanghai=function()&#123; console.log("正在去往上海的路上") &#125; 删除属性 delete student[“gender”] delete student.gender 构造函数概念12345678&lt;script type="text/javascript"&gt; function Person(name, age)&#123; this.name = name; this.age = age; &#125; var person = new Person('张三', 40); console.log(person);&lt;/script&gt; person就是根据【Person构造函数】创建出来的对象 任何函数都可以当成构造函数 例如function CreateFunc(){ } 只要把一个函数通过new的方式来进行调用，我们就把这一次函数的调用方式称之为：构造函数的调用 new CreateFunc(); 此时CreateFunc就是一个构造函数 CreateFunc(); 此时的CreateFunc并不是构造函数 关于new Object()，new Object()等同于对象字面量{} 构造函数的执行过程var person = new Person() 创建一个对象，称之为这个Person构造函数的实例，p1 创建一个内部对象，this，将this指向该实例 执行函数内部的代码，其中，操作this的部分就是操作了该实例 返回值 如果函数没有返回值，没有return语句，那么就会返回构造函数的实例p1 如果函数返回了一个基本数据类型的值，那么就会返回本次构造函数的实例p1 如果函数返回了一个复杂数据类型的值，那么本次函数的返回值就是该值。 12345678910111213141516171819function fn()&#123; &#125;var f1=new fn(); //f1就是fn的实例function fn2()&#123; return "abc";&#125;var f2=new fn2(); //f2是fn2构造函数的实例function fn3()&#123; return [1,3,5]; //数组是一个对象类型的值， //所以数组是一个复杂数据类型的值 //--&gt;本次构造函数的真正返回值就是该数组 //--&gt;不再是fn3构造函数的实例&#125;var f3=new fn3(); //f3还是fn3的实例吗？错//f3值为[1,3,5]]]></content>
@@ -71,10 +82,10 @@
     <url>%2F2019%2F03%2F06%2FIOS9%E4%BB%A5%E4%B8%8A%E4%B8%AD%E7%9A%84ATS%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[WWDC 15 提出的 ATS (App Transport Security) 是 Apple 在推进网络通讯安全的一个重要方式。在 iOS 9 和 OS X 10.11 中，默认情况下非 HTTPS 的网络访问是被禁止的。 作为参考，这里将有效的 NSAppTransportSecurity 字典结构 123456789101112131415NSAppTransportSecurity : Dictionary &#123; NSAllowsArbitraryLoads : Boolean NSAllowsArbitraryLoadsForMedia : Boolean NSAllowsArbitraryLoadsInWebContent : Boolean NSAllowsLocalNetworking : Boolean NSExceptionDomains : Dictionary &#123; &lt;domain-name-string&gt; : Dictionary &#123; NSIncludesSubdomains : Boolean NSExceptionAllowsInsecureHTTPLoads : Boolean NSExceptionMinimumTLSVersion : String NSExceptionRequiresForwardSecrecy : Boolean // Default value is YES NSRequiresCertificateTransparency : Boolean &#125; &#125;&#125; ATS设定的参照表格 如果网站内没有启用https，如何关闭，在info.plist文件中加入source code下12345&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&lt;dict&gt; &lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt; &lt;true/&gt;&lt;/dict&gt; plist下添加NSAppTransportSecurity字典-&gt;并添加键值对NSAllowsArbitraryLoads=YES来禁用ATS 参照链接https://onevcat.com/2016/06/ios-10-ats/ https://stackoverflow.com/questions/31254725/transport-security-has-blocked-a-cleartext-http]]></content>
       <categories>
-        <category>Ios</category>
+        <category>IOS</category>
       </categories>
       <tags>
-        <tag>Ios</tag>
+        <tag>IOS</tag>
       </tags>
   </entry>
   <entry>
@@ -82,10 +93,10 @@
     <url>%2F2019%2F03%2F06%2FIOS%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%88%AA%E5%9B%BE-%E5%BD%95%E5%88%B6%E5%B1%8F%E5%B9%95%2F</url>
     <content type="text"><![CDATA[截图 iOS 的模拟器截图，按 Command + S或者通过 File 菜单都可以完成。 录制屏幕终端下运行该命令， 1xcrun simctl io booted recordVideo &lt;filename&gt;.&lt;extension&gt; 运行命令后没有报错则已经开始录制屏幕了，如果想要停止则直接Ctrl + C 停止结束命令即可。默认视频会保存在终端的当前目录下，当然你也可以指定当前目录。 xcrun unable to find simctl解决方法如果出现命令无法执行并报出这个错误xcrun: error: unable to find utility &quot;simctl&quot;, not a developer tool or in PATH 修改一下打开Xcode &gt; Preferences &gt; Locations 更改一下 Command Line Tools选项就可以了,如图]]></content>
       <categories>
-        <category>Ios</category>
+        <category>IOS</category>
       </categories>
       <tags>
-        <tag>Ios</tag>
+        <tag>IOS</tag>
       </tags>
   </entry>
   <entry>
@@ -115,10 +126,10 @@
     <url>%2F2019%2F03%2F04%2FIOS%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80AutoLayout%2F</url>
     <content type="text"><![CDATA[AutoLayout自动布局介绍UI布局对于iOS开发者来说并不陌生，在iOS6之前，大家都是通过UI控件的Frame属性和Autoresizing Mask来进行UI布局的。AutoLayout则是苹果公司在iOS6推出的一种基于约束的，描述性的布局系统。自从AutoLayout问世以来，逐步得到了iOS开发者们的青睐，尤其是iPhone6机型尺寸的出现。 AutoLayout占据UI布局的主要领导位置依赖于它的特殊性： 基于约束：和以往定义frame的位置和尺寸不同，AutoLayout的位置确定是以所谓相对位置的约束来定义的，比如x坐标为superView的中心，y坐标为屏幕底部上方10像素等 描述性： 约束的定义和各个view的关系使用接近自然语言或者可视化语言（稍后会提到）的方法来进行描述 布局系统：即字面意思，用来负责界面的各个元素的位置。 AutoLayout使用原理创建约束IOS6中新加入了一个类，NSLayoutConstraint,它的约束满足一个公式 1item1.attribute = multiplier ⨉ item2.attribute + constant 相应公式的代码为12345678//view_1(红色)top 距离self.view的topNSLayoutConstraint *view_1TopToSuperViewTop = [NSLayoutConstraint constraintWithItem:view_1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:30]; 这里对应的约束是“view_1的顶部（y）＝ self.view的顶部(y)*1 + 30”。 添加约束在创建约束后，需要将其添加到作用的view上。UIView添加约束的实例方法 12- (void)addConstraint:(NSLayoutConstraint *)constraint NS_AVAILABLE_IOS(6_0);- (void)addConstraints:(NSArray&lt;__kindof NSLayoutConstraint *&gt; *)constraints NS_AVAILABLE_IOS(6_0); UIView中的一个属性translatesAutoresizingMaskIntoConstraints 1234//如果你定义的view想用autolayout，就将translatesAutoresizingMaskIntoConstraints = NO//如果你使用的不是autolayout，就将translatesAutoresizingMaskIntoConstraints = YES 约束的属性 当然，如何添加也有相应的规则。 对其他的view没有任何关系时，添加到自己的view上比如说添加一个按钮的宽和高的约束，对其他的view没有任何关系，则将约束添加到自己身上。 为按钮添加一个宽和高为两百的约束1234567891011121314151617181920#import &quot;ViewController.h&quot;@interface ViewController ()@property (strong, nonatomic) IBOutlet UIButton *btn1;@end@implementation ViewController- (void)viewDidLoad &#123; [super viewDidLoad]; // Do any additional setup after loading the view, typically from a nib. NSLayoutConstraint *c1 = [NSLayoutConstraint constraintWithItem:self.btn1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:200]; NSLayoutConstraint *c2 = [NSLayoutConstraint constraintWithItem:self.btn1 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:200]; self.btn1.translatesAutoresizingMaskIntoConstraints = NO; [self.btn1 addConstraint:c1]; [self.btn1 addConstraint:c2];&#125;@end 对于两个同层级view之间的约束关系，则添加到他们的父View上例如3.1与3.2为同层级view，约束关系则添加到父view2.1上。 添加了一个蓝色view的上边线与绿色view的下边线对其的约束，两个view为同级约束，则添加到了父view上。 对于两个不同层级的view之间的约束关系，则添加到他们最近的共同的父view上。例如3.3与3.5为同层级view，约束关系则添加到父view1上。 但是相对于这种情况应该用的很少。 刷新约束可以通过setNeedsUpdateConstraints和layoutIfNeeded两个方法来刷新约束，使得UIView重新布局。 Masonry框架最后说明一下，在Masonry中能够添加autolayout约束有三个函数： 123456789- (NSArray *)mas_makeConstraints:(void(^)(MASConstraintMaker *make))block;- (NSArray *)mas_updateConstraints:(void(^)(MASConstraintMaker *make))block;- (NSArray *)mas_remakeConstraints:(void(^)(MASConstraintMaker *make))block;/*mas_makeConstraints 只负责新增约束 Autolayout不能同时存在两条针对于同一对象的约束 否则会报错 mas_updateConstraints 针对上面的情况 会更新在block中出现的约束 不会导致出现两个相同约束的情况mas_remakeConstraints 则会清除之前的所有约束 仅保留最新的约束三种函数善加利用 就可以应对各种情况了*/ 常用属性 123456//乘以- (MASConstraint * (^)(CGFloat multiplier))multipliedBy;//除以- (MASConstraint * (^)(CGFloat divider))dividedBy;//优先级- (MASConstraint * (^)(MASLayoutPriority priority))priority;]]></content>
       <categories>
-        <category>Ios</category>
+        <category>IOS</category>
       </categories>
       <tags>
-        <tag>Ios</tag>
+        <tag>IOS</tag>
       </tags>
   </entry>
   <entry>
@@ -137,10 +148,10 @@
     <url>%2F2019%2F03%2F01%2FObjective-C%E4%B9%8B%E6%B7%B1%E3%80%81%E6%B5%85%E6%8B%B7%E8%B4%9D%2F</url>
     <content type="text"><![CDATA[什么是深拷贝和浅拷贝 深拷贝就是对一个对象的拷贝，浅拷贝是对一个对象地址的拷贝。 copy，mutablecopy 原则：copy方法返回的是一个不可变对象，不可变即该对象不能执行增删操作，这也是MutableArray不能用copy修饰的原因。mutablecopy方法返回的是一个可变对象。 大多数NSString、Block都需要copy]]></content>
       <categories>
-        <category>Ios</category>
+        <category>IOS</category>
       </categories>
       <tags>
-        <tag>Ios</tag>
+        <tag>IOS</tag>
         <tag>Objective-C</tag>
       </tags>
   </entry>
@@ -149,10 +160,10 @@
     <url>%2F2019%2F03%2F01%2FObjective-C%E4%B9%8BBlock%2F</url>
     <content type="text"><![CDATA[关于Block在iOS4.0之后，block横空出世，它本身封装了一段代码并将这段代码当做变量，通过block()的方式进行回调。 block的代码是内联的，效率高于函数调用block对于外部变量默认是只读属性block被Objective-C看成是对象处理 对于block的底层实现在网上已经有很多资料了，其源码更是可以在opensource.apple.com上下载，因此，本文更着重于对于block的基本应用 Block特性MRC环境 认识Block一个简单的block，实现两个数之和1234int(^sum)(int a, int b) = ^(int a, int b)&#123; return a + b; &#125;;NSLog(@&quot;%d&quot;,sum(3,5)); 代码左边是一个block的生命，int为block的返回值类型，^符号后面为block的名称，后面括号里面为参数列表，该block的参数列表有两个，两个都是int类型参数。右边为block的定义。用网上一张图来更好的认识到block。 Block访问外部基本类型数据 静态变量 和 全局变量 在加和不加 block 都会直接引用变量地址。也就意味着 可以修改变量的值。在没有加block 参数的情况下。 基本类型常量时，看一段代码 1234567891011int main(int argc, const char * argv[]) &#123; @autoreleasepool &#123; // insert code here... CGPoint p = CGPointMake(10, 10); void(^bt)(void) = ^()&#123; NSLog(@&quot;%f , %f&quot;, p.x, p.y); &#125;; bt(); &#125; return 0;&#125; 输出122019-03-01 11:35:15.244937+0800 BlockDemo[866:40789] 10.000000 , 10.000000Program ended with exit code: 0 可以看到block可以直接访问到外部的局部变量。但是block内使用外部的变量相当于拷贝了一份外部变量来使用，并不能直接修改外部变量的值，例如 编译器直接进行报错，但是如果想直接修改外部的局部变量的值，那就需要在外部的局部变量前面加上__block的声明。 Block访问外部常量变量NSString *a = @&quot;hello&quot;; a 为常量变量，@“hello”为常量。）—–不加block类型 block 会引用常量的地址（浅拷贝）。加block类型 block会去引用常量变量（如：a变量，a = @”abc”.可以任意修改a 指向的内容。）的地址。 block 会拷贝变量内容到自己的栈内存上，以便执行时可以调用。 但并不是对str 内容做了深拷贝，重新申请内存。 因为str 是栈内存上的变量，指向 一个常量区的@“hello”. 编译器做的优化是 当block 去拷贝str 指向内容时发现是个常量， 所以会去引用 @“hello” 的指针，没必要再取申请一块内存。 Block访问外部对象变量如（MyClass class、Block block）。 这里block 也是”类“对象（类似对象，其包含isa指针,clang 反编译可以查看。因为它不像从NSObject 继承下来的对象都支持 retain、copy、release）。* Block的copy、retain、release操作不同于NSObjec的copy、retain、release操作： Block_copy与copy等效，Block_release与release等效； Block_copy与copy等效，Block_release与release等效； 对Block不管是retain、copy、release都不会改变引用计数retainCount，retainCount始终是1； NSGlobalBlock：retain、copy、release操作都无效； NSStackBlock：retain、release操作无效，必须注意的是，NSStackBlock在函数返回后，Block内存将被回收。即使retain也没用。容易犯的错误是[[mutableAarry addObject:stackBlock]，在函数出栈后，从mutableAarry中取到的stackBlock已经被回收，变成了野指针。正确的做法是先将stackBlock copy到堆上，然后加入数组：[mutableAarry addObject:[[stackBlock copy] autorelease]]。支持copy，copy之后生成新的NSMallocBlock类型对象 NSMallocBlock支持retain、release，虽然retainCount始终是1，但内存管理器中仍然会增加、减少计数。copy之后不会生成新的对象，只是增加了一次引用，类似retain； 尽量不要对Block使用retain操作 Block循环引用最简单也最常出现的,block导致循环引用的现象,就是在block中执行了self.xxx,比如 这个问题大家的见的多了,也都知道怎么解决,声明一个用__weak修饰的self替换block中的self就可以解决问题了,不过下面这个方法也能够解决循环引用的问题 总结Block的特性也赋予了它许多的灵活性，但是也会出现很多的一些内存泄漏，不易调试的问题，还要多多深入探究。]]></content>
       <categories>
-        <category>Ios</category>
+        <category>IOS</category>
       </categories>
       <tags>
-        <tag>Ios</tag>
+        <tag>IOS</tag>
         <tag>Objective-C</tag>
       </tags>
   </entry>
@@ -161,10 +172,10 @@
     <url>%2F2019%2F02%2F28%2FIOS%E5%9F%BA%E7%A1%80-WKWebView%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[WKWebView对比UIWebView的优势 1.WKWebView的内存开销要比UIWebView小很多2.拥有高达60FPS滚动刷新率及内置手势3.支持了更多的HTML5特性4.html页面和WKWebView交互更方便5.Safari相同的JavaScript引擎6.提供常用的属性，如加载网页进度的属性estimatedProgress 基本使用倒入库 引入头文件#import &lt;WebKit/WebKit.h&gt; 初始化123456789101112131415161718192021222324@interface MainViewController () &lt;WKNavigationDelegate&gt;@property(strong, nonatomic) WKWebView *webview;@end@implementation MainViewController- (void)viewDidLoad &#123; [super viewDidLoad]; // Do any additional setup after loading the view. WKWebView *wv = [[WKWebView alloc] init]; wv.navigationDelegate = self; [self.view addSubview:wv]; [wv mas_makeConstraints:^(MASConstraintMaker *make) &#123; make.top.equalTo(wv.superview.mas_top).with.offset(0); make.left.equalTo(wv.superview.mas_left).with.offset(0); make.right.equalTo(wv.superview.mas_right).with.offset(0); make.bottom.equalTo(wv.superview.mas_bottom).with.offset(0); &#125;]; self.webview = wv; //加载网页 [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@&quot;https://www.baidu.com&quot;]]];&#125; 关于WKWebView的代理WKNavigationDelegate12345678910111213141516171819202122#pragma mark - WKNavigationDelegate// 页面开始加载时调用- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation;// 当内容开始到达时调用- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation;// 页面加载完成之后调用- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation;// 页面加载失败时调用- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error;//收到服务器重定向请求后调用- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation;// 在收到响应开始加载后，决定是否跳转- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler;// 在请求开始加载之前调用，决定是否跳转- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler; WKUIDelegate12345678910- (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures;// 在js中调用alert函数时，会调用该方法。- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler;// 在js中调用confirm函数时，会调用该方法- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler;// 在js中调用prompt函数时，会调用该方法- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler;]]></content>
       <categories>
-        <category>Ios</category>
+        <category>IOS</category>
       </categories>
       <tags>
-        <tag>Ios</tag>
+        <tag>IOS</tag>
       </tags>
   </entry>
   <entry>
@@ -439,8 +450,8 @@
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
