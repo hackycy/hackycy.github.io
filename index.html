@@ -369,6 +369,314 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/03/11/Js高级-面向对象/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="一个苦逼的程序员">
+      <meta itemprop="image" content="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小源Bの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/11/Js高级-面向对象/" itemprop="url">
+                  Js高级-面向对象
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-11 17:47:31" itemprop="dateCreated datePublished" datetime="2019-03-11T17:47:31+08:00">2019-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-14 10:57:21" itemprop="dateModified" datetime="2019-03-14T10:57:21+08:00">2019-03-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/11/Js高级-面向对象/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/11/Js高级-面向对象/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/11/Js高级-面向对象/" class="leancloud_visitors" data-flag-title="Js高级-面向对象">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:1.1k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:4分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JS基本介绍"><a href="#JS基本介绍" class="headerlink" title="JS基本介绍"></a>JS基本介绍</h1><ul>
+<li>JS的用途：Javascript可以实现浏览器端、服务器端(nodejs)。。。</li>
+<li>浏览器端JS由以下三个部分组成：<ul>
+<li>ECMAScript：基础语法(数据类型、运算符、函数。。。)</li>
+<li>BOM(浏览器对象模型)：window、location、history、navigator。。。</li>
+<li>DOM(文档对象模型)：div、p、span。。。</li>
+</ul>
+</li>
+<li>ECMAScript又名es，有以下重大版本：<ul>
+<li>旧时代：<ul>
+<li>es1.0。。。es3.1</li>
+</ul>
+</li>
+<li>新时代：<ul>
+<li>es5</li>
+<li>es6(es2015)</li>
+<li>es7(es2016)、es8(es2017)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Js基本数据类型和复杂数据类型"><a href="#Js基本数据类型和复杂数据类型" class="headerlink" title="Js基本数据类型和复杂数据类型"></a>Js基本数据类型和复杂数据类型</h1><p>一句总结，使用排除法，除掉基本数据类型都是复杂数据类型即<code>字符串</code>、<code>数字</code>、<code>布尔值</code>、<code>null</code>、<code>undefined</code>其余都是对象类型。复杂数据类型例如<code>Date</code>、<code>Array</code>等。</p>
+<h1 id="对象的基本使用"><a href="#对象的基本使用" class="headerlink" title="对象的基本使用"></a>对象的基本使用</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">            //创建对象</span></span><br><span class="line"><span class="undefined">            var person = &#123;</span></span><br><span class="line"><span class="undefined">                    name : "张三",</span></span><br><span class="line"><span class="undefined">                    age : 18,</span></span><br><span class="line"><span class="undefined">                    say : function()&#123;</span></span><br><span class="line"><span class="undefined">                        console.log('i am from china');</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="undefined">            &#125;;</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            //获取属性</span></span><br><span class="line"><span class="undefined">            console.log(person.name);</span></span><br><span class="line"><span class="undefined">            console.log(person.age);</span></span><br><span class="line"><span class="undefined">            person.say();</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            //设置属性</span></span><br><span class="line"><span class="undefined">            person.address = "中国广东广州";</span></span><br><span class="line"><span class="undefined">            console.log(person.address);</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            //清除属性</span></span><br><span class="line"><span class="undefined">            delete person.address;</span></span><br><span class="line"><span class="undefined">            delete person.adc  //无意义,但是也不会报错</span></span><br><span class="line"><span class="undefined">            console.log(person.address);</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            //delete只能删除对象的属性,而不能删除变量</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">            //清空对象</span></span><br><span class="line"><span class="undefined">            person=&#123;&#125;;</span></span><br><span class="line"><span class="undefined">            //将person变为null</span></span><br><span class="line"><span class="undefined">            person = null;</span></span><br><span class="line"><span class="undefined">            //两者意义不一样</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出<br><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">张三</span><br><span class="line">18</span><br><span class="line">i am from china</span><br></pre></td></tr></table></figure></p>
+<p>对象是键值对的集合：对象是由属性和方法构成的 (ps：也有说法为：对象里面皆属性，认为方法也是一个属性)</p>
+<ul>
+<li>name是属性    age是属性</li>
+<li>say是方法</li>
+</ul>
+<h2 id="获取属性的方式"><a href="#获取属性的方式" class="headerlink" title="获取属性的方式"></a>获取属性的方式</h2><h3 id="语法"><a href="#语法" class="headerlink" title=".语法"></a>.语法</h3><ul>
+<li><code>person.age</code>获取age属性</li>
+<li><code>person.say</code>获取到一个方法</li>
+</ul>
+<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="[]语法"></a>[]语法</h3><ul>
+<li><code>person[&quot;name&quot;]</code>等价于person.age</li>
+<li><code>person[&quot;say&quot;]</code>等价于person.say</li>
+</ul>
+<h3 id="2种方式的差异："><a href="#2种方式的差异：" class="headerlink" title="2种方式的差异："></a>2种方式的差异：</h3><ul>
+<li><p>.语法更方便，但是坑比较多(有局限性)，比如：</p>
+<ul>
+<li>.后面不能使用js中的关键字、保留字(class、this、function。。。)</li>
+<li>.后面不能使用数字<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line">obj.this=<span class="number">5</span>; <span class="comment">//语法错误</span></span><br><span class="line">obj<span class="number">.0</span>=<span class="number">10</span>;   <span class="comment">//语法错误</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>[]使用更广泛</p>
+<ul>
+<li>o1[变量name]</li>
+<li>[“class”]、[“this”]都可以随意使用 <code>obj[&quot;this&quot;]=10</code></li>
+<li>[0]、[1]、[2]也可以使用       <ul>
+<li><code>obj[3]=50 = obj[&quot;3&quot;]=50</code>     </li>
+<li>思考：为什么obj[3]=obj[“3”]</li>
+</ul>
+</li>
+<li>甚至还可以这样用：[“[object Array]”]<ul>
+<li>jquery里面就有这样的实现</li>
+</ul>
+</li>
+<li>也可以这样用：[“{abc}”]<ul>
+<li>给对象添加了{abc}属性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="设置属性"><a href="#设置属性" class="headerlink" title="设置属性"></a>设置属性</h2><ul>
+<li><code>student[&quot;gender&quot;]=&quot;男&quot;</code>    等价于：    <code>student.gender=&quot;男&quot;</code><ul>
+<li>含义：如果student对象中没有gender属性，就添加一个gender属性，值为”男”</li>
+<li>如果student对象中有gender属性，就修改gender属性的值为”男”</li>
+</ul>
+</li>
+<li>案例1：<code>student.isFemale=true</code></li>
+<li>案例2：<code>student[&quot;children&quot;]=[1,2,5]</code></li>
+<li>案例3：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">student.toShanghai=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;   </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"正在去往上海的路上"</span>)   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h2><ul>
+<li>delete student[“gender”]      </li>
+<li>delete student.gender</li>
+</ul>
+<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.name = name;</span><br><span class="line">                <span class="keyword">this</span>.age = age;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">'张三'</span>, <span class="number">40</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(person);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>person就是根据【Person构造函数】创建出来的对象</p>
+<blockquote>
+<p>任何函数都可以当成构造函数</p>
+</blockquote>
+<p>例如<code>function CreateFunc(){ }</code></p>
+<p>只要把一个函数通过new的方式来进行调用，我们就把这一次函数的调用方式称之为：构造函数的调用</p>
+<ul>
+<li>new CreateFunc(); 此时CreateFunc就是一个构造函数</li>
+<li>CreateFunc();     此时的CreateFunc并不是构造函数</li>
+</ul>
+<p>关于new Object()，new Object()等同于对象字面量{}</p>
+<h2 id="构造函数的执行过程"><a href="#构造函数的执行过程" class="headerlink" title="构造函数的执行过程"></a>构造函数的执行过程</h2><p><code>var person = new Person()</code></p>
+<ul>
+<li>创建一个对象，称之为这个Person构造函数的实例，<code>p1</code></li>
+<li>创建一个内部对象，<code>this</code>，将<code>this</code>指向该实例</li>
+<li>执行函数内部的代码，其中，操作<code>this</code>的部分就是操作了该实例</li>
+<li>返回值<ul>
+<li>如果函数没有返回值，没有<code>return</code>语句，那么就会返回构造函数的实例<code>p1</code></li>
+<li>如果函数返回了一个基本数据类型的值，那么就会返回本次构造函数的实例<code>p1</code></li>
+<li>如果函数返回了一个复杂数据类型的值，那么本次函数的返回值就是该值。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f1=<span class="keyword">new</span> fn();    <span class="comment">//f1就是fn的实例</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"abc"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f2=<span class="keyword">new</span> fn2();   <span class="comment">//f2是fn2构造函数的实例</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]; </span><br><span class="line">    <span class="comment">//数组是一个对象类型的值，</span></span><br><span class="line">    <span class="comment">//所以数组是一个复杂数据类型的值</span></span><br><span class="line">    <span class="comment">//--&gt;本次构造函数的真正返回值就是该数组</span></span><br><span class="line">    <span class="comment">//--&gt;不再是fn3构造函数的实例</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f3=<span class="keyword">new</span> fn3();   <span class="comment">//f3还是fn3的实例吗？错</span></span><br><span class="line"><span class="comment">//f3值为[1,3,5]</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/03/11/Mysql命令行导入-出数据库/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2111,206 +2419,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/03/04/IOS之自动布局AutoLayout/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hackycy">
-      <meta itemprop="description" content="一个苦逼的程序员">
-      <meta itemprop="image" content="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小小源Bの博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/04/IOS之自动布局AutoLayout/" itemprop="url">
-                  IOS之自动布局AutoLayout
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 10:37:21 / 修改时间：11:27:26" itemprop="dateCreated datePublished" datetime="2019-03-04T10:37:21+08:00">2019-03-04</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/04/IOS之自动布局AutoLayout/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/04/IOS之自动布局AutoLayout/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/03/04/IOS之自动布局AutoLayout/" class="leancloud_visitors" data-flag-title="IOS之自动布局AutoLayout">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-          
-            <span class="post-letters-count">
-                &nbsp; | &nbsp;
-              <i class="fa fa-align-right"></i>
-              <span>字数统计:947字</span>
-                &nbsp; | &nbsp;
-              <i class="fa fa-align-left"></i>
-              <span>阅读时长:3分</span>
-            </span>
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="AutoLayout自动布局介绍"><a href="#AutoLayout自动布局介绍" class="headerlink" title="AutoLayout自动布局介绍"></a>AutoLayout自动布局介绍</h1><p>UI布局对于iOS开发者来说并不陌生，在iOS6之前，大家都是通过UI控件的Frame属性和Autoresizing Mask来进行UI布局的。AutoLayout则是苹果公司在iOS6推出的一种基于约束的，描述性的布局系统。自从AutoLayout问世以来，逐步得到了iOS开发者们的青睐，尤其是iPhone6机型尺寸的出现。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/04/IOS之自动布局AutoLayout/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2355,7 +2468,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2400,7 +2513,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2463,7 +2578,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2574,7 +2691,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>39.7k</span>字
+    本站总字数:<span>40.8k</span>字
     </span>
     &nbsp|&nbsp
   </div>
