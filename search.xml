@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo博客Next主题不蒜子失效解决]]></title>
+    <url>%2F2019%2F03%2F17%2Fhexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E4%B8%8D%E8%92%9C%E5%AD%90%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3%2F</url>
+    <content type="text"><![CDATA[2018年底发现不蒜子开始失效，但是没有管，现在看了官网 原因官网解释：因七牛强制过期『dn-lbstatics.qbox.me』域名，与客服沟通无果，只能更换域名到『busuanzi.ibruce.info』！ 解决方案直接根据提示替换即可 替换路径themes/next/layout/_third-party/analytics/busuanzi-counter.swig，打开文件 找到&lt;script async src=&quot;https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;替换&lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PHP之魔术常量]]></title>
     <url>%2F2019%2F03%2F14%2FPHP%E4%B9%8B%E9%AD%94%E6%9C%AF%E5%B8%B8%E9%87%8F%2F</url>
     <content type="text"><![CDATA[魔术常量PHP 向它运行的任何脚本提供了大量的预定义常量。不过很多常量都是由不同的扩展库定义的，只有在加载了这些扩展库时才会出现，或者动态加载后，或者在编译时已经包括进去了。 有八个魔术常量它们的值随着它们在代码中的位置改变而改变。例如 __LINE__的值就依赖于它在脚本中所处的行来决定。这些特殊的常量不区分大小写，如下： 几个php的魔术常量 名称 说明 LINE 文件中的当前行号 FILE 文件的完整路径和文件名。如果用在被包含文件中，则返回被包含的文件名。自PHP4.0.2起，FILE总是包含一个绝对路径（如果是符号连接，则是解析后的绝对路径），而在此之前的版本有时会包含一个相对路径。 DIR 文件所在的目录。如果用在被包含的文件中，则返回被包含的文件所在的目录，它等价于dirname(_FILE)。除非是根目录，否则目录名不包括末尾的斜杠。（PHP5.3.0中新增）。 FUNCTION 函数名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该函数被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的。 CLASS 类的名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该类被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的。类名包括其被声明的作用区域（例如 Foo\Bar）。注意自 PHP 5.4 起 CLASS 对 trait 也起作用。当用在 trait 方法中时，CLASS 是调用 trait 方法的类的名字。 TRAIT Trait 的名字（PHP 5.4.0 新加）。自 PHP 5.4 起此常量返回 trait 被定义时的名字（区分大小写）。Trait 名包括其被声明的作用区域（例如 Foo\Bar）。 METHOD 类的方法名（PHP 5.0.0 新加）。返回该方法被定义时的名字（区分大小写）。 NAMESPACE 当前命名空间的名称（区分大小写）。此常量是在编译时定义的（PHP 5.3.0 新增）。 参考资料https://secure.php.net/manual/zh/language.constants.predefined.php]]></content>
@@ -450,8 +461,8 @@
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
