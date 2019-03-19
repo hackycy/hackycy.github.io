@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mac关闭/开启独立显卡]]></title>
+    <url>%2F2019%2F03%2F19%2FMac%E5%85%B3%E9%97%AD-%E5%BC%80%E5%90%AF%E7%8B%AC%E7%AB%8B%E6%98%BE%E5%8D%A1%2F</url>
+    <content type="text"><![CDATA[本人使用的是2018款15寸的Mbp，每次用迅雷播放器观看总是自动帮我切换到独立显卡，功耗和发热实在是太严重了，所以想单独仅使用集成显卡。 普通的界面中只找到了自动切换模式在设置-节能选项卡中可以找到。 而想单独使用，则终端使用命令123456#强制使用核显(集成显卡)$ sudo pmset -a GPUSwitch 0#强制使用独立显卡$ sudo pmset -a GPUSwitch 1#自动切换$ sudo pmset -a GPUSwitch 2 自由选择切换即可。 或者使用一个gfxCardStatus软件也可实现，但未经尝试。命令更方便。]]></content>
+      <categories>
+        <category>程序人生</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PHP预定义变量]]></title>
     <url>%2F2019%2F03%2F19%2FPHP%E9%A2%84%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F%2F</url>
     <content type="text"><![CDATA[PHP预定义变量对于全部脚本而言，PHP 提供了大量的预定义变量。这些变量将所有的外部变量表示成内建环境变量，并且将错误信息表示成返回头。 超全局变量 — 超全局变量是在全部作用域中始终可用的内置变量 $GLOBALS — 引用全局作用域中可用的全部变量 $_SERVER — 服务器和执行环境信息 $_GET — HTTP GET 变量 $_POST — HTTP POST 变量 $_FILES — HTTP 文件上传变量 $_REQUEST — HTTP Request 变量 $_SESSION — Session 变量 $_ENV — 环境变量 $_COOKIE — HTTP Cookies $php_errormsg — 前一个错误信息 $HTTP_RAW_POST_DATA — 原生POST数据 $http_response_header — HTTP 响应头 $argc — 传递给脚本的参数数目 $argv — 传递给脚本的参数数组 参考资料 https://secure.php.net/manual/zh/reserved.variables.php]]></content>
@@ -387,8 +398,8 @@
         <category>Golang</category>
       </categories>
       <tags>
-        <tag>Golang基础</tag>
         <tag>环境搭建</tag>
+        <tag>Golang基础</tag>
       </tags>
   </entry>
   <entry>
@@ -497,8 +508,8 @@
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
