@@ -140,7 +140,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/03/19/CSS入门/perror.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/03/19/CSS入门/aerror.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/03/19/CSS入门/boxmodel.gif">
-<meta property="og:updated_time" content="2019-03-24T15:25:36.409Z">
+<meta property="og:updated_time" content="2019-03-25T05:07:20.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS入门">
 <meta name="twitter:description" content="CSS入门学习Tool: Visual Studio Code">
@@ -432,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-24 23:25:36" itemprop="dateModified" datetime="2019-03-24T23:25:36+08:00">2019-03-24</time>
+                <time title="修改时间：2019-03-25 13:07:20" itemprop="dateModified" datetime="2019-03-25T13:07:20+08:00">2019-03-25</time>
               
             
           </span>
@@ -496,10 +496,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:4.7k字</span>
+              <span>字数统计:6.4k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:20分</span>
+              <span>阅读时长:27分</span>
             </span>
           
 
@@ -603,6 +603,7 @@
 <p>但是特殊情况<code>:hover</code>与<code>:active</code>这两种情况是相同的，都是会同时触发。由于优先级相等，所以看谁在代码后就使用谁。<br>所以写伪类的顺序一般都是有规则的，最好习惯写为<code>:link</code>-&gt;<code>:visited</code>-&gt;<code>:hover</code>-&gt;<code>:active</code></p>
 <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><p><em>CSS 框模型 (Box Model) 规定了元素框处理元素内容、内边距、边框 和 外边距 的方式。</em></p>
 <p><img src="boxmodel.gif" alt=""></p>
+<p>盒模型<a href="http://www.w3school.com.cn/cssref/index.asp#box" target="_blank" rel="noopener">属性</a></p>
 <p>一个盒子分成这么几个部分</p>
 <ul>
 <li>内容部分</li>
@@ -617,6 +618,7 @@
 <h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><p><em>元素的边框 (border) 是围绕元素内容和内边距的一条或多条线。CSS border 属性允许你规定元素边框的样式、宽度和颜色。</em></p>
 <p>为元素设定边框必须设置三个属性:<code>width</code>,<code>color</code>,<code>style</code>。但是大部分浏览器都会有边框的默认值。</p>
 <p>边框样式：<code>border-style</code><br>边框的宽度：<code>border-width</code><br>边框的颜色：<code>border-color</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            border-width: 2px;</span></span><br><span class="line"><span class="undefined">            border-color: yellow;</span></span><br><span class="line"><span class="undefined">            border-style: solid;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">            <span class="comment">/*简写*/</span></span></span><br><span class="line"><span class="undefined">            border: 2px green solid;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="内边距"><a href="#内边距" class="headerlink" title="内边距"></a>内边距</h2><p><em>元素的内边距在边框和内容区之间。控制该区域最简单的属性是 padding 属性。CSS padding 属性定义元素边框与元素内容之间的空白区域。</em></p>
 <p>padding属性接受长度值或者百分比值，但不允许使用负值。</p>
 <p>h1 元素的各边都有 10 像素的内边距<br><code>h1 {padding: 10px;}</code></p>
@@ -641,23 +643,181 @@
 <p>由于页面元素都是靠左上来进行布局，则设置左，上外边距时会影响自身盒子的位置，相反，设置右，下外边距时会影响其他盒子的位置。</p>
 </blockquote>
 <h2 id="外边距合并"><a href="#外边距合并" class="headerlink" title="外边距合并"></a><a href="http://www.w3school.com.cn/css/css_margin_collapsing.asp" target="_blank" rel="noopener">外边距合并</a></h2><p><em>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</em></p>
-<p>两种情况：</p>
+<p><strong>两种情况：</strong></p>
 <ul>
-<li>第一种：两边为兄弟相邻的元素时</li>
-<li>第二种：两边为父子关系的元素并某个边与边重叠时</li>
+<li><p>第一种：两边为兄弟相邻的元素时</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            background-color: yellow;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            margin-bottom: 100px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            background-color: green;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            margin-top: 200px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 两盒盒子的margin仅仅只有200px，而不是300px，仅取决于最大的那个margin而不是相加的值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二种：两边为父子关系的元素并某个边与边重叠时</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 100px;</span></span><br><span class="line"><span class="undefined">            background-color: yellow;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            margin-top: 100px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 300px;</span></span><br><span class="line"><span class="undefined">            background-color: green;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;div&gt;a&lt;/div&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 结果会发现box2不是相对于box移动了100px，而是box往下移动了100px，原因是因为box和box2处于父子关系，它们的上边框进行了重叠导致的，仅让box2移动则很简单，只要不重叠即可 </span></span><br><span class="line"><span class="comment">            加上个有内容的div就不会了--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="内联元素的盒模型"><a href="#内联元素的盒模型" class="headerlink" title="内联元素的盒模型"></a>内联元素的盒模型</h2><p>内联元素无法设置width和height。</p>
+<h2 id="内联元素的盒模型"><a href="#内联元素的盒模型" class="headerlink" title="内联元素的盒模型"></a>内联元素的盒模型</h2><p>内联元素无法设置width和height，其余基本和块元素的盒模型相似。</p>
 <p>三步走：内容区、padding、margin、border</p>
-<h1 id="display中的block、inline、inline-block、none"><a href="#display中的block、inline、inline-block、none" class="headerlink" title="display中的block、inline、inline-block、none"></a>display中的block、inline、inline-block、none</h1><h1 id="visibility中的hidden、visible"><a href="#visibility中的hidden、visible" class="headerlink" title="visibility中的hidden、visible"></a>visibility中的hidden、visible</h1><h1 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h1><p>解决溢出内容显示</p>
-<h1 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h1><p>文档流出在网页最底层，它表示的是一个网页中的位置，我们所创建的元素默认都处于文档流中。</p>
-<h1 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h1><p>设置浮动会脱离文档流，元素会尽量向父元素或者遇到其他元素的左上或者右上靠。如果浮动元素上边是一个块元素，则浮动元素不会浮动超过这个块元素。</p>
-<p>浮动的元素不会盖住文字，会自动环绕在浮动元素周围。</p>
-<p>当块元素设置float脱离文档流后，宽和高则默认是变成被内容撑开。<br>内联元素使用float脱离文档流后，会变成块元素。</p>
-<h1 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h1><p>对兄弟元素有效，父子是无效的。</p>
-<p>清除浮动<code>clean</code>属性，清除其他浮动元素对当前元素的影响</p>
+<h1 id="display中的block、inline、inline-block、none"><a href="#display中的block、inline、inline-block、none" class="headerlink" title="display中的block、inline、inline-block、none"></a>display中的block、inline、inline-block、none</h1><p><code>display</code>属性规定元素应该生成的框(盒模型)的类型。</p>
+<p><strong>说明</strong></p>
+<p>这个属性用于定义建立布局时元素生成的显示框类型。对于 HTML 等文档类型，如果使用 display 不谨慎会很危险，因为可能违反 HTML 中已经定义的显示层次结构。对于 XML，由于 XML 没有内置的这种层次结构，所有 display 是绝对必要的。</p>
+<p>主要使用的值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>none</td>
+<td>此元素不会被显示</td>
+</tr>
+<tr>
+<td>block</td>
+<td>此元素将显示为块级元素，此元素前后会带有换行符</td>
+</tr>
+<tr>
+<td>inline</td>
+<td>默认。此元素会被显示为内联元素，元素前后没有换行符</td>
+</tr>
+<tr>
+<td>inline-block</td>
+<td>行内块元素（CSS2.1新增）</td>
+</tr>
+</tbody>
+</table>
+<p>更多的值请参考<a href="http://www.w3school.com.cn/cssref/pr_class_display.asp" target="_blank" rel="noopener">链接</a></p>
+<p>将一个div设置为内联元素：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 100px;</span></span><br><span class="line"><span class="undefined">            height: 100px;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            background-color: yellow;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            display: inline;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>a<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 会发现div的设置的宽度和高度设置无效，div已经变为内联元素 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="visibility中的hidden、visible"><a href="#visibility中的hidden、visible" class="headerlink" title="visibility中的hidden、visible"></a>visibility中的hidden、visible</h1><p>visibility 属性规定元素是否可见，可以被继承。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visible</td>
+<td>默认值，元素是可见的</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>元素是不可见的</td>
+</tr>
+<tr>
+<td>collapse</td>
+<td>当在表格元素中使用时，此值可删除一行或一列，但是它不会影响表格的布局。被行或列占据的空间会留给其他内容使用。如果此值被用在其他的元素上，会呈现为 “hidden”。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 visibility 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>使 h2 元素不可见：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">h2</span><br><span class="line">  &#123;</span><br><span class="line">  visibility:hidden;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h1><p>解决溢出内容显示,overflow 属性规定当内容溢出元素框时发生的事情。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visible</td>
+<td>默认值。内容不会被修剪，会呈现在元素框之外。</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>内容会被修剪，并且其余内容是不可见的。</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。</td>
+</tr>
+<tr>
+<td>auto</td>
+<td>如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 overflow 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>在一个狭小的div以滚动条的方式显示一段文本</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            overflow: auto;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>上面这个操作有一些缺陷，不能序列化函数、undefined、循环引用等，详见传送门，但是也能应付一些日常情况了。</span><br><span class="line">事实上，在 Props 是引用类型时，单独修改对象、数组的某个属性或下标，Vue 并不会抛出错误。当然，前提是你要非常清楚自己在做什么，并写好注释，防止你的小伙伴们疑惑。</span><br><span class="line">有的同学可能知道，在组件上绑定的属性，如果没有在组件内部用 Props 声明，会默认绑定到组件的根元素上去。还是之前的栗子：。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h1><p>文档流出在网页最底层，它表示的是一个网页中的位置，我们所创建的元素默认都处于文档流中。<br>原文是<code>normal flow</code>，至于为何翻译成文档流见仁见智。指语言文本从左到右，从上到下显示。但是<code>浮动</code>、<code>绝对定位</code>、<code>固定定位</code>这些都会导致脱离文档流。</p>
+<h1 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h1><p>float 属性定义元素在哪个方向浮动。以往这个属性总应用于图像，使文本围绕在图像周围，不过在 CSS 中，任何元素都可以浮动。浮动元素会生成一个块级框，而不论它本身是何种元素。</p>
+<p>如果浮动非替换元素，则要指定一个明确的宽度；否则，它们会尽可能地窄。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left</td>
+<td>元素向左浮动</td>
+</tr>
+<tr>
+<td>right</td>
+<td>元素向右浮动。</td>
+</tr>
+<tr>
+<td>none</td>
+<td>默认值。元素不浮动，并会显示在其在文本中出现的位置。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 float 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<p>设置浮动会脱离文档流，元素会尽量向父元素或者遇到其他元素的左上或者右上靠。如果浮动元素上边是一个块元素，则浮动元素不会浮动超过这个块元素。</p>
 <blockquote>
-<p>both是清除影响对当前元素影响最大的元素</p>
+<p>浮动的元素不会盖住文字，会自动环绕在浮动元素周围。</p>
 </blockquote>
+<p><del>当块元素设置float脱离文档流后，宽和高则默认是变成被内容撑开。</del><br><del>内联元素使用float脱离文档流后，会变成块元素。</del></p>
+<h1 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h1><p><strong><code>clear</code> 属性规定元素的哪一侧不允许其他浮动元素。</strong></p>
+<p>clear 属性定义了元素的哪边上不允许出现浮动元素。在 CSS1 和 CSS2 中，这是通过自动为清除元素（即设置了 clear 属性的元素）增加上外边距实现的。在 CSS2.1 中，会在元素上外边距之上增加清除空间，而外边距本身并不改变。不论哪一种改变，最终结果都一样，如果声明为左边或右边清除，会使元素的上外边框边界刚好在该边上浮动元素的下外边距边界之下。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left</td>
+<td>在左侧不允许浮动元素。</td>
+</tr>
+<tr>
+<td>right</td>
+<td>在右侧不允许浮动元素。</td>
+</tr>
+<tr>
+<td>both</td>
+<td>在左右两侧均不允许浮动元素。</td>
+</tr>
+<tr>
+<td>none</td>
+<td>默认值。允许浮动元素出现在两侧。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 clear 属性的值。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>both是清除影响对当前元素影响最大的元素<br>对兄弟元素有效，父子是无效的。<br>清除浮动<code>clean</code>属性，清除其他浮动元素对当前元素的影响</p>
+</blockquote>
+<p>实例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box1</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 100px;</span></span><br><span class="line"><span class="undefined">            height: 100px;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            background-color: yellow;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            float: right;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box2</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 200px;</span></span><br><span class="line"><span class="undefined">            height: 200px;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            background-color: blue;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            clear: right;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 如果box2不设置clear，则box2的位置将被顶到box1的高度上，2⃣而设置了clear后，box2还在原来的位置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="高度塌陷问题"><a href="#高度塌陷问题" class="headerlink" title="高度塌陷问题"></a>高度塌陷问题</h2><p>原因：在文档流中，父元素高度默认是由子元素的高度撑起来的，但是设置浮动后，子元素脱离了文档流，则导致了父元素的高度塌陷。</p>
 <h3 id="解决方式一"><a href="#解决方式一" class="headerlink" title="解决方式一"></a>解决方式一</h3><p>BFC:Block Formatting （IE6以下并不支持）Context，W3C标准中，页面中都有一个隐含的属性。默认是关闭的，当打开的时候，会出现以下特性：</p>
 <ul>
@@ -1073,7 +1233,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>57.3k</span>字
+    本站总字数:<span>59.1k</span>字
     </span>
     &nbsp|&nbsp
   </div>
