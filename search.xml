@@ -371,8 +371,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Composer</tag>
         <tag>Mac</tag>
+        <tag>Composer</tag>
         <tag>Homebrew</tag>
       </tags>
   </entry>
@@ -598,8 +598,8 @@
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
