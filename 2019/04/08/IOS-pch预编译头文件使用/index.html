@@ -141,7 +141,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/04/08/IOS-pch预编译头文件使用/pch_config.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/08/IOS-pch预编译头文件使用/rd.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/08/IOS-pch预编译头文件使用/rd2.png">
-<meta property="og:updated_time" content="2019-04-08T04:41:26.457Z">
+<meta property="og:updated_time" content="2019-04-08T04:44:22.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS pch预编译头文件使用">
 <meta name="twitter:description" content="PCH是什么PCH文件是一个标准的预编译头文件( Pre-Compiled Header)，在Xcode6之前的版本中，系统模板会在Supporting Files文件夹自动创建。但在Xcode6之后的版本中取消了这一文件，如果我们需要使用pch文件，则需要手动创建。去掉的主要的原因:">
@@ -428,7 +428,7 @@
                 
               
 
-              <time title="创建时间：2019-04-08 12:19:05 / 修改时间：12:41:26" itemprop="dateCreated datePublished" datetime="2019-04-08T12:19:05+08:00">2019-04-08</time>
+              <time title="创建时间：2019-04-08 12:19:05 / 修改时间：12:44:22" itemprop="dateCreated datePublished" datetime="2019-04-08T12:19:05+08:00">2019-04-08</time>
             
 
             
@@ -497,7 +497,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:922字</span>
+              <span>字数统计:923字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:3分</span>
@@ -537,7 +537,7 @@
 </li>
 </ul>
 <p><img src="pch_config.png" alt=""></p>
-<p>双击可弹出输入框，给Prefix Header设置路径，只需要点击pch文件然后按住鼠标左键拖过来就行，但是<code>/Users/zjyzy/WorkPlace/xcode/AllDemo/BarDemo/BarDemo/PrefixHeader.pch</code>代表的是绝对路径，当用别的电脑时就不能识别了，这时就可以用到<code>$(SRCROOT)</code>来替换，在iOS中<code>$(SRCROOT)</code>代表的是项目根目录下，路径形式为：<br><code>$(SRCROOT)/当前工程名字/需要包含头文件所在文件夹</code><br>所以把路径改为:<br><code>$(SRCROOT)/PrefixHeader.pch</code></p>
+<p>双击可弹出输入框，给Prefix Header设置路径，只需要点击pch文件然后按住鼠标左键拖过来就行，但是<code>/Users/zjyzy/WorkPlace/xcode/AllDemo/BarDemo/BarDemo/PrefixHeader.pch</code>代表的是绝对路径，当用别的电脑时就不能识别了，这时就可以用到<code>$(SRCROOT)</code>来替换，在iOS中<code>$(SRCROOT)</code>代表的是项目根目录下，路径形式为：<br><code>$(SRCROOT)/当前工程名字/需要包含头文件所在文件夹</code><br>所以把路径改为:<br><code>$(SRCROOT)/BarDemo/PrefixHeader.pch</code></p>
 <h1 id="PCH使用"><a href="#PCH使用" class="headerlink" title="PCH使用"></a>PCH使用</h1><p>一般来说在你向pch添加全局的头文件之前,必须添加以下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __OBJC__</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <p>这个宏定义的作用是保证只有oc文件可以调用pch里面的头文件，一些非OC语言不能调用，比如.cpp,.mm。如果不加入，那么如果代码中带有.cpp,.mm文件，那么将报错。NSObjCRuntime.h  NSObject.h  NSZone.h将会报出编译异常。<br>这样你就可以在pch文件当中添加一些常用头文件、宏定义了。</p>
