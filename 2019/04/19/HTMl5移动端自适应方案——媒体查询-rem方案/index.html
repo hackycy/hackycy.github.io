@@ -144,7 +144,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/04/19/HTMl5移动端自适应方案——媒体查询-rem方案/haibao.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/19/HTMl5移动端自适应方案——媒体查询-rem方案/px_h5.gif">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/19/HTMl5移动端自适应方案——媒体查询-rem方案/rem_h5_dpr2.gif">
-<meta property="og:updated_time" content="2019-04-20T06:15:22.534Z">
+<meta property="og:updated_time" content="2019-04-22T02:40:34.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTMl5移动端自适应方案——媒体查询+rem方案">
 <meta name="twitter:description" content="背景虽然H5的页面与PC的Web页面相比简单了不少，但让我们头痛的事情是要想尽办法让页面能适配众多不同的终端设备。">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-20 14:15:22" itemprop="dateModified" datetime="2019-04-20T14:15:22+08:00">2019-04-20</time>
+                <time title="修改时间：2019-04-22 10:40:34" itemprop="dateModified" datetime="2019-04-22T10:40:34+08:00">2019-04-22</time>
               
             
           </span>
@@ -512,7 +512,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:4.4k字</span>
+              <span>字数统计:4.5k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:21分</span>
@@ -535,7 +535,7 @@
         <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>虽然H5的页面与PC的Web页面相比简单了不少，但让我们头痛的事情是要想尽办法让页面能适配众多不同的终端设备。</p>
 <a id="more"></a>
 <blockquote>
-<p>本文中不涉及到除去适配的一些viewport、dpr等的概念介绍，详细了解可以再查看本博客中另一篇文章有具体讲解这些概念。</p>
+<p>本文中不涉及一些viewport、dpr等的概念介绍，详细了解可以再查看本博客中另一篇文章有具体讲解这些概念。</p>
 </blockquote>
 <p><img src="devicesmetrics.png" alt=""></p>
 <p>数据来源<a href="https://material.io/tools/devices/" target="_blank" rel="noopener">Device Metrics</a></p>
@@ -561,20 +561,11 @@
 </ul>
 <blockquote>
 <p>注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。<br>所以我们在写CSS的时候，需要注意两点：</p>
-<ul>
-<li><ol>
+<ol>
 <li>body选择器中声明Font-size=62.5%；</li>
-</ol>
-</li>
-<li><ol start="2">
 <li>将你的原来的px数值除以10，然后换上em作为单位；</li>
-</ol>
-</li>
-<li><ol start="3">
 <li>重新计算那些被放大的字体的em数值。避免字体大小的重复声明。<br>也就是避免1.2 * 1.2= 1.44的现象。比如说你在#content中声明了字体大小为1.2em，那么在声明p的字体大小时就只能是1em，而不是1.2em, 因为此em非彼em，它因继承#content的字体高而变为了1em=12px。</li>
 </ol>
-</li>
-</ul>
 </blockquote>
 <h2 id="REM"><a href="#REM" class="headerlink" title="REM"></a>REM</h2><p><code>rem</code>是<code>CSS3</code>新增的一个相对单位（root em，根em），这个单位引起了广泛关注。这个单位与em有什么区别呢？区别在于使用rem为元素设定字体大小时，仍然是相对大小，但相对的只是HTML根元素。这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，又可以避免字体大小逐层复合的连锁反应。目前，除了IE8及更早版本外，所有浏览器均已支持rem。</p>
 <p>简单的理解，rem就是相对于根元素<code>&lt;html&gt;</code>的<code>font-size</code>来做计算。而我们的方案中使用rem单位，是能轻易的根据<code>&lt;html&gt;</code>的<code>font-size</code>计算出元素的盒模型大小。而这个特色对我们来说是特别的有益处。</p>
@@ -592,7 +583,8 @@
 <p>而该方案就是基于rem的原理，针对不同屏幕尺寸的改变来改变根节点html的<code>font-size</code>的大小。</p>
 <p>这里总结出了一个公式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-size(rem) = 预设font-size(rem)基准值 / （设计稿宽度 / DPR） * 设备宽度</span><br></pre></td></tr></table></figure>
-<p>该公式的原理就是先根据设计稿的尺寸和DPR求出设备的宽度，根据该设备的宽度下预设一个<code>font-size</code>的基准值，再求出该设备下的宽度与预设基准值的比值，然后其他设备下的设备宽度除以该基准值就可以求出其他设备下的html的<code>font-size</code>的值。</p>
+<p>该公式的原理就是先根据设计稿的尺寸和DPR求出设备的宽度，根据该设备的宽度下预设一个<code>font-size</code>的基准值，再求出该设备下的宽度与预设基准值的比值，然后其他设备下的设备宽度除以该基准值就可以求出其他设备下的html的<code>font-size</code>的值。所以上述公式是由下条公式变化得来的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-size(rem) = 设备宽度 / （（设计稿宽度 / DPR） / 预设font-size(rem)基准值）</span><br></pre></td></tr></table></figure>
 <p>按照本文中设计稿为iPhone6的尺寸设计，我们以设计稿下iPhone6为<code>375px</code>的html的<code>font-size</code>预设基准值为<code>100px</code>（方便计算）,即<code>1rem = 100px</code>，则其他设备像素下html的<code>font-size</code>的值为</p>
 <ul>
 <li>iPhone5的设备像素320px:<code>100 / (750 / 2) * 320 = 85.333px</code></li>
@@ -609,7 +601,7 @@
 <p>图片较大，可自行运行代码在dpr为1、2、3下再更改屏幕尺寸，运行结果良好，可谓够用。</p>
 <p>为什么可谓够用，该方案有缺点：通过设备宽度范围区间这样的媒体查询来动态改变rem基准值，其实不够精确，比如：宽度为360px 和 宽度为320px的手机，因为屏宽在同一范围区间内(&lt;375px)，所以会被同等对待(rem基准值相同)，而事实上他们的屏幕宽度并不相等，它们的布局也应该有所不同。最终，结论就是：这样的做法，没有做到足够的精确，但是够用。</p>
 <h1 id="Less优化"><a href="#Less优化" class="headerlink" title="Less优化"></a>Less优化</h1><p>如果项目中使用Less或者Sass等CSS预处理器可以更加简化代码的编写与计算量。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@adapterDeviceWidthList:</span> <span class="number">320px</span>, <span class="number">360px</span>, <span class="number">375px</span>, <span class="number">414px</span>, <span class="number">480px</span>, <span class="number">540px</span>, <span class="number">640px</span>, <span class="number">750px</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@psdWidth:</span> <span class="number">750</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@psdDpr:</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@baseFontSize:</span> <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@deviceLength:</span> length(<span class="variable">@adapterDeviceWidthList</span>);</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.adapterMixin</span>(<span class="variable">@index</span>) <span class="keyword">when</span> (<span class="variable">@index</span> &lt;= <span class="variable">@deviceLength</span>) &#123;</span><br><span class="line">    <span class="keyword">@media</span> (<span class="attribute">min-width</span>: extract(<span class="variable">@adapterDeviceWidthList</span>, <span class="variable">@index</span>)) &#123;</span><br><span class="line">        <span class="selector-tag">html</span> &#123;</span><br><span class="line">            <span class="attribute">font-size</span>: <span class="number">100</span> / (<span class="variable">@psdWidth</span> / <span class="number">2</span>) * extract(<span class="variable">@adapterDeviceWidthList</span>, <span class="variable">@index</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.adapterMixin</span>(<span class="variable">@index</span> + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.adapterMixin</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需要适配的设备宽度数组</span></span><br><span class="line"><span class="variable">@adapterDeviceWidthList:</span> <span class="number">320px</span>, <span class="number">360px</span>, <span class="number">375px</span>, <span class="number">414px</span>, <span class="number">480px</span>, <span class="number">540px</span>, <span class="number">640px</span>, <span class="number">750px</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@psdWidth:</span> <span class="number">750</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@psdDpr:</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@baseFontSize:</span> <span class="number">100px</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@deviceLength:</span> length(<span class="variable">@adapterDeviceWidthList</span>);</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.adapterMixin</span>(<span class="variable">@index</span>) <span class="keyword">when</span> (<span class="variable">@index</span> &lt;= <span class="variable">@deviceLength</span>) &#123;</span><br><span class="line">    <span class="keyword">@media</span> (<span class="attribute">min-width</span>: extract(<span class="variable">@adapterDeviceWidthList</span>, <span class="variable">@index</span>)) &#123;</span><br><span class="line">        <span class="selector-tag">html</span> &#123;</span><br><span class="line">            <span class="attribute">font-size</span>: <span class="number">100</span> / (<span class="variable">@psdWidth</span> / <span class="variable">@psdDpr</span>) * extract(<span class="variable">@adapterDeviceWidthList</span>, <span class="variable">@index</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.adapterMixin</span>(<span class="variable">@index</span> + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.adapterMixin</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 <p>生成的css为</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">320px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">85.33333333px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">360px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">96px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">375px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">414px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">110.4px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">480px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">128px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">540px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">144px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">640px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">170.66666667px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">750px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">200px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用less维护起来就方便很多，只要维护<code>adapterDeviceWidthList</code>中设备的宽度即可，如果设计稿开始有变化更改变量即可。</p>
@@ -1026,7 +1018,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>115.8k</span>字
+    本站总字数:<span>115.9k</span>字
     </span>
     &nbsp|&nbsp
   </div>
