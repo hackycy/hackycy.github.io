@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hackycy.github.io/"/>
-  <updated>2019-04-22T08:49:44.306Z</updated>
+  <updated>2019-04-23T04:48:44.447Z</updated>
   <id>http://hackycy.github.io/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo next主题首页隐藏指定文章</title>
+    <link href="http://hackycy.github.io/2019/04/23/hexo-next%E4%B8%BB%E9%A2%98%E9%A6%96%E9%A1%B5%E9%9A%90%E8%97%8F%E6%8C%87%E5%AE%9A%E6%96%87%E7%AB%A0/"/>
+    <id>http://hackycy.github.io/2019/04/23/hexo-next主题首页隐藏指定文章/</id>
+    <published>2019-04-23T04:24:19.000Z</published>
+    <updated>2019-04-23T04:48:44.447Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为博客下混合了我技术类和生活类的文章，但是首页我只想显示技术类，所以记录下做法。</p><a id="more"></a><p><strong>具体做法</strong></p><p>找到<code>themes⁩</code> ▸ <code>⁨next</code>⁩ ▸ <code>⁨layout</code>⁩文件夹下的<code>index.swig</code>文件</p><p><img src="index1.png" alt=""></p><p>定位修改<code>post_template.render</code></p><p>修改成以下代码,其中修改的是为文章的首页显示添加判断条件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if post.visible !== &apos;hide&apos; %&#125;</span><br><span class="line">   &#123;&#123; post_template.render(post, true) &#125;&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure><p>即修改后</p><p><img src="index2.png" alt=""></p><p><strong>在新的post中添加visible字段来控制是否首页显示</strong></p><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: post title</span><br><span class="line">date: 2019-04-23 12:24:19</span><br><span class="line">tags:</span><br><span class="line"><span class="code">    - hexo</span></span><br><span class="line">categories:</span><br><span class="line"><span class="code">    - hexo</span></span><br><span class="line">visible: hide</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">.........</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为博客下混合了我技术类和生活类的文章，但是首页我只想显示技术类，所以记录下做法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://hackycy.github.io/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://hackycy.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>老司机带带我——翻车牌</title>
+    <link href="http://hackycy.github.io/2019/04/23/%E8%80%81%E5%8F%B8%E6%9C%BA%E5%B8%A6%E5%B8%A6%E6%88%91%E2%80%94%E2%80%94%E7%BF%BB%E8%BD%A6%E7%89%8C/"/>
+    <id>http://hackycy.github.io/2019/04/23/老司机带带我——翻车牌/</id>
+    <published>2019-04-23T04:23:50.000Z</published>
+    <updated>2019-04-23T04:48:45.688Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Sex-Pornhub"><a href="#Sex-Pornhub" class="headerlink" title="Sex Pornhub"></a>Sex Pornhub</h1><p><a href="https://theporndude.com/zh" target="_blank" rel="noopener">https://theporndude.com/zh</a></p><h1 id="bt-tool"><a href="#bt-tool" class="headerlink" title="bt tool"></a>bt tool</h1><p><a href="http://newbtkitty.com/" target="_blank" rel="noopener">http://newbtkitty.com/</a></p><h1 id="桃乃木香奈"><a href="#桃乃木香奈" class="headerlink" title="桃乃木香奈"></a>桃乃木香奈</h1><p><img src="taonaimu.jpg" alt=""></p><p>桃乃木香奈，现龄20岁，出生于1996年12月24日，来自于埼玉县，职业是AV女优，在2015年出道，兴趣爱好是卡拉OK、唱歌、。<br>官方给出的信息是1996年12月24日出生，来自于埼玉县，爱好是唱歌。出道第一作是2015年10月19号发售的，也就说她出道的时候还没有满19岁。刚一出道就进入了第二代的惠比寿麝香葡萄，成为了第二代惠比寿麝香葡萄里最年轻的成员。虽然出镜率不是非常高，但还是可以看出，片商对她是很重视的，毕竟年轻加标准的美少女脸蛋，IP很想把她培养出来，并且给了她应得的资源。现在的IP实在是太缺乏优秀的新鲜战力了。至于在销量上，我并没有太多的关注过她，在IP的4月19档发布的作品销量排行榜里，她并没有排进前三。从momo的推特上来看，她真的很可爱。</p><ul><li>中文名：桃乃木香奈</li><li>别　名：松嶋真麻</li><li>外文名：桃乃木かな(Kana Momonogi)</li><li>生　日：1996-12-24</li><li>星　座：魔羯座</li><li>身　高：153CM</li><li>三　围：B80(F)　W54　H80</li><li>出　生：日本　埼玉县</li><li>职　业：AV女优</li><li>出　道：2015</li><li>兴　趣：卡拉OK、唱歌、看H片</li></ul><p><strong>桃乃木香奈番号列表</strong></p><table><thead><tr><th>番号</th><th>作品名称</th></tr></thead><tbody><tr><td>IPZ-937</td><td>恥じらいの失禁×爆潮大噴射 大洪水セックス 桃乃木かな</td></tr><tr><td>IPZ-921</td><td>ボクらのオタサーの姫は萌え豚専用性処理ドMペット！ 桃乃木かな</td></tr><tr><td>IPZ-904</td><td>いきなりSEX えっ？ノーカットですか？事前周知なしでハメまくりシリーズ完全復活！！ 桃乃木かな</td></tr><tr><td>IPZ-884</td><td>「かなのこと好きっちゃろ」可愛すぎる彼女と方言SEX 青森弁！京都弁！関西弁！博多弁！全編『方言』でALL主観！ 桃乃木かな</td></tr><tr><td>SUPD-135</td><td>DIGITAL CHANNEL DC135 シリーズ史上最強ハードコンテンツ！ 桃乃木かな</td></tr><tr><td>SHE-380</td><td>素人ナンパ中出最新番号しイカセ マキシマム 2 渋谷明治通り編</td></tr><tr><td>IPZ-855</td><td>スキャンダル【熱愛編】 真剣交際でお持ち帰りされた桃乃木かな 盗撮映像 そのままAV発売！180分SPECIAL</td></tr><tr><td>IDBD-747</td><td>驚き！桃乃木！8時間番号大全BEST 8タイトル！抜きどころ！いいとこ！厳選！驚きの初ベスト！ 桃乃木かな （ブルーレイディスク）</td></tr><tr><td>IDBD-747</td><td>驚き！桃乃木！8時間BEST 8タイトル！抜きどころ！いいとこ！厳選！驚きの初ベスト！ 桃乃木かな</td></tr><tr><td>IPZ-837</td><td>デビュー1周年！新作発売イベントで最高のサービスを… チケット完売！前代未聞のイベントに参加せよ！初の「いきなりSEX」も収録！ 桃乃木かな</td></tr><tr><td>IPZ-824</td><td>至極のパイパンフェチマニアックス 初剃毛！超美映像5Dカメラ撮影映像も収録！ 桃乃木かな</td></tr><tr><td>IDBD-739</td><td>The SECRET MOVIE 盗撮・隠し撮りプライベートSEX 映像集 こっそり8時間</td></tr><tr><td>IPZ-809</td><td>調教されたアイドル 首絞め！お漏らし！連続スパンキング！過激すぎる調教姦！ 桃乃木かな</td></tr><tr><td>IPZ-789</td><td>セックス生ライブチャット 桃ちゃんログイン中 超レア映像大放出！ 桃乃木かな</td></tr><tr><td>IPZ-773</td><td>桃乃木ピンチ！『えっ、こんな場所でSEX！？』過激な公然猥褻 怒涛のいきなりロケに予想外！桃ちゃん初ドッキリ！ 桃乃木かな</td></tr><tr><td>GAOR-090</td><td>桃乃木かなはオレのカノジョ。</td></tr><tr><td>IPZ-754</td><td>奪われた僕の彼女「オマエの彼女ヤラせろよ！」目の前で寝取られ犯される美裸体… 桃乃木かな</td></tr><tr><td>IPZ-735</td><td>「ザーメンかけてください…」理性ぶっ飛び膣奥絶頂ぶっかけFUCK最新番号膣奥絶頂！初ぶっかけ！どろっどろっザーメン汁全て浴射！ 桃乃木かな</td></tr><tr><td>IPZ-718</td><td>ゴージャスオナニーサポート 怒涛の3時間 全シーン主観！アナタが気持ち良くオナニーする為に究極のオナサポ作品を作りました！ 桃乃木かな</td></tr><tr><td>PRBYB-012</td><td>SPLASH NUDE キミの笑顔は世界を制す！！！/桃乃木かな （ブルーレイディスク）</td></tr><tr><td>IPZ-703</td><td>桃乃木かな 180分本指名 極上風俗4本番番号网3400.ORG＋ピンサロ</td></tr><tr><td>IPZ-689</td><td>アイドルのかなと僕の甘すぎる同棲性活 アナタの彼女がアイドルだったら…全編主観 桃乃木かな</td></tr><tr><td>IPZ-672</td><td>優等生学園アイドルと学校でしようよ 押しに弱い優等生 桃乃木かな</td></tr><tr><td>IPZ-653</td><td>昇天4本番＋一撃スマッシュ顔射番号大全フェラ 初野外！初拘束！初主観！初コスプレ！初ハメ撮り！ 桃乃木かな</td></tr><tr><td>IPZ-637</td><td>FIRST IMPRESSION 89 超アイドル級美少女 衝撃のAVデビュー 桃乃木かな （ブルーレイディスク）</td></tr></tbody></table><h1 id="桥本有菜"><a href="#桥本有菜" class="headerlink" title="桥本有菜"></a>桥本有菜</h1><p><img src="qiaobenyoucai.jpeg" alt=""></p><p>待收录</p><h1 id="三上悠亚"><a href="#三上悠亚" class="headerlink" title="三上悠亚"></a>三上悠亚</h1><p><img src="sanshangyouya.jpg" alt=""></p><p>待收录</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Sex-Pornhub&quot;&gt;&lt;a href=&quot;#Sex-Pornhub&quot; class=&quot;headerlink&quot; title=&quot;Sex Pornhub&quot;&gt;&lt;/a&gt;Sex Pornhub&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://theporndude.com/z
+      
+    
+    </summary>
+    
+      <category term="程序人生" scheme="http://hackycy.github.io/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>HTML5移动端自适应方案——媒体查询+rem方案</title>
@@ -431,50 +476,6 @@
       <category term="Homebrew" scheme="http://hackycy.github.io/tags/Homebrew/"/>
     
       <category term="PHP" scheme="http://hackycy.github.io/tags/PHP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac OS X 10.11+ Rootless 介绍</title>
-    <link href="http://hackycy.github.io/2019/03/19/Mac-OS-X-10-11-Rootless-%E4%BB%8B%E7%BB%8D/"/>
-    <id>http://hackycy.github.io/2019/03/19/Mac-OS-X-10-11-Rootless-介绍/</id>
-    <published>2019-03-19T02:31:05.000Z</published>
-    <updated>2019-03-19T02:38:49.730Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Rootless"><a href="#Rootless" class="headerlink" title="Rootless"></a>Rootless</h1><p>Mac OS X 10.11+ (El Capitan) 以后，引入了 Rootless 安全机制，该机制限制了 root 用户的权限，有部分操作即使是 root 也无法执行。<br>在搭建php环境时遇到了这个，所以记录了下来。</p><a id="more"></a><blockquote><p>该机制的详细介绍，请参考：<br>Wikipedia: System Integrity Protection<br>Apple: System Integrity Protection Guide</p></blockquote><h1 id="主要限制有："><a href="#主要限制有：" class="headerlink" title="主要限制有："></a>主要限制有：</h1><p>以下目录无法修改：<br>/System, /bin, /sbin, 或者 /usr (/usr/local 除外)，以及内置 App 和系统工具 Utilities。<br>具体的限制名单在 /System/Library/Sandbox/rootless.conf 文件中有定义，该文件行首的 * 表示该行记录不在限制之列<br>无法追踪调试系统进程<br>无法加载未经验证的内核扩展</p><h1 id="可能引起的问题和解决方案"><a href="#可能引起的问题和解决方案" class="headerlink" title="可能引起的问题和解决方案"></a>可能引起的问题和解决方案</h1><ul><li><p>修改受限制的文件或文件夹</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -f FILE /usr/bin/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 报错： cp: /usr/bin/FILE: Operation not permitted</span></span><br></pre></td></tr></table></figure></li><li><p>执行部分命令受挫</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install posix-spawn -v <span class="string">'0.3.11'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 报错：</span></span><br><span class="line">Building native extensions.  This could take a <span class="keyword">while</span>...</span><br><span class="line">ERROR:  While executing gem ... (Errno::EPERM)</span><br><span class="line">    Operation not permitted - /usr/bin/posix-spawn-benchmark</span><br></pre></td></tr></table></figure></li></ul><h1 id="关闭-开启Rootless"><a href="#关闭-开启Rootless" class="headerlink" title="关闭/开启Rootless"></a>关闭/开启Rootless</h1><p>如果遇到的问题难以解决，也可以关闭 rootless 功能，彻底解决引起的权限问题，但是关闭 rootless 将会严重降低系统安全性，必须尽快重新开启。</p><h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><p>1、重启 Mac 并按住 Command+R，进入恢复模式<br>2、打开终端 Terminal<br>3、输入<code>csrutil disable</code></p><h2 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h2><p>1、重启 Mac 并按住 Command+R，进入恢复模式<br>2、打开终端 Terminal<br>3、输入<code>csrutil enable</code></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Rootless&quot;&gt;&lt;a href=&quot;#Rootless&quot; class=&quot;headerlink&quot; title=&quot;Rootless&quot;&gt;&lt;/a&gt;Rootless&lt;/h1&gt;&lt;p&gt;Mac OS X 10.11+ (El Capitan) 以后，引入了 Rootless 安全机制，该机制限制了 root 用户的权限，有部分操作即使是 root 也无法执行。&lt;br&gt;在搭建php环境时遇到了这个，所以记录了下来。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="程序人生" scheme="http://hackycy.github.io/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/"/>
-    
-    
-      <category term="Mac" scheme="http://hackycy.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客Next主题不蒜子失效解决</title>
-    <link href="http://hackycy.github.io/2019/03/17/hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E4%B8%8D%E8%92%9C%E5%AD%90%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3/"/>
-    <id>http://hackycy.github.io/2019/03/17/hexo博客Next主题不蒜子失效解决/</id>
-    <published>2019-03-17T14:54:32.000Z</published>
-    <updated>2019-03-17T15:00:45.391Z</updated>
-    
-    <content type="html"><![CDATA[<p><em>2018年底发现不蒜子开始失效，但是没有管，现在看了<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">官网</a></em></p><a id="more"></a><h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>官网解释：因七牛强制过期『dn-lbstatics.qbox.me』域名，与客服沟通无果，只能更换域名到『busuanzi.ibruce.info』！</p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>直接根据提示替换即可</p><p>替换路径<code>themes/next/layout/_third-party/analytics/busuanzi-counter.swig</code>，打开文件</p><p>找到<br><code>&lt;script async src=&quot;https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;</code><br>替换<br><code>&lt;script async src=&quot;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;</code></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;em&gt;2018年底发现不蒜子开始失效，但是没有管，现在看了&lt;a href=&quot;http://busuanzi.ibruce.info/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://hackycy.github.io/categories/hexo/"/>
-    
-    
-      <category term="hexo" scheme="http://hackycy.github.io/tags/hexo/"/>
     
   </entry>
   
