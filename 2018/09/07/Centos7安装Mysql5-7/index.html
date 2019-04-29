@@ -141,7 +141,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2018/09/07/Centos7安装Mysql5-7/mysql_yum_rpm_repo.png">
 <meta property="og:image" content="http://hackycy.github.io/2018/09/07/Centos7安装Mysql5-7/set_rpm.png">
 <meta property="og:image" content="http://hackycy.github.io/2018/09/07/Centos7安装Mysql5-7/repolist_enabled_mysql.png">
-<meta property="og:updated_time" content="2018-10-10T09:02:46.000Z">
+<meta property="og:updated_time" content="2019-04-29T08:20:59.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7安装Mysql5.7">
 <meta name="twitter:description" content="环境 centos7 virtualbox">
@@ -280,7 +280,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">30</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">31</span></a>
   </li>
         
         
@@ -296,7 +296,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">66</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">67</span></a>
   </li>
         
         
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-10 17:02:46" itemprop="dateModified" datetime="2018-10-10T17:02:46+08:00">2018-10-10</time>
+                <time title="修改时间：2019-04-29 16:20:59" itemprop="dateModified" datetime="2019-04-29T16:20:59+08:00">2019-04-29</time>
               
             
           </span>
@@ -509,7 +509,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:753字</span>
+              <span>字数统计:735字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:3分</span>
@@ -537,14 +537,12 @@
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="centos7需要检查是否已经安装了Mariadb"><a href="#centos7需要检查是否已经安装了Mariadb" class="headerlink" title="centos7需要检查是否已经安装了Mariadb"></a>centos7需要检查是否已经安装了Mariadb</h2><p>在安装MySQL之前要检查当前环境中是否已经装了Mariadb，如果存在则需要卸载，否则可能导致MySQL安装失败<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -qa | grep mariadb</span><br></pre></td></tr></table></figure></p>
 <p>如果输出maraidb等的信息则需要进行卸载，如图<br><img src="rpm_qa_grep_mariadb.png" alt=""><br>需要进行强制卸载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -e --nodeps mariadb-libs-5.5.56-2.el7.x86_64</span><br></pre></td></tr></table></figure></p>
 <h2 id="Yum-Repo"><a href="#Yum-Repo" class="headerlink" title="Yum Repo"></a>Yum Repo</h2><p>官方<a href="https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/" target="_blank" rel="noopener">指导</a><br>点击<a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="noopener">链接</a>查看最新的Yum Repository<br><img src="mysql_yum_rpm_repo.png" alt=""><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 设置rpm</span><br><span class="line">$ rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm</span><br><span class="line">$ yum repolist all | grep mysql</span><br></pre></td></tr></table></figure></p>
-<p>如图<br><img src="set_rpm.png" alt=""><br>需要安装5.7版本，则需要选择发布系列,编辑/etc/yum.repos.d/mysql-community.repo 文件来选择系列 。这是文件中发布系列的子存储库的典型条目：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mysql80-community]</span><br><span class="line">name=MySQL 8.0 Community Server</span><br><span class="line">baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/6/<span class="variable">$basearch</span>/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</span><br></pre></td></tr></table></figure></p>
-<p>找到要配置的子存储库的条目，然后编辑该enabled选项。指定 enabled=0禁用子存储库，或 enabled=1启用子存储库。例如，要安装MySQL 5.7，请确保您拥有enabled=0MySQL 8.0的上述子存储库条目，并且具有 enabled=15.7系列的条目：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Enable to use MySQL 5.7</span></span><br><span class="line">[mysql57-community]</span><br><span class="line">name=MySQL 5.7 Community Server</span><br><span class="line">baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/6/<span class="variable">$basearch</span>/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</span><br></pre></td></tr></table></figure></p>
+<p>如图<br><img src="set_rpm.png" alt=""><br>需要安装5.7版本，则需要选择发布系列,编辑<code>/etc/yum.repos.d/mysql-community.repo</code> 文件来选择系列 。这是文件中发布系列的子存储库的典型条目：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mysql80-community]</span><br><span class="line">name=MySQL 8.0 Community Server</span><br><span class="line">baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/6/<span class="variable">$basearch</span>/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</span><br></pre></td></tr></table></figure></p>
+<p>找到要配置的子存储库的条目，然后编辑该enabled选项。指定<code>enabled=0</code>禁用子存储库，或 <code>enabled=1</code>启用子存储库。例如，要安装MySQL 5.7，请确保您拥有<code>enabled=0</code>,MySQL 8.0的上述子存储库条目，并且具有 <code>enabled=1</code>,5.7系列的条目：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Enable to use MySQL 5.7</span></span><br><span class="line">[mysql57-community]</span><br><span class="line">name=MySQL 5.7 Community Server</span><br><span class="line">baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/6/<span class="variable">$basearch</span>/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</span><br></pre></td></tr></table></figure></p>
 <p>您应该只在任何时候为一个发布系列启用子存储库。当启用多个版本系列的子存储库时，Yum将使用最新的系列。</p>
 <p>通过运行以下命令并检查其输出来验证是否已启用和禁用了正确的子存储库（对于启用dnf的系统，请使用dnf替换 命令中的 yum）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum repolist enabled | grep mysql</span><br></pre></td></tr></table></figure></p>
 <p><img src="repolist_enabled_mysql.png" alt=""></p>
 <p>安装mysql<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y mysql-community-server</span><br></pre></td></tr></table></figure></p>
-<h2 id="二进制编译安装"><a href="#二进制编译安装" class="headerlink" title="二进制编译安装"></a>二进制编译安装</h2><p>后续补上</p>
-<h2 id="CMake方式安装"><a href="#CMake方式安装" class="headerlink" title="CMake方式安装"></a>CMake方式安装</h2><p>后续补上</p>
 <h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p>使用以下命令启动MySQL服务器：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start mysqld.service</span><br></pre></td></tr></table></figure></p>
 <p>检查MySQL服务器的状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl status mysqld.service</span><br></pre></td></tr></table></figure></p>
 <p>MySQL服务器初始化（从MySQL5.7开始）：在服务器初始启动时，如果服务器的数据目录为空，则会发生以下情况：</p>
@@ -721,7 +719,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-count">67</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -839,7 +837,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">30</span>
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -935,7 +935,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#centos7需要检查是否已经安装了Mariadb"><span class="nav-number">2.1.</span> <span class="nav-text">centos7需要检查是否已经安装了Mariadb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yum-Repo"><span class="nav-number">2.2.</span> <span class="nav-text">Yum Repo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制编译安装"><span class="nav-number">2.3.</span> <span class="nav-text">二进制编译安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMake方式安装"><span class="nav-number">2.4.</span> <span class="nav-text">CMake方式安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动"><span class="nav-number">3.</span> <span class="nav-text">启动</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#centos7需要检查是否已经安装了Mariadb"><span class="nav-number">2.1.</span> <span class="nav-text">centos7需要检查是否已经安装了Mariadb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yum-Repo"><span class="nav-number">2.2.</span> <span class="nav-text">Yum Repo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动"><span class="nav-number">3.</span> <span class="nav-text">启动</span></a></li></ol></div>
             
 
           </div>
@@ -980,7 +980,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>120.6k</span>字
+    本站总字数:<span>121.2k</span>字
     </span>
     &nbsp|&nbsp
   </div>
