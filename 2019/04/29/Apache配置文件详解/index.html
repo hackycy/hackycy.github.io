@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="环境 Centos7  配置文件找到apache所在的配置文件，在本文环境下即centos7以yum源安装的httpd所在的配置环境路径为/etc/httpd/conf。也可以使用命令找到该配置文件。  以下以本文中的配置路径为准，其他系统下路径可能不一致。在 Ubnutu/Mac 上，apache 服务叫 apache2，而不是 httpd（在 Centos 上叫 httpd），主配置文件为 /">
+<meta name="keywords" content="Apache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache配置文件详解">
+<meta property="og:url" content="http://hackycy.github.io/2019/04/29/Apache配置文件详解/index.html">
+<meta property="og:site_name" content="小小源Bの博客">
+<meta property="og:description" content="环境 Centos7  配置文件找到apache所在的配置文件，在本文环境下即centos7以yum源安装的httpd所在的配置环境路径为/etc/httpd/conf。也可以使用命令找到该配置文件。  以下以本文中的配置路径为准，其他系统下路径可能不一致。在 Ubnutu/Mac 上，apache 服务叫 apache2，而不是 httpd（在 Centos 上叫 httpd），主配置文件为 /">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-30T06:38:33.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache配置文件详解">
+<meta name="twitter:description" content="环境 Centos7  配置文件找到apache所在的配置文件，在本文环境下即centos7以yum源安装的httpd所在的配置环境路径为/etc/httpd/conf。也可以使用命令找到该配置文件。  以下以本文中的配置路径为准，其他系统下路径可能不一致。在 Ubnutu/Mac 上，apache 服务叫 apache2，而不是 httpd（在 Centos 上叫 httpd），主配置文件为 /">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小小源Bの博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2019/04/29/Apache配置文件详解/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Apache配置文件详解 | 小小源Bの博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小源Bの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">zj&ycy</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">32</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">68</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/04/29/Apache配置文件详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="一个腼腆幽默的程序猿">
+      <meta itemprop="image" content="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小源Bの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Apache配置文件详解
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 20:39:51" itemprop="dateCreated datePublished" datetime="2019-04-29T20:39:51+08:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-30 14:38:33" itemprop="dateModified" datetime="2019-04-30T14:38:33+08:00">2019-04-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/服务器运维/" itemprop="url" rel="index"><span itemprop="name">服务器运维</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/29/Apache配置文件详解/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/29/Apache配置文件详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/04/29/Apache配置文件详解/" class="leancloud_visitors" data-flag-title="Apache配置文件详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:2.6k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:11分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>Centos7</li>
+</ul>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p>找到apache所在的配置文件，在本文环境下即centos7以yum源安装的httpd所在的配置环境路径为<code>/etc/httpd/conf</code>。也可以使用命令找到该配置文件。</p>
+<blockquote>
+<p>以下以本文中的配置路径为准，其他系统下路径可能不一致。<br>在 Ubnutu/Mac 上，apache 服务叫 apache2，而不是 httpd（在 Centos 上叫 httpd），主配置文件为 /etc/apache2/apache2.conf，我们打开 /etc/apache2/apache2.conf</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sudo find / -name 'httpd.conf'</span></span><br></pre></td></tr></table></figure>
+<h1 id="Apache配置文件"><a href="#Apache配置文件" class="headerlink" title="Apache配置文件"></a>Apache配置文件</h1><p>Apache提供了灵活的web服务配置，理解其参数的含义很重要。</p>
+<p>Apache配置文件中英文对照：<a href="http://www.cnblogs.com/adamite/p/apache_configuration.html" target="_blank" rel="noopener">http://www.cnblogs.com/adamite/p/apache_configuration.html</a></p>
+<h2 id="Apache主目录"><a href="#Apache主目录" class="headerlink" title="Apache主目录"></a>Apache主目录</h2><p><code>ServerRoot &quot;/etc/httpd&quot;</code></p>
+<h2 id="监听端口"><a href="#监听端口" class="headerlink" title="监听端口"></a>监听端口</h2><p><code>Listen 80</code></p>
+<h2 id="加载动态模块"><a href="#加载动态模块" class="headerlink" title="加载动态模块"></a>加载动态模块</h2><p><code>LoadModule php5_module modules/libphp5.so</code></p>
+<p>或者加载动态模块的配置文件</p>
+<p><code>Include conf.modules.d/*.conf</code></p>
+<h2 id="Apache的进程执行者"><a href="#Apache的进程执行者" class="headerlink" title="Apache的进程执行者"></a>Apache的进程执行者</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User apache</span><br><span class="line">Group apache</span><br></pre></td></tr></table></figure>
+<h2 id="服务器域名"><a href="#服务器域名" class="headerlink" title="服务器域名"></a>服务器域名</h2><p>该项可配置也可不配置 <code>ServerName www.example.com:80</code></p>
+<h2 id="网站根目录"><a href="#网站根目录" class="headerlink" title="网站根目录"></a>网站根目录</h2><p><code>DocumentRoot &quot;/var/www/html&quot;</code></p>
+<h2 id="设置网站根目录的访问权限"><a href="#设置网站根目录的访问权限" class="headerlink" title="设置网站根目录的访问权限"></a>设置网站根目录的访问权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www/html&quot;&gt;</span><br><span class="line">    #</span><br><span class="line">    # Possible values for the Options directive are &quot;None&quot;, &quot;All&quot;,</span><br><span class="line">    # or any combination of:</span><br><span class="line">    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews</span><br><span class="line">    #</span><br><span class="line">    # Note that &quot;MultiViews&quot; must be named *explicitly* --- &quot;Options All&quot;</span><br><span class="line">    # doesn&apos;t give it to you.</span><br><span class="line">    #</span><br><span class="line">    # The Options directive is both complicated and important.  Please see</span><br><span class="line">    # http://httpd.apache.org/docs/2.4/mod/core.html#options</span><br><span class="line">    # for more information.</span><br><span class="line">    #</span><br><span class="line">    Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">    #</span><br><span class="line">    # AllowOverride controls what directives may be placed in .htaccess files.</span><br><span class="line">    # It can be &quot;All&quot;, &quot;None&quot;, or any combination of the keywords:</span><br><span class="line">    #   Options FileInfo AuthConfig Limit</span><br><span class="line">    #</span><br><span class="line">    AllowOverride None</span><br><span class="line"></span><br><span class="line">    #</span><br><span class="line">    # Controls who can get stuff from this server.</span><br><span class="line">    #</span><br><span class="line">    Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>参数详解</strong></p>
+<ul>
+<li><code>Allow from all</code> 参数允许所有人访问<code>/var/www/html</code>下的资源</li>
+<li><code>Deny from all</code> 参数拒绝所有人访问<code>/var/www/html</code>下的资源</li>
+<li><code>Options Indexes</code> 参数:访问目录时,如果不存在默认首页则展示站点列表 该行建议改成 Options None</li>
+<li><code>Options FollowSymLinks</code> 参数:是否允许快捷方式(ln -s 软连接)</li>
+<li><code>Options MultiViews</code> 多视图,访问<code>/index</code>等同访问<code>index.php</code>或<code>index.html</code></li>
+</ul>
+<h3 id="Apache服务器访问权限控制包括"><a href="#Apache服务器访问权限控制包括" class="headerlink" title="Apache服务器访问权限控制包括:"></a>Apache服务器访问权限控制包括:</h3><h4 id="Apache-服务权限"><a href="#Apache-服务权限" class="headerlink" title="Apache 服务权限"></a>Apache 服务权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deny from all (**403 forbidden** error!)</span><br><span class="line">allow from all</span><br></pre></td></tr></table></figure>
+<h4 id="Linux-系统权限"><a href="#Linux-系统权限" class="headerlink" title="Linux 系统权限"></a>Linux 系统权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selinux</span><br><span class="line">iptables</span><br><span class="line">httpd进程执行者对根目录的权限(**403 forbidden** error!)</span><br></pre></td></tr></table></figure>
+<h2 id="设置目录默认首页"><a href="#设置目录默认首页" class="headerlink" title="设置目录默认首页"></a>设置目录默认首页</h2><p>优先级从左往右依次降低</p>
+<p><code>DirectoryIndex index.html index.php</code></p>
+<h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><p><code>ErrorLog &quot;logs/error_log&quot;</code></p>
+<h2 id="访问日志"><a href="#访问日志" class="headerlink" title="访问日志"></a>访问日志</h2><p><code>CustomLog &quot;logs/access_log&quot; common</code></p>
+<h2 id="解析php脚本"><a href="#解析php脚本" class="headerlink" title="解析php脚本"></a>解析php脚本</h2><p><code>AddType application/x-httpd-php .php</code></p>
+<h2 id="控制错误页面的输出"><a href="#控制错误页面的输出" class="headerlink" title="控制错误页面的输出"></a>控制错误页面的输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#ErrorDocument 500 &quot;The server made a boo boo.&quot;</span><br><span class="line">#ErrorDocument 404 /missing.html</span><br><span class="line">#ErrorDocument 404 &quot;/cgi-bin/missing_handler.pl&quot;</span><br><span class="line">#ErrorDocument 402 http://www.example.com/subscription_info.html</span><br></pre></td></tr></table></figure>
+<h2 id="包含外部配置文件"><a href="#包含外部配置文件" class="headerlink" title="包含外部配置文件"></a>包含外部配置文件</h2><p><code>Include extra/httpd-vhosts.conf</code></p>
+<h2 id="虚拟目录"><a href="#虚拟目录" class="headerlink" title="虚拟目录"></a>虚拟目录</h2><p><code>http://localhost/mnt</code> mnt目录并不在网站根目录下,目录资源在<code>/tmp/mnt</code>目录下 在<code>/usr/local/apache2/etc/http.conf</code>文件里增加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Alias /mnt &quot;/mnt/www&quot; # 虚拟目录（目录别名）</span><br><span class="line">&lt;Directory &quot;/mnt/www&quot;&gt;</span><br><span class="line">    Options none</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Deny from all # 拒绝所有</span><br><span class="line">    Allow from all # 允许所有</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><code>http://localhost/mnt</code> 重启apache后访问的资源便是 <code>/mnt/www</code>目录下的资源</p>
+<h1 id="Apache虚拟主机配置"><a href="#Apache虚拟主机配置" class="headerlink" title="Apache虚拟主机配置"></a>Apache虚拟主机配置</h1><p>基于域名的虚拟主机，指定服务器IP（和可能的端口）使主机接受请求。用<code>NameVirtualHost</code>进行配置。 如果服务器上所有的IP地址都会用到，可以用<code>*</code>作为<code>NameVirtualHost</code>的参数。在<code>NameVirtualHost</code>指令中指明IP地址不会使服务器自动侦听那个IP地址。</p>
+<h2 id="找到Apache的主配置文件httpd-conf"><a href="#找到Apache的主配置文件httpd-conf" class="headerlink" title="找到Apache的主配置文件httpd.conf"></a>找到Apache的主配置文件<code>httpd.conf</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /etc/httpd/conf</span><br><span class="line"># vim httpd.conf</span><br></pre></td></tr></table></figure>
+<p>我们搜索关键字<code>vhosts</code>，如果没有则在文件后添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Load vhost-config files in the &quot;/etc/httpd/vhost-conf.d&quot; directory if any</span><br><span class="line">Include vhost.d/*.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不使用官方原版的单个配置文件有个好处是 每个虚拟主机配置独立开来 减少操作的误差</p>
+</blockquote>
+<p>然后我们到<code>/etc/httpd/</code>目录下创建<code>vhost.d</code>文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mkdir vhost.d</span></span><br><span class="line"><span class="comment"># cd vhost.d</span></span><br><span class="line"><span class="comment"># pwd</span></span><br><span class="line">/etc/httpd/vhost.d</span><br><span class="line"><span class="comment"># vim www_sweetlover_cn_net.conf</span></span><br></pre></td></tr></table></figure>
+<p><strong>添加以下内容</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerAdmin zjyzy@www.sweetlover.net.cn</span><br><span class="line">    DocumentRoot /var/www/html/sweetlover</span><br><span class="line">    ServerName www.sweetlover.net.cn</span><br><span class="line">    RewriteEngine On</span><br><span class="line">    Options All</span><br><span class="line">    &lt;Directory &quot;/var/www/html/sweetlover&quot;&gt;</span><br><span class="line">        # Options -Indexes FollowSymLinks </span><br><span class="line">        # 为了服务器的安全 Indexes参数一般要取消</span><br><span class="line">        Options FollowSymLinks </span><br><span class="line">        AllowOverride All</span><br><span class="line">        Allow from all</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">    ErrorLog logs/www_sweetlover_net_cn-error_log</span><br><span class="line">    CustomLog logs/www_sweetlover_net_cn-access_log common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>再次修改主配置文件<code>httpd.conf</code>,找到<code>Listen 80</code>，添加以下代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br><span class="line">NameVirtualHost *:80</span><br></pre></td></tr></table></figure>
+<p><strong>我们再配置一个同域名下不同端口虚拟主机，配置<code>8080</code>端口下的</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cd /etc/httpd/vhost.d</span></span><br><span class="line"><span class="comment"># vim www_sweetlover_net_cn_8080.conf</span></span><br></pre></td></tr></table></figure>
+<p>针对<code>www_sweetlover_cn_net.conf</code>改变相应的配置，即修改<code>ServerName</code>为<code>www.sweetlover.net.cn:8080</code>，<code>DocumentRoot</code>和<code>Directory</code>修改为<code>/var/www/html/sweetlover@8080</code>。</p>
+<p><strong>修改主配置文件，添加</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 8080</span><br><span class="line">NameVirtualHost *:8080</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于环境下为虚拟机环境，直接访问ip加端口号即可访问到配置的网站。在上述配置的DocumentRoot下创建index.html或者index.php即可访问网页。</p>
+</blockquote>
+<p><strong>如果出现该错误</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[warn] default VirtualHost overlap on port 80, the first has precedence</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>打开apache主配置文件在任意位置添加一行,在 40行的Listion:80后添加一行内容如下:<code>NameVirtualHost *:80</code></p>
+</blockquote>
+<h1 id="Apache常见错误"><a href="#Apache常见错误" class="headerlink" title="Apache常见错误"></a>Apache常见错误</h1><h2 id="ServerName配置未填写或错误"><a href="#ServerName配置未填写或错误" class="headerlink" title="ServerName配置未填写或错误"></a>ServerName配置未填写或错误</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd: Could not reliably determine the server<span class="string">'s fully qualified domain name, using luo.centos6.5 for ServerName</span></span><br></pre></td></tr></table></figure>
+<p>在Apache主配置文件<code>httpd.conf</code>的98行左右<code>#ServerName www.example.com:80</code>前面的<code>#</code>去掉，换成自己的域名或者ip地址。<br>例如：修改为<code>ServerName localhost:80</code>或者<code>ServerName 127.0.0.1:80</code></p>
+<h2 id="403-Forbidden错误"><a href="#403-Forbidden错误" class="headerlink" title="403 Forbidden错误"></a>403 Forbidden错误</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">403 - Forbidden（禁止访问）,服务器拒绝请求</span><br><span class="line">    - forbidden request (matches a deny filter) =&gt; HTTP 403</span><br><span class="line">    - The request was a legal request, but the server is refusing to respond to it.</span><br></pre></td></tr></table></figure>
+<p><strong>原因1：apache的配置文件没有对站点目录许可</strong></p>
+<p>apache配置文件中没有对站点目录的权限许可配置，这通常是在初始化安装apahce后，更改了默认的apache站点目录导致。</p>
+<p>解决办法可能是：通过给主配置文件增加<code>&lt;Directory &quot;/var/www/html&quot;&gt;&lt;/Directory&gt;</code>标签实现对指定目录的权限控制<br>典型如下(对/var/www目录下的文件允许访问)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www&quot;&gt;</span><br><span class="line">    Options -Indexes FollowSymLinks # 为了服务器的安全 Indexes参数一般要取消</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order allow,deny # 允许未被明确拒绝的</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>原因2：站点目录下没有首页文件，而apache 的配置又禁止了目录的浏览</strong></p>
+<p>站点目录下没有首页文件(index.php、index.html等默认文件)，而apache的配置又禁止了目录浏览（#Indexes参数:访问目录时,如果不存在默认首页则展示站点列表，该行建议改成<code>Options None</code>，也会提示403错误。<br>解决办法：在站点目录添加默认首页文件或者将配置文件中<code>Options Index</code>增加上。</p>
+<p><strong>原因3：deny from all 禁用了所有来访者访问</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www&quot;&gt;</span><br><span class="line">    Options -Indexes FollowSymLinks # 为了服务器的安全 Indexes参数一般要取消</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order allow,deny # 允许未被明确拒绝的</span><br><span class="line">    Deny from all</span><br><span class="line">    # Deny from </span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong>参考原因2解决方法配置<code>&lt;Directory &gt;&lt;/Directory&gt;</code>参数。</p>
+<p><strong>站点目录权限问题</strong></p>
+<p>站点目录需要apache的用户有访问权限，否则就会报403错误(一般web站点目录权限给755，站点文件权限给644，上传程序通过另外的上传服务器提供文件上传)。</p>
+<h1 id="Apache服务器优化"><a href="#Apache服务器优化" class="headerlink" title="Apache服务器优化"></a>Apache服务器优化</h1><h2 id="错误页面优雅显示"><a href="#错误页面优雅显示" class="headerlink" title="错误页面优雅显示"></a>错误页面优雅显示</h2><p>可以将404 500等的错误信息页面重定向到网站首页或其他页面，提升用户体验。</p>
+<p>编辑apache主配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim httpd.conf</span></span><br></pre></td></tr></table></figure></p>
+<p>修改如下内容<code>ErrorDocument 404 http://www.domain.com</code></p>
+<h2 id="mod-defalte文件压缩功能"><a href="#mod-defalte文件压缩功能" class="headerlink" title="mod_defalte文件压缩功能"></a><code>mod_defalte</code>文件压缩功能</h2><p>gzip是把文件先在服务器端进行压缩然后再传输，传输完毕后浏览器会重新对压缩过得内容进行解压缩。这样可以显著减少文件传输的大小，没有特殊情况，所有的文本内容都应该被gzip压缩（html,css,js,xml,txt..）</p>
+<p>添加如下内容到<code>httpd.conf</code>或者<code>vhost.conf</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;ifmodule mod_deflate.c&gt;</span><br><span class="line">    DeflateCompressionLevel 9</span><br><span class="line">    SetOutputFilter DEFLATE</span><br><span class="line">    AddOutputFilterByType DEFLATE text/html text/plain text/xml</span><br><span class="line">    AddOutputFilterByType DEFLATE application/javscript</span><br><span class="line">    AddOutputFilterByType DEFLATE text/css</span><br><span class="line">&lt;/ifmodule&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="更改apache的默认用户"><a href="#更改apache的默认用户" class="headerlink" title="更改apache的默认用户"></a>更改apache的默认用户</h2><p>创建apache用户，用于子进程和线程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># useradd -M -s /sbin/nologin webadmin</span></span><br></pre></td></tr></table></figure>
+<p>编辑apache的主配置文件,添加或者修改如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User webadmin</span><br><span class="line">Group webadmin</span><br></pre></td></tr></table></figure>
+<h2 id="开启apache防盗链功能"><a href="#开启apache防盗链功能" class="headerlink" title="开启apache防盗链功能"></a>开启apache防盗链功能</h2><p>主配置文件中增加如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule rewrite_module&gt;</span><br><span class="line">RewriteEngine On</span><br><span class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://domain.com/.*$ [NC]</span><br><span class="line">RewriteCond %&#123;HTTP_REFERER&#125; !^http://www.domain.com/.*$ [NC]</span><br><span class="line"></span><br><span class="line">RewriteRule .*\.(gif|jpg|swf)$ http://www.domain.com [R,NC]</span><br><span class="line"># RewriteRule .*\.(gif|jpg|swf)$ http://www.domain.com/about/no.png [R,NC]</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="禁止目录Index"><a href="#禁止目录Index" class="headerlink" title="禁止目录Index"></a>禁止目录Index</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www/html&quot;&gt;</span><br><span class="line">    Options -Indexes FollowSymLinks</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www/html&quot;&gt;</span><br><span class="line">    Options FollowSymLinks</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="禁止用户覆盖-重载-配置文件"><a href="#禁止用户覆盖-重载-配置文件" class="headerlink" title="禁止用户覆盖(重载)配置文件"></a>禁止用户覆盖(重载)配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www/html&quot;&gt;</span><br><span class="line">    Options FollowSymLinks</span><br><span class="line">    AllowOverride None  # 禁止用户覆盖(重载)配置文件, All即为开启</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="关闭CGI-Common-Gateway-Interface-通用网关接口"><a href="#关闭CGI-Common-Gateway-Interface-通用网关接口" class="headerlink" title="关闭CGI(Common Gateway Interface 通用网关接口)"></a>关闭CGI(Common Gateway Interface 通用网关接口)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;IfModule alias_module&gt;</span><br><span class="line">ScriptAlias /cgi-bin/ &quot;/var/www/cgi-bin/&quot;</span><br><span class="line">&lt;/IfModule&gt;</span><br><span class="line">&lt;Directory &quot;/var/www/cgi-bin&quot;&gt;</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Options None</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="避免使用-htaccess文件-分布式配置文件"><a href="#避免使用-htaccess文件-分布式配置文件" class="headerlink" title="避免使用.htaccess文件(分布式配置文件)"></a>避免使用.htaccess文件(分布式配置文件)</h2><p><strong>默认选项：</strong><code>AccessFileName .htaccess</code> 改为 <code># AccessFileName .htaccess</code></p>
+<p>先考虑性能，如果AllowOverride启用了.haccess文件，则apache需要在每个目录中查找.htaccess文件，因此无论是否真正用到启用.htaccess文件都会导致服务器性能的下降。<br>　　另外对于每一个请求，都需要读取一次.htaccess文件。<br>　　其次是安全考虑，这样会允许用户自己修改服务器的配置，这可能会导致某些意想不到的修改，所以请认真考虑是否应道给予用户这样的特权。</p>
+<blockquote>
+<p>PHP开启路由重写下需要使用</p>
+</blockquote>
+<h2 id="apache-的安全模块"><a href="#apache-的安全模块" class="headerlink" title="apache 的安全模块"></a>apache 的安全模块</h2><p><code>mod_evasive20</code>( 防DDOS攻击)<br><code>mod_limittipconn</code>(针对单站点)配置<br><code>mod_security</code>(防止SQL注入)</p>
+<h2 id="apache日志授予root-700权限"><a href="#apache日志授予root-700权限" class="headerlink" title="apache日志授予root 700权限"></a>apache日志授予root 700权限</h2><p><strong>不需要在日志目录给apache用户读或者写权限许可，因为apache的初始进程用户为root</strong></p>
+<h2 id="禁止PHP解析指点站点目录"><a href="#禁止PHP解析指点站点目录" class="headerlink" title="禁止PHP解析指点站点目录"></a>禁止PHP解析指点站点目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Directory &quot;/var/www/html/bbs/Uploads&quot;&gt;</span><br><span class="line">    Options FollowSymLinks</span><br><span class="line">    AllowOverride None</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">    php_flag engine off # 注意这行</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.kancloud.cn/curder/apache/91272" target="_blank" rel="noopener">https://www.kancloud.cn/curder/apache/91272</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Apache/" rel="tag"><i class="fa fa-tag"></i> Apache</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/29/Centos7搭建LAMP环境/" rel="next" title="Centos7搭建LAMP环境">
+                <i class="fa fa-chevron-left"></i> Centos7搭建LAMP环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">一个腼腆幽默的程序猿</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sweetlover.net.cn" title="sweetlover" target="_blank">sweetlover</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://x5.tencent.com/tbs/guide.html" title="腾讯浏览服务" target="_blank">腾讯浏览服务</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://mob.com" title="mob" target="_blank">mob</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://golang.org" title="golang" target="_blank">golang</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">2.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache配置文件"><span class="nav-number">3.</span> <span class="nav-text">Apache配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache主目录"><span class="nav-number">3.1.</span> <span class="nav-text">Apache主目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听端口"><span class="nav-number">3.2.</span> <span class="nav-text">监听端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载动态模块"><span class="nav-number">3.3.</span> <span class="nav-text">加载动态模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache的进程执行者"><span class="nav-number">3.4.</span> <span class="nav-text">Apache的进程执行者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器域名"><span class="nav-number">3.5.</span> <span class="nav-text">服务器域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站根目录"><span class="nav-number">3.6.</span> <span class="nav-text">网站根目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置网站根目录的访问权限"><span class="nav-number">3.7.</span> <span class="nav-text">设置网站根目录的访问权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache服务器访问权限控制包括"><span class="nav-number">3.7.1.</span> <span class="nav-text">Apache服务器访问权限控制包括:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-服务权限"><span class="nav-number">3.7.1.1.</span> <span class="nav-text">Apache 服务权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-系统权限"><span class="nav-number">3.7.1.2.</span> <span class="nav-text">Linux 系统权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置目录默认首页"><span class="nav-number">3.8.</span> <span class="nav-text">设置目录默认首页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误日志"><span class="nav-number">3.9.</span> <span class="nav-text">错误日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问日志"><span class="nav-number">3.10.</span> <span class="nav-text">访问日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析php脚本"><span class="nav-number">3.11.</span> <span class="nav-text">解析php脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制错误页面的输出"><span class="nav-number">3.12.</span> <span class="nav-text">控制错误页面的输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包含外部配置文件"><span class="nav-number">3.13.</span> <span class="nav-text">包含外部配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟目录"><span class="nav-number">3.14.</span> <span class="nav-text">虚拟目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache虚拟主机配置"><span class="nav-number">4.</span> <span class="nav-text">Apache虚拟主机配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#找到Apache的主配置文件httpd-conf"><span class="nav-number">4.1.</span> <span class="nav-text">找到Apache的主配置文件httpd.conf</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache常见错误"><span class="nav-number">5.</span> <span class="nav-text">Apache常见错误</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ServerName配置未填写或错误"><span class="nav-number">5.1.</span> <span class="nav-text">ServerName配置未填写或错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#403-Forbidden错误"><span class="nav-number">5.2.</span> <span class="nav-text">403 Forbidden错误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache服务器优化"><span class="nav-number">6.</span> <span class="nav-text">Apache服务器优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#错误页面优雅显示"><span class="nav-number">6.1.</span> <span class="nav-text">错误页面优雅显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mod-defalte文件压缩功能"><span class="nav-number">6.2.</span> <span class="nav-text">mod_defalte文件压缩功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改apache的默认用户"><span class="nav-number">6.3.</span> <span class="nav-text">更改apache的默认用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启apache防盗链功能"><span class="nav-number">6.4.</span> <span class="nav-text">开启apache防盗链功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止目录Index"><span class="nav-number">6.5.</span> <span class="nav-text">禁止目录Index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止用户覆盖-重载-配置文件"><span class="nav-number">6.6.</span> <span class="nav-text">禁止用户覆盖(重载)配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭CGI-Common-Gateway-Interface-通用网关接口"><span class="nav-number">6.7.</span> <span class="nav-text">关闭CGI(Common Gateway Interface 通用网关接口)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免使用-htaccess文件-分布式配置文件"><span class="nav-number">6.8.</span> <span class="nav-text">避免使用.htaccess文件(分布式配置文件)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache-的安全模块"><span class="nav-number">6.9.</span> <span class="nav-text">apache 的安全模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apache日志授予root-700权限"><span class="nav-number">6.10.</span> <span class="nav-text">apache日志授予root 700权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止PHP解析指点站点目录"><span class="nav-number">6.11.</span> <span class="nav-text">禁止PHP解析指点站点目录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>123.8k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2019/04/29/Apache配置文件详解/';
+        this.page.identifier = '2019/04/29/Apache配置文件详解/';
+        this.page.title = 'Apache配置文件详解';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz",
+                'X-LC-Key': "Sdkle7a8kQMrDfNvnqsHL3CT",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
