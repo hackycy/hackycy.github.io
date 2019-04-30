@@ -137,7 +137,7 @@
 <meta property="og:site_name" content="小小源Bの博客">
 <meta property="og:description" content="LAMP即：(Linux + Apache + Mysql + PHP) apache的特点和应用场合 apache功能强大、配置简单、速度快、应用广泛、性能稳定可靠，并可做代理服务器或负载均衡来使用。 apache的应用场合 使用apache运行静态HTML页、图片(处理静态小文件能力不及nginx)；　　使用apache结合PHP引擎运行PHP、Perl等程序，LAMP被称之为经典组合；　　使">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-30T09:19:17.603Z">
+<meta property="og:updated_time" content="2019-04-30T09:21:58.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7搭建LAMP环境">
 <meta name="twitter:description" content="LAMP即：(Linux + Apache + Mysql + PHP) apache的特点和应用场合 apache功能强大、配置简单、速度快、应用广泛、性能稳定可靠，并可做代理服务器或负载均衡来使用。 apache的应用场合 使用apache运行静态HTML页、图片(处理静态小文件能力不及nginx)；　　使用apache结合PHP引擎运行PHP、Perl等程序，LAMP被称之为经典组合；　　使">
@@ -440,7 +440,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-30 17:19:17" itemprop="dateModified" datetime="2019-04-30T17:19:17+08:00">2019-04-30</time>
+                <time title="修改时间：2019-04-30 17:21:58" itemprop="dateModified" datetime="2019-04-30T17:21:58+08:00">2019-04-30</time>
               
             
           </span>
@@ -570,8 +570,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wget http://mirrors.tuna.tsinghua.edu.cn/apache//apr/apr-1.7.0.tar.gz</span></span><br><span class="line"><span class="comment"># wget http://mirrors.tuna.tsinghua.edu.cn/apache//apr/apr-util-1.6.1.tar.gz</span></span><br><span class="line"><span class="comment"># tar xf apr-util-1.6.1.tar.gz </span></span><br><span class="line"><span class="comment"># rm -rf apr-1.7.0.tar.gz</span></span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">ABOUT_APACHE     BuildBin.dsp    emacs-style     libhttpd.dsp   README.cmake</span><br><span class="line">acinclude.m4     buildconf       httpd.dep       libhttpd.mak   README.platforms</span><br><span class="line">Apache-apr2.dsw  CHANGES         httpd.dsp       LICENSE        ROADMAP</span><br><span class="line">Apache.dsw       CMakeLists.txt  httpd.mak       Makefile.in    server</span><br><span class="line">apache_probes.d  config.layout   httpd.spec      Makefile.win   srclib</span><br><span class="line">ap.d             config.log      include         modules        support</span><br><span class="line">apr-1.7.0        config.nice     INSTALL         NOTICE         <span class="built_in">test</span></span><br><span class="line">apr-util-1.6.1   configure       InstallBin.dsp  NWGNUmakefile  VERSIONING</span><br><span class="line">build            configure.in    LAYOUT          os</span><br><span class="line">BuildAll.dsp     docs</span><br><span class="line"></span><br><span class="line"><span class="comment"># mv apr-1.7.0 apr</span></span><br><span class="line"><span class="comment"># mv apr-util-1.6.1 apr-util</span></span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">ABOUT_APACHE     BuildBin.dsp    emacs-style     libhttpd.dsp   README.cmake</span><br><span class="line">acinclude.m4     buildconf       httpd.dep       libhttpd.mak   README.platforms</span><br><span class="line">Apache-apr2.dsw  CHANGES         httpd.dsp       LICENSE        ROADMAP</span><br><span class="line">Apache.dsw       CMakeLists.txt  httpd.mak       Makefile.in    server</span><br><span class="line">apache_probes.d  config.layout   httpd.spec      Makefile.win   srclib</span><br><span class="line">ap.d             config.log      include         modules        support</span><br><span class="line">apr              config.nice     INSTALL         NOTICE         <span class="built_in">test</span></span><br><span class="line">apr-util         configure       InstallBin.dsp  NWGNUmakefile  VERSIONING</span><br><span class="line">build            configure.in    LAYOUT          os</span><br><span class="line">BuildAll.dsp     docs            libhttpd.dep    README</span><br><span class="line"></span><br><span class="line"><span class="comment"># mv apr srclib</span></span><br><span class="line"><span class="comment"># mv apr-util srclib</span></span><br><span class="line"><span class="comment"># cd srclib</span></span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">apr  apr-util  Makefile.in</span><br><span class="line"></span><br><span class="line"><span class="comment"># cd ..</span></span><br><span class="line"><span class="comment"># ./configure --prefix=/etc/apache2</span></span><br></pre></td></tr></table></figure>
 <p><strong>安装时遇到的错误2</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">configure: error: no acceptable C compiler found <span class="keyword">in</span> <span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
-<p>解决办法:安装GCC</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install -y gcc</span></span><br></pre></td></tr></table></figure>
+<p>解决办法:安装GCC组件库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install -y gcc gcc-c++</span></span><br></pre></td></tr></table></figure>
 <p><strong>安装时遇到的错误3</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm: cannot remove <span class="string">'libtoolT'</span>: No such file or directory</span><br></pre></td></tr></table></figure>
 <p>解决办法：</p>
@@ -1059,7 +1059,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>127.8k</span>字
+    本站总字数:<span>127.9k</span>字
     </span>
     &nbsp|&nbsp
   </div>
