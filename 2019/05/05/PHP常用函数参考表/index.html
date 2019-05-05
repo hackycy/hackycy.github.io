@@ -1,0 +1,3441 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="各种常用的php函数，包括php字符串函数,php数组函数,php数学函数,mysql函数,文件目录函数,GD库函数,SESSION函数,Date/Time 函数等，涵盖了php基本操作所涉及的各类常用函数，并针对各个函数提供了简单的解释说明，方便查阅">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP常用函数参考表">
+<meta property="og:url" content="http://hackycy.github.io/2019/05/05/PHP常用函数参考表/index.html">
+<meta property="og:site_name" content="小小源Bの博客">
+<meta property="og:description" content="各种常用的php函数，包括php字符串函数,php数组函数,php数学函数,mysql函数,文件目录函数,GD库函数,SESSION函数,Date/Time 函数等，涵盖了php基本操作所涉及的各类常用函数，并针对各个函数提供了简单的解释说明，方便查阅">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-05T15:28:36.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP常用函数参考表">
+<meta name="twitter:description" content="各种常用的php函数，包括php字符串函数,php数组函数,php数学函数,mysql函数,文件目录函数,GD库函数,SESSION函数,Date/Time 函数等，涵盖了php基本操作所涉及的各类常用函数，并针对各个函数提供了简单的解释说明，方便查阅">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小小源Bの博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2019/05/05/PHP常用函数参考表/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>PHP常用函数参考表 | 小小源Bの博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小源Bの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">zj&ycy</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">34</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">72</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/05/05/PHP常用函数参考表/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="一个腼腆幽默的程序猿">
+      <meta itemprop="image" content="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小源Bの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">PHP常用函数参考表
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-05 22:26:40 / 修改时间：23:28:36" itemprop="dateCreated datePublished" datetime="2019-05-05T22:26:40+08:00">2019-05-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/05/PHP常用函数参考表/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/05/PHP常用函数参考表/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/05/05/PHP常用函数参考表/" class="leancloud_visitors" data-flag-title="PHP常用函数参考表">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:5.4k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:20分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>各种常用的php函数，包括php字符串函数,php数组函数,php数学函数,mysql函数,文件目录函数,GD库函数,SESSION函数,Date/Time 函数等，涵盖了php基本操作所涉及的各类常用函数，并针对各个函数提供了简单的解释说明，方便查阅</p>
+<a id="more"></a>
+<h1 id="字符串相关操作函数"><a href="#字符串相关操作函数" class="headerlink" title="字符串相关操作函数"></a>字符串相关操作函数</h1><h2 id="去除空格或其他字符"><a href="#去除空格或其他字符" class="headerlink" title="去除空格或其他字符"></a>去除空格或其他字符</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trim</td>
+<td>删除字符串两端空格或其他预定义字符</td>
+</tr>
+<tr>
+<td>rtrim</td>
+<td>删除字符串右边空格或其他预定义字符</td>
+</tr>
+<tr>
+<td>chop</td>
+<td>rtrim() 的别名 chop() 与 Perl 的 chop() 函数有所不同，它会删除字符串的最后一个字符。</td>
+</tr>
+<tr>
+<td>ltrim</td>
+<td>删除字符串左边空格或其他预定义字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符串生成与转换"><a href="#字符串生成与转换" class="headerlink" title="字符串生成与转换"></a>字符串生成与转换</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str_pad</td>
+<td>使用另一个字符串填充字符串为指定长度</td>
+</tr>
+<tr>
+<td>str_replace</td>
+<td>子字符串替换</td>
+</tr>
+<tr>
+<td>str_split</td>
+<td>将字符串转换为数组</td>
+</tr>
+<tr>
+<td>strrev</td>
+<td>反转字符串</td>
+</tr>
+<tr>
+<td>wordwrap</td>
+<td>打断字符串为指定数量的字串</td>
+</tr>
+<tr>
+<td>str_shuffle</td>
+<td>随机打乱一个字符串</td>
+</tr>
+<tr>
+<td>parse_str</td>
+<td>将字符串解析成变量</td>
+</tr>
+<tr>
+<td>number_format</td>
+<td>通过千位分组来格式化字符串</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符串大小写转换"><a href="#字符串大小写转换" class="headerlink" title="字符串大小写转换"></a>字符串大小写转换</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strtolower</td>
+<td>将字符串转化为小写</td>
+</tr>
+<tr>
+<td>strtoupper</td>
+<td>将字符串转化为大写</td>
+</tr>
+<tr>
+<td>ucfirst</td>
+<td>将字符串的首字母转换为大写</td>
+</tr>
+<tr>
+<td>ucwords</td>
+<td>将字符串中每个单词的首字母转换为大写</td>
+</tr>
+</tbody>
+</table>
+<h2 id="html标签关联"><a href="#html标签关联" class="headerlink" title="html标签关联"></a>html标签关联</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>htmlentities</td>
+<td>将字符转换为HTML实体</td>
+</tr>
+<tr>
+<td>htmlspecialchars</td>
+<td>预定义字符串转HTML编码</td>
+</tr>
+<tr>
+<td>nl2br</td>
+<td>在字符串所有新行之前插入 HTML 换行标记 <code>\n</code>转换为<code>&lt;br&gt;</code>标签</td>
+</tr>
+<tr>
+<td>strip_tags</td>
+<td>从字符串中去除 HTML 和 PHP 标记</td>
+</tr>
+<tr>
+<td>addcslashes</td>
+<td>以 C 语言风格使用反斜线转义字符串中的字符</td>
+</tr>
+<tr>
+<td>stripcslashes</td>
+<td>反引用一个使用 addcslashes() 转义的字符串</td>
+</tr>
+<tr>
+<td>addslashes</td>
+<td>使用反斜线引用字符串</td>
+</tr>
+<tr>
+<td>stripslashes</td>
+<td>删除由addslashes添加的转义字符</td>
+</tr>
+<tr>
+<td>quotemeta</td>
+<td>字符串中某些预定义字符串前加反斜杠</td>
+</tr>
+<tr>
+<td>chr</td>
+<td>从指定的 ASCII 值返回字符</td>
+</tr>
+<tr>
+<td>ord</td>
+<td>返回字符串第一个字符的 ASCII 值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strcasecmp</td>
+<td>不区分大小写比较两个字符串</td>
+</tr>
+<tr>
+<td>strcmp</td>
+<td>区分大小写比较两个字符串</td>
+</tr>
+<tr>
+<td>strncmp</td>
+<td>比较字符串前N个字符，区分大小写</td>
+</tr>
+<tr>
+<td>strncasecmp</td>
+<td>比较字符串前N个字符，不区分大小写</td>
+</tr>
+<tr>
+<td>strnatmp</td>
+<td>自然顺序法比较字符串长度，区分大小写</td>
+</tr>
+<tr>
+<td>strnatcasecmp</td>
+<td>自然顺序法比较字符串长度，不区分大小写</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符串查找替换"><a href="#字符串查找替换" class="headerlink" title="字符串查找替换"></a>字符串查找替换</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str_replace</td>
+<td>字符串替换操作，区分大小写</td>
+</tr>
+<tr>
+<td>str_ireplace</td>
+<td>字符串替换操作，不区分大小写</td>
+</tr>
+<tr>
+<td>substr_count</td>
+<td>统计一个字符串，在另一个字符串中出现的次数</td>
+</tr>
+<tr>
+<td>substr_replace</td>
+<td>替换字符串中某串为另一个字符串</td>
+</tr>
+<tr>
+<td>similar_text</td>
+<td>返回两字符串相同字符的数量</td>
+</tr>
+<tr>
+<td>strrchr</td>
+<td>返回一个字符串在另一个字符串中最后一次出现位置开始到末尾的字符串</td>
+</tr>
+<tr>
+<td>strstr</td>
+<td>返回一个字符串在另一个字符串中开始位置到结束位置的字符串</td>
+</tr>
+<tr>
+<td>strchr</td>
+<td>strstr的别名，返回一个字符串在另一个中首次出现位置开始到末尾的字符串</td>
+</tr>
+<tr>
+<td>stristr</td>
+<td>返回一个字符串在另一个字符串中开始位置到结束位置的字符串，不区分大小写</td>
+</tr>
+<tr>
+<td>strtr</td>
+<td>转换字符串中某些字符</td>
+</tr>
+<tr>
+<td>strpos</td>
+<td>寻找字符中某些字符最先出现的位置</td>
+</tr>
+<tr>
+<td>stripos</td>
+<td>寻找字符中某些字符最先出现的位置，不区分大小写</td>
+</tr>
+<tr>
+<td>strrpos</td>
+<td>寻找字符中某些字符最后出现的位置</td>
+</tr>
+<tr>
+<td>strripos</td>
+<td>寻找字符中某些字符最后出现的位置，不区分大小写</td>
+</tr>
+<tr>
+<td>strspn</td>
+<td>返回字符串中首次符合mask的字符串长度</td>
+</tr>
+<tr>
+<td>strcspn</td>
+<td>返回字符串中不符合mask的字符串的长度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符串统计"><a href="#字符串统计" class="headerlink" title="字符串统计"></a>字符串统计</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>str_word_count</td>
+<td>统计字符串含有的单词数</td>
+</tr>
+<tr>
+<td>strlen</td>
+<td>统计字符串长度</td>
+</tr>
+<tr>
+<td>count_chars</td>
+<td>统计字符串中所有字母出现的次数（0..255）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符串编码"><a href="#字符串编码" class="headerlink" title="字符串编码"></a>字符串编码</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>md5</td>
+<td>计算字符串的 MD5 散列值</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>生成一个哈希码</td>
+</tr>
+</tbody>
+</table>
+<h1 id="数组相关函数"><a href="#数组相关函数" class="headerlink" title="数组相关函数"></a>数组相关函数</h1><h2 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>array</td>
+<td>生成一个数组</td>
+</tr>
+<tr>
+<td>array_combine</td>
+<td>生成一个数组，用一个数组的值作为键名，另一个数组的值作为值</td>
+</tr>
+<tr>
+<td>range</td>
+<td>创建并返回一个包含指定范围的元素的数组</td>
+</tr>
+<tr>
+<td>compact</td>
+<td>创建一个由参数所带变量组成的数组</td>
+</tr>
+<tr>
+<td>array_fill</td>
+<td>用给定的值填充生成数组</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组合并和拆分"><a href="#数组合并和拆分" class="headerlink" title="数组合并和拆分"></a>数组合并和拆分</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>array_chunk</td>
+<td>把一个数组分割为新的数组块</td>
+</tr>
+<tr>
+<td>array_merge</td>
+<td>把两个或多个数组合并成一个数组</td>
+</tr>
+<tr>
+<td>array_slice</td>
+<td>在数组中根据条件取出一段值，并返回。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组比较"><a href="#数组比较" class="headerlink" title="数组比较"></a>数组比较</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>array_diff</td>
+<td>返回两个数组的差集数组</td>
+</tr>
+<tr>
+<td>array_intersect</td>
+<td>返回两个或多个数组的交集数组</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组查找替换"><a href="#数组查找替换" class="headerlink" title="数组查找替换"></a>数组查找替换</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>array_search</td>
+<td>在数组中查找一个键值</td>
+</tr>
+<tr>
+<td>array_splice</td>
+<td>把数组一部分删除把其他值替代</td>
+</tr>
+<tr>
+<td>array_sum</td>
+<td>返回数组中所有值的总和</td>
+</tr>
+<tr>
+<td>in_array</td>
+<td>在数组中搜索指定的值，区分大小写</td>
+</tr>
+<tr>
+<td>array_key_exists</td>
+<td>判断某个数组中是否存在指定的key</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组指针操作"><a href="#数组指针操作" class="headerlink" title="数组指针操作"></a>数组指针操作</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>返回数组内部指针当前指向的键名</td>
+</tr>
+<tr>
+<td>current</td>
+<td>返回数组中的当前元素</td>
+</tr>
+<tr>
+<td>next</td>
+<td>把指向当前元素的指针移动到下一个元素位置，并返回当前元素的值</td>
+</tr>
+<tr>
+<td>prev</td>
+<td>把指向当前元素的指针移动到上一个元素位置，并返回当前元素的值</td>
+</tr>
+<tr>
+<td>end</td>
+<td>将数组内部指针指向最后一个元素，并返回该元素的值（如果成功）</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>把数组内部指针指向第一个元素，并返回该元素的值</td>
+</tr>
+<tr>
+<td>list</td>
+<td>用数组中的元素为一组变量赋值</td>
+</tr>
+<tr>
+<td>array_shift</td>
+<td>删除数组中的第一个元素，并返回被删除元素的值</td>
+</tr>
+<tr>
+<td>array_unshif</td>
+<td>在数组开头插入一个或者多个元素</td>
+</tr>
+<tr>
+<td>array_push</td>
+<td>向数组最后压入一个或多个元素</td>
+</tr>
+<tr>
+<td>array_pop</td>
+<td>删除数组最后一个元素</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组键值操作"><a href="#数组键值操作" class="headerlink" title="数组键值操作"></a>数组键值操作</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shuffle</td>
+<td>将数组打乱，保留键名</td>
+</tr>
+<tr>
+<td>count</td>
+<td>计算数组中单元个数或者对象属性个数</td>
+</tr>
+<tr>
+<td>array_flip</td>
+<td>返回一个键值翻转后的数组</td>
+</tr>
+<tr>
+<td>array_keys</td>
+<td>返回数组所有键，组成一个数组</td>
+</tr>
+<tr>
+<td>array_values</td>
+<td>返回数组所有值，组成一个数组</td>
+</tr>
+<tr>
+<td>array_reverse</td>
+<td>返回一个元素顺序相反的数组</td>
+</tr>
+<tr>
+<td>array_count_values</td>
+<td>统计数组中所有值出现的次数</td>
+</tr>
+<tr>
+<td>array_rand</td>
+<td>从数组中随机抽取一个或者多个元素，注意是键名</td>
+</tr>
+<tr>
+<td>each</td>
+<td>返回数组中当前的键／值对并将数组指针向前移动一步</td>
+</tr>
+<tr>
+<td>array_unique</td>
+<td>移除数组中重复的值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sort</td>
+<td>对数组排序</td>
+</tr>
+<tr>
+<td>rsort</td>
+<td>对数组逆向排序</td>
+</tr>
+<tr>
+<td>asort</td>
+<td>对数组进行排序并保持索引关系</td>
+</tr>
+<tr>
+<td>arsort</td>
+<td>对数组进行逆向排序并保持索引关系</td>
+</tr>
+<tr>
+<td>ksort</td>
+<td>对数组按照键名排序</td>
+</tr>
+<tr>
+<td>krsort</td>
+<td>对数组按照键名逆向排序</td>
+</tr>
+<tr>
+<td>natsort</td>
+<td>用“自然排序”算法对数组排序</td>
+</tr>
+<tr>
+<td>natcasesort</td>
+<td>用“自然排序”算法对数组进行不区分大小写字母的排序</td>
+</tr>
+</tbody>
+</table>
+<h1 id="数学相关函数"><a href="#数学相关函数" class="headerlink" title="数学相关函数"></a>数学相关函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abs</td>
+<td>求绝对值</td>
+</tr>
+<tr>
+<td>ceil</td>
+<td>进一法取整</td>
+</tr>
+<tr>
+<td>floor</td>
+<td>舍去法取整</td>
+</tr>
+<tr>
+<td>fmod</td>
+<td>返回除法的浮点数余数</td>
+</tr>
+<tr>
+<td>pow</td>
+<td>返回数的N次方</td>
+</tr>
+<tr>
+<td>round</td>
+<td>浮点数四舍五入法</td>
+</tr>
+<tr>
+<td>sqrt</td>
+<td>求平方根</td>
+</tr>
+<tr>
+<td>max</td>
+<td>求最大值</td>
+</tr>
+<tr>
+<td>min</td>
+<td>求最小值</td>
+</tr>
+<tr>
+<td>mt_rand</td>
+<td>更好的随机数</td>
+</tr>
+<tr>
+<td>rand</td>
+<td>随机数</td>
+</tr>
+<tr>
+<td>pi</td>
+<td>获得圆周率</td>
+</tr>
+<tr>
+<td>octdec</td>
+<td>八进制转换为十进制</td>
+</tr>
+</tbody>
+</table>
+<h1 id="mysql相关函数"><a href="#mysql相关函数" class="headerlink" title="mysql相关函数"></a>mysql相关函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mysql_affected_rows</td>
+<td>取得前一次 MySQL 操作所影响的记录行数</td>
+</tr>
+<tr>
+<td>mysql_client_encoding</td>
+<td>返回字符集的名称</td>
+</tr>
+<tr>
+<td>mysql_close</td>
+<td>关闭 MySQL 连接</td>
+</tr>
+<tr>
+<td>mysql_connect</td>
+<td>打开一个到 MySQL 服务器的连接</td>
+</tr>
+<tr>
+<td>mysql_create_db</td>
+<td>新建一个 MySQL 数据库</td>
+</tr>
+<tr>
+<td>mysql_data_seek</td>
+<td>移动内部结果的指针</td>
+</tr>
+<tr>
+<td>mysql_db_name</td>
+<td>取得结果数据</td>
+</tr>
+<tr>
+<td>mysql_db_query</td>
+<td>发送一条 MySQL 查询</td>
+</tr>
+<tr>
+<td>mysql_drop_db</td>
+<td>丢弃（删除）一个 MySQL 数据库</td>
+</tr>
+<tr>
+<td>mysql_errno</td>
+<td>返回上一个 MySQL 操作中的错误信息的数字编码</td>
+</tr>
+<tr>
+<td>mysql_error</td>
+<td>返回上一个 MySQL 操作产生的文本错误信息</td>
+</tr>
+<tr>
+<td>mysql_escape_string</td>
+<td>转义一个字符串用于 mysql_query</td>
+</tr>
+<tr>
+<td>mysql_fetch_array</td>
+<td>从结果集中取得一行作为关联数组，或数字数组，或二者兼有</td>
+</tr>
+<tr>
+<td>mysql_fetch_assoc</td>
+<td>从结果集中取得一行作为关联数组</td>
+</tr>
+<tr>
+<td>mysql_fetch_field</td>
+<td>从结果集中取得列信息并作为对象返回</td>
+</tr>
+<tr>
+<td>mysql_fetch_lengths</td>
+<td>取得结果集中每个输出的长度</td>
+</tr>
+<tr>
+<td>mysql_fetch_object</td>
+<td>从结果集中取得一行作为对象</td>
+</tr>
+<tr>
+<td>mysql_fetch_object</td>
+<td>从结果集中取得一行作为枚举数组</td>
+</tr>
+<tr>
+<td>mysql_field_flags</td>
+<td>从结果中取得和指定字段关联的标志</td>
+</tr>
+<tr>
+<td>mysql_field_len</td>
+<td>返回指定字段的长度</td>
+</tr>
+<tr>
+<td>mysql_field_name</td>
+<td>取得结果中指定字段的字段名</td>
+</tr>
+<tr>
+<td>mysql_field_seek</td>
+<td>将结果集中的指针设定为制定的字段偏移量</td>
+</tr>
+<tr>
+<td>mysql_field_table</td>
+<td>取得指定字段所在的表名</td>
+</tr>
+<tr>
+<td>mysql_field_type</td>
+<td>取得结果集中指定字段的类型</td>
+</tr>
+<tr>
+<td>mysql_free_result</td>
+<td>释放结果内存</td>
+</tr>
+<tr>
+<td>mysql_get_client_info</td>
+<td>取得 MySQL 客户端信息</td>
+</tr>
+<tr>
+<td>mysql_get_host_info</td>
+<td>取得 MySQL 主机信息</td>
+</tr>
+<tr>
+<td>mysql_get_proto_info</td>
+<td>取得 MySQL 协议信息</td>
+</tr>
+<tr>
+<td>mysql_get_server_info</td>
+<td>取得 MySQL 服务器信息</td>
+</tr>
+<tr>
+<td>mysql_info</td>
+<td>取得最近一条查询的信息</td>
+</tr>
+<tr>
+<td>mysql_insert_id</td>
+<td>取得上一步 INSERT 操作产生的 ID</td>
+</tr>
+<tr>
+<td>mysql_list_dbs</td>
+<td>列出 MySQL 服务器中所有的数据库</td>
+</tr>
+<tr>
+<td>mysql_list_fields</td>
+<td>列出 MySQL 结果中的字段</td>
+</tr>
+<tr>
+<td>mysql_list_processes</td>
+<td>列出 MySQL 进程</td>
+</tr>
+<tr>
+<td>mysql_list_tables</td>
+<td>列出 MySQL 数据库中的表</td>
+</tr>
+<tr>
+<td>mysql_num_fields</td>
+<td>取得结果集中字段的数目</td>
+</tr>
+<tr>
+<td>mysql_num_rows</td>
+<td>取得结果集中行的数目</td>
+</tr>
+<tr>
+<td>mysql_pconnect</td>
+<td>打开一个到 MySQL 服务器的持久连接</td>
+</tr>
+<tr>
+<td>mysql_ping</td>
+<td>Ping 一个服务器连接，如果没有连接则重新连接</td>
+</tr>
+<tr>
+<td>mysql_query</td>
+<td>发送一条 MySQL 查询</td>
+</tr>
+<tr>
+<td>mysql_real_escape_string</td>
+<td>转义 SQL 语句中使用的字符串中的特殊字符，并考虑到连接的当前字符集</td>
+</tr>
+<tr>
+<td>mysql_result</td>
+<td>取得结果数据</td>
+</tr>
+<tr>
+<td>mysql_select_db</td>
+<td>选择 MySQL 数据库</td>
+</tr>
+<tr>
+<td>mysql_set_charset</td>
+<td>设置客户端字符集</td>
+</tr>
+<tr>
+<td>mysql_stat</td>
+<td>取得当前系统状态</td>
+</tr>
+<tr>
+<td>mysql_tablename</td>
+<td>取得表名</td>
+</tr>
+<tr>
+<td>mysql_thread_id</td>
+<td>返回当前线程的 ID</td>
+</tr>
+<tr>
+<td>mysql_unbuffered_query</td>
+<td>向 MySQL 发送一条 SQL 查询，并不获取和缓存结果的行</td>
+</tr>
+</tbody>
+</table>
+<h1 id="文件目录处理相关函数"><a href="#文件目录处理相关函数" class="headerlink" title="文件目录处理相关函数"></a>文件目录处理相关函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basename</td>
+<td>返回路径中的文件名部分</td>
+</tr>
+<tr>
+<td>chgrp</td>
+<td>改变文件所属的组</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>改变文件模式</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>改变文件的所有者</td>
+</tr>
+<tr>
+<td>clearstatcache</td>
+<td>清除文件状态缓存</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>拷贝文件</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>参见 unlink 或 unset</td>
+</tr>
+<tr>
+<td>dirname</td>
+<td>返回路径中的目录部分</td>
+</tr>
+<tr>
+<td>disk_free_space</td>
+<td>返回目录中的可用空间</td>
+</tr>
+<tr>
+<td>disk_total_space</td>
+<td>返回一个目录的磁盘总大小</td>
+</tr>
+<tr>
+<td>diskfreespace</td>
+<td>disk_free_space 的别名</td>
+</tr>
+<tr>
+<td>fclose</td>
+<td>关闭一个已打开的文件指针</td>
+</tr>
+<tr>
+<td>feof</td>
+<td>测试文件指针是否到了文件结束的位置</td>
+</tr>
+<tr>
+<td>fflush</td>
+<td>将缓冲内容输出到文件</td>
+</tr>
+<tr>
+<td>fgetc</td>
+<td>从文件指针中读取字符</td>
+</tr>
+<tr>
+<td>fgetcsv</td>
+<td>从文件指针中读入一行并解析 CSV 字段</td>
+</tr>
+<tr>
+<td>fgets</td>
+<td>从文件指针中读取一行</td>
+</tr>
+<tr>
+<td>fgetss</td>
+<td>从文件指针中读取一行并过滤掉 HTML 标记</td>
+</tr>
+<tr>
+<td>file_exists</td>
+<td>检查文件或目录是否存在</td>
+</tr>
+<tr>
+<td>file_get_contents</td>
+<td>将整个文件读入一个字符串</td>
+</tr>
+<tr>
+<td>file_put_contents</td>
+<td>将一个字符串写入文件</td>
+</tr>
+<tr>
+<td>file</td>
+<td>把整个文件读入一个数组中</td>
+</tr>
+<tr>
+<td>fileatime</td>
+<td>取得文件的上次访问时间</td>
+</tr>
+<tr>
+<td>filectime</td>
+<td>取得文件的 inode 修改时间</td>
+</tr>
+<tr>
+<td>filegroup</td>
+<td>取得文件的组</td>
+</tr>
+<tr>
+<td>fileinode</td>
+<td>取得文件的 inode</td>
+</tr>
+<tr>
+<td>filemtime</td>
+<td>取得文件修改时间</td>
+</tr>
+<tr>
+<td>fileowner</td>
+<td>取得文件的所有者</td>
+</tr>
+<tr>
+<td>fileperms</td>
+<td>取得文件的权限</td>
+</tr>
+<tr>
+<td>filesize</td>
+<td>取得文件大小</td>
+</tr>
+<tr>
+<td>filetype</td>
+<td>取得文件类型</td>
+</tr>
+<tr>
+<td>flock</td>
+<td>轻便的咨询文件锁定</td>
+</tr>
+<tr>
+<td>fnmatch</td>
+<td>用模式匹配文件名</td>
+</tr>
+<tr>
+<td>fopen</td>
+<td>打开文件或者 URL</td>
+</tr>
+<tr>
+<td>fpassthru</td>
+<td>输出文件指针处的所有剩余数据</td>
+</tr>
+<tr>
+<td>fputcsv</td>
+<td>将行格式化为 CSV 并写入文件指针</td>
+</tr>
+<tr>
+<td>fputs</td>
+<td>fwrite 的别名</td>
+</tr>
+<tr>
+<td>fread</td>
+<td>读取文件（可安全用于二进制文件)</td>
+</tr>
+<tr>
+<td>fscanf</td>
+<td>从文件中格式化输入</td>
+</tr>
+<tr>
+<td>fseek</td>
+<td>在文件指针中定位</td>
+</tr>
+<tr>
+<td>fstat</td>
+<td>通过已打开的文件指针取得文件信息</td>
+</tr>
+<tr>
+<td>ftell</td>
+<td>返回文件指针读/写的位置</td>
+</tr>
+<tr>
+<td>ftruncate</td>
+<td>将文件截断到给定的长度</td>
+</tr>
+<tr>
+<td>fwrite</td>
+<td>写入文件（可安全用于二进制文件）</td>
+</tr>
+<tr>
+<td>glob</td>
+<td>寻找与模式匹配的文件路径</td>
+</tr>
+<tr>
+<td>is_dir</td>
+<td>判断给定文件名是否是一个目录</td>
+</tr>
+<tr>
+<td>is_executable</td>
+<td>判断给定文件名是否可执行</td>
+</tr>
+<tr>
+<td>is_file</td>
+<td>判断给定文件名是否为一个正常的文件</td>
+</tr>
+<tr>
+<td>is_link</td>
+<td>判断给定文件名是否为一个符号连接</td>
+</tr>
+<tr>
+<td>is_readable</td>
+<td>判断给定文件名是否可读</td>
+</tr>
+<tr>
+<td>is_uploaded_file</td>
+<td>判断文件是否是通过 HTTP POST 上传的</td>
+</tr>
+<tr>
+<td>is_writable</td>
+<td>判断给定的文件名是否可写</td>
+</tr>
+<tr>
+<td>is_writeable</td>
+<td>is_writable 的别名</td>
+</tr>
+<tr>
+<td>lchgrp</td>
+<td>Changes group ownership of symlink</td>
+</tr>
+<tr>
+<td>lchown</td>
+<td>Changes user ownership of symlink</td>
+</tr>
+<tr>
+<td>link</td>
+<td>建立一个硬连接</td>
+</tr>
+<tr>
+<td>linkinfo</td>
+<td>获取一个连接的信息</td>
+</tr>
+<tr>
+<td>lstat</td>
+<td>给出一个文件或符号连接的信息</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>新建目录</td>
+</tr>
+<tr>
+<td>move_uploaded_file</td>
+<td>将上传的文件移动到新位置</td>
+</tr>
+<tr>
+<td>parse_ini_file</td>
+<td>解析一个配置文件</td>
+</tr>
+<tr>
+<td>parse_ini_string</td>
+<td>Parse a configuration string</td>
+</tr>
+<tr>
+<td>pathinfo</td>
+<td>返回文件路径的信息</td>
+</tr>
+<tr>
+<td>pclose</td>
+<td>关闭进程文件指针</td>
+</tr>
+<tr>
+<td>popen</td>
+<td>打开进程文件指针</td>
+</tr>
+<tr>
+<td>readfile</td>
+<td>输出一个文件</td>
+</tr>
+<tr>
+<td>readlink</td>
+<td>返回符号连接指向的目标</td>
+</tr>
+<tr>
+<td>realpath_cache_get</td>
+<td>Get realpath cache entries</td>
+</tr>
+<tr>
+<td>realpath_cache_size</td>
+<td>Get realpath cache size</td>
+</tr>
+<tr>
+<td>realpath</td>
+<td>返回规范化的绝对路径名</td>
+</tr>
+<tr>
+<td>rename</td>
+<td>重命名一个文件或目录</td>
+</tr>
+<tr>
+<td>rewind</td>
+<td>倒回文件指针的位置</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td>删除目录</td>
+</tr>
+<tr>
+<td>set_file_buffer</td>
+<td>stream_set_write_buffer 的别名</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>给出文件的信息</td>
+</tr>
+<tr>
+<td>symlink</td>
+<td>建立符号连接</td>
+</tr>
+<tr>
+<td>tempnam</td>
+<td>建立一个具有唯一文件名的文件</td>
+</tr>
+<tr>
+<td>tmpfile</td>
+<td>建立一个临时文件</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>设定文件的访问和修改时间</td>
+</tr>
+<tr>
+<td>umask</td>
+<td>改变当前的 umask</td>
+</tr>
+<tr>
+<td>unlink</td>
+<td>删除文件</td>
+</tr>
+</tbody>
+</table>
+<h1 id="GD-Image函数"><a href="#GD-Image函数" class="headerlink" title="GD/Image函数"></a>GD/Image函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gd_info</td>
+<td>取得当前安装的 GD 库的信息</td>
+</tr>
+<tr>
+<td>getimagesize</td>
+<td>取得图像大小</td>
+</tr>
+<tr>
+<td>getimagesizefromstring</td>
+<td>Get the size of an image from a string</td>
+</tr>
+<tr>
+<td>image_type_to_extension</td>
+<td>取得图像类型的文件后缀</td>
+</tr>
+<tr>
+<td>image_type_to_mime_type</td>
+<td>取得 getimagesize，exif_read_data，exif_thumbnail，exif_imagetype 所返回的图像类型的 MIME 类型</td>
+</tr>
+<tr>
+<td>image2wbmp</td>
+<td>以 WBMP 格式将图像输出到浏览器或文件</td>
+</tr>
+<tr>
+<td>imagealphablending</td>
+<td>设定图像的混色模式</td>
+</tr>
+<tr>
+<td>imageantialias</td>
+<td>是否使用抗锯齿（antialias）功能</td>
+</tr>
+<tr>
+<td>imagearc</td>
+<td>画椭圆弧</td>
+</tr>
+<tr>
+<td>imagechar</td>
+<td>水平地画一个字符</td>
+</tr>
+<tr>
+<td>imagecharup</td>
+<td>垂直地画一个字符</td>
+</tr>
+<tr>
+<td>imagecolorallocate</td>
+<td>为一幅图像分配颜色</td>
+</tr>
+<tr>
+<td>imagecolorallocatealpha</td>
+<td>为一幅图像分配颜色 + alpha</td>
+</tr>
+<tr>
+<td>imagecolorat</td>
+<td>取得某像素的颜色索引值</td>
+</tr>
+<tr>
+<td>imagecolorclosest</td>
+<td>取得与指定的颜色最接近的颜色的索引值</td>
+</tr>
+<tr>
+<td>imagecolorclosestalpha</td>
+<td>取得与指定的颜色加透明度最接近的颜色</td>
+</tr>
+<tr>
+<td>imagecolorclosesthwb</td>
+<td>取得与给定颜色最接近的色度的黑白色的索引</td>
+</tr>
+<tr>
+<td>imagecolordeallocate</td>
+<td>取消图像颜色的分配</td>
+</tr>
+<tr>
+<td>imagecolorexact</td>
+<td>取得指定颜色的索引值</td>
+</tr>
+<tr>
+<td>imagecolorexactalpha</td>
+<td>取得指定的颜色加透明度的索引值</td>
+</tr>
+<tr>
+<td>imagecolormatch</td>
+<td>使一个图像中调色板版本的颜色与真彩色版本更能匹配</td>
+</tr>
+<tr>
+<td>imagecolorresolve</td>
+<td>取得指定颜色的索引值或有可能得到的最接近的替代值</td>
+</tr>
+<tr>
+<td>imagecolorresolvealpha</td>
+<td>取得指定颜色 + alpha 的索引值或有可能得到的最接近的替代值</td>
+</tr>
+<tr>
+<td>imagecolorset</td>
+<td>给指定调色板索引设定颜色</td>
+</tr>
+<tr>
+<td>imagecolorsforindex</td>
+<td>取得某索引的颜色</td>
+</tr>
+<tr>
+<td>imagecolorstotal</td>
+<td>取得一幅图像的调色板中颜色的数目</td>
+</tr>
+<tr>
+<td>imagecolortransparent</td>
+<td>将某个颜色定义为透明色</td>
+</tr>
+<tr>
+<td>imageconvolution</td>
+<td>用系数 div 和 offset 申请一个 3x3 的卷积矩阵</td>
+</tr>
+<tr>
+<td>imagecopy</td>
+<td>拷贝图像的一部分</td>
+</tr>
+<tr>
+<td>imagecopymerge</td>
+<td>拷贝并合并图像的一部分</td>
+</tr>
+<tr>
+<td>imagecopymergegray</td>
+<td>用灰度拷贝并合并图像的一部分</td>
+</tr>
+<tr>
+<td>imagecopyresampled</td>
+<td>重采样拷贝部分图像并调整大小</td>
+</tr>
+<tr>
+<td>imagecopyresized</td>
+<td>拷贝部分图像并调整大小</td>
+</tr>
+<tr>
+<td>imagecreate</td>
+<td>新建一个基于调色板的图像</td>
+</tr>
+<tr>
+<td>imagecreatefromgd2</td>
+<td>从 GD2 文件或 URL 新建一图像</td>
+</tr>
+<tr>
+<td>imagecreatefromgd2part</td>
+<td>从给定的 GD2 文件或 URL 中的部分新建一图像</td>
+</tr>
+<tr>
+<td>imagecreatefromgd</td>
+<td>从 GD 文件或 URL 新建一图像</td>
+</tr>
+<tr>
+<td>imagecreatefromgif</td>
+<td>由文件或URL创建一个新图象</td>
+</tr>
+<tr>
+<td>imagecreatefromjpeg</td>
+<td>由文件或URL创建一个新图象</td>
+</tr>
+<tr>
+<td>imagecreatefrompng</td>
+<td>由文件或URL创建一个新图象</td>
+</tr>
+<tr>
+<td>imagecreatefromstring</td>
+<td>从字符串中的图像流新建一图像</td>
+</tr>
+<tr>
+<td>imagecreatefromwbmp</td>
+<td>由文件或URL创建一个新图象</td>
+</tr>
+<tr>
+<td>imagecreatefromxbm</td>
+<td>由文件或URL创建一个新图象</td>
+</tr>
+<tr>
+<td>imagecreatefromxpm</td>
+<td>由文件或URL创建一个新图象</td>
+</tr>
+<tr>
+<td>imagecreatetruecolor</td>
+<td>新建一个真彩色图像</td>
+</tr>
+<tr>
+<td>imagedashedline</td>
+<td>画一虚线</td>
+</tr>
+<tr>
+<td>imagedestroy</td>
+<td>销毁一图像</td>
+</tr>
+<tr>
+<td>imageellipse</td>
+<td>画一个椭圆</td>
+</tr>
+<tr>
+<td>imagefill</td>
+<td>区域填充</td>
+</tr>
+<tr>
+<td>imagefilledarc</td>
+<td>画一椭圆弧且填充</td>
+</tr>
+<tr>
+<td>imagefilledellipse</td>
+<td>画一椭圆并填充</td>
+</tr>
+<tr>
+<td>imagefilledpolygon</td>
+<td>画一多边形并填充</td>
+</tr>
+<tr>
+<td>imagefilledrectangle</td>
+<td>画一矩形并填充</td>
+</tr>
+<tr>
+<td>imagefilltoborder</td>
+<td>区域填充到指定颜色的边界为止</td>
+</tr>
+<tr>
+<td>imagefilter</td>
+<td>对图像使用过滤器</td>
+</tr>
+<tr>
+<td>imagefontheight</td>
+<td>取得字体高度</td>
+</tr>
+<tr>
+<td>imagefontwidth</td>
+<td>取得字体宽度</td>
+</tr>
+<tr>
+<td>imageftbbox</td>
+<td>给出一个使用 FreeType 2 字体的文本框</td>
+</tr>
+<tr>
+<td>imagefttext</td>
+<td>使用 FreeType 2 字体将文本写入图像</td>
+</tr>
+<tr>
+<td>imagegammacorrect</td>
+<td>对 GD 图像应用 gamma 修正</td>
+</tr>
+<tr>
+<td>imagegd2</td>
+<td>将 GD2 图像输出到浏览器或文件</td>
+</tr>
+<tr>
+<td>imagegd</td>
+<td>将 GD 图像输出到浏览器或文件</td>
+</tr>
+<tr>
+<td>imagegif</td>
+<td>输出图象到浏览器或文件</td>
+</tr>
+<tr>
+<td>imagegrabscreen</td>
+<td>Captures the whole screen</td>
+</tr>
+<tr>
+<td>imagegrabwindow</td>
+<td>Captures a window</td>
+</tr>
+<tr>
+<td>imageinterlace</td>
+<td>激活或禁止隔行扫描</td>
+</tr>
+<tr>
+<td>imageistruecolor</td>
+<td>检查图像是否为真彩色图像</td>
+</tr>
+<tr>
+<td>imagejpeg</td>
+<td>输出图象到浏览器或文件</td>
+</tr>
+<tr>
+<td>imagelayereffect</td>
+<td>设定 alpha 混色标志以使用绑定的 libgd 分层效果</td>
+</tr>
+<tr>
+<td>imageline</td>
+<td>画一条线段</td>
+</tr>
+<tr>
+<td>imageloadfont</td>
+<td>载入一新字体</td>
+</tr>
+<tr>
+<td>imagepalettecopy</td>
+<td>将调色板从一幅图像拷贝到另一幅</td>
+</tr>
+<tr>
+<td>imagepng</td>
+<td>以 PNG 格式将图像输出到浏览器或文件</td>
+</tr>
+<tr>
+<td>imagepolygon</td>
+<td>画一个多边形</td>
+</tr>
+<tr>
+<td>imagepsbbox</td>
+<td>给出一个使用 PostScript Type1 字体的文本方框</td>
+</tr>
+<tr>
+<td>imagepsencodefont</td>
+<td>改变字体中的字符编码矢量</td>
+</tr>
+<tr>
+<td>imagepsextendfont</td>
+<td>扩充或精简字体</td>
+</tr>
+<tr>
+<td>imagepsfreefont</td>
+<td>释放一个 PostScript Type 1 字体所占用的内存</td>
+</tr>
+<tr>
+<td>imagepsloadfont</td>
+<td>从文件中加载一个 PostScript Type 1 字体</td>
+</tr>
+<tr>
+<td>imagepsslantfont</td>
+<td>倾斜某字体</td>
+</tr>
+<tr>
+<td>imagepstext</td>
+<td>用 PostScript Type1 字体把文本字符串画在图像上</td>
+</tr>
+<tr>
+<td>imagerectangle</td>
+<td>画一个矩形</td>
+</tr>
+<tr>
+<td>imagerotate</td>
+<td>用给定角度旋转图像</td>
+</tr>
+<tr>
+<td>imagesavealpha</td>
+<td>设置标记以在保存 PNG 图像时保存完整的 alpha 通道信息（与单一透明色相反）</td>
+</tr>
+<tr>
+<td>imagesetbrush</td>
+<td>设定画线用的画笔图像</td>
+</tr>
+<tr>
+<td>imagesetpixel</td>
+<td>画一个单一像素</td>
+</tr>
+<tr>
+<td>imagesetstyle</td>
+<td>设定画线的风格</td>
+</tr>
+<tr>
+<td>imagesetthickness</td>
+<td>设定画线的宽度</td>
+</tr>
+<tr>
+<td>imagesettile</td>
+<td>设定用于填充的贴图</td>
+</tr>
+<tr>
+<td>imagestring</td>
+<td>水平地画一行字符串</td>
+</tr>
+<tr>
+<td>imagestringup</td>
+<td>垂直地画一行字符串</td>
+</tr>
+<tr>
+<td>imagesx</td>
+<td>取得图像宽度</td>
+</tr>
+<tr>
+<td>imagesy</td>
+<td>取得图像高度</td>
+</tr>
+<tr>
+<td>imagetruecolortopalette</td>
+<td>将真彩色图像转换为调色板图像</td>
+</tr>
+<tr>
+<td>imagettfbbox</td>
+<td>取得使用 TrueType 字体的文本的范围</td>
+</tr>
+<tr>
+<td>imagettftext</td>
+<td>用 TrueType 字体向图像写入文本</td>
+</tr>
+<tr>
+<td>imagetypes</td>
+<td>返回当前 PHP 版本所支持的图像类型</td>
+</tr>
+<tr>
+<td>imagewbmp</td>
+<td>以 WBMP 格式将图像输出到浏览器或文件</td>
+</tr>
+<tr>
+<td>imagexbm</td>
+<td>将 XBM 图像输出到浏览器或文件</td>
+</tr>
+<tr>
+<td>iptcembed</td>
+<td>将二进制 IPTC 数据嵌入到一幅 JPEG 图像中</td>
+</tr>
+<tr>
+<td>iptcparse</td>
+<td>将二进制 IPTC <a href="http://www.iptc.org/" target="_blank" rel="noopener">http://www.iptc.org/</a> 块解析为单个标记</td>
+</tr>
+<tr>
+<td>jpeg2wbmp</td>
+<td>将 JPEG 图像文件转换为 WBMP 图像文件</td>
+</tr>
+<tr>
+<td>png2wbmp</td>
+<td>将 PNG 图像文件转换为 WBMP 图像文件</td>
+</tr>
+</tbody>
+</table>
+<h1 id="session函数"><a href="#session函数" class="headerlink" title="session函数"></a>session函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>session_cache_expire</td>
+<td>返回当前缓存到期</td>
+</tr>
+<tr>
+<td>session_cache_limiter</td>
+<td>get和set the current缓存限制/金</td>
+</tr>
+<tr>
+<td>session_commit</td>
+<td>session_write_close 的别名</td>
+</tr>
+<tr>
+<td>session_decode</td>
+<td>将会话数据从一个会话编码的字符串</td>
+</tr>
+<tr>
+<td>session_destroy</td>
+<td>销毁已注册到会话的所有数据</td>
+</tr>
+<tr>
+<td>session_encode</td>
+<td>将当前会话数据编码为一个字符串</td>
+</tr>
+<tr>
+<td>session_get_cookie_params</td>
+<td>获得会话饼干参数</td>
+</tr>
+<tr>
+<td>session_id</td>
+<td>获得和/或设置当前会话标识</td>
+</tr>
+<tr>
+<td>session_is_registered</td>
+<td>检查变量是否在会话中已经注册</td>
+</tr>
+<tr>
+<td>session_module_name</td>
+<td>获得和/或设置当前会话模块</td>
+</tr>
+<tr>
+<td>session_name</td>
+<td>获得和/或设置当前会话名称</td>
+</tr>
+<tr>
+<td>session_regenerate_id</td>
+<td>更新新生成的会话标识</td>
+</tr>
+<tr>
+<td>session_register_shutdown</td>
+<td>会话关机功能</td>
+</tr>
+<tr>
+<td>session_register</td>
+<td>注册一个或多个全局变量与当前会话</td>
+</tr>
+<tr>
+<td>session_save_path</td>
+<td>获取和/或设置当前会话保存路径</td>
+</tr>
+<tr>
+<td>session_set_cookie_params</td>
+<td>设置会话饼干参数</td>
+</tr>
+<tr>
+<td>session_set_save_handler</td>
+<td>设置用户级会话存储功能</td>
+</tr>
+<tr>
+<td>session_start</td>
+<td>开始新的或恢复现有的会话</td>
+</tr>
+<tr>
+<td>session_status</td>
+<td>返回当前会话状态</td>
+</tr>
+<tr>
+<td>session_unregister</td>
+<td>注销当前会话的一个全局变量</td>
+</tr>
+<tr>
+<td>session_unset</td>
+<td>自由所有会话变量</td>
+</tr>
+<tr>
+<td>session_write_close</td>
+<td>写会话数据和结束会话</td>
+</tr>
+</tbody>
+</table>
+<h1 id="cookie函数"><a href="#cookie函数" class="headerlink" title="cookie函数"></a>cookie函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setcookie</td>
+<td>设置cookie</td>
+</tr>
+<tr>
+<td>setrawcookie</td>
+<td>发送没有URL编码的cookie</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Date-Time-函数"><a href="#Date-Time-函数" class="headerlink" title="Date/Time 函数"></a>Date/Time 函数</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>checkdate</td>
+<td>验证一个格里高里日期</td>
+</tr>
+<tr>
+<td>date_add</td>
+<td>别名 DateTime::add</td>
+</tr>
+<tr>
+<td>date_create_from_format</td>
+<td>别名 DateTime::createFromFormat</td>
+</tr>
+<tr>
+<td>date_create</td>
+<td>别名 DateTime::__construct</td>
+</tr>
+<tr>
+<td>date_date_set</td>
+<td>别名 DateTime::setDate</td>
+</tr>
+<tr>
+<td>date_default_timezone_get</td>
+<td>取得一个脚本中所有日期时间函数所使用的默认时区</td>
+</tr>
+<tr>
+<td>date_default_timezone_set</td>
+<td>设定用于一个脚本中所有日期时间函数的默认时区</td>
+</tr>
+<tr>
+<td>date_diff</td>
+<td>别名 DateTime::diff</td>
+</tr>
+<tr>
+<td>date_format</td>
+<td>别名 DateTime::format</td>
+</tr>
+<tr>
+<td>date_get_last_errors</td>
+<td>别名 DateTime::getLastErrors</td>
+</tr>
+<tr>
+<td>date_interval_create_from_date_string</td>
+<td>别名 DateInterval::createFromDateString</td>
+</tr>
+<tr>
+<td>date_interval_format</td>
+<td>别名 DateInterval::format</td>
+</tr>
+<tr>
+<td>date_isodate_set</td>
+<td>别名 DateTime::setISODate</td>
+</tr>
+<tr>
+<td>date_modify</td>
+<td>别名 DateTime::modify</td>
+</tr>
+<tr>
+<td>date_offset_get</td>
+<td>别名 DateTime::getOffset</td>
+</tr>
+<tr>
+<td>date_parse_from_format</td>
+<td>Get info about given date formatted according to the specified format</td>
+</tr>
+<tr>
+<td>date_parse</td>
+<td>Returns associative array with detailed info about given date</td>
+</tr>
+<tr>
+<td>date_sub</td>
+<td>别名 DateTime::sub</td>
+</tr>
+<tr>
+<td>date_sun_info</td>
+<td>Returns an array with information about sunset/sunrise and twilight begin/end</td>
+</tr>
+<tr>
+<td>date_sunrise</td>
+<td>返回给定的日期与地点的日出时间</td>
+</tr>
+<tr>
+<td>date_sunset</td>
+<td>返回给定的日期与地点的日落时间</td>
+</tr>
+<tr>
+<td>date_time_set</td>
+<td>别名 DateTime::setTime</td>
+</tr>
+<tr>
+<td>date_timestamp_get</td>
+<td>别名 DateTime::getTimestamp</td>
+</tr>
+<tr>
+<td>date_timestamp_set</td>
+<td>别名 DateTime::setTimestamp</td>
+</tr>
+<tr>
+<td>date_timezone_get</td>
+<td>别名 DateTime::getTimezone</td>
+</tr>
+<tr>
+<td>date_timezone_set</td>
+<td>别名 DateTime::setTimezone</td>
+</tr>
+<tr>
+<td>date</td>
+<td>格式化一个本地时间／日期</td>
+</tr>
+<tr>
+<td>getdate</td>
+<td>取得日期／时间信息</td>
+</tr>
+<tr>
+<td>gettimeofday</td>
+<td>取得当前时间</td>
+</tr>
+<tr>
+<td>gmdate</td>
+<td>格式化一个 GMT/UTC 日期／时间</td>
+</tr>
+<tr>
+<td>gmmktime</td>
+<td>取得 GMT 日期的 UNIX 时间戳</td>
+</tr>
+<tr>
+<td>gmstrftime</td>
+<td>根据区域设置格式化 GMT/UTC 时间／日期</td>
+</tr>
+<tr>
+<td>idate</td>
+<td>将本地时间日期格式化为整数</td>
+</tr>
+<tr>
+<td>localtime</td>
+<td>取得本地时间</td>
+</tr>
+<tr>
+<td>microtime</td>
+<td>返回当前 Unix 时间戳和微秒数</td>
+</tr>
+<tr>
+<td>mktime</td>
+<td>取得一个日期的 Unix 时间戳</td>
+</tr>
+<tr>
+<td>strftime</td>
+<td>根据区域设置格式化本地时间／日期</td>
+</tr>
+<tr>
+<td>strptime</td>
+<td>解析由 strftime 生成的日期／时间</td>
+</tr>
+<tr>
+<td>strtotime</td>
+<td>将任何英文文本的日期时间描述解析为 Unix 时间戳</td>
+</tr>
+<tr>
+<td>time</td>
+<td>返回当前的 Unix 时间戳</td>
+</tr>
+<tr>
+<td>timezone_abbreviations_list</td>
+<td>别名 DateTimeZone::listAbbreviations</td>
+</tr>
+<tr>
+<td>timezone_identifiers_list</td>
+<td>别名 DateTimeZone::listIdentifiers</td>
+</tr>
+<tr>
+<td>timezone_location_get</td>
+<td>别名 DateTimeZone::getLocation</td>
+</tr>
+<tr>
+<td>timezone_name_from_abbr</td>
+<td>Returns the timezone name from abbreviation</td>
+</tr>
+<tr>
+<td>timezone_name_get</td>
+<td>别名 DateTimeZone::getName</td>
+</tr>
+<tr>
+<td>timezone_offset_get</td>
+<td>别名 DateTimeZone::getOffset</td>
+</tr>
+<tr>
+<td>timezone_open</td>
+<td>别名 DateTimeZone::__construct</td>
+</tr>
+<tr>
+<td>timezone_transitions_get</td>
+<td>别名 DateTimeZone::getTransitions</td>
+</tr>
+<tr>
+<td>timezone_version_get</td>
+<td>Gets the version of the timezonedb</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"><i class="fa fa-tag"></i> PHP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/05/HTTP状态代码/" rel="next" title="HTTP状态代码">
+                <i class="fa fa-chevron-left"></i> HTTP状态代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax2.sinaimg.cn/crop.0.0.1344.1344.180/006oXysjly8frnz9ld3vrj311c11cdkv.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">一个腼腆幽默的程序猿</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">72</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sweetlover.net.cn" title="sweetlover" target="_blank">sweetlover</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://x5.tencent.com/tbs/guide.html" title="腾讯浏览服务" target="_blank">腾讯浏览服务</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://mob.com" title="mob" target="_blank">mob</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://golang.org" title="golang" target="_blank">golang</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串相关操作函数"><span class="nav-number">1.</span> <span class="nav-text">字符串相关操作函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#去除空格或其他字符"><span class="nav-number">1.1.</span> <span class="nav-text">去除空格或其他字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串生成与转换"><span class="nav-number">1.2.</span> <span class="nav-text">字符串生成与转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串大小写转换"><span class="nav-number">1.3.</span> <span class="nav-text">字符串大小写转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html标签关联"><span class="nav-number">1.4.</span> <span class="nav-text">html标签关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串比较"><span class="nav-number">1.5.</span> <span class="nav-text">字符串比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串查找替换"><span class="nav-number">1.6.</span> <span class="nav-text">字符串查找替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串统计"><span class="nav-number">1.7.</span> <span class="nav-text">字符串统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串编码"><span class="nav-number">1.8.</span> <span class="nav-text">字符串编码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组相关函数"><span class="nav-number">2.</span> <span class="nav-text">数组相关函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数组"><span class="nav-number">2.1.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组合并和拆分"><span class="nav-number">2.2.</span> <span class="nav-text">数组合并和拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组比较"><span class="nav-number">2.3.</span> <span class="nav-text">数组比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组查找替换"><span class="nav-number">2.4.</span> <span class="nav-text">数组查找替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组指针操作"><span class="nav-number">2.5.</span> <span class="nav-text">数组指针操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组键值操作"><span class="nav-number">2.6.</span> <span class="nav-text">数组键值操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组排序"><span class="nav-number">2.7.</span> <span class="nav-text">数组排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数学相关函数"><span class="nav-number">3.</span> <span class="nav-text">数学相关函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql相关函数"><span class="nav-number">4.</span> <span class="nav-text">mysql相关函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件目录处理相关函数"><span class="nav-number">5.</span> <span class="nav-text">文件目录处理相关函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GD-Image函数"><span class="nav-number">6.</span> <span class="nav-text">GD/Image函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#session函数"><span class="nav-number">7.</span> <span class="nav-text">session函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie函数"><span class="nav-number">8.</span> <span class="nav-text">cookie函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Date-Time-函数"><span class="nav-number">9.</span> <span class="nav-text">Date/Time 函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>140.4k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2019/05/05/PHP常用函数参考表/';
+        this.page.identifier = '2019/05/05/PHP常用函数参考表/';
+        this.page.title = 'PHP常用函数参考表';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz",
+                'X-LC-Key': "Sdkle7a8kQMrDfNvnqsHL3CT",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
