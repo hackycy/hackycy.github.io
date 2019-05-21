@@ -151,7 +151,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/visualviewport.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/vv=lv.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/lv%3Evv.jpg">
-<meta property="og:updated_time" content="2019-05-21T16:10:37.748Z">
+<meta property="og:updated_time" content="2019-05-21T16:22:53.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端前端开发之viewport">
 <meta name="twitter:description" content="背景浏览器的viewport是可以看到Web内容的窗口区域，通常与渲染出的页面的大小不同，这种情况下，浏览器会提供滚动条以滚动访问所有内容。 窄屏幕设备（如移动设备）在一个虚拟窗口或视口中渲染页面，这个窗口或视口通常比屏幕宽；然后缩小渲染的结果，以便在一屏内显示所有内容。然后用户可以移动、缩放以查看页面的不同区域。例如，如果移动屏幕的宽度为640px，则可能会用980px的虚拟视口渲染页面，然后缩">
@@ -455,7 +455,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-22 00:10:37" itemprop="dateModified" datetime="2019-05-22T00:10:37+08:00">2019-05-22</time>
+                <time title="修改时间：2019-05-22 00:22:53" itemprop="dateModified" datetime="2019-05-22T00:22:53+08:00">2019-05-22</time>
               
             
           </span>
@@ -569,11 +569,8 @@
 <p><img src="csslizi2.png" alt=""></p>
 <p>默认情况下一个CSS像素应该是等同于一个物理像素的，但是浏览器放大的操作让一个CSS像素等于两倍的设备像素。</p>
 <p>而在移动端中的高PPI的设备上，CSS像素在默认情况下就相当于多个设备像素，如iPhone5使用的是Retina视网膜屏幕，使用<code>2px * 2px</code>的设备像素代表<code>1px * 1px</code>的CSS像素。所以设备像素为<code>640 * 1136</code>，而CSS像素为<code>320px * 568px</code>。</p>
-<blockquote>
-<p>设备独立像素（Device Independent Pixel）简写DIP或DP</p>
-<p>iOS 中的 pt 和安卓中的单位 dp 本质上是一个概念，设备都是独立像素的意思，只是说法不一样。</p>
-</blockquote>
-<p>设备独立像素也叫 <strong>密度无关像素</strong> ，可以认为是计算机坐标系统中的一个点，这个点表示一个可以由程序使用并控制的虚拟像素，可以由相关系统转换为物理像素。设备独立像素是一个整体概念，包括了css像素，比如:css像素，<strong>只是在android 机中，css像素不叫 “css像素了”，而叫“设备独立像素”</strong>。</p>
+<p><strong>设备独立像素（Device Independent Pixel）简写DIP或DP</strong></p>
+<p>设备独立像素也叫 <strong>密度无关像素</strong> ，可以认为是计算机坐标系统中的一个点，这个点表示一个可以由程序使用并控制的虚拟像素，可以由相关系统转换为物理像素。设备独立像素是一个整体概念，包括了css像素，比如:css像素，<strong>只是在android /ios机中，css像素不叫 “css像素了”，而叫“设备独立像素”</strong>。iOS 中的 pt 和安卓中的单位 dp 本质上是一个概念，设备都是独立像素的意思，只是说法不一样。</p>
 <blockquote>
 <p>所以逻辑上各单位的关系：CSS像素 = 设备独立像素 = 逻辑像素</p>
 </blockquote>
