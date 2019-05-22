@@ -144,7 +144,6 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/calclizi.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/dpiprint.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/whatisdip.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/ppireldpr.jpeg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/csspixel.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/caniusedevicepixelratio.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/tvandphone.jpeg">
@@ -152,7 +151,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/vv=lv.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/lv%3Evv.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/getviewport.png">
-<meta property="og:updated_time" content="2019-05-21T17:04:21.948Z">
+<meta property="og:updated_time" content="2019-05-22T13:02:17.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端前端开发之viewport">
 <meta name="twitter:description" content="背景浏览器的viewport是可以看到Web内容的窗口区域，通常与渲染出的页面的大小不同，这种情况下，浏览器会提供滚动条以滚动访问所有内容。 窄屏幕设备（如移动设备）在一个虚拟窗口或视口中渲染页面，这个窗口或视口通常比屏幕宽；然后缩小渲染的结果，以便在一屏内显示所有内容。然后用户可以移动、缩放以查看页面的不同区域。例如，如果移动屏幕的宽度为640px，则可能会用980px的虚拟视口渲染页面，然后缩">
@@ -291,7 +290,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">37</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">38</span></a>
   </li>
         
         
@@ -307,7 +306,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">74</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">75</span></a>
   </li>
         
         
@@ -456,7 +455,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-22 01:04:21" itemprop="dateModified" datetime="2019-05-22T01:04:21+08:00">2019-05-22</time>
+                <time title="修改时间：2019-05-22 21:02:17" itemprop="dateModified" datetime="2019-05-22T21:02:17+08:00">2019-05-22</time>
               
             
           </span>
@@ -612,11 +611,6 @@
 <blockquote>
 <p>打开<code>chrome</code>的开发者工具，我们可以模拟各个手机型号的显示情况，每种型号上面会显示一个尺寸，比如<code>iPhone X</code>显示的尺寸是<code>375x812</code>，实际<code>iPhone X</code>的分辨率会比这高很多，这里显示的就是设备独立像素。</p>
 </blockquote>
-<h3 id="PPI和DPR的关系"><a href="#PPI和DPR的关系" class="headerlink" title="PPI和DPR的关系"></a>PPI和DPR的关系</h3><p>毕竟这些参数是外国人先发明的，他们会优先选择自己熟悉的计量单位作为显示设备的工厂标准参数，因此ppi就用作显示设备的工业标准；</p>
-<p>告诉业界人士，ppi达到多少是高清屏，此时对应的dpr是多少，而不直接告诉你我现在的显示设备dpr是多少，毕竟人们直接听到像素分辨率会更加有反应。</p>
-<p><strong>设备像素比与ppi相关，一般是ppi/160的整数倍：</strong></p>
-<p><img src="ppireldpr.jpeg" alt=""></p>
-<p>当然，这只是一种规范，不是所有的<code>Android</code>设备都会严格按照上面的分辨率，每种类型可能对应几种不同分辨率。每个<code>Android</code>手机都能根据自定的区间范围，确定自己的<code>DPR</code>，从而拥有类似的显示。仅仅是类似，由于各个设备的尺寸、分辨率上的差异，设备独立像素也不会完全相等，所以各种<code>Android</code>设备仍然不能做到在展示上完全相等。</p>
 <h3 id="设备像素和CSS像素的关系"><a href="#设备像素和CSS像素的关系" class="headerlink" title="设备像素和CSS像素的关系"></a>设备像素和CSS像素的关系</h3><p>以iPhone6/7/8为例：</p>
 <blockquote>
 <p>设备宽高为375 × 667，可以理解为设备独立像素(或css像素)。<br>dpr为2，根据上面的计算公式，其物理像素就为750 × 1334。</p>
@@ -654,7 +648,18 @@
 <blockquote>
 <p>实际上，从苹果提出视网膜屏幕开始，才出现设备像素比这个概念，因为在这之前，移动设备都是直接使用物理像素来进行展示。</p>
 </blockquote>
-<h2 id="设计师和前端工程师之间如何协同"><a href="#设计师和前端工程师之间如何协同" class="headerlink" title="设计师和前端工程师之间如何协同"></a>设计师和前端工程师之间如何协同</h2><p>一般由设计师按照设备像素(device pixel)为单位制作设计稿。<br>前端工程师，参照相关的设备像素比(device pixel ratio)，进行换算以及编码。</p>
+<h2 id="设计师和前端工程师之间如何协同"><a href="#设计师和前端工程师之间如何协同" class="headerlink" title="设计师和前端工程师之间如何协同"></a>设计师和前端工程师之间如何协同</h2><p><strong>视觉稿</strong></p>
+<p>在前端开发之前，视觉MM会给我们一个psd文件，称之为视觉稿。</p>
+<p>对于移动端开发而言，为了做到页面高清的效果，视觉稿的规范往往会遵循以下两点：</p>
+<p>首先，选取一款手机的屏幕宽高作为基准(以前是iphone4的320×480，现在更多的是iphone6的375×667)。<br>对于retina屏幕(如: dpr=2)，为了达到高清效果，视觉稿的画布大小会是基准的2倍，也就是说像素点个数是原来的4倍（对iphone6而言：原先的375×667，就会变成750×1334）。</p>
+<p><strong>设计师和前端开发的适配协作基本思路</strong></p>
+<p>出自手淘：</p>
+<ul>
+<li>选择一种尺寸作为设计和开发基准</li>
+<li>定义一套适配规则，自动适配剩下的两种尺寸(其实不仅这两种，你懂的)</li>
+<li>特殊适配效果给出设计效果</li>
+</ul>
+<p>手淘设计师常选择iPhone6作为基准设计尺寸，交付给前端的设计尺寸是按750px * 1334px为准(高度会随着内容多少而改变)。前端开发人员通过一套适配规则自动适配到其他的尺寸。</p>
 <h1 id="分辨率、像素和屏幕尺寸"><a href="#分辨率、像素和屏幕尺寸" class="headerlink" title="分辨率、像素和屏幕尺寸"></a>分辨率、像素和屏幕尺寸</h1><p>分辨率是指一个块屏幕的像素尺寸。比如说<code>1334 * 750</code>是iPhone6的分辨率。</p>
 <p>屏幕尺寸是指显示屏幕对角线的尺寸，一般用英寸来表示。</p>
 <p>询问别人一粒像素有多大是一个非常鸡贼的问题（小心面试遇到这样的题），虽然我们说像素是构成屏幕的发光的点，是物理的，但是像素在脱离了屏幕尺寸之后是没有大小可言的，你可以将 1920 * 1080 颗像素放到一台 40 寸的小米电视机里面，也可以将同样多的像素全部塞到一台 5.5 寸的 iPhone7 Plus 手机里面去，那么对于 40 寸的电视而言，每个像素颗粒当然会大于 5.5 寸的手机的像素。</p>
@@ -978,7 +983,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1116,7 +1121,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1212,7 +1219,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动浏览器的问题"><span class="nav-number">2.</span> <span class="nav-text">移动浏览器的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设备像素和CSS像素"><span class="nav-number">3.</span> <span class="nav-text">设备像素和CSS像素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设备像素"><span class="nav-number">3.1.</span> <span class="nav-text">设备像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS像素"><span class="nav-number">3.2.</span> <span class="nav-text">CSS像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备像素与CSS像素的关系"><span class="nav-number">3.3.</span> <span class="nav-text">设备像素与CSS像素的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PPI：屏幕密度"><span class="nav-number">3.3.1.</span> <span class="nav-text">PPI：屏幕密度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DPR：设备像素比"><span class="nav-number">3.3.2.</span> <span class="nav-text">DPR：设备像素比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PPI和DPR的关系"><span class="nav-number">3.3.3.</span> <span class="nav-text">PPI和DPR的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备像素和CSS像素的关系"><span class="nav-number">3.3.4.</span> <span class="nav-text">设备像素和CSS像素的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window-devicePixelRatio"><span class="nav-number">3.4.</span> <span class="nav-text">window.devicePixelRatio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询min-device-pixel-ratio"><span class="nav-number">3.5.</span> <span class="nav-text">媒体查询min-device-pixel-ratio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计师和前端工程师之间如何协同"><span class="nav-number">3.6.</span> <span class="nav-text">设计师和前端工程师之间如何协同</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分辨率、像素和屏幕尺寸"><span class="nav-number">4.</span> <span class="nav-text">分辨率、像素和屏幕尺寸</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#英寸"><span class="nav-number">4.1.</span> <span class="nav-text">英寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#像素"><span class="nav-number">4.2.</span> <span class="nav-text">像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕分辨率"><span class="nav-number">4.3.</span> <span class="nav-text">屏幕分辨率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像分辨率"><span class="nav-number">4.4.</span> <span class="nav-text">图像分辨率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#viewport视口"><span class="nav-number">5.</span> <span class="nav-text">viewport视口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可视视口"><span class="nav-number">5.1.</span> <span class="nav-text">可视视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局视口"><span class="nav-number">5.2.</span> <span class="nav-text">布局视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局视口和可视视口的联系"><span class="nav-number">5.3.</span> <span class="nav-text">布局视口和可视视口的联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理想视口"><span class="nav-number">5.4.</span> <span class="nav-text">理想视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩放"><span class="nav-number">5.5.</span> <span class="nav-text">缩放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取视口大小"><span class="nav-number">5.6.</span> <span class="nav-text">获取视口大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用meta标签对viewport进行控制"><span class="nav-number">6.</span> <span class="nav-text">利用meta标签对viewport进行控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态改变meta-viewport标签"><span class="nav-number">7.</span> <span class="nav-text">动态改变meta viewport标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一种方式："><span class="nav-number">7.1.</span> <span class="nav-text">第一种方式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二种方式"><span class="nav-number">7.2.</span> <span class="nav-text">第二种方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动浏览器的问题"><span class="nav-number">2.</span> <span class="nav-text">移动浏览器的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设备像素和CSS像素"><span class="nav-number">3.</span> <span class="nav-text">设备像素和CSS像素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设备像素"><span class="nav-number">3.1.</span> <span class="nav-text">设备像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS像素"><span class="nav-number">3.2.</span> <span class="nav-text">CSS像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备像素与CSS像素的关系"><span class="nav-number">3.3.</span> <span class="nav-text">设备像素与CSS像素的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PPI：屏幕密度"><span class="nav-number">3.3.1.</span> <span class="nav-text">PPI：屏幕密度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DPR：设备像素比"><span class="nav-number">3.3.2.</span> <span class="nav-text">DPR：设备像素比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备像素和CSS像素的关系"><span class="nav-number">3.3.3.</span> <span class="nav-text">设备像素和CSS像素的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window-devicePixelRatio"><span class="nav-number">3.4.</span> <span class="nav-text">window.devicePixelRatio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询min-device-pixel-ratio"><span class="nav-number">3.5.</span> <span class="nav-text">媒体查询min-device-pixel-ratio</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计师和前端工程师之间如何协同"><span class="nav-number">3.6.</span> <span class="nav-text">设计师和前端工程师之间如何协同</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分辨率、像素和屏幕尺寸"><span class="nav-number">4.</span> <span class="nav-text">分辨率、像素和屏幕尺寸</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#英寸"><span class="nav-number">4.1.</span> <span class="nav-text">英寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#像素"><span class="nav-number">4.2.</span> <span class="nav-text">像素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕分辨率"><span class="nav-number">4.3.</span> <span class="nav-text">屏幕分辨率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像分辨率"><span class="nav-number">4.4.</span> <span class="nav-text">图像分辨率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#viewport视口"><span class="nav-number">5.</span> <span class="nav-text">viewport视口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可视视口"><span class="nav-number">5.1.</span> <span class="nav-text">可视视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局视口"><span class="nav-number">5.2.</span> <span class="nav-text">布局视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局视口和可视视口的联系"><span class="nav-number">5.3.</span> <span class="nav-text">布局视口和可视视口的联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理想视口"><span class="nav-number">5.4.</span> <span class="nav-text">理想视口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩放"><span class="nav-number">5.5.</span> <span class="nav-text">缩放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取视口大小"><span class="nav-number">5.6.</span> <span class="nav-text">获取视口大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用meta标签对viewport进行控制"><span class="nav-number">6.</span> <span class="nav-text">利用meta标签对viewport进行控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态改变meta-viewport标签"><span class="nav-number">7.</span> <span class="nav-text">动态改变meta viewport标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一种方式："><span class="nav-number">7.1.</span> <span class="nav-text">第一种方式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二种方式"><span class="nav-number">7.2.</span> <span class="nav-text">第二种方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1257,7 +1264,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>151.9k</span>字
+    本站总字数:<span>154.3k</span>字
     </span>
     &nbsp|&nbsp
   </div>

@@ -137,18 +137,16 @@
 <meta property="og:site_name" content="小小源Bの博客">
 <meta property="og:description" content="背景虽然H5的页面与PC的Web页面相比简单了不少，但让我们头痛的事情是要想尽办法让页面能适配众多不同的终端设备。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/devicesmetrics.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/shipei.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/designpsd.jpeg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/grayscale.jpeg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/haibao.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/px_h5.gif">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/rem_h5_dpr2.gif">
-<meta property="og:updated_time" content="2019-04-22T08:49:44.306Z">
+<meta property="og:updated_time" content="2019-05-22T09:06:22.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5移动端自适应方案——媒体查询+rem方案">
 <meta name="twitter:description" content="背景虽然H5的页面与PC的Web页面相比简单了不少，但让我们头痛的事情是要想尽办法让页面能适配众多不同的终端设备。">
-<meta name="twitter:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/devicesmetrics.png">
+<meta name="twitter:image" content="http://hackycy.github.io/2019/04/22/HTML5移动端自适应方案——媒体查询-rem方案/designpsd.jpeg">
 
 
 
@@ -283,7 +281,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">37</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">38</span></a>
   </li>
         
         
@@ -299,7 +297,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">74</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">75</span></a>
   </li>
         
         
@@ -431,12 +429,24 @@
                 
               
 
-              <time title="创建时间：2019-04-22 16:48:42 / 修改时间：16:49:44" itemprop="dateCreated datePublished" datetime="2019-04-22T16:48:42+08:00">2019-04-22</time>
+              <time title="创建时间：2019-04-22 16:48:42" itemprop="dateCreated datePublished" datetime="2019-04-22T16:48:42+08:00">2019-04-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-22 17:06:22" itemprop="dateModified" datetime="2019-05-22T17:06:22+08:00">2019-05-22</time>
               
             
           </span>
@@ -500,10 +510,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:4.5k字</span>
+              <span>字数统计:4.1k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:21分</span>
+              <span>阅读时长:20分</span>
             </span>
           
 
@@ -525,21 +535,6 @@
 <blockquote>
 <p>本文中不涉及一些viewport、dpr等的概念介绍，详细了解可以再查看本博客中另一篇文章有具体讲解这些概念。</p>
 </blockquote>
-<p><img src="devicesmetrics.png" alt=""></p>
-<p>数据来源<a href="https://material.io/tools/devices/" target="_blank" rel="noopener">Device Metrics</a></p>
-<p>早期移动端开发，对于终端设备适配问题只属于Android系列，只不过很多设计师常常忽略Android适配问题，只出一套iOS平台设计稿。但随着iPhone6，iPhone6+的出现，从此终端适配问题不再是Android系列了，也从这个时候让移动端适配全面进入到“杂屏”时代。</p>
-<p><img src="shipei.png" alt=""></p>
-<p>上图来自于paintcodeapp.com</p>
-<h1 id="视觉稿"><a href="#视觉稿" class="headerlink" title="视觉稿"></a>视觉稿</h1><p>在前端开发之前，视觉MM会给我们一个psd文件，称之为视觉稿。</p>
-<p>对于移动端开发而言，为了做到页面高清的效果，视觉稿的规范往往会遵循以下两点：</p>
-<p>首先，选取一款手机的屏幕宽高作为基准(以前是iphone4的320×480，现在更多的是iphone6的375×667)。<br>对于retina屏幕(如: dpr=2)，为了达到高清效果，视觉稿的画布大小会是基准的2倍，也就是说像素点个数是原来的4倍（对iphone6而言：原先的375×667，就会变成750×1334）。</p>
-<h1 id="设计师和前端开发的适配协作基本思路"><a href="#设计师和前端开发的适配协作基本思路" class="headerlink" title="设计师和前端开发的适配协作基本思路"></a>设计师和前端开发的适配协作基本思路</h1><p>出自手淘：</p>
-<ul>
-<li>选择一种尺寸作为设计和开发基准</li>
-<li>定义一套适配规则，自动适配剩下的两种尺寸(其实不仅这两种，你懂的)</li>
-<li>特殊适配效果给出设计效果</li>
-</ul>
-<p>手淘设计师常选择iPhone6作为基准设计尺寸，交付给前端的设计尺寸是按750px * 1334px为准(高度会随着内容多少而改变)。前端开发人员通过一套适配规则自动适配到其他的尺寸。</p>
 <h1 id="EM和REM"><a href="#EM和REM" class="headerlink" title="EM和REM"></a>EM和REM</h1><p>使用REM+媒体查询方式进行编写自适应方案时，先来了解下EM和REM是什么？</p>
 <h2 id="EM"><a href="#EM" class="headerlink" title="EM"></a>EM</h2><p>em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。</p>
 <p><strong>EM的特点</strong></p>
@@ -751,7 +746,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">74</span>
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -889,7 +884,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">37</span>
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -985,7 +982,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视觉稿"><span class="nav-number">2.</span> <span class="nav-text">视觉稿</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计师和前端开发的适配协作基本思路"><span class="nav-number">3.</span> <span class="nav-text">设计师和前端开发的适配协作基本思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM和REM"><span class="nav-number">4.</span> <span class="nav-text">EM和REM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EM"><span class="nav-number">4.1.</span> <span class="nav-text">EM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REM"><span class="nav-number">4.2.</span> <span class="nav-text">REM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#媒体查询-Rem实现自适应方案"><span class="nav-number">5.</span> <span class="nav-text">媒体查询 + Rem实现自适应方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Less优化"><span class="nav-number">6.</span> <span class="nav-text">Less优化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM和REM"><span class="nav-number">2.</span> <span class="nav-text">EM和REM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EM"><span class="nav-number">2.1.</span> <span class="nav-text">EM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REM"><span class="nav-number">2.2.</span> <span class="nav-text">REM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#媒体查询-Rem实现自适应方案"><span class="nav-number">3.</span> <span class="nav-text">媒体查询 + Rem实现自适应方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Less优化"><span class="nav-number">4.</span> <span class="nav-text">Less优化</span></a></li></ol></div>
             
 
           </div>
@@ -1030,7 +1027,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>151.9k</span>字
+    本站总字数:<span>154.3k</span>字
     </span>
     &nbsp|&nbsp
   </div>
