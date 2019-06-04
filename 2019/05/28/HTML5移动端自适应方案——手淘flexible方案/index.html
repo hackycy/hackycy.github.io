@@ -142,7 +142,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/05/28/HTML5移动端自适应方案——手淘flexible方案/haibao.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/05/28/HTML5移动端自适应方案——手淘flexible方案/preview.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/05/28/HTML5移动端自适应方案——手淘flexible方案/flexibleshipei.gif">
-<meta property="og:updated_time" content="2019-05-29T17:31:43.802Z">
+<meta property="og:updated_time" content="2019-06-01T09:14:43.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5移动端自适应方案——手淘flexible方案">
 <meta name="twitter:description" content="前文讲过了HTML5移动端自适应方案——媒体查询-rem方案)，基于媒体查询方式的响应式有优点也有缺点： 优点：兼容性好，@media在ie9以上是支持的，PC和MOBILE是同一套代码的，不用分开。 缺点：要写得css相对另外两个多很多，而且各个断点都要做好。css样式会稍微大点，更麻烦。">
@@ -446,7 +446,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-30 01:31:43" itemprop="dateModified" datetime="2019-05-30T01:31:43+08:00">2019-05-30</time>
+                <time title="修改时间：2019-06-01 17:14:43" itemprop="dateModified" datetime="2019-06-01T17:14:43+08:00">2019-06-01</time>
               
             
           </span>
@@ -608,7 +608,7 @@
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">include</span> font-dpr(<span class="number">16px</span>);</span><br></pre></td></tr></table></figure>
 <p>当然这只是针对于描述性的文本，比如说段落文本。但有的时候文本的字号也需要分场景的，比如在项目中有一个slogan,业务方希望这个slogan能根据不同的终端适配。针对这样的场景，完全可以使用<code>rem</code>给slogan做计量单位。</p>
 <blockquote>
-<p>注意，如果需要该功能版本的请使用0.3.2版本，既主分支版本活着使用cdn版本</p>
+<p>注意，如果需要该功能版本的请使用0.3.2版本，既主分支版本或者使用cdn版本</p>
 </blockquote>
 <h1 id="Flexible原理"><a href="#Flexible原理" class="headerlink" title="Flexible原理"></a>Flexible原理</h1><p>flexible的核心代码很简单：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> docEl = <span class="built_in">document</span>.documentElement  </span><br><span class="line"><span class="comment">// set 1rem = viewWidth / 10</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setRemUnit</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> rem = docEl.clientWidth / <span class="number">10</span></span><br><span class="line">  docEl.style.fontSize = rem + <span class="string">'px'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setRemUnit()</span><br></pre></td></tr></table></figure>
@@ -1060,7 +1060,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>162k</span>字
+    本站总字数:<span>162.1k</span>字
     </span>
     &nbsp|&nbsp
   </div>
