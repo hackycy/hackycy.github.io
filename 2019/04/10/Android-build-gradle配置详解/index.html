@@ -145,7 +145,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/04/10/Android-build-gradle配置详解/newkeystore.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/10/Android-build-gradle配置详解/lastcreate.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/10/Android-build-gradle配置详解/cmdcreate.png">
-<meta property="og:updated_time" content="2019-04-10T06:41:38.111Z">
+<meta property="og:updated_time" content="2019-06-18T06:10:10.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android build.gradle配置详解">
 <meta name="twitter:description" content="AS是采用gradle来进行构建项目，而gradle是基于groovy语言。这里了解一下项目中gradle的详细配置。">
@@ -432,12 +432,24 @@
                 
               
 
-              <time title="创建时间：2019-04-10 12:21:25 / 修改时间：14:41:38" itemprop="dateCreated datePublished" datetime="2019-04-10T12:21:25+08:00">2019-04-10</time>
+              <time title="创建时间：2019-04-10 12:21:25" itemprop="dateCreated datePublished" datetime="2019-04-10T12:21:25+08:00">2019-04-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-18 14:10:10" itemprop="dateModified" datetime="2019-06-18T14:10:10+08:00">2019-06-18</time>
               
             
           </span>
@@ -501,10 +513,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:5.2k字</span>
+              <span>字数统计:5.3k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:20分</span>
+              <span>阅读时长:21分</span>
             </span>
           
 
@@ -579,6 +591,8 @@
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sourceSets</span> &#123;<span class="comment">//目录指向配置</span></span><br><span class="line">        main &#123;</span><br><span class="line">            jniLibs.srcDirs = [<span class="string">'libs'</span>]<span class="comment">//指定lib库目录</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>配置 <code>jniLibs.srcDirs = [&#39;libs&#39;]</code>，可以在<code>Android studio</code>的<code>Android</code>视图下生成<code>jniLibs</code>文件夹，可以方便我们存放jar包和库文件，其中<code>Android</code>视图下的<code>jniLibs</code>和<code>project</code>视图下的<code>libs</code>指向同一文件夹（app→libs），如下图所示：</p>
 <p><img src="sourceset.png" alt=""></p>
+<p><strong>更多事例：</strong></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">manifest.srcFile <span class="string">'AndroidManifest.xml'</span></span><br><span class="line">java.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">resources.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">aidl.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">renderscript.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">res.srcDirs = [<span class="string">'res'</span>]</span><br><span class="line">assets.srcDirs = [<span class="string">'assets'</span>]</span><br><span class="line">jniLibs.srcDirs = [<span class="string">'libs'</span>]</span><br></pre></td></tr></table></figure>
 <h3 id="packagingOptions"><a href="#packagingOptions" class="headerlink" title="packagingOptions{}"></a>packagingOptions{}</h3><p>打包时的相关配置</p>
 <p>当项目中依赖的第三方库越来越多时，有可能会出现两个依赖库中存在同一个（名称）文件。如果这样，Gradle在打包时就会提示错误（警告）。那么就可以根据提示，然后使用以下方法将重复的文件剔除，比较常用的是通过exclude去除重复的文件，例如：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">packagingOptions&#123;</span><br><span class="line">        <span class="comment">//pickFirsts做用是 当有重复文件时 打包会报错 这样配置会使用第一个匹配的文件打包进入apk</span></span><br><span class="line">        <span class="comment">// 表示当apk中有重复的META-INF目录下有重复的LICENSE文件时  只用第一个 这样打包就不会报错</span></span><br><span class="line">        pickFirsts = [<span class="string">'META-INF/LICENSE'</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment">//merges何必 当出现重复文件时 合并重复的文件 然后打包入apk</span></span><br><span class="line">        <span class="comment">//这个是有默认值得 merges = [] 这样会把默默认值去掉  所以我们用下面这种方式 在默认值后添加</span></span><br><span class="line">        merge <span class="string">'META-INF/LICENSE'</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//这个是在同时使用butterknife、dagger2做的一个处理。同理，遇到类似的问题，只要根据gradle的提示，做类似处理即可。</span></span><br><span class="line">        <span class="keyword">exclude</span> <span class="string">'META-INF/services/javax.annotation.processing.Processor'</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -1090,7 +1104,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>160k</span>字
+    本站总字数:<span>160.1k</span>字
     </span>
     &nbsp|&nbsp
   </div>
