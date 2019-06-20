@@ -140,8 +140,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/03/01/Objective-C之Block/blockcode.jpeg">
 <meta property="og:image" content="http://hackycy.github.io/2019/03/01/Objective-C之Block/block1.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/03/01/Objective-C之Block/block2.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/03/01/Objective-C之Block/block3.png">
-<meta property="og:updated_time" content="2019-04-07T18:05:13.008Z">
+<meta property="og:updated_time" content="2019-06-20T03:04:01.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C之Block">
 <meta name="twitter:description" content="关于Block在iOS4.0之后，block横空出世，它本身封装了一段代码并将这段代码当做变量，通过block()的方式进行回调。">
@@ -445,7 +444,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-08 02:05:13" itemprop="dateModified" datetime="2019-04-08T02:05:13+08:00">2019-04-08</time>
+                <time title="修改时间：2019-06-20 11:04:01" itemprop="dateModified" datetime="2019-06-20T11:04:01+08:00">2019-06-20</time>
               
             
           </span>
@@ -509,10 +508,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:1.1k字</span>
+              <span>字数统计:2.1k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:4分</span>
+              <span>阅读时长:8分</span>
             </span>
           
 
@@ -534,11 +533,25 @@
 <blockquote>
 <p>block的代码是内联的，效率高于函数调用<br>block对于外部变量默认是只读属性<br>block被Objective-C看成是对象处理</p>
 </blockquote>
-<p>对于block的底层实现在网上已经有很多资料了，其源码更是可以在<code>opensource.apple.com</code>上下载，因此，本文更着重于对于block的基本应用</p>
-<h1 id="Block特性"><a href="#Block特性" class="headerlink" title="Block特性"></a>Block特性</h1><p>MRC环境</p>
-<h2 id="认识Block"><a href="#认识Block" class="headerlink" title="认识Block"></a>认识Block</h2><p>一个简单的block，实现两个数之和<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>(^sum)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b)&#123;</span><br><span class="line">            <span class="keyword">return</span> a + b;</span><br><span class="line">        &#125;;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,sum(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure></p>
+<p>对于block的底层实现在网上已经有很多资料了，其源码更是可以在<code>opensource.apple.com</code>上下载，因此，本文更着重于对于block的基本应用。</p>
+<h1 id="认识Block"><a href="#认识Block" class="headerlink" title="认识Block"></a>认识Block</h1><blockquote>
+<p>Block：带有自动变量的匿名函数，它是C语言的拓展功能，之所以是扩展，是因为C语言不允许存在这样的匿名函数</p>
+</blockquote>
+<ul>
+<li><p>匿名函数：匿名函数是指不带函数名称的函数</p>
+</li>
+<li><p>带有自动变量</p>
+<p>这是因为Block拥有捕获外部变量的功能，在Block中访问一个外部的局部变量，Block会持有它的临时状态，自动捕获变量值，外部局部变量的变化不会影响它的状态</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> val = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line">  printf(<span class="string">"val=%d\n"</span>, val);</span><br><span class="line">&#125;;</span><br><span class="line">val = <span class="number">2</span>;</span><br><span class="line">blk(); <span class="comment">// 这里输出的值是10，而不是2，因为block在实现时就会对它所在方法中定义的栈变量进行一次只读拷贝</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为了解决block不能修改自动变量的值，可以使用 <code>__block</code> 修饰</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__block <span class="keyword">int</span> val = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">void</span> (^blk)(<span class="keyword">void</span>) = ^&#123;</span><br><span class="line"> printf(<span class="string">"val=%d\n"</span>, val);</span><br><span class="line">&#125;;</span><br><span class="line">val = <span class="number">2</span>;</span><br><span class="line">blk(); <span class="comment">// 这里输出的值是2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>一个简单的block，实现两个数之和</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>(^sum)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b)&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,sum(<span class="number">3</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure>
 <p>代码左边是一个block的生命，int为block的返回值类型，^符号后面为block的名称，后面括号里面为参数列表，该block的参数列表有两个，两个都是int类型参数。右边为block的定义。用网上一张图来更好的认识到block。<br><img src="blockcode.jpeg" alt=""></p>
-<h2 id="Block访问外部基本类型数据"><a href="#Block访问外部基本类型数据" class="headerlink" title="Block访问外部基本类型数据"></a>Block访问外部基本类型数据</h2><p><strong> 静态变量 和 全局变量   在加和不加  <strong>block 都会直接引用变量地址。也就意味着 可以修改变量的值。在没有加</strong>block 参数的情况下。</strong> </p>
+<h1 id="Block访问外部基本类型数据"><a href="#Block访问外部基本类型数据" class="headerlink" title="Block访问外部基本类型数据"></a>Block访问外部基本类型数据</h1><p><strong>静态变量 和 全局变量在加和不加<code>__block</code>都会直接引用变量地址。也就意味着 可以修改变量的值。在没有加<code>__block</code>参数的情况下。</strong></p>
 <p>基本类型常量时，看一段代码</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        <span class="built_in">CGPoint</span> p = <span class="built_in">CGPointMake</span>(<span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">        <span class="keyword">void</span>(^bt)(<span class="keyword">void</span>) = ^()&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%f , %f"</span>, p.x, p.y);</span><br><span class="line">        &#125;;</span><br><span class="line">        bt();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2019-03-01 11:35:15.244937+0800 BlockDemo[866:40789] 10.000000 , 10.000000</span><br><span class="line">Program ended with <span class="built_in">exit</span> code: 0</span><br></pre></td></tr></table></figure></p>
@@ -561,9 +574,45 @@
 <li>NSMallocBlock支持retain、release，虽然retainCount始终是1，但内存管理器中仍然会增加、减少计数。copy之后不会生成新的对象，只是增加了一次引用，类似retain；</li>
 <li>尽量不要对Block使用retain操作</li>
 </ul>
-<h1 id="Block循环引用"><a href="#Block循环引用" class="headerlink" title="Block循环引用"></a>Block循环引用</h1><p>最简单也最常出现的,block导致循环引用的现象,就是在block中执行了self.xxx,比如</p>
-<p><img src="block3.png" alt=""></p>
-<p>这个问题大家的见的多了,也都知道怎么解决,声明一个用__weak修饰的self替换block中的self就可以解决问题了,不过下面这个方法也能够解决循环引用的问题</p>
+<h1 id="Block的使用场景"><a href="#Block的使用场景" class="headerlink" title="Block的使用场景"></a>Block的使用场景</h1><ul>
+<li><p>声明Block属性 利用Block属性响应事件或传递数据</p>
+<p>UIViewController 需要监听TableView中Cell的某个按钮的点击事件，既可以通过Delegate回调，也可以利用Block回调 Block回调的思路： 声明一个Block属性，注意这里要用copy。 利用Block属性进行回调。</p>
+</li>
+<li><p>方法参数为Block 利用Block实现回调</p>
+<p>以 <code>[UIView animateWithDuration:animations:]</code> 为例，animations是一个block对象，利用block实现调用者与UIView之间的数据传递</p>
+</li>
+<li><p>链式语法</p>
+<p>链式编程思想：将block作为方法的返回值，且返回值的类型为调用者本身，并将该方法以setter的形式返回，从而实现连续调用</p>
+</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  CaculateMaker.h</span></span><br><span class="line"><span class="comment">//  ChainBlockTestApp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">CaculateMaker</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">CGFloat</span> result;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 返回类型 CaculateMaker</span></span><br><span class="line"><span class="comment">* 传入参数 CGFloat num</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">- (CaculateMaker *(^)(<span class="built_in">CGFloat</span> num))add;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  CaculateMaker.m</span></span><br><span class="line"><span class="comment">//  ChainBlockTestApp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"CaculateMaker.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">CaculateMaker</span></span></span><br><span class="line"></span><br><span class="line">- (CaculateMaker *(^)(<span class="built_in">CGFloat</span> num))add;&#123;</span><br><span class="line">    <span class="keyword">return</span> ^CaculateMaker *(<span class="built_in">CGFloat</span> num)&#123;</span><br><span class="line">        _result += num;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">CaculateMaker *maker = [[CaculateMaker alloc] init];</span><br><span class="line">maker.add(<span class="number">20</span>).add(<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="为什么Block属性需要用copy修饰？"><a href="#为什么Block属性需要用copy修饰？" class="headerlink" title="为什么Block属性需要用copy修饰？"></a>为什么Block属性需要用copy修饰？</h1><p><strong>因为在MRC情况下如果Block属性不使用copy修饰，在使用中会出现崩溃，在ARC情况下，Block属性使用strong修饰会被默认进行copy，所以ARC情况下，Block属性可以使用strong或copy修饰，不然会出现崩溃。</strong></p>
+<p>Block在内存中的位置分为三种类型：</p>
+<ul>
+<li><p><strong>NSGlobalBlock</strong> 是位于全局区的block，它是设置在程序的数据区中。</p>
+</li>
+<li><p><strong>NSStackBlock</strong> 是位于栈区，当超出变量作用域时，栈上的Block以及__block变量都会被销毁。</p>
+</li>
+<li><p><strong>NSMallocBlock</strong> 是位于堆区，在变量作用域结束时不受影响。</p>
+</li>
+</ul>
+<p>这三种类型对应以下三种情况：</p>
+<ul>
+<li><p>Block中没有截获自动变量时Block类型是<code>__NSGlobalBlock__</code></p>
+</li>
+<li><p>Block中截获自动变量时Block类型是<code>__NSStackBlock__</code></p>
+</li>
+<li><p>堆中的Block无法直接创建，当对<code>__NSStackBlock__</code>类型的Block进行copy时，会将Block放到堆中，Block类型变为<code>__NSMallocBlock</code></p>
+</li>
+</ul>
+<p>当Block类型是<code>__NSStackBlock__</code>时，一旦超出了变量作用域，栈上的Block以及<code>__block</code>变量就会被销毁，从而导致调用Block回调时崩溃。因此，Block属性需要用copy修饰来避免这种情况。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)click:(<span class="keyword">id</span>)sender &#123;</span><br><span class="line">        TestClass *test = [[TestClass alloc] init];</span><br><span class="line">        </span><br><span class="line">        __block <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 弱引用，block类型是__NSStackBlock__  当TestClass执行回调时必崩 EXC_BAD_ACCESS</span></span><br><span class="line">        test.weakBlock = ^() &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"ok"</span>);</span><br><span class="line">            a = <span class="number">2</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// block类型是__NSStackBlock__  当TestClass执行回调时必崩 EXC_BAD_ACCESS</span></span><br><span class="line">        test.assignBlock = ^() &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"ok"</span>);</span><br><span class="line">            a = <span class="number">3</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// block类型是__MallocBlock__ 正常执行</span></span><br><span class="line">        test.copyBlock = ^() &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"ok"</span>);</span><br><span class="line">            a = <span class="number">4</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// block类型是__MallocBlock__ 正常执行</span></span><br><span class="line">        test.strongBlock = ^() &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"ok"</span>);</span><br><span class="line">            a = <span class="number">5</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"copy property: %@"</span>, test.copyBlock);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"assign property: %@"</span>, test.assignBlock);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"weak property: %@"</span>, test.weakBlock);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"strong property: %@"</span>, test.strongBlock);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        [test start];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Block循环引用"><a href="#Block循环引用" class="headerlink" title="Block循环引用"></a>Block循环引用</h1><p>我们先看一段block导致循环引用的代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TestClass *test = [[TestClass alloc] init]; </span><br><span class="line"></span><br><span class="line">test.copyBlock = ^() &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"ok: %d"</span>, test.result);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这段代码Xcode会提醒我们，这段代码存在循环引用，事实上也确实存在循环引用。怎么产生的呢？</p>
+<p><code>test</code>的属性block强引用了<code>SecondViewController</code>中的block，<code>SecondViewController</code>中的block又强引用了test的属性result，从而导致了循环引用。</p>
+<p>并非所有的block都存在循环引用，下面列举一些常见的block使用的示例：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// self--&gt;requestModel--&gt;block--&gt;self </span></span><br><span class="line">[<span class="keyword">self</span>.requestModel requestData:^(<span class="built_in">NSData</span> *data) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = <span class="string">@"leafly"</span>;</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 虽然存在引用环，但是通过主动释放requestModel打破了循环</span></span><br><span class="line">[<span class="keyword">self</span>.requestModel requestData:^(<span class="built_in">NSData</span> *data) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = <span class="string">@"leafly"</span>;</span><br><span class="line">    <span class="keyword">self</span>.requestModel = <span class="literal">nil</span>;</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// t--&gt;block--&gt;self 不存在循环引用</span></span><br><span class="line">Test *t = [[Test alloc] init];</span><br><span class="line"></span><br><span class="line">[t requestData:^(<span class="built_in">NSData</span> *data) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = <span class="string">@"leafly"</span>;</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// AFNetworking--&gt;block--&gt;self 不存在循环引用</span></span><br><span class="line">[AFNetworking requestData:^(<span class="built_in">NSData</span> *data) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = <span class="string">@"lealfy"</span>;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Block的特性也赋予了它许多的灵活性，但是也会出现很多的一些内存泄漏，不易调试的问题，还要多多深入探究。</p>
 
       
@@ -959,7 +1008,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Block"><span class="nav-number">1.</span> <span class="nav-text">关于Block</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block特性"><span class="nav-number">2.</span> <span class="nav-text">Block特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#认识Block"><span class="nav-number">2.1.</span> <span class="nav-text">认识Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block访问外部基本类型数据"><span class="nav-number">2.2.</span> <span class="nav-text">Block访问外部基本类型数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block访问外部常量变量"><span class="nav-number">3.</span> <span class="nav-text">Block访问外部常量变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block访问外部对象变量"><span class="nav-number">4.</span> <span class="nav-text">Block访问外部对象变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block循环引用"><span class="nav-number">5.</span> <span class="nav-text">Block循环引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于Block"><span class="nav-number">1.</span> <span class="nav-text">关于Block</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#认识Block"><span class="nav-number">2.</span> <span class="nav-text">认识Block</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block访问外部基本类型数据"><span class="nav-number">3.</span> <span class="nav-text">Block访问外部基本类型数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block访问外部常量变量"><span class="nav-number">4.</span> <span class="nav-text">Block访问外部常量变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block访问外部对象变量"><span class="nav-number">5.</span> <span class="nav-text">Block访问外部对象变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block的使用场景"><span class="nav-number">6.</span> <span class="nav-text">Block的使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么Block属性需要用copy修饰？"><span class="nav-number">7.</span> <span class="nav-text">为什么Block属性需要用copy修饰？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block循环引用"><span class="nav-number">8.</span> <span class="nav-text">Block循环引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -1004,7 +1053,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>161k</span>字
+    本站总字数:<span>162k</span>字
     </span>
     &nbsp|&nbsp
   </div>
