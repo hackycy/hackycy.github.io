@@ -485,17 +485,6 @@
 
           
           
-             <span id="/2018/09/14/Go标准命令/" class="leancloud_visitors" data-flag-title="Go标准命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -696,17 +685,6 @@
 
           
           
-             <span id="/2018/09/13/MySQL错误集/" class="leancloud_visitors" data-flag-title="MySQL错误集">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -904,17 +882,6 @@
           
 
           
-          
-             <span id="/2018/09/11/Centos7搭建FTP服务器/" class="leancloud_visitors" data-flag-title="Centos7搭建FTP服务器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1117,17 +1084,6 @@
 
           
           
-             <span id="/2018/09/10/电脑小技巧/" class="leancloud_visitors" data-flag-title="电脑小技巧">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1325,17 +1281,6 @@
           
 
           
-          
-             <span id="/2018/09/10/MySQL入门/" class="leancloud_visitors" data-flag-title="MySQL入门">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -1540,17 +1485,6 @@
 
           
           
-             <span id="/2018/09/07/Centos7安装Mysql5-7/" class="leancloud_visitors" data-flag-title="Centos7安装Mysql5.7">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1752,17 +1686,6 @@
 
           
           
-             <span id="/2018/09/07/hexo-github-搭建个人博客/" class="leancloud_visitors" data-flag-title="hexo + github 搭建个人博客">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1926,17 +1849,6 @@
           
 
           
-          
-             <span id="/2018/09/07/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
           
 
           
@@ -2272,10 +2184,6 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://golang.org" title="golang" target="_blank">golang</a>
                   </li>
                 
               </ul>
@@ -2818,75 +2726,6 @@
 
 
   
-
-  
-  <script>
-    
-    function showTime(Counter) {
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
-        .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz")
-        .done(function ({ api_server }) {
-          var Counter = function (method, url, data) {
-            return $.ajax({
-              method: method,
-              url: `https://${api_server}/1.1${url}`,
-              headers: {
-                'X-LC-Id': "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz",
-                'X-LC-Key': "Sdkle7a8kQMrDfNvnqsHL3CT",
-                'Content-Type': 'application/json',
-              },
-              data: data,
-            });
-          };
-          
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
-          
-        })
-    });
-  </script>
-
-
 
   
 

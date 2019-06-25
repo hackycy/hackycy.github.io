@@ -130,7 +130,7 @@
 </script>
 
   <meta name="description" content="环境 MacOS10以上">
-<meta name="keywords" content="环境搭建,Homebrew,Mac,Composer">
+<meta name="keywords" content="环境搭建,Homebrew,Composer,Mac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac使用HomeBrew安装Composer">
 <meta property="og:url" content="http://hackycy.github.io/2019/02/25/Mac使用HomeBrew安装Composer/index.html">
@@ -482,17 +482,6 @@
 
           
           
-             <span id="/2019/02/25/Mac使用HomeBrew安装Composer/" class="leancloud_visitors" data-flag-title="Mac使用HomeBrew安装Composer">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -604,9 +593,9 @@
           
             <a href="/tags/Homebrew/" rel="tag"><i class="fa fa-tag"></i> Homebrew</a>
           
-            <a href="/tags/Mac/" rel="tag"><i class="fa fa-tag"></i> Mac</a>
-          
             <a href="/tags/Composer/" rel="tag"><i class="fa fa-tag"></i> Composer</a>
+          
+            <a href="/tags/Mac/" rel="tag"><i class="fa fa-tag"></i> Mac</a>
           
         </div>
       
@@ -921,10 +910,6 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://golang.org" title="golang" target="_blank">golang</a>
                   </li>
                 
               </ul>
@@ -1504,72 +1489,6 @@
 
 
   
-
-  
-  <script>
-    
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function ({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
-            
-            .done(function () {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
-            })
-            
-            .fail(function ({ responseJSON }) {
-                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
-            })
-          } else {
-            
-              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
-                .done(function () {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(1);
-                })
-                .fail(function () {
-                  console.log('Failed to create');
-                });
-            
-          }
-        })
-      .fail(function ({ responseJSON }) {
-        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
-      });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz")
-        .done(function ({ api_server }) {
-          var Counter = function (method, url, data) {
-            return $.ajax({
-              method: method,
-              url: `https://${api_server}/1.1${url}`,
-              headers: {
-                'X-LC-Id': "5k7PHeyyv8zsYlf1i3T0zGY2-gzGzoHsz",
-                'X-LC-Key': "Sdkle7a8kQMrDfNvnqsHL3CT",
-                'Content-Type': 'application/json',
-              },
-              data: data,
-            });
-          };
-          
-          addCount(Counter);
-          
-        })
-    });
-  </script>
-
-
 
   
 
