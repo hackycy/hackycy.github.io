@@ -137,7 +137,7 @@
 <meta property="og:site_name" content="小小源Bの博客">
 <meta property="og:description" content="使用Android P系统时，app使用http请求出现异常。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-05T16:29:06.112Z">
+<meta property="og:updated_time" content="2019-06-29T13:42:38.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android P&#x2F;9.0 http网络请求异常问题">
 <meta name="twitter:description" content="使用Android P系统时，app使用http请求出现异常。">
@@ -423,12 +423,24 @@
                 
               
 
-              <time title="创建时间：2019-03-06 00:18:43 / 修改时间：00:29:06" itemprop="dateCreated datePublished" datetime="2019-03-06T00:18:43+08:00">2019-03-06</time>
+              <time title="创建时间：2019-03-06 00:18:43" itemprop="dateCreated datePublished" datetime="2019-03-06T00:18:43+08:00">2019-03-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 21:42:38" itemprop="dateModified" datetime="2019-06-29T21:42:38+08:00">2019-06-29</time>
               
             
           </span>
@@ -481,7 +493,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:506字</span>
+              <span>字数统计:575字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:2分</span>
@@ -511,10 +523,13 @@
 <p>而使用OKHttp时，同样也会报出异常</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.net.UnknownServiceException: CLEARTEXT communication ** not permitted by network security policy</span><br></pre></td></tr></table></figure>
 <p>在Android P系统的设备上，如果应用使用的是非加密的明文流量的http网络请求，则会导致该应用无法进行网络请求，https则不会受影响，同样地，如果应用嵌套了webview，webview也只能使用https请求。<br>有人认为 Android P 上所有的 App 都需要使用 TLS 加密会降低上网体验，事实上这是一种误解，至于 App 对于少数旧服务器的连接如果非要使用明码传输，开发者需要更改 App 的网络安全配置以允许此类连接。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="APP内所有请求更改为Https"><a href="#APP内所有请求更改为Https" class="headerlink" title="APP内所有请求更改为Https"></a>APP内所有请求更改为Https</h2><h2 id="将targetSdkVersion改为27以下"><a href="#将targetSdkVersion改为27以下" class="headerlink" title="将targetSdkVersion改为27以下"></a>将targetSdkVersion改为27以下</h2><h2 id="开启-允许http请求"><a href="#开启-允许http请求" class="headerlink" title="开启/允许http请求"></a>开启/允许http请求</h2><p>在<code>res</code>下新增一个<code>xml</code>目录，然后创建一个名为：<code>network_security_config.xml</code> 文件（名字自定） ，内容如下，大概意思就是允许开启http请求</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="APP内所有请求更改为Https"><a href="#APP内所有请求更改为Https" class="headerlink" title="APP内所有请求更改为Https"></a>APP内所有请求更改为Https</h2><h2 id="将targetSdkVersion改为27以下"><a href="#将targetSdkVersion改为27以下" class="headerlink" title="将targetSdkVersion改为27以下"></a>将targetSdkVersion改为27以下</h2><h2 id="开启-允许http请求"><a href="#开启-允许http请求" class="headerlink" title="开启/允许http请求"></a>开启/允许http请求</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>在<code>res</code>下新增一个<code>xml</code>目录，然后创建一个名为：<code>network_security_config.xml</code> 文件（名字自定） ，内容如下，大概意思就是允许开启http请求</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">network-security-config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">base-config</span> <span class="attr">cleartextTrafficPermitted</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">network-security-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>然后在<code>AndroidManifest.xml</code>文件中的Application标签下增加一行属性</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:networkSecurityConfig</span>=<span class="string">"@xml/network_security_config"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在清单文件中加入 <strong>android:usesCleartextTraffic=”true”</strong> 属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        </span></span><br><span class="line"><span class="tag">        <span class="attr">android:usesCleartextTraffic</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>更多参数修改：<a href="https://developer.android.com/training/articles/security-config#trust-anchors" target="_blank" rel="noopener">https://developer.android.com/training/articles/security-config#trust-anchors</a></p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.jianshu.com/p/57047a84e559" target="_blank" rel="noopener">https://www.jianshu.com/p/57047a84e559</a></p>
 <p><a href="https://android-developers.googleblog.com/2018/04/protecting-users-with-tls-by-default-in.html" target="_blank" rel="noopener">https://android-developers.googleblog.com/2018/04/protecting-users-with-tls-by-default-in.html</a> </p>
 <p><a href="https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html" target="_blank" rel="noopener">https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html</a></p>
@@ -906,7 +921,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异常原因"><span class="nav-number">1.</span> <span class="nav-text">异常原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#APP内所有请求更改为Https"><span class="nav-number">2.1.</span> <span class="nav-text">APP内所有请求更改为Https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将targetSdkVersion改为27以下"><span class="nav-number">2.2.</span> <span class="nav-text">将targetSdkVersion改为27以下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启-允许http请求"><span class="nav-number">2.3.</span> <span class="nav-text">开启/允许http请求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异常原因"><span class="nav-number">1.</span> <span class="nav-text">异常原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#APP内所有请求更改为Https"><span class="nav-number">2.1.</span> <span class="nav-text">APP内所有请求更改为Https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将targetSdkVersion改为27以下"><span class="nav-number">2.2.</span> <span class="nav-text">将targetSdkVersion改为27以下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启-允许http请求"><span class="nav-number">2.3.</span> <span class="nav-text">开启/允许http请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">2.3.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">2.3.2.</span> <span class="nav-text">方法二</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -951,7 +966,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>165.6k</span>字
+    本站总字数:<span>166.4k</span>字
     </span>
     &nbsp|&nbsp
   </div>
