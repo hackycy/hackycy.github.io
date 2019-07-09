@@ -461,8 +461,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -579,7 +579,7 @@
   <entry>
     <title><![CDATA[Android P/9.0 http网络请求异常问题]]></title>
     <url>%2F2019%2F03%2F06%2FAndroid-P-9-0-http%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%BC%82%E5%B8%B8%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[使用Android P系统时，app使用http请求出现异常。 异常原因 Google表示，为保证用户数据和设备的安全，针对下一代 Android 系统(Android P)的应用程序，将要求默认使用加密连接，这意味着 Android P 将禁止 App使用所有未加密的连接，因此运行 Android P系统的安卓设备无论是接收或者发送流量，未来都不能明码传输，需要使用下一代(Transport LayerSecurity)传输层安全协议，而 Android Nougat 和 Oreo 则不受影响。 因此在Android P中使用HttpUrlConnection时会报出次异常 1W/System.err: java.io.IOException: Cleartext HTTP traffic to **** not permitted 而使用OKHttp时，同样也会报出异常 1java.net.UnknownServiceException: CLEARTEXT communication ** not permitted by network security policy 在Android P系统的设备上，如果应用使用的是非加密的明文流量的http网络请求，则会导致该应用无法进行网络请求，https则不会受影响，同样地，如果应用嵌套了webview，webview也只能使用https请求。有人认为 Android P 上所有的 App 都需要使用 TLS 加密会降低上网体验，事实上这是一种误解，至于 App 对于少数旧服务器的连接如果非要使用明码传输，开发者需要更改 App 的网络安全配置以允许此类连接。 解决方案APP内所有请求更改为Https将targetSdkVersion改为27以下开启/允许http请求方法一在res下新增一个xml目录，然后创建一个名为：network_security_config.xml 文件（名字自定） ，内容如下，大概意思就是允许开启http请求 1234567&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;network-security-config&gt; &lt;base-config cleartextTrafficPermitted="true" /&gt;&lt;/network-security-config&gt; 然后在AndroidManifest.xml文件中的Application标签下增加一行属性 12345678&lt;application ... android:networkSecurityConfig="@xml/network_security_config" ...&gt; ...&lt;/application&gt; 方法二在清单文件中加入 android:usesCleartextTraffic=”true” 属性 12345678910&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;manifest ...&gt; &lt;uses-permission android:name="android.permission.INTERNET" /&gt; &lt;application android:usesCleartextTraffic="true" &gt; &lt;/application&gt;&lt;/manifest&gt; 更多参数修改：https://developer.android.com/training/articles/security-config#trust-anchors 参考链接https://www.jianshu.com/p/57047a84e559 https://android-developers.googleblog.com/2018/04/protecting-users-with-tls-by-default-in.html https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html]]></content>
+    <content type="text"><![CDATA[使用Android P系统时，app使用http请求出现异常。 异常原因 Google表示，为保证用户数据和设备的安全，针对下一代 Android 系统(Android P)的应用程序，将要求默认使用加密连接，这意味着 Android P 将禁止 App使用所有未加密的连接，因此运行 Android P系统的安卓设备无论是接收或者发送流量，未来都不能明码传输，需要使用下一代(Transport LayerSecurity)传输层安全协议，而 Android Nougat 和 Oreo 则不受影响。 因此在Android P中使用HttpUrlConnection时会报出次异常 1W/System.err: java.io.IOException: Cleartext HTTP traffic to **** not permitted 而使用OKHttp时，同样也会报出异常 1java.net.UnknownServiceException: CLEARTEXT communication ** not permitted by network security policy 在Android P系统的设备上，如果应用使用的是非加密的明文流量的http网络请求，则会导致该应用无法进行网络请求，https则不会受影响，同样地，如果应用嵌套了webview，webview也只能使用https请求。有人认为 Android P 上所有的 App 都需要使用 TLS 加密会降低上网体验，事实上这是一种误解，至于 App 对于少数旧服务器的连接如果非要使用明码传输，开发者需要更改 App 的网络安全配置以允许此类连接。 解决方案 APP内所有请求更改为Https 将targetSdkVersion改为27以下 开启/允许http请求 方法一 在res下新增一个xml目录，然后创建一个名为：network_security_config.xml 文件（名字自定） ，内容如下，大概意思就是允许开启http请求 1234567&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;network-security-config&gt; &lt;base-config cleartextTrafficPermitted="true" /&gt;&lt;/network-security-config&gt; 然后在AndroidManifest.xml文件中的Application标签下增加一行属性 12345678&lt;application ... android:networkSecurityConfig="@xml/network_security_config" ...&gt; ...&lt;/application&gt; 方法二 在清单文件中加入 android:usesCleartextTraffic=”true” 属性 12345678910&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;manifest ...&gt; &lt;uses-permission android:name="android.permission.INTERNET" /&gt; &lt;application android:usesCleartextTraffic="true" &gt; &lt;/application&gt;&lt;/manifest&gt; 更多参数修改：https://developer.android.com/training/articles/security-config#trust-anchors 参考链接https://www.jianshu.com/p/57047a84e559 https://android-developers.googleblog.com/2018/04/protecting-users-with-tls-by-default-in.html https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -677,9 +677,9 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
         <tag>Composer</tag>
+        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
@@ -691,8 +691,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
