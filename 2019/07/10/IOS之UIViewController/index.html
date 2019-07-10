@@ -139,7 +139,9 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/10/IOS之UIViewController/lifecycle.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/10/IOS之UIViewController/viewlife.png">
-<meta property="og:updated_time" content="2019-07-10T04:41:23.896Z">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/10/IOS之UIViewController/zindex1.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/10/IOS之UIViewController/zindex2.png">
+<meta property="og:updated_time" content="2019-07-10T08:04:27.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之UIViewController">
 <meta name="twitter:description" content="UIViewController（视图控制器），顾名思义，是 MVC 设计模式中的控制器部分。UIViewController 在 UIKit 中主要功能是用于控制画面的切换，其中的 view 属性（UIView 类型）管理整个画面的外观。">
@@ -426,7 +428,7 @@
                 
               
 
-              <time title="创建时间：2019-07-10 11:06:34 / 修改时间：12:41:23" itemprop="dateCreated datePublished" datetime="2019-07-10T11:06:34+08:00">2019-07-10</time>
+              <time title="创建时间：2019-07-10 11:06:34 / 修改时间：16:04:27" itemprop="dateCreated datePublished" datetime="2019-07-10T11:06:34+08:00">2019-07-10</time>
             
 
             
@@ -487,7 +489,7 @@
               <span>字数统计:2k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:7分</span>
+              <span>阅读时长:8分</span>
             </span>
           
 
@@ -575,6 +577,9 @@
 <li><p>通过storyboard加载</p>
 <p>当控制器通过storyboard加载时，需要指定storyboard的名称，控制器view最终就是storyboard所描述的样子，这个比较简单，不做详细阐述</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">  <span class="built_in">UIStoryboard</span> *storyboard = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"TestViewController"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">  TestViewController *testVC = [storyboard instantiateInitialViewController];</span><br><span class="line">  [<span class="keyword">self</span>.navigationController pushViewController:testVC animated:<span class="literal">YES</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>要记住在 attributes inspector中将 Is Initial View Controller选项勾上</p>
+</blockquote>
 </li>
 <li><p>通过xib加载</p>
 <p>当控制器view通过xib加载的时候，可能会出现三种情况</p>
@@ -585,13 +590,15 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">  TestViewController *testVC = [[TestViewController alloc] init];</span><br><span class="line">  [<span class="keyword">self</span>.navigationController pushViewController:testVC animated:<span class="literal">YES</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当没有指定xib名称，分两种情况：如果有控制器同名的xib则加载，例如TestViewController会加载TestViewController.xib。如果没有与控制器同名的xib文件时，会加载前缀与控制器名相同而不带controller的xib（TestView.xib）</p>
 <p><strong>3、不通过sb\xib加载</strong></p>
-<p>什么都不加载则会默认创建一个UIView，虽然显示为黑色，但其实该颜色是UIWindow的。</p>
+<p>把xib和sb文件都删除掉，什么都不加载。则会默认创建一个UIView，虽然显示为黑色，但其实该颜色是UIWindow的。</p>
+<p><img src="zindex1.png" alt=""></p>
 <p><strong>4、重写loadView方法</strong></p>
 <p>重写控制器的loadView方法</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)loadView&#123;</span><br><span class="line">  <span class="keyword">self</span>.view = [[<span class="built_in">UIImageView</span> alloc] init];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>控制器view加载出来的时候就是我们设置的UIImageView。如果重写该方法里面什么也不写，和不通过sb\xib加载方式的运行结果相同。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  - (<span class="keyword">void</span>)loadView&#123;</span><br><span class="line">    <span class="keyword">self</span>.view = [[<span class="built_in">UIImageView</span> alloc] init];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>  控制器view加载出来的时候就是我们设置的UIImageView。如果重写该方法里面什么也不写，和不通过sb\xib加载方式的运行结果相同。不过两者区别是这种方式并没有创建UIView。</p>
+<p>  <img src="zindex2.png" alt=""></p>
 <p><strong>结论：</strong></p>
 <ul>
 <li>重写loadView方法，则会根据重写的loadView方法创建view</li>
@@ -1036,7 +1043,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>171.1k</span>字
+    本站总字数:<span>171.2k</span>字
     </span>
     &nbsp|&nbsp
   </div>
