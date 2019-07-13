@@ -139,7 +139,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Xcode报错修复Multiple-commands-produce/fix1.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Xcode报错修复Multiple-commands-produce/fix2.png">
-<meta property="og:updated_time" content="2019-07-13T09:36:23.883Z">
+<meta property="og:updated_time" content="2019-07-13T09:41:01.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode报错修复Multiple commands produce">
 <meta name="twitter:description" content="Xcode版本：10.2.1 今天导入了一个Demo项目，出现了Multiple commands produce错误，记录下解决办法。">
@@ -426,7 +426,7 @@
                 
               
 
-              <time title="创建时间：2019-07-13 17:17:38 / 修改时间：17:36:23" itemprop="dateCreated datePublished" datetime="2019-07-13T17:17:38+08:00">2019-07-13</time>
+              <time title="创建时间：2019-07-13 17:17:38 / 修改时间：17:41:01" itemprop="dateCreated datePublished" datetime="2019-07-13T17:17:38+08:00">2019-07-13</time>
             
 
             
@@ -484,7 +484,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:452字</span>
+              <span>字数统计:466字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:2分</span>
@@ -529,7 +529,7 @@
 </li>
 <li><p>根据出错信息，在新创建系统模式下，去除多余的引用重建</p>
 <p><img src="fix2.png" alt=""></p>
-<p>移除掉<code>info.plist</code>即可。</p>
+<p>在<code>target</code> -&gt; <code>Build phase</code> &gt; <code>Copy Bundle Resource</code> 中找到<code>info.plist</code>，移除掉<code>info.plist</code>即可。</p>
 </li>
 </ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/fdb1421f3c8b" target="_blank" rel="noopener">https://www.jianshu.com/p/fdb1421f3c8b</a></p>
