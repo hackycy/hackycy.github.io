@@ -143,8 +143,6 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/miicon2.webp">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/oicon.gif">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/shipei1.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/prev1.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/prev2.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/runprev.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/tuite.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/tuite_forge.png">
@@ -153,7 +151,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/adapter1.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/demo.gif">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/13/Android-O应用图标适配/demo2.png">
-<meta property="og:updated_time" content="2019-07-13T04:07:23.662Z">
+<meta property="og:updated_time" content="2019-07-13T04:12:36.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android O应用图标适配">
 <meta name="twitter:description" content="Android 8.0现在已经很普及了，甚至有的厂商已经开始升级到Android P，至少我的三星上个星期也是7月初就开始推送Android P让我更新自己的手机系统了，那么应用图标的适配就肯定是板上钉钉的事情了。">
@@ -440,7 +438,7 @@
                 
               
 
-              <time title="创建时间：2019-07-13 10:58:52 / 修改时间：12:07:23" itemprop="dateCreated datePublished" datetime="2019-07-13T10:58:52+08:00">2019-07-13</time>
+              <time title="创建时间：2019-07-13 10:58:52 / 修改时间：12:12:36" itemprop="dateCreated datePublished" datetime="2019-07-13T10:58:52+08:00">2019-07-13</time>
             
 
             
@@ -563,8 +561,6 @@
 <p>SVG格式的图片都是使用AI、PS等图像编辑软件制作之后导出的，基本没有人可以手工编写SVG图片。</p>
 </blockquote>
 <p>一般项目中也可以使用PNG、JPG等格式的图片，或者是一个背景色也可以。</p>
-<p><img src="prev1.png" alt=""></p>
-<p><img src="prev2.png" alt=""></p>
 <p><img src="runprev.png" alt=""></p>
 <p>这就是一个前景层盖在背景层上，然后再被圆形mask进行裁剪之后的效果。</p>
 <h1 id="开始适配"><a href="#开始适配" class="headerlink" title="开始适配"></a>开始适配</h1><p>这里的话拿推特的图标作为例子，案例图在下方：</p>
@@ -578,8 +574,9 @@
 <p>点击回车键打开Asset Studio编辑器，在这里就可以进行应用图标适配了。</p>
 <p><img src="adapter1.png" alt=""></p>
 <p>这个Asset Studio编辑器非常简单好用，一学就会。左边是操作区域，右边是预览区域。</p>
-<p>先来看操作区域，第一行的Icon Type中选择Adaptive and Legacy，表示同时创建兼容8.0系统以及老版本系统的应用图标。第二行的Name用于指定应用图标的名称，这里也保持默认即可。接下来的三个页签，Foreground Layer用于编辑前景层，Background Layer用于编辑背景层，Legacy用于编辑老版本系统的图标。</p>
-<p>再来看预览区域，这个就十分简单了，用于预览应用图标的最终效果。在预览区域中给出了可能生成的图标形状，包括圆形、圆角矩形、方形等等。<strong>注意每个预览图标中都有一个圆圈，这个圆圈叫作安全区域，必须要保证图标的前景层完全处于安全区域当中才行，否则可能会出现图标被手机厂商的mask裁剪掉的情况。</strong></p>
+<p>先来看操作区域，第一行的<code>Icon Type</code>中选择<code>Adaptive and Legacy</code>，表示同时创建兼容8.0系统以及老版本系统的应用图标。第二行的Name用于指定应用图标的名称，这里也保持默认即可。接下来的三个页签，<code>Foreground Layer</code>用于编辑前景层，<code>Background Layer</code>用于编辑背景层，<code>Legacy</code>用于编辑老版本系统的图标。</p>
+<p>再来看预览区域，这个就十分简单了，用于预览应用图标的最终效果。在预览区域中给出了可能生成的图标形状，包括圆形、圆角矩形、方形等等。</p>
+<p><strong>注意每个预览图标中都有一个圆圈，这个圆圈叫作安全区域，必须要保证图标的前景层完全处于安全区域当中才行，否则可能会出现图标被手机厂商的mask裁剪掉的情况。</strong></p>
 <p>放一张GIF操作过程：(PS:图标比较大，不太懂的压缩)</p>
 <p><img src="demo.gif" alt=""></p>
 <p>Android Studio会自动帮我们生成适配8.0系统的应用图标，以及适配老版本系统的应用图标。</p>
