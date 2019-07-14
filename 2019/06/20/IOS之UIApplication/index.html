@@ -138,7 +138,7 @@
 <meta property="og:description" content="UIApplication 的核心作用是提供了 iOS 程序运行期间的控制和协作工作。 每一个程序在运行期必须有且仅有一个UIApplication（或则其子类）的一个实例。在程序开始运行的时候，UIApplicationMain 函数是程序进入点，这个函数做了很多工作，其中一个重要的工作就是创建一个 UIApplication 的单例实例。在你的代码中你，你可以通过调用 [UIApplicati">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://hackycy.github.io/2019/06/20/IOS之UIApplication/lifecycle.jpg">
-<meta property="og:updated_time" content="2019-06-20T03:21:12.167Z">
+<meta property="og:updated_time" content="2019-07-14T03:12:40.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之UIApplication">
 <meta name="twitter:description" content="UIApplication 的核心作用是提供了 iOS 程序运行期间的控制和协作工作。 每一个程序在运行期必须有且仅有一个UIApplication（或则其子类）的一个实例。在程序开始运行的时候，UIApplicationMain 函数是程序进入点，这个函数做了很多工作，其中一个重要的工作就是创建一个 UIApplication 的单例实例。在你的代码中你，你可以通过调用 [UIApplicati">
@@ -425,12 +425,24 @@
                 
               
 
-              <time title="创建时间：2019-06-20 11:18:53 / 修改时间：11:21:12" itemprop="dateCreated datePublished" datetime="2019-06-20T11:18:53+08:00">2019-06-20</time>
+              <time title="创建时间：2019-06-20 11:18:53" itemprop="dateCreated datePublished" datetime="2019-06-20T11:18:53+08:00">2019-06-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-14 11:12:40" itemprop="dateModified" datetime="2019-07-14T11:12:40+08:00">2019-07-14</time>
               
             
           </span>
@@ -483,10 +495,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:873字</span>
+              <span>字数统计:1.3k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:3分</span>
+              <span>阅读时长:4分</span>
             </span>
           
 
@@ -542,6 +554,33 @@
 <p>说明：当程序载入后执行</p>
 </li>
 </ol>
+<h1 id="应用入口"><a href="#应用入口" class="headerlink" title="应用入口"></a>应用入口</h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application willFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Override point for customization after application launch.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说明：这两个方法的作用几乎完全一样，只是执行顺序有先后。AppDelegate类默认出现的是<code>application: didFinishLaunchingWithOptions:</code>，一般情况下只需要处理这个方法就可以了。</p>
+<p><code>didFinishLaunchingWithOptions</code>函数的参数launchOptions是一个NSDictionary类型的对象，存储的是程序启动的原因。</p>
+<p><code>didFinishLaunchingWithOptions</code>函数的返回值是一个BOOL类型，将决定是否处理URL资源，如果返回YES，则会由<code>application:openURL:sourceApplication:annotation:</code>方法处理URL。如果应用程序有一个远程通知启动，返回值会被忽略。</p>
+<blockquote>
+<p>P.s. 如果同时出现了<code>application: willFinishLaunchingWithOptions:</code>和<code>application: didFinishLaunchingWithOptions:</code>，那么这两个方法都要返回YES，才会处理URL资源。</p>
+</blockquote>
+<h5 id="启动原因"><a href="#启动原因" class="headerlink" title="启动原因"></a>启动原因</h5><ul>
+<li><p><strong>用户直接启动</strong><br>lauchOptions内无数据</p>
+</li>
+<li><p><strong>其他应用程序通过openURL:启动</strong><br>lauchOptions字典内存储:<br>@{UIApplicationLaunchOptionsURLKey:启动URL(NSURL),<br>UIApplicationLaunchOptionsSourceApplicationKey:启动源程序的bundleID(NSString)}</p>
+</li>
+<li><p><strong>本地通知启动</strong><br>lauchOptions字典内存储：<br>@{UIApplicationLaunchOptionsLocalNotificationKey:启动应用程序的本地通知对象（UILocalNotification）}</p>
+</li>
+<li><p><strong>远程通知启动</strong><br> @{UIApplicationLaunchOptionsRemoteNotificationKey:启动应用程序的的远程通知信息userInfo（NSDictionary）}</p>
+</li>
+<li><p><strong>其他的key还有</strong><br> UIApplicationLaunchOptionsAnnotationKey,<br> UIApplicationLaunchOptionsLocationKey,<br> UIApplicationLaunchOptionsNewsstandDownloadsKey</p>
+<blockquote>
+<p>程序launchOptions中的可能键值可以参考UIApplication Class Reference的”Launch Options Keys”。</p>
+</blockquote>
+</li>
+</ul>
+<p>例子：在<code>didFinishLaunchingWithOptions:</code>创建UIWindow</p>
+<blockquote>
+<p>先把指定的Main Interface中mian删除掉</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    <span class="comment">//创建窗口对象</span></span><br><span class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">UIWindow</span> alloc]initWithFrame:[<span class="built_in">UIScreen</span> mainScreen].bounds];</span><br><span class="line">    <span class="comment">//创建窗口的根控制器，并且赋值</span></span><br><span class="line">    <span class="built_in">UIViewController</span> *rootVc = [[<span class="built_in">UIViewController</span> alloc]init];</span><br><span class="line">    <span class="keyword">self</span>.window.rootViewController = rootVc;</span><br><span class="line">    <span class="comment">//显示窗口</span></span><br><span class="line">    [<span class="keyword">self</span>.window makeKeyAndVisible];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="App-生命周期示意图"><a href="#App-生命周期示意图" class="headerlink" title="App 生命周期示意图"></a>App 生命周期示意图</h1><p><img src="lifecycle.jpg" alt=""></p>
 
       
@@ -933,7 +972,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIApplicaion-生命周期"><span class="nav-number">1.</span> <span class="nav-text">UIApplicaion 生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#App-生命周期示意图"><span class="nav-number">2.</span> <span class="nav-text">App 生命周期示意图</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UIApplicaion-生命周期"><span class="nav-number">1.</span> <span class="nav-text">UIApplicaion 生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用入口"><span class="nav-number">2.</span> <span class="nav-text">应用入口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#启动原因"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">启动原因</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#App-生命周期示意图"><span class="nav-number">3.</span> <span class="nav-text">App 生命周期示意图</span></a></li></div>
             
 
           </div>
@@ -978,7 +1017,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>175k</span>字
+    本站总字数:<span>175.4k</span>字
     </span>
     &nbsp|&nbsp
   </div>
