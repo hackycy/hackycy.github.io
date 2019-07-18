@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IOS之UITableView使用]]></title>
+    <url>%2F2019%2F07%2F18%2FIOS%E4%B9%8BUITableView%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[简述iOS的UITableView显示单列垂直滚动内容。表格中的每一行都包含一段应用内容。例如，“联系人”应用程序在单独的行中显示每个联系人的姓名，“设置”应用程序的主页面显示可用的设置组。您可以将表配置为显示单个长行列表，也可以将相关行分组为多个部分，以便更轻松地导航内容。 UITableViewUITableView有两种风格：UITableViewStylePlain和UITableViewStyleGrouped。这两者操作起来其实并没有本质区别，只是后者按分组样式显示前者按照普通样式显示而已。大家先看一下两者的应用： 不分组样式 分组样式 UITableView管理表的基本外观，但您的应用程序提供显示实际内容的单元格（对象）。标准单元格配置显示文本和图像的简单组合，但您可以定义显示所需内容的自定义单元格。您还可以提供页眉和页脚视图，以便为单元格组提供其他信息。 UITableView的层次结构 UITableViewCellUITableViewCell对象是管理单个表行内容的专用视图类型。您主要使用单元格来组织和显示应用程序的自定义内容，但UITableViewCell提供了一些特定的自定义以支持与表相关的行为： 将选定内容或突出显示颜色应用于单元格。 添加标准附件视图，如详细信息或披露控制。 将单元格置于可编辑状态。 缩进单元格内容以在表中创建可视层次结构。 A UITableViewCell object is a specialized type of view that manages the content of a single table row. You use cells primarily to organize and present your app’s custom content, but UITableViewCell provides some specific customizations to support table-related behaviors, including: Applying a selection or highlight color to the cell. Adding standard accessory views, such as a detail or disclosure control. Putting the cell into an editable state. Indenting the cell’s content to create a visual hierarchy in your table. Your app’s content occupies most of the cell’s bounds, but the cell may adjust that space to make room for other content. Cells display accessory views on the trailing edge of their content area. When you put your table into edit mode, the cell adds a delete control to the leading edge of its content area, and optionally swaps out an accessory view for a reorder control. UITableViewCellStyle/UITableViewCell.CellStyle 12345678extension UITableViewCell &#123; public enum CellStyle : Int &#123; case `default` //具有文本标签（黑色和左对齐）和可选图像视图的单元格的简单样式。 case value1 //单元格样式，单元格左侧带有标签，左对齐和黑色文本; 在右侧是一个标签，蓝色文字较小，右对齐。“设置”应用程序使用此样式的单元格。 case value2 //单元格样式，单元格左侧带有标签，文本右对齐，蓝色; 在单元格的右侧是另一个标签，其中较小的文本是左对齐和黑色。电话/联系人应用程序使用此样式的单元格。 case subtitle //单元格的样式，顶部带有左对齐标签，下面带有左对齐标签，带有较小的灰色文本。 &#125;&#125; 123456typedef NS_ENUM(NSInteger, UITableViewCellStyle) &#123; UITableViewCellStyleDefault, UITableViewCellStyleValue1, UITableViewCellStyleValue2, UITableViewCellStyleSubtitle &#125;; Cell的层次结构 参考资料https://developer.apple.com/documentation/uikit/uitableview https://developer.apple.com/documentation/uikit/uitableviewdatasource https://developer.apple.com/documentation/uikit/uitableviewdelegate https://developer.apple.com/documentation/uikit/uitableviewcell]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Xcode报错修复Multiple commands produce]]></title>
     <url>%2F2019%2F07%2F13%2FXcode%E6%8A%A5%E9%94%99%E4%BF%AE%E5%A4%8DMultiple-commands-produce%2F</url>
     <content type="text"><![CDATA[Xcode版本：10.2.1 今天导入了一个Demo项目，出现了Multiple commands produce错误，记录下解决办法。 Xcode10使用了一个的新创建系统，比之前的提供更好的可靠性与创建性能，而且可以获取项目配置问题（默认设置新创建系统） Build System Again, Xcode 10 uses a new build system. The new build system provides improved reliability and build performance, and it catches project configuration problems that the legacy build system does not.The legacy build system is still available in Xcode 10. To use the legacy build system, select it in the File &gt; Project/Workspace Settings sheet. Projects configured to use the legacy build system will display an orange hammer icon in the Activity View. 在苹果文档中，提及Xcode10中的关于旧项目New Build System更改适配中提及到以下两点 The new build system has stricter checks for cycles between elements in the build in order to prevent unnecessary rebuilds. It is an error for any individual file in the build to be produced by more than one build command. For example, if two targets each declare the same output file from a shell script phase, factor out the declaration of the output file into a single target. New Build System会对构建中的元素循环进行严格的检查，避免不必要的重建，这个也是错误出现的原因。 错误信息 123error: Multiple commands produce '/Users/zjyzy/Library/Developer/Xcode/DerivedData/UMengComDemo-eisszriydfvwtlgnymkievxxjndx/Build/Products/Debug-iphonesimulator/UMengComDemo.app/Info.plist':1) Target 'UMengComDemo' (project 'UMengComDemo') has copy command from '/Users/zjyzy/WorkPlace/xcode/AllDemo/test/MultiFunctioniOSDemo/UMengComDemo/Info.plist' to '/Users/zjyzy/Library/Developer/Xcode/DerivedData/UMengComDemo-eisszriydfvwtlgnymkievxxjndx/Build/Products/Debug-iphonesimulator/UMengComDemo.app/Info.plist'2) Target 'UMengComDemo' (project 'UMengComDemo') has process command with output '/Users/zjyzy/Library/Developer/Xcode/DerivedData/UMengComDemo-eisszriydfvwtlgnymkievxxjndx/Build/Products/Debug-iphonesimulator/UMengComDemo.app/Info.plist' 解决方案 不使用New Build System 打开Xcode &gt; File &gt; Project Setting 将Build System选项选择为Legacy Build System即可。 根据出错信息，在新创建系统模式下，去除多余的引用重建 在target -&gt; Build phase &gt; Copy Bundle Resource 中找到info.plist，移除掉info.plist即可。 参考资料https://www.jianshu.com/p/fdb1421f3c8b]]></content>
@@ -962,8 +974,8 @@
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>Centos7</tag>
+        <tag>Mysql</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
