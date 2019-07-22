@@ -144,7 +144,17 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/cellstyle.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/cellintro.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/rowandsection.png">
-<meta property="og:updated_time" content="2019-07-19T09:23:03.947Z">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/wechatme.jpeg">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi1.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi2.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi3.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi4.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi5.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi6.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi7.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi8.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi9.png">
+<meta property="og:updated_time" content="2019-07-22T03:24:37.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之UITableView使用">
 <meta name="twitter:description" content="简述iOS的UITableView显示单列垂直滚动内容。表格中的每一行都包含一段应用内容。例如，“联系人”应用程序在单独的行中显示每个联系人的姓名，“设置”应用程序的主页面显示可用的设置组。您可以将表配置为显示单个长行列表，也可以将相关行分组为多个部分，以便更轻松地导航内容。">
@@ -448,7 +458,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-19 17:23:03" itemprop="dateModified" datetime="2019-07-19T17:23:03+08:00">2019-07-19</time>
+                <time title="修改时间：2019-07-22 11:24:37" itemprop="dateModified" datetime="2019-07-22T11:24:37+08:00">2019-07-22</time>
               
             
           </span>
@@ -501,10 +511,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:3.2k字</span>
+              <span>字数统计:3.6k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:12分</span>
+              <span>阅读时长:14分</span>
             </span>
           
 
@@ -524,12 +534,12 @@
         <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>iOS的<code>UITableView</code>显示单列垂直滚动内容。表格中的每一行都包含一段应用内容。例如，“联系人”应用程序在单独的行中显示每个联系人的姓名，“设置”应用程序的主页面显示可用的设置组。您可以将表配置为显示单个长行列表，也可以将相关行分组为多个部分，以便更轻松地导航内容。</p>
 <a id="more"></a>
 <p><img src="tableviewpreview.png" alt=""></p>
-<h1 id="UITableView"><a href="#UITableView" class="headerlink" title="UITableView"></a><a href="https://developer.apple.com/documentation/uikit/uitableview" target="_blank" rel="noopener">UITableView</a></h1><p>UITableView有两种风格：UITableViewStylePlain和UITableViewStyleGrouped。这两者操作起来其实并没有本质区别，只是后者按分组样式显示前者按照普通样式显示而已。大家先看一下两者的应用：</p>
+<h1 id="UITableView"><a href="#UITableView" class="headerlink" title="UITableView"></a><a href="https://developer.apple.com/documentation/uikit/uitableview" target="_blank" rel="noopener">UITableView</a></h1><p><code>UITableView</code>管理表的基本外观，但应用程序提供显示实际内容的单元格（对象）。标准单元格配置显示文本和图像的简单组合，但您可以定义显示所需内容的自定义单元格。您还可以提供页眉和页脚视图，以便为单元格组提供其他信息。</p>
+<p><code>UITableView</code>有两种风格：<code>UITableViewStylePlain</code>和<code>UITableViewStyleGrouped</code>。这两者操作起来其实并没有本质区别，只是后者按分组样式显示前者按照普通样式显示而已。大家先看一下两者的应用：</p>
 <p><strong>不分组样式</strong></p>
 <p><img src="nonegroup.png" alt=""></p>
 <p><strong>分组样式</strong></p>
 <p><img src="group.png" alt=""></p>
-<p><code>UITableView</code>管理表的基本外观，但您的应用程序提供显示实际内容的单元格（对象）。标准单元格配置显示文本和图像的简单组合，但您可以定义显示所需内容的自定义单元格。您还可以提供页眉和页脚视图，以便为单元格组提供其他信息。</p>
 <p><strong>UITableView的层次结构</strong></p>
 <p><img src="tableviewintro.png" alt=""></p>
 <h1 id="UITableViewCell"><a href="#UITableViewCell" class="headerlink" title="UITableViewCell"></a><a href="https://developer.apple.com/documentation/uikit/uitableviewcell" target="_blank" rel="noopener">UITableViewCell</a></h1><p>UITableViewCell对象是管理单个表行内容的专用视图类型。您主要使用单元格来组织和显示应用程序的自定义内容，但UITableViewCell提供了一些特定的自定义以支持与表相关的行为：</p>
@@ -584,7 +594,7 @@
 <h1 id="UITableViewDataSource"><a href="#UITableViewDataSource" class="headerlink" title="UITableViewDataSource"></a>UITableViewDataSource</h1><p><code>UITableViewDataSource</code>用于管理数据并为表视图提供单元格的对象采用的方法。</p>
 <p><code>UITableView</code>仅管理其数据的表示; 他们不管理数据本身。要管理数据，请为表提供数据源对象，即实现协议的对象。数据源对象响应来自表的与数据相关的请求。它还可以直接管理表格的数据，或与应用程序的其他部分协调以管理该数据。</p>
 <ul>
-<li>报告表中的节和行数。</li>
+<li>指定表中的节和行数。</li>
 <li>为表的每一行提供单元格。</li>
 <li>为节标题和页脚提供标题。</li>
 <li>配置表的索引（如果有）。</li>
@@ -616,12 +626,49 @@
 </ul>
 <p>为所管理的每个表视图创建UITableViewController的自定义子类。初始化表视图控制器时，必须指定表视图的样式（普通或分组）。您还必须重写数据源和委托方法，以便用数据填充表。您可以重写<code>loadView()</code>或任何其他超类方法，但如果这样做，请确保调用该方法的超类实现，通常作为第一个方法调用。</p>
 <h1 id="UITableView的静态单元格"><a href="#UITableView的静态单元格" class="headerlink" title="UITableView的静态单元格"></a>UITableView的静态单元格</h1><p>静态单元格：不会随数据的改变而改变，当在storyboard中创建好后，显示的数据内容和模板样式都固定不变。需要修改，只能在storyboard中修改。</p>
+<p><strong>在storyboard文件中配置静态表：</strong></p>
+<ol>
+<li>将<a href="https://developer.apple.com/documentation/uikit/uitableviewcontroller" target="_blank" rel="noopener"><code>UITableViewController</code></a>对象添加到故事板。</li>
+<li>选择表视图控制器的表视图。</li>
+<li>将表视图的“内容”属性（在“属性”检查器中）更改为<code>Static Cells</code>。</li>
+<li>使用表视图的Sections属性指定表的节数。</li>
+<li>将每个部分的Row属性设置为所需的行数。</li>
+<li>使用所需的视图和内容配置每个单元格。</li>
+</ol>
 <p><strong>注意</strong>：不能通过在UIView中拖拽UITableView的方式来使用静态单元格，需要创建新的UITableViewController，并在属性中将content改为Static Cells。否则会报该错误：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: Static table views are only valid when embedded <span class="keyword">in</span> UITableViewController instances [12]</span><br></pre></td></tr></table></figure>
+<p>使用静态数据的表视图需要一个<a href="https://developer.apple.com/documentation/uikit/uitableviewcontroller" target="_blank" rel="noopener"><code>UITableViewController</code></a>对象来管理该数据。</p>
+<h2 id="案例：仿一下微信我的"><a href="#案例：仿一下微信我的" class="headerlink" title="案例：仿一下微信我的"></a>案例：仿一下微信我的</h2><p><img src="wechatme.jpeg" alt=""></p>
+<p>在storyboard中创建一个UItableViewController，并将TableView的类型设置为<code>static cells</code>,并设置节数。</p>
+<p><img src="staticlizi1.png" alt=""></p>
+<p>添加<code>TableViewCell</code></p>
+<p><img src="staticlizi2.png" alt=""></p>
+<p>设置<code>TableViewCell</code>的样式，案例设置为Basic即可。</p>
+<p><img src="staticlizi3.png" alt=""></p>
+<p>设置标题，图片，配置每节中的行数。设置完后的样式：</p>
+<p><img src="staticlizi4.png" alt=""></p>
+<p>配置一下section header的高度</p>
+<p>创建一个类并继承自UITableVIewController，在storyboard中指向它。</p>
+<p><img src="staticlizi5.png" alt=""></p>
+<p>实现三个方法，以配置节数和行数和节头的高度。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">numberOfSections</span><span class="params">(<span class="keyword">in</span> tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="comment">// #warning Incomplete implementation, return the number of sections</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="comment">// #warning Incomplete implementation, return the number of rows</span></span><br><span class="line">		<span class="keyword">if</span>(section == <span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(section == <span class="number">1</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">30</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="staticlizi6.png" alt=""></p>
+<p>可以看到后面还有一些空余的行，把它去掉。在viewDidLoad方法中添加以下代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.tableView.tableFooterView = <span class="type">UIView</span>(frame: .zero)</span><br></pre></td></tr></table></figure>
+<p><img src="staticlizi7.png" alt=""></p>
+<blockquote>
+<p>也可以在storyboard中设置头高和脚高，</p>
+<p>指定TableView，并配置高度</p>
+<p><img src="staticlizi8.png" alt=""></p>
+<p>指定Section，并配置，在Header中写一个空格即可。</p>
+<p><img src="staticlizi9.png" alt=""></p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.apple.com/documentation/uikit/uitableview" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/uitableview</a></p>
 <p><a href="https://developer.apple.com/documentation/uikit/uitableviewdatasource" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/uitableviewdatasource</a></p>
 <p><a href="https://developer.apple.com/documentation/uikit/uitableviewdelegate" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/uitableviewdelegate</a></p>
 <p><a href="https://developer.apple.com/documentation/uikit/uitableviewcell" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/uitableviewcell</a></p>
+<p><a href="https://developer.apple.com/documentation/uikit/views_and_controls/table_views/filling_a_table_with_data" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/views_and_controls/table_views/filling_a_table_with_data</a></p>
+<p><a href="https://developer.apple.com/documentation/uikit/views_and_controls/table_views/configuring_the_cells_for_your_table" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/views_and_controls/table_views/configuring_the_cells_for_your_table</a></p>
 
       
     </div>
@@ -1010,7 +1057,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableView"><span class="nav-number">2.</span> <span class="nav-text">UITableView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewCell"><span class="nav-number">3.</span> <span class="nav-text">UITableViewCell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewDelegate"><span class="nav-number">4.</span> <span class="nav-text">UITableViewDelegate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置表视图行"><span class="nav-number">4.1.</span> <span class="nav-text">配置表视图行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应行选择"><span class="nav-number">4.2.</span> <span class="nav-text">响应行选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供自定义页眉和页脚视图"><span class="nav-number">4.3.</span> <span class="nav-text">提供自定义页眉和页脚视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供页眉，页脚和行高"><span class="nav-number">4.4.</span> <span class="nav-text">提供页眉，页脚和行高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#估计表格内容的高度"><span class="nav-number">4.5.</span> <span class="nav-text">估计表格内容的高度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理附件视图"><span class="nav-number">4.6.</span> <span class="nav-text">管理附件视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应行动作"><span class="nav-number">4.7.</span> <span class="nav-text">响应行动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理表格视图亮点"><span class="nav-number">4.8.</span> <span class="nav-text">管理表格视图亮点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑表行"><span class="nav-number">4.9.</span> <span class="nav-text">编辑表行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新排序表行"><span class="nav-number">4.10.</span> <span class="nav-text">重新排序表行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跟踪删除视图"><span class="nav-number">4.11.</span> <span class="nav-text">跟踪删除视图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewDataSource"><span class="nav-number">5.</span> <span class="nav-text">UITableViewDataSource</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提供行数和节数"><span class="nav-number">5.1.</span> <span class="nav-text">提供行数和节数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供单元格，页眉和页脚"><span class="nav-number">5.2.</span> <span class="nav-text">提供单元格，页眉和页脚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入或删除表格行"><span class="nav-number">5.3.</span> <span class="nav-text">插入或删除表格行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新排序表行-1"><span class="nav-number">5.4.</span> <span class="nav-text">重新排序表行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置索引"><span class="nav-number">5.5.</span> <span class="nav-text">配置索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewController"><span class="nav-number">6.</span> <span class="nav-text">UITableViewController</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableView的静态单元格"><span class="nav-number">7.</span> <span class="nav-text">UITableView的静态单元格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableView"><span class="nav-number">2.</span> <span class="nav-text">UITableView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewCell"><span class="nav-number">3.</span> <span class="nav-text">UITableViewCell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewDelegate"><span class="nav-number">4.</span> <span class="nav-text">UITableViewDelegate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置表视图行"><span class="nav-number">4.1.</span> <span class="nav-text">配置表视图行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应行选择"><span class="nav-number">4.2.</span> <span class="nav-text">响应行选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供自定义页眉和页脚视图"><span class="nav-number">4.3.</span> <span class="nav-text">提供自定义页眉和页脚视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供页眉，页脚和行高"><span class="nav-number">4.4.</span> <span class="nav-text">提供页眉，页脚和行高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#估计表格内容的高度"><span class="nav-number">4.5.</span> <span class="nav-text">估计表格内容的高度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理附件视图"><span class="nav-number">4.6.</span> <span class="nav-text">管理附件视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应行动作"><span class="nav-number">4.7.</span> <span class="nav-text">响应行动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理表格视图亮点"><span class="nav-number">4.8.</span> <span class="nav-text">管理表格视图亮点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑表行"><span class="nav-number">4.9.</span> <span class="nav-text">编辑表行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新排序表行"><span class="nav-number">4.10.</span> <span class="nav-text">重新排序表行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跟踪删除视图"><span class="nav-number">4.11.</span> <span class="nav-text">跟踪删除视图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewDataSource"><span class="nav-number">5.</span> <span class="nav-text">UITableViewDataSource</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提供行数和节数"><span class="nav-number">5.1.</span> <span class="nav-text">提供行数和节数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供单元格，页眉和页脚"><span class="nav-number">5.2.</span> <span class="nav-text">提供单元格，页眉和页脚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入或删除表格行"><span class="nav-number">5.3.</span> <span class="nav-text">插入或删除表格行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新排序表行-1"><span class="nav-number">5.4.</span> <span class="nav-text">重新排序表行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置索引"><span class="nav-number">5.5.</span> <span class="nav-text">配置索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableViewController"><span class="nav-number">6.</span> <span class="nav-text">UITableViewController</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableView的静态单元格"><span class="nav-number">7.</span> <span class="nav-text">UITableView的静态单元格</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#案例：仿一下微信我的"><span class="nav-number">7.1.</span> <span class="nav-text">案例：仿一下微信我的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1055,7 +1102,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>178.6k</span>字
+    本站总字数:<span>179k</span>字
     </span>
     &nbsp|&nbsp
   </div>
