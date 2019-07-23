@@ -149,11 +149,9 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi3.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi4.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi5.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi6.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi7.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi8.png">
-<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi9.png">
-<meta property="og:updated_time" content="2019-07-22T10:13:36.152Z">
+<meta property="og:image" content="http://hackycy.github.io/2019/07/18/IOS之UITableView使用/staticlizi7.png">
+<meta property="og:updated_time" content="2019-07-23T02:47:03.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之UITableView使用">
 <meta name="twitter:description" content="简述iOS的UITableView显示单列垂直滚动内容。表格中的每一行都包含一段应用内容。例如，“联系人”应用程序在单独的行中显示每个联系人的姓名，“设置”应用程序的主页面显示可用的设置组。您可以将表配置为显示单个长行列表，也可以将相关行分组为多个部分，以便更轻松地导航内容。">
@@ -457,7 +455,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-22 18:13:36" itemprop="dateModified" datetime="2019-07-22T18:13:36+08:00">2019-07-22</time>
+                <time title="修改时间：2019-07-23 10:47:03" itemprop="dateModified" datetime="2019-07-23T10:47:03+08:00">2019-07-23</time>
               
             
           </span>
@@ -510,10 +508,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:3.7k字</span>
+              <span>字数统计:3.5k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:14分</span>
+              <span>阅读时长:13分</span>
             </span>
           
 
@@ -633,30 +631,22 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: Static table views are only valid when embedded <span class="keyword">in</span> UITableViewController instances [12]</span><br></pre></td></tr></table></figure>
 <p>使用静态数据的表视图需要一个<a href="https://developer.apple.com/documentation/uikit/uitableviewcontroller" target="_blank" rel="noopener"><code>UITableViewController</code></a>对象来管理该数据。</p>
 <h2 id="案例：仿一下微信我的"><a href="#案例：仿一下微信我的" class="headerlink" title="案例：仿一下微信我的"></a>案例：仿一下微信我的</h2><p><img src="wechatme.jpeg" alt=""></p>
-<p>在storyboard中创建一个UItableViewController，并将TableView的类型设置为<code>static cells</code>,并设置节数。</p>
+<p>在storyboard中创建一个UItableViewController，并将TableView的类型设置为<code>static cells</code>,并设置节数：</p>
 <p><img src="staticlizi1.png" alt=""></p>
-<p>添加<code>TableViewCell</code></p>
+<p>将TableVIew的样式设置为Group：</p>
+<p><img src="" alt=""></p>
+<p>添加<code>TableViewCell</code>：</p>
 <p><img src="staticlizi2.png" alt=""></p>
 <p>设置<code>TableViewCell</code>的样式，案例设置为Basic即可。</p>
 <p><img src="staticlizi3.png" alt=""></p>
 <p>设置标题，图片，配置每节中的行数。设置完后的样式：</p>
 <p><img src="staticlizi4.png" alt=""></p>
-<p>配置一下section header的高度</p>
-<p>创建一个类并继承自UITableVIewController，在storyboard中指向该类。</p>
+<p>也可以配置一下section header的高度</p>
 <p><img src="staticlizi5.png" alt=""></p>
-<p>实现三个方法，以配置节数和行数和节头的高度。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">numberOfSections</span><span class="params">(<span class="keyword">in</span> tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="comment">// #warning Incomplete implementation, return the number of sections</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="comment">// #warning Incomplete implementation, return the number of rows</span></span><br><span class="line">		<span class="keyword">if</span>(section == <span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(section == <span class="number">1</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">4</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">30</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="staticlizi6.png" alt=""></p>
-<p>可以看到后面还有一些空余的行，把它去掉。在viewDidLoad方法中添加以下代码：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.tableView.tableFooterView = <span class="type">UIView</span>(frame: .zero)</span><br></pre></td></tr></table></figure>
-<p><img src="staticlizi7.png" alt=""></p>
-<blockquote>
-<p>也可以在storyboard中设置头高和脚高，</p>
-<p>指定TableView，并配置高度</p>
+<p>如果需要设置小箭头则可以选择Accessory属性</p>
 <p><img src="staticlizi8.png" alt=""></p>
-<p>指定Section，并配置，在Header中写一个空格即可。</p>
-<p><img src="staticlizi9.png" alt=""></p>
-</blockquote>
+<p>运行效果：</p>
+<p><img src="staticlizi7.png" alt=""></p>
 <h1 id="UITableView的动态单元格"><a href="#UITableView的动态单元格" class="headerlink" title="UITableView的动态单元格"></a>UITableView的动态单元格</h1><p>使用表格（<strong>UITableView</strong>）时，我们可以选择其采用静态单元格（<strong>Static Cell</strong>）还是动态单元格（<strong>Dynamic Cell</strong>）。前者使用方便，但是后者更加灵活。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.apple.com/documentation/uikit/uitableview" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/uitableview</a></p>
 <p><a href="https://developer.apple.com/documentation/uikit/uitableviewdatasource" target="_blank" rel="noopener">https://developer.apple.com/documentation/uikit/uitableviewdatasource</a></p>
@@ -1097,7 +1087,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>179k</span>字
+    本站总字数:<span>178.9k</span>字
     </span>
     &nbsp|&nbsp
   </div>
