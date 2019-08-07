@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hackycy.github.io/"/>
-  <updated>2019-08-07T08:00:08.261Z</updated>
+  <updated>2019-08-07T08:04:45.021Z</updated>
   <id>http://hackycy.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://hackycy.github.io/2019/08/07/Android-TextView%E6%9B%B4%E6%8D%A2%E5%AD%97%E4%BD%93/"/>
     <id>http://hackycy.github.io/2019/08/07/Android-TextView更换字体/</id>
     <published>2019-08-07T06:52:47.000Z</published>
-    <updated>2019-08-07T08:00:08.261Z</updated>
+    <updated>2019-08-07T08:04:45.021Z</updated>
     
-    <content type="html"><![CDATA[<p>在开发UI时有时会涉及到TextView设置字体样式，TextView中在xml下仅可以设置自带的字体样式：</p><a id="more"></a><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:typeface="monospace"</span><br></pre></td></tr></table></figure><p>自带有四种文字类型，分别是：</p><ul><li>monospace</li><li>normal</li><li>sans</li><li>serif</li></ul><p>看看运行效果后的样式：</p><p><img src="systtf.png" alt=""></p><p>有时候UI需要设定特定字体的时候，我们可以给在代码中TextView设置特定的字体。</p><p>比如我们随便下载一些字体：<a href="https://www.sentyfont.com/download.htm" target="_blank" rel="noopener">https://www.sentyfont.com/download.htm</a></p><p>放在Assets目录下：</p><p><img src="demo1.png" alt=""></p><p>然后在代码中设置：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TextView tv = findViewById(R.id.tv);</span><br><span class="line">Typeface tf = Typeface.createFromAsset(<span class="keyword">this</span>.getAssets(), <span class="string">"fonts/HanyiSentyVimalkirti.ttf"</span>);</span><br><span class="line">tv.setTypeface(tf);</span><br></pre></td></tr></table></figure><p>运行效果：</p><p><img src="demo2.png" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<p>在开发UI时有时会涉及到TextView设置字体样式，TextView中在xml下仅可以设置自带的字体样式：</p><a id="more"></a><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:typeface="monospace"</span><br></pre></td></tr></table></figure><p>自带有四种文字类型，分别是：</p><ul><li>monospace</li><li>normal</li><li>sans</li><li>serif</li></ul><p>看看运行效果后的样式：</p><p><img src="systtf.png" alt=""></p><p>有时候UI需要设定特定字体的时候，我们可以给在代码中TextView设置特定的字体。</p><p>比如我们随便下载一些字体：<a href="https://www.sentyfont.com/download.htm" target="_blank" rel="noopener">https://www.sentyfont.com/download.htm</a></p><p>放在Assets目录下：</p><p><img src="demo1.png" alt=""></p><blockquote><p>注意留意目录结构，demo将字体文件放在了fonts目录下</p></blockquote><p>然后在代码中设置：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TextView tv = findViewById(R.id.tv);</span><br><span class="line">Typeface tf = Typeface.createFromAsset(<span class="keyword">this</span>.getAssets(), <span class="string">"fonts/HanyiSentyVimalkirti.ttf"</span>);</span><br><span class="line">tv.setTypeface(tf);</span><br></pre></td></tr></table></figure><p>运行效果：</p><p><img src="demo2.png" alt=""></p><blockquote><p>字体文件otf等都支持。</p><p>字体包过大可以将使用到的字提取出来，不用将所有字体都打包成一个ttf。</p></blockquote>]]></content>
     
     <summary type="html">
     

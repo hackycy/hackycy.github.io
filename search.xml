@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Android TextView更换字体]]></title>
     <url>%2F2019%2F08%2F07%2FAndroid-TextView%E6%9B%B4%E6%8D%A2%E5%AD%97%E4%BD%93%2F</url>
-    <content type="text"><![CDATA[在开发UI时有时会涉及到TextView设置字体样式，TextView中在xml下仅可以设置自带的字体样式： 1android:typeface="monospace" 自带有四种文字类型，分别是： monospace normal sans serif 看看运行效果后的样式： 有时候UI需要设定特定字体的时候，我们可以给在代码中TextView设置特定的字体。 比如我们随便下载一些字体：https://www.sentyfont.com/download.htm 放在Assets目录下： 然后在代码中设置： 123TextView tv = findViewById(R.id.tv);Typeface tf = Typeface.createFromAsset(this.getAssets(), "fonts/HanyiSentyVimalkirti.ttf");tv.setTypeface(tf); 运行效果：]]></content>
+    <content type="text"><![CDATA[在开发UI时有时会涉及到TextView设置字体样式，TextView中在xml下仅可以设置自带的字体样式： 1android:typeface="monospace" 自带有四种文字类型，分别是： monospace normal sans serif 看看运行效果后的样式： 有时候UI需要设定特定字体的时候，我们可以给在代码中TextView设置特定的字体。 比如我们随便下载一些字体：https://www.sentyfont.com/download.htm 放在Assets目录下： 注意留意目录结构，demo将字体文件放在了fonts目录下 然后在代码中设置： 123TextView tv = findViewById(R.id.tv);Typeface tf = Typeface.createFromAsset(this.getAssets(), "fonts/HanyiSentyVimalkirti.ttf");tv.setTypeface(tf); 运行效果： 字体文件otf等都支持。 字体包过大可以将使用到的字提取出来，不用将所有字体都打包成一个ttf。]]></content>
       <categories>
         <category>Android</category>
       </categories>

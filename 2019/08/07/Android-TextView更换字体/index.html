@@ -140,7 +140,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/08/07/Android-TextView更换字体/systtf.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/08/07/Android-TextView更换字体/demo1.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/08/07/Android-TextView更换字体/demo2.png">
-<meta property="og:updated_time" content="2019-08-07T08:00:08.261Z">
+<meta property="og:updated_time" content="2019-08-07T08:04:45.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android TextView更换字体">
 <meta name="twitter:description" content="在开发UI时有时会涉及到TextView设置字体样式，TextView中在xml下仅可以设置自带的字体样式：">
@@ -427,7 +427,7 @@
                 
               
 
-              <time title="创建时间：2019-08-07 14:52:47 / 修改时间：16:00:08" itemprop="dateCreated datePublished" datetime="2019-08-07T14:52:47+08:00">2019-08-07</time>
+              <time title="创建时间：2019-08-07 14:52:47 / 修改时间：16:04:45" itemprop="dateCreated datePublished" datetime="2019-08-07T14:52:47+08:00">2019-08-07</time>
             
 
             
@@ -485,7 +485,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:148字</span>
+              <span>字数统计:208字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:1分</span>
@@ -521,10 +521,17 @@
 <p>比如我们随便下载一些字体：<a href="https://www.sentyfont.com/download.htm" target="_blank" rel="noopener">https://www.sentyfont.com/download.htm</a></p>
 <p>放在Assets目录下：</p>
 <p><img src="demo1.png" alt=""></p>
+<blockquote>
+<p>注意留意目录结构，demo将字体文件放在了fonts目录下</p>
+</blockquote>
 <p>然后在代码中设置：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TextView tv = findViewById(R.id.tv);</span><br><span class="line">Typeface tf = Typeface.createFromAsset(<span class="keyword">this</span>.getAssets(), <span class="string">"fonts/HanyiSentyVimalkirti.ttf"</span>);</span><br><span class="line">tv.setTypeface(tf);</span><br></pre></td></tr></table></figure>
 <p>运行效果：</p>
 <p><img src="demo2.png" alt=""></p>
+<blockquote>
+<p>字体文件otf等都支持。</p>
+<p>字体包过大可以将使用到的字提取出来，不用将所有字体都打包成一个ttf。</p>
+</blockquote>
 
       
     </div>
@@ -933,7 +940,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>188.9k</span>字
+    本站总字数:<span>189k</span>字
     </span>
     &nbsp|&nbsp
   </div>
