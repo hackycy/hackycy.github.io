@@ -142,7 +142,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/06/27/Android-Toolbar-使用详解/popup_show2.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/06/27/Android-Toolbar-使用详解/popup_show3.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/06/27/Android-Toolbar-使用详解/popup_show4.png">
-<meta property="og:updated_time" content="2019-06-28T07:54:35.611Z">
+<meta property="og:updated_time" content="2019-08-12T03:23:59.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Toolbar 使用详解">
 <meta name="twitter:description" content="初识ToolbarToolbar 是在 Android 5.0 开始推出的一个 Material Design 风格的导航控件 ，Google 非常推荐大家使用 Toolbar 来作为Android客户端的导航栏，以此来取代之前的 Actionbar 。">
@@ -446,7 +446,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-28 15:54:35" itemprop="dateModified" datetime="2019-06-28T15:54:35+08:00">2019-06-28</time>
+                <time title="修改时间：2019-08-12 11:23:59" itemprop="dateModified" datetime="2019-08-12T11:23:59+08:00">2019-08-12</time>
               
             
           </span>
@@ -556,14 +556,11 @@
 <p>最后运行就可以有上面图中的效果啦。</p>
 </blockquote>
 <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ul>
-<li><p>如果你想修改标题和子标题的字体大小、颜色等，可以调用<strong>setTitleTextColor</strong>、<strong>setTitleTextAppearance</strong>、<strong>setSubtitleTextColor</strong>、<strong>setSubtitleTextAppearance</strong> 这些API；</p>
-</li>
-<li><p>自定义的View位于 <strong>title</strong>、<strong>subtitle</strong> 和 <strong>actionmenu</strong> 之间，这意味着，如果 <strong>title</strong> 和 <strong>subtitle</strong> 都在，且 <strong>actionmenu选项</strong> 太多的时候，留给自定义View的空间就越小；</p>
-</li>
-<li><p><strong>导航图标</strong> 和 <strong>app logo</strong> 的区别在哪？如果你只设置 <strong>导航图标</strong>（ or <strong>app logo</strong>） 和 <strong>title</strong>、<strong>subtitle</strong>，会发现 <strong>app logo</strong> 和 <strong>title</strong>、<strong>subtitle</strong> 的间距比较小，看起来不如 <strong>导航图标</strong> 与 它们两搭配美观；</p>
-</li>
-<li><p><strong>Toolbar</strong> 和其他控件一样，很多属性设置方法既支持代码设置，也支持在xml中设置</p>
-</li>
+<li>如果你想修改标题和子标题的字体大小、颜色等，可以调用<strong>setTitleTextColor</strong>、<strong>setTitleTextAppearance</strong>、<strong>setSubtitleTextColor</strong>、<strong>setSubtitleTextAppearance</strong> 这些API；</li>
+<li>自定义的View位于 <strong>title</strong>、<strong>subtitle</strong> 和 <strong>actionmenu</strong> 之间，这意味着，如果 <strong>title</strong> 和 <strong>subtitle</strong> 都在，且 <strong>actionmenu选项</strong> 太多的时候，留给自定义View的空间就越小；</li>
+<li><strong>导航图标</strong> 和 <strong>app logo</strong> 的区别在哪？如果你只设置 <strong>导航图标</strong>（ or <strong>app logo</strong>） 和 <strong>title</strong>、<strong>subtitle</strong>，会发现 <strong>app logo</strong> 和 <strong>title</strong>、<strong>subtitle</strong> 的间距比较小，看起来不如 <strong>导航图标</strong> 与 它们两搭配美观；</li>
+<li><strong>Toolbar</strong> 和其他控件一样，很多属性设置方法既支持代码设置，也支持在xml中设置</li>
+<li><strong>如果只是当成一个普通控件使用，即不调用<code>setSupportActionBar(mToolbar);</code>方法，可以使用<code>mToolbar.inflateMenu</code>方法来设置菜单。</strong></li>
 </ul>
 <h1 id="其他样式修改"><a href="#其他样式修改" class="headerlink" title="其他样式修改"></a>其他样式修改</h1><h2 id="修改Toolbar-popup-menu样式"><a href="#修改Toolbar-popup-menu样式" class="headerlink" title="修改Toolbar popup menu样式"></a>修改Toolbar popup menu样式</h2><p>点击右上角的三个点，会弹出一个popup menu，如下所示：</p>
 <p><img src="popup_show.png" alt=""></p>
