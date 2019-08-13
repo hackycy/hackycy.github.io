@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="概览NSUserDefaults类提供了一个与默认系统交互的编程接口。默认系统允许应用程序自定义其行为以匹配用户的首选项。例如，您可以允许用户指定其首选的测量单位或媒体播放速度。应用程序通过为用户默认数据库中的一组参数指定值来存储这些首选项。这些参数被称为默认值，因为它们通常用于确定应用程序启动时的默认状态或默认情况下的行为方式。在运行时，使用NSUserDefaults对象从用户的默认数据库中读">
+<meta name="keywords" content="Ios,NSUserDefaults">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS之NSUserDefaults">
+<meta property="og:url" content="http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/index.html">
+<meta property="og:site_name" content="小小源Bの博客">
+<meta property="og:description" content="概览NSUserDefaults类提供了一个与默认系统交互的编程接口。默认系统允许应用程序自定义其行为以匹配用户的首选项。例如，您可以允许用户指定其首选的测量单位或媒体播放速度。应用程序通过为用户默认数据库中的一组参数指定值来存储这些首选项。这些参数被称为默认值，因为它们通常用于确定应用程序启动时的默认状态或默认情况下的行为方式。在运行时，使用NSUserDefaults对象从用户的默认数据库中读">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/overview.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/cunchu.png">
+<meta property="og:updated_time" content="2019-08-13T04:38:11.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IOS之NSUserDefaults">
+<meta name="twitter:description" content="概览NSUserDefaults类提供了一个与默认系统交互的编程接口。默认系统允许应用程序自定义其行为以匹配用户的首选项。例如，您可以允许用户指定其首选的测量单位或媒体播放速度。应用程序通过为用户默认数据库中的一组参数指定值来存储这些首选项。这些参数被称为默认值，因为它们通常用于确定应用程序启动时的默认状态或默认情况下的行为方式。在运行时，使用NSUserDefaults对象从用户的默认数据库中读">
+<meta name="twitter:image" content="http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/overview.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小小源Bの博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>IOS之NSUserDefaults | 小小源Bの博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小源Bの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">zj&ycy</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">40</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">19</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">91</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="一个腼腆幽默的程序猿">
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小源Bの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">IOS之NSUserDefaults
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-12 15:27:44" itemprop="dateCreated datePublished" datetime="2019-08-12T15:27:44+08:00">2019-08-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-13 12:38:11" itemprop="dateModified" datetime="2019-08-13T12:38:11+08:00">2019-08-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/12/IOS之NSUserDefaults/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/12/IOS之NSUserDefaults/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:1.6k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:6分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><p><code>NSUserDefaults</code>类提供了一个与默认系统交互的编程接口。默认系统允许应用程序自定义其行为以匹配用户的首选项。例如，您可以允许用户指定其首选的测量单位或媒体播放速度。应用程序通过为用户默认数据库中的一组参数指定值来存储这些首选项。这些参数被称为默认值，因为它们通常用于确定应用程序启动时的默认状态或默认情况下的行为方式。在运行时，使用<code>NSUserDefaults</code>对象从用户的默认数据库中读取应用程序使用的默认值。nsUserDefaults缓存信息，以避免每次需要默认值时都必须打开用户的默认数据库。当您设置默认值时，它会在您的进程内同步更改，并异步更改为持久存储和其他进程。</p>
+<a id="more"></a>
+<p><img src="overview.png" alt=""></p>
+<p>如果是一些大型数据，毫无疑问是用一些SQLite或者FMDB等来存储大量数据。但是又一些轻量级别的数据，例如用户的信息、用户的偏好设置，使用该类是最为简单方便的。它通过键值对的方式来来存储一系列的偏好设置来把对象存储/读取相应的<code>plist</code>文件中。那么既然是一个<code>plist</code>，则NSUserDefaults能够存储的数据类型有<a href="https://developer.apple.com/documentation/foundation/nsdata?language=objc" target="_blank" rel="noopener"><code>NSData</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsstring?language=objc" target="_blank" rel="noopener"><code>NSString</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsnumber?language=objc" target="_blank" rel="noopener"><code>NSNumber</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsdate?language=objc" target="_blank" rel="noopener"><code>NSDate</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsarray?language=objc" target="_blank" rel="noopener"><code>NSArray</code></a>, 和<a href="https://developer.apple.com/documentation/foundation/nsdictionary?language=objc" target="_blank" rel="noopener"><code>NSDictionary</code></a>。如果需要存储某些不支持的类型，可以先将其归档为NSData类型再进行存储。</p>
+<p><strong>NSUserDefaults</strong>是一个单例类，在整个程序运行过程中只有一个实例对象，同时也是线程安全的。获取方式：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUserDefaults</span> *defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br></pre></td></tr></table></figure>
+<h1 id="存储数据"><a href="#存储数据" class="headerlink" title="存储数据"></a>存储数据</h1><p>存储一些默认支持的数据类型：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//存储数据</span></span><br><span class="line">[defaults setObject:<span class="string">@"hackycy"</span> forKey:<span class="string">@"username"</span>];</span><br><span class="line">[defaults setInteger:<span class="number">22</span> forKey:<span class="string">@"age"</span>];</span><br><span class="line">[defaults setBool:<span class="literal">YES</span> forKey:<span class="string">@"isBoy"</span>];</span><br><span class="line">[defaults setFloat:<span class="number">1.73</span> forKey:<span class="string">@"mmForHeight"</span>];</span><br><span class="line">[defaults setURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"https://hackycy.github.io"</span>] forKey:<span class="string">@"blog"</span>];</span><br><span class="line">[defaults setDouble:<span class="number">7500</span> forKey:<span class="string">@"wage"</span>];</span><br></pre></td></tr></table></figure>
+<p><strong>更多方法</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Setting Default Values</span></span><br><span class="line">- setObject:forKey:</span><br><span class="line"><span class="comment">//Sets the value of the specified default key.</span></span><br><span class="line"></span><br><span class="line">- setFloat:forKey:</span><br><span class="line"><span class="comment">//Sets the value of the specified default key to the specified float value.</span></span><br><span class="line"></span><br><span class="line">- setDouble:forKey:</span><br><span class="line"><span class="comment">//Sets the value of the specified default key to the double value.</span></span><br><span class="line"></span><br><span class="line">- setInteger:forKey:</span><br><span class="line"><span class="comment">//Sets the value of the specified default key to the specified integer value.</span></span><br><span class="line"></span><br><span class="line">- setBool:forKey:</span><br><span class="line"><span class="comment">//Sets the value of the specified default key to the specified Boolean value.</span></span><br><span class="line"></span><br><span class="line">- setURL:forKey:</span><br><span class="line"><span class="comment">//Sets the value of the specified default key to the specified URL.</span></span><br></pre></td></tr></table></figure>
+<h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><p>从上面存储的数据中读取并打印：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取数据   </span></span><br><span class="line"><span class="built_in">NSString</span> *username = [defaults stringForKey:<span class="string">@"username"</span>];</span><br><span class="line"><span class="built_in">NSInteger</span> age = [defaults integerForKey:<span class="string">@"age"</span>];</span><br><span class="line"><span class="built_in">BOOL</span> isBoy = [defaults boolForKey:<span class="string">@"isBoy"</span>];</span><br><span class="line"><span class="keyword">float</span> mmForHeight = [defaults floatForKey:<span class="string">@"mmForHeight"</span>];</span><br><span class="line"><span class="built_in">NSURL</span> *blog = [defaults URLForKey:<span class="string">@"blog"</span>];</span><br><span class="line"><span class="keyword">double</span> wage = [defaults doubleForKey:<span class="string">@"wage"</span>];</span><br><span class="line"><span class="built_in">NSData</span> *imageData = [defaults objectForKey:<span class="string">@"avatar"</span>];</span><br><span class="line"><span class="keyword">self</span>.imageView.image = [<span class="built_in">UIImage</span> imageWithData:imageData];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"username : %@, age : %lu, isBoy : %@, mmForHeight : %f, blog : %@, wage : %f"</span>, username, (<span class="keyword">unsigned</span> <span class="keyword">long</span>)age, isBoy ? <span class="string">@"boy"</span> : <span class="string">@"girl"</span>, mmForHeight, blog, wage);</span><br></pre></td></tr></table></figure>
+<p><strong>更多方法</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Getting Default Values</span></span><br><span class="line">- objectForKey:</span><br><span class="line"><span class="comment">//Returns the object associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- URLForKey:</span><br><span class="line"><span class="comment">//Returns the URL associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- arrayForKey:</span><br><span class="line"><span class="comment">//Returns the array associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- dictionaryForKey:</span><br><span class="line"><span class="comment">//Returns the dictionary object associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- stringForKey:</span><br><span class="line"><span class="comment">//Returns the string associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- stringArrayForKey:</span><br><span class="line"><span class="comment">//Returns the array of strings associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- dataForKey:</span><br><span class="line"><span class="comment">//Returns the data object associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- boolForKey:</span><br><span class="line"><span class="comment">//Returns the Boolean value associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- integerForKey:</span><br><span class="line"><span class="comment">//Returns the integer value associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- floatForKey:</span><br><span class="line"><span class="comment">//Returns the float value associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- doubleForKey:</span><br><span class="line"><span class="comment">//Returns the double value associated with the specified key.</span></span><br><span class="line"></span><br><span class="line">- dictionaryRepresentation</span><br><span class="line"><span class="comment">//Returns a dictionary that contains a union of all key-value pairs in the domains in the search list.</span></span><br></pre></td></tr></table></figure>
+<h1 id="registerDefaults"><a href="#registerDefaults" class="headerlink" title="registerDefaults"></a>registerDefaults</h1><p>先让我们来看一种情况：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> isNeedShowGuide = [defaults boolForKey:<span class="string">@"isNeedShowGuide"</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, isNeedShowGuide ? <span class="string">@"YES"</span> : <span class="string">@"NO"</span>);</span><br></pre></td></tr></table></figure>
+<p>LOG：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2019</span><span class="number">-08</span><span class="number">-13</span> <span class="number">11</span>:<span class="number">54</span>:<span class="number">29.402946</span>+<span class="number">0800</span> nsuserdefaultdemo[<span class="number">4616</span>:<span class="number">174076</span>] <span class="literal">NO</span></span><br></pre></td></tr></table></figure>
+<p>当我们APP首次启动时需要进入一个引导页，通过该<code>isNeedShowGuide</code>来判断是否进入引导页，而首次进入是需要YES的情况下进入引导页，后续将值设置为NO。但是通过打印该值时获取到的不是我们想要的值，因为该值如果设置过才会运行正确。但是没有设置过该值也没有该默认值则默认返回的是NO。</p>
+<p>那么这里就需要用到<code>registerDefaults</code>方法了：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] registerDefaults:@&#123;</span><br><span class="line">    <span class="string">@"isNeedShowGuide"</span> : @YES</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>我们在获取<code>isNeedShowGuide</code>之前先调用了<code>registerDefaults</code>方法设置了它的默认值，后面获取的时候即使没有再设置值也会获取到默认设置的值，就不会出现上述获取默认值尴尬的情况了。</p>
+<p>当然我们也可以先默认保存一个plist文件在项目目录中来设置默认值来方便读取，来减少代码量：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURL</span> *plistUrl = [[<span class="built_in">NSBundle</span> mainBundle] URLForResource:<span class="string">@"DefaultPreferences"</span> withExtension:<span class="string">@"plist"</span>];</span><br><span class="line"><span class="built_in">NSDictionary</span> *defaultPreferences = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfURL:plistUrl];</span><br><span class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] registerDefaults:defaultPreferences];</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong><code>registerDefaults</code> 设置的默认值是不会持久化存储的，也就是说我们每次启动 APP 的时候，都需要这样设置一遍。所以<code>application:didFinishLaunchingWithOptions</code>是最合适的地方。</p>
+<h1 id="NSUserDefaults域"><a href="#NSUserDefaults域" class="headerlink" title="NSUserDefaults域"></a>NSUserDefaults域</h1><p>NSUserDefaults 还有一个 Domain 的概念，当我们调用 <code>[NSUserDefaults standardUserDefaults]</code>方法时，就会初始化 <code>NSUserDefaults</code>， 并且它默认会包含 5 个 Domain， 分别是：</p>
+<ul>
+<li><strong>NSArgumentDomain</strong>：最高优先权</li>
+<li><strong>Application</strong>：它存储着你app通过<code>NSUserDefaults set...forKey</code>添加的设置</li>
+<li><strong>NSGlobalDomain</strong>：存储着系统的设置</li>
+<li><strong>Languages</strong>：包括地区、日期等</li>
+<li><strong>NSRegistrationDomain</strong>：仅有较低的优先权，只有在应用域没有找到值时才从注册域去寻找。</li>
+</ul>
+<p>来解释一下，比如调用了下面的一个方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setBool:<span class="literal">NO</span> forKey:<span class="string">@"isNeedShowGuide"</span>];</span><br></pre></td></tr></table></figure>
+<p>这句话会将设置的key和值存储在了<code>Application</code>域中，但 <code>NSUserDefaults</code> 还包括了其他 4 个域，如果我们每次调用读取数据的方法的时候，例如：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] boolForKey:<span class="string">@"isNeedShowGuide"</span>]</span><br></pre></td></tr></table></figure>
+<p>那么其实底层的就会进行一次搜索，搜索顺序为：</p>
+<p><code>NSArgumentDomain</code> -&gt; <code>Application</code> -&gt; <code>NSGlobalDomain</code> -&gt; <code>Languages</code> -&gt; <code>NSRegistrationDomain</code></p>
+<p>而之前举的例子来说，我们并没有通过<code>setBool:forkey:</code>方法来设置该值，所以<code>Application</code>域中并没有该值，但是我们使用了<code>registerDefaults</code>将它设置到了<code>NSRegistrationDomain</code>域中。</p>
+<p>所以按照<code>NSUserDefaults</code> 的默认搜索顺序，就会找到最后 <code>NSRegistrationDomain</code> 域中的那个 <code>isNeedShowGuide</code>， 也就是我们所谓的默认值 YES 了。</p>
+<h1 id="存储路径"><a href="#存储路径" class="headerlink" title="存储路径"></a>存储路径</h1><p>NSUserDefaults 数据存放在沙盒 <code>Library/Preferences/</code> 目录下，一个以你包名命名的<code>.plist</code>文件。</p>
+<p>通过代码获取路径后：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"path : %@"</span>, path);</span><br></pre></td></tr></table></figure>
+<p>将路径复制到Finder中，前往：</p>
+<p><img src="cunchu.png" alt=""></p>
+<h1 id="关于synchronize方法"><a href="#关于synchronize方法" class="headerlink" title="关于synchronize方法"></a>关于synchronize方法</h1><p>该方法是为了强制存储，但其实是没有必要的，该方法系统会默认调用。</p>
+<blockquote>
+<p>Waits for any pending asynchronous updates to the defaults database and returns; this method is unnecessary and shouldn’t be used.</p>
+<p>等待默认数据库的任何挂起的异步更新并返回; 此方法是不必要的，不应使用。</p>
+</blockquote>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://developer.apple.com/documentation/foundation/nsuserdefaults?language=objc" target="_blank" rel="noopener">https://developer.apple.com/documentation/foundation/nsuserdefaults?language=objc</a></p>
+<p><a href="http://swiftcafe.io/post/nsuserdefaults" target="_blank" rel="noopener">http://swiftcafe.io/post/nsuserdefaults</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ios/" rel="tag"><i class="fa fa-tag"></i> Ios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/07/Android-TextView更换字体/" rel="next" title="Android TextView更换字体">
+                <i class="fa fa-chevron-left"></i> Android TextView更换字体
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">一个腼腆幽默的程序猿</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sweetlover.net.cn" title="sweetlover" target="_blank">sweetlover</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://x5.tencent.com/tbs/guide.html" title="腾讯浏览服务" target="_blank">腾讯浏览服务</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://mob.com" title="mob" target="_blank">mob</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概览"><span class="nav-number">1.</span> <span class="nav-text">概览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储数据"><span class="nav-number">2.</span> <span class="nav-text">存储数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#读取数据"><span class="nav-number">3.</span> <span class="nav-text">读取数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#registerDefaults"><span class="nav-number">4.</span> <span class="nav-text">registerDefaults</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NSUserDefaults域"><span class="nav-number">5.</span> <span class="nav-text">NSUserDefaults域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储路径"><span class="nav-number">6.</span> <span class="nav-text">存储路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于synchronize方法"><span class="nav-number">7.</span> <span class="nav-text">关于synchronize方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">8.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>190.7k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/';
+        this.page.identifier = '2019/08/12/IOS之NSUserDefaults/';
+        this.page.title = 'IOS之NSUserDefaults';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

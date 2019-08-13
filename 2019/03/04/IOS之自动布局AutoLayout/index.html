@@ -141,7 +141,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/03/04/IOS之自动布局AutoLayout/auto2.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/03/04/IOS之自动布局AutoLayout/auto3.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/03/04/IOS之自动布局AutoLayout/auto5.png">
-<meta property="og:updated_time" content="2019-08-04T10:03:23.041Z">
+<meta property="og:updated_time" content="2019-08-12T07:29:01.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之自动布局AutoLayout">
 <meta name="twitter:description" content="AutoLayout自动布局介绍UI布局对于iOS开发者来说并不陌生，在iOS6之前，大家都是通过UI控件的Frame属性和Autoresizing Mask来进行UI布局的。AutoLayout则是苹果公司在iOS6推出的一种基于约束的，描述性的布局系统。自从AutoLayout问世以来，逐步得到了iOS开发者们的青睐，尤其是iPhone6机型尺寸的出现。">
@@ -296,7 +296,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">90</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">91</span></a>
   </li>
         
         
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-04 18:03:23" itemprop="dateModified" datetime="2019-08-04T18:03:23+08:00">2019-08-04</time>
+                <time title="修改时间：2019-08-12 15:29:01" itemprop="dateModified" datetime="2019-08-12T15:29:01+08:00">2019-08-12</time>
               
             
           </span>
@@ -498,10 +498,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:1.1k字</span>
+              <span>字数统计:1.2k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:4分</span>
+              <span>阅读时长:5分</span>
             </span>
           
 
@@ -658,6 +658,15 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSArray</span> *)mas_makeConstraints:(<span class="keyword">void</span>(^)(MASConstraintMaker *make))block;</span><br><span class="line">- (<span class="built_in">NSArray</span> *)mas_updateConstraints:(<span class="keyword">void</span>(^)(MASConstraintMaker *make))block;</span><br><span class="line">- (<span class="built_in">NSArray</span> *)mas_remakeConstraints:(<span class="keyword">void</span>(^)(MASConstraintMaker *make))block;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">mas_makeConstraints 只负责新增约束 Autolayout不能同时存在两条针对于同一对象的约束 否则会报错 </span></span><br><span class="line"><span class="comment">mas_updateConstraints 针对上面的情况 会更新在block中出现的约束 不会导致出现两个相同约束的情况</span></span><br><span class="line"><span class="comment">mas_remakeConstraints 则会清除之前的所有约束 仅保留最新的约束</span></span><br><span class="line"><span class="comment">三种函数善加利用 就可以应对各种情况了</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 <p>常用属性</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//乘以</span></span><br><span class="line">- (MASConstraint * (^)(<span class="built_in">CGFloat</span> multiplier))multipliedBy;</span><br><span class="line"><span class="comment">//除以</span></span><br><span class="line">- (MASConstraint * (^)(<span class="built_in">CGFloat</span> divider))dividedBy;</span><br><span class="line"><span class="comment">//优先级</span></span><br><span class="line">- (MASConstraint * (^)(MASLayoutPriority priority))priority;</span><br></pre></td></tr></table></figure>
+<h1 id="Visual-Format-Language"><a href="#Visual-Format-Language" class="headerlink" title="Visual Format Language"></a>Visual Format Language</h1><p>VFL(Visual Format Language)允许你使用一种ASCII格式的字符串定义约束. 通过一行代码, 你可以在水平或者垂直方向上指定多个约束, 这跟一次只能创建一个约束相比会节省大量的代码量。</p>
+<ul>
+<li>创建水平和垂直约束</li>
+<li>在VFL中使用<code>views</code></li>
+<li>在VFL中使用<code>metrics</code></li>
+<li>使用layout options布局界面</li>
+<li>使用layout guides</li>
+</ul>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.jianshu.com/p/7b61998c6d8f" target="_blank" rel="noopener">https://www.jianshu.com/p/7b61998c6d8f</a></p>
 
       
     </div>
@@ -814,7 +823,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">90</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1050,7 +1059,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoLayout自动布局介绍"><span class="nav-number">1.</span> <span class="nav-text">AutoLayout自动布局介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoLayout使用原理"><span class="nav-number">2.</span> <span class="nav-text">AutoLayout使用原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建约束"><span class="nav-number">2.1.</span> <span class="nav-text">创建约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加约束"><span class="nav-number">2.2.</span> <span class="nav-text">添加约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对其他的view没有任何关系时，添加到自己的view上"><span class="nav-number">2.2.1.</span> <span class="nav-text">对其他的view没有任何关系时，添加到自己的view上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于两个同层级view之间的约束关系，则添加到他们的父View上"><span class="nav-number">2.2.2.</span> <span class="nav-text">对于两个同层级view之间的约束关系，则添加到他们的父View上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上"><span class="nav-number">2.2.3.</span> <span class="nav-text">对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上"><span class="nav-number">2.2.4.</span> <span class="nav-text">对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刷新约束"><span class="nav-number">3.</span> <span class="nav-text">刷新约束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Masonry框架"><span class="nav-number">4.</span> <span class="nav-text">Masonry框架</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoLayout自动布局介绍"><span class="nav-number">1.</span> <span class="nav-text">AutoLayout自动布局介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AutoLayout使用原理"><span class="nav-number">2.</span> <span class="nav-text">AutoLayout使用原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建约束"><span class="nav-number">2.1.</span> <span class="nav-text">创建约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加约束"><span class="nav-number">2.2.</span> <span class="nav-text">添加约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对其他的view没有任何关系时，添加到自己的view上"><span class="nav-number">2.2.1.</span> <span class="nav-text">对其他的view没有任何关系时，添加到自己的view上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于两个同层级view之间的约束关系，则添加到他们的父View上"><span class="nav-number">2.2.2.</span> <span class="nav-text">对于两个同层级view之间的约束关系，则添加到他们的父View上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上"><span class="nav-number">2.2.3.</span> <span class="nav-text">对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上"><span class="nav-number">2.2.4.</span> <span class="nav-text">对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刷新约束"><span class="nav-number">3.</span> <span class="nav-text">刷新约束</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Masonry框架"><span class="nav-number">4.</span> <span class="nav-text">Masonry框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Visual-Format-Language"><span class="nav-number">5.</span> <span class="nav-text">Visual Format Language</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -1095,7 +1104,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>189k</span>字
+    本站总字数:<span>190.7k</span>字
     </span>
     &nbsp|&nbsp
   </div>
