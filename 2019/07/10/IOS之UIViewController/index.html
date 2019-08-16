@@ -141,7 +141,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/07/10/IOS之UIViewController/viewlife.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/10/IOS之UIViewController/zindex1.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/07/10/IOS之UIViewController/zindex2.png">
-<meta property="og:updated_time" content="2019-07-10T08:13:25.501Z">
+<meta property="og:updated_time" content="2019-08-16T08:46:49.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之UIViewController">
 <meta name="twitter:description" content="UIViewController（视图控制器），顾名思义，是 MVC 设计模式中的控制器部分。UIViewController 在 UIKit 中主要功能是用于控制画面的切换，其中的 view 属性（UIView 类型）管理整个画面的外观。">
@@ -428,12 +428,24 @@
                 
               
 
-              <time title="创建时间：2019-07-10 11:06:34 / 修改时间：16:13:25" itemprop="dateCreated datePublished" datetime="2019-07-10T11:06:34+08:00">2019-07-10</time>
+              <time title="创建时间：2019-07-10 11:06:34" itemprop="dateCreated datePublished" datetime="2019-07-10T11:06:34+08:00">2019-07-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-16 16:46:49" itemprop="dateModified" datetime="2019-08-16T16:46:49+08:00">2019-08-16</time>
               
             
           </span>
@@ -574,10 +586,12 @@
 </ol>
 </blockquote>
 <h1 id="控制器view加载的几种方式"><a href="#控制器view加载的几种方式" class="headerlink" title="控制器view加载的几种方式"></a>控制器view加载的几种方式</h1><h2 id="通过storyboard加载"><a href="#通过storyboard加载" class="headerlink" title="通过storyboard加载"></a>通过storyboard加载</h2><p>当控制器通过storyboard加载时，需要指定storyboard的名称，控制器view最终就是storyboard所描述的样子，这个比较简单，不做详细阐述</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">  <span class="built_in">UIStoryboard</span> *storyboard = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"TestViewController"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">  TestViewController *testVC = [storyboard instantiateInitialViewController];</span><br><span class="line">  [<span class="keyword">self</span>.navigationController pushViewController:testVC animated:<span class="literal">YES</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIStoryboard</span> *storyboard = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"TestViewController"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">TestViewController *testVC = [storyboard instantiateInitialViewController];</span><br><span class="line">[<span class="keyword">self</span>.navigationController pushViewController:testVC animated:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>要记住在 attributes inspector中将 Is Initial View Controller选项勾上</p>
 </blockquote>
+<p>或者获取指定Storyboard中Storyboard ID的某个ViewController，例如：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIStoryboard</span> *sb = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"Main"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">SBIDTableViewController *mtvc = [sb instantiateViewControllerWithIdentifier:<span class="string">@"sbid"</span>];</span><br></pre></td></tr></table></figure>
 <h2 id="通过xib加载"><a href="#通过xib加载" class="headerlink" title="通过xib加载"></a>通过xib加载</h2><p>当控制器view通过xib加载的时候，可能会出现三种情况</p>
 <p><strong>1、指定xib名称</strong></p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">  TestViewController *testVC = [[TestViewController alloc] initWithNibName:<span class="string">@"OtherViewController"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">  [<span class="keyword">self</span>.navigationController pushViewController:testVC animated:<span class="literal">YES</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
