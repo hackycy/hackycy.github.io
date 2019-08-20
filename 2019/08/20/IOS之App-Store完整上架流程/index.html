@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-simple.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="最近在处理App Store上架的问题，和Android的打包流程比起来的确比较棘手些，因为涉及到很多的一些概念，现在也完整的梳理并记录一下。">
+<meta name="keywords" content="Ios,App Store">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS之App Store完整上架流程">
+<meta property="og:url" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/index.html">
+<meta property="og:site_name" content="小小源Bの博客">
+<meta property="og:description" content="最近在处理App Store上架的问题，和Android的打包流程比起来的确比较棘手些，因为涉及到很多的一些概念，现在也完整的梳理并记录一下。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/certSigningRequest.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/certSigningRequest2.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/p12.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/ipa.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/app.png">
+<meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/automanagesigning.png">
+<meta property="og:updated_time" content="2019-08-20T10:31:27.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IOS之App Store完整上架流程">
+<meta name="twitter:description" content="最近在处理App Store上架的问题，和Android的打包流程比起来的确比较棘手些，因为涉及到很多的一些概念，现在也完整的梳理并记录一下。">
+<meta name="twitter:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/certSigningRequest.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="小小源Bの博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>IOS之App Store完整上架流程 | 小小源Bの博客</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小小源Bの博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">zj&ycy</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">41</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">19</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">94</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="一个腼腆幽默的程序猿">
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小小源Bの博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">IOS之App Store完整上架流程
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-20 16:59:20 / 修改时间：18:31:27" itemprop="dateCreated datePublished" datetime="2019-08-20T16:59:20+08:00">2019-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/20/IOS之App-Store完整上架流程/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/20/IOS之App-Store完整上架流程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:1.9k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:7分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在处理App Store上架的问题，和Android的打包流程比起来的确比较棘手些，因为涉及到很多的一些概念，现在也完整的梳理并记录一下。</p>
+<a id="more"></a>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>发布上架都需要一个苹果开发者账号，免费的账号是有诸多限制的。</p>
+<p><strong>苹果开发者帐号体系</strong></p>
+<p><strong>Apple Developer：</strong>直接在<a href="https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.apple.com%2F" target="_blank" rel="noopener">Apple Developer</a>登录，同意Apple Developer协议后的账号，免费，只可以使用Xcode进行真机调试，Xcode 7之后苹果推出的功能</p>
+<p><strong>Apple Developer Program：</strong>分个人和组织类型，费用都是每年 99 美元，可以使用Xcode进行真机调试，打包Ad-Hoc测试，在App Store发布App</p>
+<p><strong>Apple Developer Enterprise Program：</strong>企业账号，费用是每年 299 美元，可以使用Xcode进行真机调试，打包Ad-Hoc测试，打包In-House App，但不能在App Store发布App</p>
+<p>不同安装方式对应的证书类型</p>
+<ul>
+<li>非App Store<ul>
+<li>Development（真机调试）：iOS App Development</li>
+<li>Ad Hoc：iOS Distribution (App Store and Ad Hoc)</li>
+<li>Enterprise：iOS Distribution (In-House and Ad Hoc)</li>
+</ul>
+</li>
+<li>App Store：iOS Distribution (App Store and Ad Hoc)</li>
+</ul>
+<p>在iOS的项目中，只要不是运行在模拟器上，都会涉及到开发者帐号、证书、<code>Provisioning Profile</code>这些概念。</p>
+<h3 id="免费账号的限制："><a href="#免费账号的限制：" class="headerlink" title="免费账号的限制："></a>免费账号的限制：</h3><ul>
+<li>创建的<code>Provisioning Profile</code>有效期只有7天</li>
+<li>在7天内最多注册10个Bundle Id</li>
+<li>只能同时注册3台iOS设备</li>
+<li>在同一台iOS设备上，只能同时安装3个使用免费账号签名的App。当该设备上已经存在3个App，则无法安装任何免费账号签名的任何App，就算是那3个App其中一个也不行，只能先把其中一个删除</li>
+</ul>
+<blockquote>
+<p>以下介绍是以我的Apple Developer Program个人账号来进行演示</p>
+</blockquote>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>证书、加密等原理这里不作介绍，主要讲解一些IOS所必要的概念。</p>
+<h2 id="certSigningRequest"><a href="#certSigningRequest" class="headerlink" title=".certSigningRequest"></a>.certSigningRequest</h2><p>在<code>Mac</code>中的<code>钥匙串访问</code>里的 <code>证书助理 -&gt; 从证书颁发机构请求证书</code>：</p>
+<p><img src="certSigningRequest.png" alt=""></p>
+<p>最后会创建出一个<code>.certSigningRequest</code>文件，其实这个过程就是创建了一对公私钥</p>
+<p><img src="certSigningRequest2.png" alt=""></p>
+<ul>
+<li>其中<code>.certSigningRequest</code>文件保存着<ul>
+<li>申请者信息申请者的公钥</li>
+<li>摘要算法</li>
+<li>公钥加密算法</li>
+</ul>
+</li>
+<li>私钥保存在 <code>keychain</code>中</li>
+</ul>
+<h2 id="AppleWWDRCA证书"><a href="#AppleWWDRCA证书" class="headerlink" title="AppleWWDRCA证书"></a>AppleWWDRCA证书</h2><p><code>iOS</code>以及 <code>mac OS</code>（在安装 Xcode 时）将自动安装 <code>AppleWWDRCA.cer</code>这个中间证书（Intermediate Certificates），它实际上就是 iOS（开发）证书的证书，即根证书（Apple Root Certificate）。</p>
+<h2 id="iOS-App-Development证书"><a href="#iOS-App-Development证书" class="headerlink" title="iOS App Development证书"></a>iOS App Development证书</h2><p>iOS的开发证书，在开发阶段进行真机测试时需要用到的证书。可以在苹果开发网站上手动创建，需要上传<code>.certSigningRequest</code>文件；或者使用Xcode自动创建。</p>
+<h2 id="iOS-Distribution证书"><a href="#iOS-Distribution证书" class="headerlink" title="iOS Distribution证书"></a>iOS Distribution证书</h2><p>iOS的发布证书，可以用于进行 <code>Ad Hoc</code> 测试、打包上传到 <code>App Store</code> 或者打包成 <code>Enterprisee（In-House）</code> 类型供企业内部使用。可以在苹果开发网站上手动创建，需要上传<code>.certSigningRequest</code>文件；或者使用Xcode自动创建。</p>
+<h2 id="p12"><a href="#p12" class="headerlink" title=".p12"></a>.p12</h2><p>在<code>Mac</code>的<code>钥匙串访问</code>里选择一张证书，右击该证书，选择<code>导出&quot;xxxxx&quot;</code>，然后设置密码，可以导出该证书对应的<code>.p12</code>文件。<code>.p12</code>文件包含个人信息、公钥和私钥，也就是<code>证书 + 私钥</code>。iOS类型的每种证书同时存在数量有限制，而证书是依靠<code>mac OS</code>上的<code>.certSigningRequest</code>文件创建的，所以正常情况下，每种类型的证书只能在有限的Mac电脑上使用，如果需要在更多不同的Mac电脑上进行App开发、测试、签名，可以导出对应<code>.p12</code>文件代替证书来使用。</p>
+<p><img src="p12.png" alt=""></p>
+<h2 id="Provisioning-Profile"><a href="#Provisioning-Profile" class="headerlink" title="Provisioning Profile"></a>Provisioning Profile</h2><p><code>Provisioning Profile</code>的文件格式为<code>.mobileprovision</code>，里面包含着</p>
+<ul>
+<li>可以使用的证书</li>
+<li>App ID，由 TeamID 和 BundleID 组合而成，类似于 <code>A1B2C3D4.com.domain.appName</code>形式</li>
+<li>可安装该App的设备列表的UDID</li>
+<li>Entitlements，授权文件，列出了App可以进行哪些行为</li>
+<li>以上信息的签名</li>
+</ul>
+<p>在苹果开发网站上手动创建，或者使用Xcode自动创建。</p>
+<h2 id="ipa"><a href="#ipa" class="headerlink" title=".ipa"></a>.ipa</h2><p><code>.ipa</code>文件是iOS上的App安装文件，其实它只是一个压缩包，等同于<code>.zip</code>格式，用<code>mac OS</code>自带的<code>归档实用工具</code>可以直接对它解压，可以看到里面的内容</p>
+<p><img src="ipa.png" alt=""></p>
+<h2 id="app"><a href="#app" class="headerlink" title=".app"></a>.app</h2><p>右击<code>.app</code>文件，选择<code>显示包内容</code>，可以看到里面的内容</p>
+<p><img src="app.png" alt=""></p>
+<p><code>.app</code>文件主要包含三部分：</p>
+<ul>
+<li><code>Mach-O</code>格式的二进制可执行文件，这个是一个App最重要的文件，我们编写的<code>Objective-C</code>、<code>Swift</code>代码都被编译在里面</li>
+<li>资源文件，包括：<code>.bundle</code>文件，<code>.framework</code>文件，<code>.dylib</code>文件，<code>.nib</code>文件，图片文件，音视频文件，字体文件等所有项目用到的文件</li>
+<li><code>CodeResources</code>，签名信息</li>
+<li><code>embedded.mobileprovision</code>文件，或者<code>entitlements</code>文件<ul>
+<li>对于没有上传App Store的<code>.app</code>文件，里面会包含<code>embedded.mobileprovision</code>文件，没有<code>entitlements</code>文件</li>
+<li>App Store下载的<code>.app</code>文件，里面会包含<code>.entitlements</code>文件，没有<code>embedded.mobileprovision</code>文件</li>
+</ul>
+</li>
+</ul>
+<h1 id="Automatic-signing"><a href="#Automatic-signing" class="headerlink" title="Automatic signing"></a>Automatic signing</h1><p>在Xcode 7之前，只有加入到Apple Developer Program（即付费）才能进行真机调试，Xcode 7之后苹果推出了<code>Automatic signing</code>功能，只要在Xcode上登陆Apple ID，就会自动管理证书和Provisioning Profile，同时没有加入Apple Developer Program的账号也能进行真机调试。</p>
+<p><img src="automanagesigning.png" alt=""></p>
+<p>勾选Xcode中的<code>AutoMatically manager signing</code>，选择对应的<code>Team</code>后，无论是加入Apple Developer Program的账号（即付费账号）还是Apple Developer的账号（即免费账号）：</p>
+<ul>
+<li>如果Xcode没有帮该账号自动生成过<code>iOS App Development</code>类型的证书， 无论在苹果后台是否已经存在其他<code>iOS App Development</code>类型的证书，都会生成一张新的<code>iOS App Development</code>类型证书，证书名称的格式是：开发者账号名称(当前Mac电脑名称)， 如：Brian Hui (Daniels的MacBook Pro)，同时会保存在当前Mac电脑的<code>keychain</code>中</li>
+<li>免费账号无法进入苹果的管理证书后台，但可以猜测出在苹果后台也会存在该证书</li>
+<li>如果Xcode没有帮该App的Bundle ID自动生成过对应的<code>Provisioning Profile</code>，就会使用上面那张证书生成一个<code>Provisioning Profile</code>，保存在<code>~/Library/MobileDevice/Provisioning Profiles</code>，但在苹果后台则不会存在这个<code>Provisioning Profile</code></li>
+<li>如果在<code>钥匙串访问</code>中删除了那张证书，Xcode会提示你的账号有<code>iOS App Development</code>类型的证书，但这台电脑没有安装，需要先把那张证书<code>Revoke</code>，<code>Revoke</code>后会再次重复前面的步骤，生成新的证书和<code>Provisioning Profile</code></li>
+<li>如果在<code>~/Library/MobileDevice/Provisioning Profiles</code>里面，删除了该<code>Provisioning Profile</code>文件，Xcode会马上重新生成<code>Provisioning Profile</code></li>
+</ul>
+<p>在使用Xcode的<code>Automatic signing</code>功能的前提下，进行<code>Archive</code>，然后<code>Distribute App</code>的时候，选择非<code>Development</code>的选项，再选择AutoMatically manager signing</p>
+<ul>
+<li>如果本地存在<code>iOS Distribution</code>类型的证书，则会直接进行重签名</li>
+<li>如果没有存在<code>iOS Distribution</code>类型的证书，而苹果的后台有，则会告诉你，该账号存在<code>iOS Distribution</code>类型的证书，但这台电脑没有安装，请联系创建人拿到备份（.p12文件）进行安装，当你安装了该证书（或者.p12文件），则会直接进行重签名</li>
+<li>如果没有存在<code>iOS Distribution</code>类型的证书，而苹果的后台也没有，则Xcode会询问你是否需要生成<code>iOS Distribution</code>类型的证书，如果选择需要，则会自动生成<code>iOS Distribution</code>类型的证书，并且建议你保存在本地，证书名称的格式是：Team Name， 如：Hutchison Telephone (Macau) Company Limited，同时使用这张证书生成一个<code>Provisioning Profile</code>，保存在<code>~/Library/MobileDevice/Provisioning Profiles</code>，但在苹果后台则不会存在这个`Provisioning Profile。</li>
+</ul>
+<h1 id="App-Store上架打包流程"><a href="#App-Store上架打包流程" class="headerlink" title="App Store上架打包流程"></a>App Store上架打包流程</h1>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ios/" rel="tag"><i class="fa fa-tag"></i> Ios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/20/QPS、TPS、PV、UV、GMV、IP、RPS概念解释/" rel="next" title="QPS、TPS、PV、UV、GMV、IP、RPS概念解释">
+                <i class="fa fa-chevron-left"></i> QPS、TPS、PV、UV、GMV、IP、RPS概念解释
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">一个腼腆幽默的程序猿</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.sweetlover.net.cn" title="sweetlover" target="_blank">sweetlover</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://x5.tencent.com/tbs/guide.html" title="腾讯浏览服务" target="_blank">腾讯浏览服务</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://mob.com" title="mob" target="_blank">mob</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bugly.qq.com" title="bugly" target="_blank">bugly</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#免费账号的限制："><span class="nav-number">1.0.1.</span> <span class="nav-text">免费账号的限制：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#certSigningRequest"><span class="nav-number">2.1.</span> <span class="nav-text">.certSigningRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AppleWWDRCA证书"><span class="nav-number">2.2.</span> <span class="nav-text">AppleWWDRCA证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-App-Development证书"><span class="nav-number">2.3.</span> <span class="nav-text">iOS App Development证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-Distribution证书"><span class="nav-number">2.4.</span> <span class="nav-text">iOS Distribution证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#p12"><span class="nav-number">2.5.</span> <span class="nav-text">.p12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Provisioning-Profile"><span class="nav-number">2.6.</span> <span class="nav-text">Provisioning Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ipa"><span class="nav-number">2.7.</span> <span class="nav-text">.ipa</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app"><span class="nav-number">2.8.</span> <span class="nav-text">.app</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Automatic-signing"><span class="nav-number">3.</span> <span class="nav-text">Automatic signing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#App-Store上架打包流程"><span class="nav-number">4.</span> <span class="nav-text">App Store上架打包流程</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>194.4k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/';
+        this.page.identifier = '2019/08/20/IOS之App-Store完整上架流程/';
+        this.page.title = 'IOS之App Store完整上架流程';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

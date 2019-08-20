@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IOS之App Store完整上架流程]]></title>
+    <url>%2F2019%2F08%2F20%2FIOS%E4%B9%8BApp-Store%E5%AE%8C%E6%95%B4%E4%B8%8A%E6%9E%B6%E6%B5%81%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[最近在处理App Store上架的问题，和Android的打包流程比起来的确比较棘手些，因为涉及到很多的一些概念，现在也完整的梳理并记录一下。 前言发布上架都需要一个苹果开发者账号，免费的账号是有诸多限制的。 苹果开发者帐号体系 Apple Developer：直接在Apple Developer登录，同意Apple Developer协议后的账号，免费，只可以使用Xcode进行真机调试，Xcode 7之后苹果推出的功能 Apple Developer Program：分个人和组织类型，费用都是每年 99 美元，可以使用Xcode进行真机调试，打包Ad-Hoc测试，在App Store发布App Apple Developer Enterprise Program：企业账号，费用是每年 299 美元，可以使用Xcode进行真机调试，打包Ad-Hoc测试，打包In-House App，但不能在App Store发布App 不同安装方式对应的证书类型 非App Store Development（真机调试）：iOS App Development Ad Hoc：iOS Distribution (App Store and Ad Hoc) Enterprise：iOS Distribution (In-House and Ad Hoc) App Store：iOS Distribution (App Store and Ad Hoc) 在iOS的项目中，只要不是运行在模拟器上，都会涉及到开发者帐号、证书、Provisioning Profile这些概念。 免费账号的限制： 创建的Provisioning Profile有效期只有7天 在7天内最多注册10个Bundle Id 只能同时注册3台iOS设备 在同一台iOS设备上，只能同时安装3个使用免费账号签名的App。当该设备上已经存在3个App，则无法安装任何免费账号签名的任何App，就算是那3个App其中一个也不行，只能先把其中一个删除 以下介绍是以我的Apple Developer Program个人账号来进行演示 概念证书、加密等原理这里不作介绍，主要讲解一些IOS所必要的概念。 .certSigningRequest在Mac中的钥匙串访问里的 证书助理 -&gt; 从证书颁发机构请求证书： 最后会创建出一个.certSigningRequest文件，其实这个过程就是创建了一对公私钥 其中.certSigningRequest文件保存着 申请者信息申请者的公钥 摘要算法 公钥加密算法 私钥保存在 keychain中 AppleWWDRCA证书iOS以及 mac OS（在安装 Xcode 时）将自动安装 AppleWWDRCA.cer这个中间证书（Intermediate Certificates），它实际上就是 iOS（开发）证书的证书，即根证书（Apple Root Certificate）。 iOS App Development证书iOS的开发证书，在开发阶段进行真机测试时需要用到的证书。可以在苹果开发网站上手动创建，需要上传.certSigningRequest文件；或者使用Xcode自动创建。 iOS Distribution证书iOS的发布证书，可以用于进行 Ad Hoc 测试、打包上传到 App Store 或者打包成 Enterprisee（In-House） 类型供企业内部使用。可以在苹果开发网站上手动创建，需要上传.certSigningRequest文件；或者使用Xcode自动创建。 .p12在Mac的钥匙串访问里选择一张证书，右击该证书，选择导出&quot;xxxxx&quot;，然后设置密码，可以导出该证书对应的.p12文件。.p12文件包含个人信息、公钥和私钥，也就是证书 + 私钥。iOS类型的每种证书同时存在数量有限制，而证书是依靠mac OS上的.certSigningRequest文件创建的，所以正常情况下，每种类型的证书只能在有限的Mac电脑上使用，如果需要在更多不同的Mac电脑上进行App开发、测试、签名，可以导出对应.p12文件代替证书来使用。 Provisioning ProfileProvisioning Profile的文件格式为.mobileprovision，里面包含着 可以使用的证书 App ID，由 TeamID 和 BundleID 组合而成，类似于 A1B2C3D4.com.domain.appName形式 可安装该App的设备列表的UDID Entitlements，授权文件，列出了App可以进行哪些行为 以上信息的签名 在苹果开发网站上手动创建，或者使用Xcode自动创建。 .ipa.ipa文件是iOS上的App安装文件，其实它只是一个压缩包，等同于.zip格式，用mac OS自带的归档实用工具可以直接对它解压，可以看到里面的内容 .app右击.app文件，选择显示包内容，可以看到里面的内容 .app文件主要包含三部分： Mach-O格式的二进制可执行文件，这个是一个App最重要的文件，我们编写的Objective-C、Swift代码都被编译在里面 资源文件，包括：.bundle文件，.framework文件，.dylib文件，.nib文件，图片文件，音视频文件，字体文件等所有项目用到的文件 CodeResources，签名信息 embedded.mobileprovision文件，或者entitlements文件 对于没有上传App Store的.app文件，里面会包含embedded.mobileprovision文件，没有entitlements文件 App Store下载的.app文件，里面会包含.entitlements文件，没有embedded.mobileprovision文件 Automatic signing在Xcode 7之前，只有加入到Apple Developer Program（即付费）才能进行真机调试，Xcode 7之后苹果推出了Automatic signing功能，只要在Xcode上登陆Apple ID，就会自动管理证书和Provisioning Profile，同时没有加入Apple Developer Program的账号也能进行真机调试。 勾选Xcode中的AutoMatically manager signing，选择对应的Team后，无论是加入Apple Developer Program的账号（即付费账号）还是Apple Developer的账号（即免费账号）： 如果Xcode没有帮该账号自动生成过iOS App Development类型的证书， 无论在苹果后台是否已经存在其他iOS App Development类型的证书，都会生成一张新的iOS App Development类型证书，证书名称的格式是：开发者账号名称(当前Mac电脑名称)， 如：Brian Hui (Daniels的MacBook Pro)，同时会保存在当前Mac电脑的keychain中 免费账号无法进入苹果的管理证书后台，但可以猜测出在苹果后台也会存在该证书 如果Xcode没有帮该App的Bundle ID自动生成过对应的Provisioning Profile，就会使用上面那张证书生成一个Provisioning Profile，保存在~/Library/MobileDevice/Provisioning Profiles，但在苹果后台则不会存在这个Provisioning Profile 如果在钥匙串访问中删除了那张证书，Xcode会提示你的账号有iOS App Development类型的证书，但这台电脑没有安装，需要先把那张证书Revoke，Revoke后会再次重复前面的步骤，生成新的证书和Provisioning Profile 如果在~/Library/MobileDevice/Provisioning Profiles里面，删除了该Provisioning Profile文件，Xcode会马上重新生成Provisioning Profile 在使用Xcode的Automatic signing功能的前提下，进行Archive，然后Distribute App的时候，选择非Development的选项，再选择AutoMatically manager signing 如果本地存在iOS Distribution类型的证书，则会直接进行重签名 如果没有存在iOS Distribution类型的证书，而苹果的后台有，则会告诉你，该账号存在iOS Distribution类型的证书，但这台电脑没有安装，请联系创建人拿到备份（.p12文件）进行安装，当你安装了该证书（或者.p12文件），则会直接进行重签名 如果没有存在iOS Distribution类型的证书，而苹果的后台也没有，则Xcode会询问你是否需要生成iOS Distribution类型的证书，如果选择需要，则会自动生成iOS Distribution类型的证书，并且建议你保存在本地，证书名称的格式是：Team Name， 如：Hutchison Telephone (Macau) Company Limited，同时使用这张证书生成一个Provisioning Profile，保存在~/Library/MobileDevice/Provisioning Profiles，但在苹果后台则不会存在这个`Provisioning Profile。 App Store上架打包流程]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[QPS、TPS、PV、UV、GMV、IP、RPS概念解释]]></title>
     <url>%2F2019%2F08%2F20%2FQPS%E3%80%81TPS%E3%80%81PV%E3%80%81UV%E3%80%81GMV%E3%80%81IP%E3%80%81RPS%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A%2F</url>
     <content type="text"><![CDATA[之前看到一些QPS、TPS、PV等的一些名词，也还没清楚它们的意思，查了一下资料并记录一下。 QPSQueries Per Second，每秒查询数。每秒能够响应的查询次数。 QPS是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准，在因特网上，作为域名系统服务器的机器的性能经常用每秒查询率来衡量。每秒的响应请求数，也即是最大吞吐能力。 TPSTransactions Per Second 的缩写，每秒处理的事务数目。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数，最终利用这些信息作出的评估分。 TPS 的过程包括：客户端请求服务端、服务端内部处理、服务端返回客户端。 例如，访问一个 Index 页面会请求服务器 3 次，包括一次 html，一次 css，一次 js，那么访问这一个页面就会产生一个“T”，产生三个“Q”。 PV（page view）即页面浏览量，通常是衡量一个网络新闻频道或网站甚至一条网络新闻的主要指标。户每一次对网站中的每个页面访问均被记录 1 次。用户对同一页面的多次刷新，访问量累计。 根据这个特性，刷网站的 PV 就很好刷了。 与 PV 相关的还有 RV，即重复访问者数量（repeat visitors）。 UV访问数（Unique Visitor）指独立访客访问数，统计1天内访问某站点的用户数(以 cookie 为依据)，一台电脑终端为一个访客。 IP（Internet Protocol）独立 IP 数，是指 1 天内多少个独立的 IP 浏览了页面，即统计不同的 IP 浏览用户数量。同一 IP 不管访问了几个页面，独立 IP 数均为 1；不同的 IP 浏览页面，计数会加 1。IP 是基于用户广域网 IP 地址来区分不同的访问者的，所以，多个用户（多个局域网 IP）在同一个路由器（同一个广域网 IP）内上网，可能被记录为一个独立 IP 访问者。如果用户不断更换 IP，则有可能被多次统计。 GMV是 Gross Merchandise Volume 的简称。只要是订单，不管消费者是否付款、卖家是否发货、是否退货，都可放进 GMV 。 RPS代表吞吐率，即 Requests Per Second 的缩写。吞吐率是服务器并发处理能力的量化描述，单位是 reqs/s，指的是某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大的请求数，称之为最大吞吐率。 有人把 RPS 说等效于 QPS。其实可以看作同一个统计方式，只是叫法不同而已。RPS/QPS，可以使用 apche ab 工具进行测量。]]></content>
@@ -586,8 +597,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -802,8 +813,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -816,9 +827,9 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
         <tag>Maven</tag>
+        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
