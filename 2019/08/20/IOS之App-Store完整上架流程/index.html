@@ -143,7 +143,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/ipa.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/app.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/08/20/IOS之App-Store完整上架流程/automanagesigning.png">
-<meta property="og:updated_time" content="2019-08-20T10:31:27.758Z">
+<meta property="og:updated_time" content="2019-08-20T10:36:20.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之App Store完整上架流程">
 <meta name="twitter:description" content="最近在处理App Store上架的问题，和Android的打包流程比起来的确比较棘手些，因为涉及到很多的一些概念，现在也完整的梳理并记录一下。">
@@ -430,7 +430,7 @@
                 
               
 
-              <time title="创建时间：2019-08-20 16:59:20 / 修改时间：18:31:27" itemprop="dateCreated datePublished" datetime="2019-08-20T16:59:20+08:00">2019-08-20</time>
+              <time title="创建时间：2019-08-20 16:59:20 / 修改时间：18:36:20" itemprop="dateCreated datePublished" datetime="2019-08-20T16:59:20+08:00">2019-08-20</time>
             
 
             
@@ -526,7 +526,8 @@
 <li>App Store：iOS Distribution (App Store and Ad Hoc)</li>
 </ul>
 <p>在iOS的项目中，只要不是运行在模拟器上，都会涉及到开发者帐号、证书、<code>Provisioning Profile</code>这些概念。</p>
-<h3 id="免费账号的限制："><a href="#免费账号的限制：" class="headerlink" title="免费账号的限制："></a>免费账号的限制：</h3><ul>
+<p><strong>免费账号的限制：</strong></p>
+<ul>
 <li>创建的<code>Provisioning Profile</code>有效期只有7天</li>
 <li>在7天内最多注册10个Bundle Id</li>
 <li>只能同时注册3台iOS设备</li>
@@ -984,7 +985,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#免费账号的限制："><span class="nav-number">1.0.1.</span> <span class="nav-text">免费账号的限制：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#certSigningRequest"><span class="nav-number">2.1.</span> <span class="nav-text">.certSigningRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AppleWWDRCA证书"><span class="nav-number">2.2.</span> <span class="nav-text">AppleWWDRCA证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-App-Development证书"><span class="nav-number">2.3.</span> <span class="nav-text">iOS App Development证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-Distribution证书"><span class="nav-number">2.4.</span> <span class="nav-text">iOS Distribution证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#p12"><span class="nav-number">2.5.</span> <span class="nav-text">.p12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Provisioning-Profile"><span class="nav-number">2.6.</span> <span class="nav-text">Provisioning Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ipa"><span class="nav-number">2.7.</span> <span class="nav-text">.ipa</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app"><span class="nav-number">2.8.</span> <span class="nav-text">.app</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Automatic-signing"><span class="nav-number">3.</span> <span class="nav-text">Automatic signing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#App-Store上架打包流程"><span class="nav-number">4.</span> <span class="nav-text">App Store上架打包流程</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#certSigningRequest"><span class="nav-number">2.1.</span> <span class="nav-text">.certSigningRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AppleWWDRCA证书"><span class="nav-number">2.2.</span> <span class="nav-text">AppleWWDRCA证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-App-Development证书"><span class="nav-number">2.3.</span> <span class="nav-text">iOS App Development证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-Distribution证书"><span class="nav-number">2.4.</span> <span class="nav-text">iOS Distribution证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#p12"><span class="nav-number">2.5.</span> <span class="nav-text">.p12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Provisioning-Profile"><span class="nav-number">2.6.</span> <span class="nav-text">Provisioning Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ipa"><span class="nav-number">2.7.</span> <span class="nav-text">.ipa</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app"><span class="nav-number">2.8.</span> <span class="nav-text">.app</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Automatic-signing"><span class="nav-number">3.</span> <span class="nav-text">Automatic signing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#App-Store上架打包流程"><span class="nav-number">4.</span> <span class="nav-text">App Store上架打包流程</span></a></li></ol></div>
             
 
           </div>
