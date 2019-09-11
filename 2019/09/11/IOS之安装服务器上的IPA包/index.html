@@ -143,7 +143,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/09/11/IOS之安装服务器上的IPA包/public2.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/09/11/IOS之安装服务器上的IPA包/public3.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/09/11/IOS之安装服务器上的IPA包/public4.png">
-<meta property="og:updated_time" content="2019-09-11T05:16:23.033Z">
+<meta property="og:updated_time" content="2019-09-11T05:42:35.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IOS之安装服务器上的IPA包">
 <meta name="twitter:description" content="前言如果想要将导出的ad-hoc包或者企业级别开发者账号才能够打包的in-house的ipa包通过自己服务器上下载安装的话，还需要一些简单的配置。">
@@ -430,7 +430,7 @@
                 
               
 
-              <time title="创建时间：2019-09-11 12:20:59 / 修改时间：13:16:23" itemprop="dateCreated datePublished" datetime="2019-09-11T12:20:59+08:00">2019-09-11</time>
+              <time title="创建时间：2019-09-11 12:20:59 / 修改时间：13:42:35" itemprop="dateCreated datePublished" datetime="2019-09-11T12:20:59+08:00">2019-09-11</time>
             
 
             
@@ -534,7 +534,7 @@
 <p>获取plist文件的路径，通过</p>
 <p><img src="public2.png" alt=""></p>
 <p>案例中获取的plist文件路径为<code>https://raw.githubusercontent.com/hackycy/mitaoquan/master/manifest.plist</code></p>
-<p>最后通过<code>itms-services:///?action=download-manifest&amp;url=</code>后面拼接上plist的url即可。</p>
+<p>最后通过<code>itms-services://?action=download-manifest&amp;url=</code>后面拼接上plist的url即可。</p>
 <p><strong>demo中为<code>itms-services://?action=download-manifest&amp;url=https://raw.githubusercontent.com/hackycy/mitaoquan/master/manifest.plist</code></strong></p>
 <blockquote>
 <p>前端可以直接通过location.href或者a标签等跳转该链接即可安装。本地测试可以直接用safari打开上面的地址即可安装</p>
@@ -542,7 +542,7 @@
 <p>这里直接本地测试，复制该链接到safari直接打开安装。</p>
 <p><img src="public3.png" alt=""></p>
 <p><img src="public4.png" alt=""></p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>通过<code>itms-services</code>协议，在safari浏览器可以直接在ios设备上安装应用程序。<code>itms-services</code>协议需要一个plist配置文件。<code>itms-services:///?action=download-manifest&amp;url=</code>是固定不变的，url根据环境变化。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>通过<code>itms-services</code>协议，在safari浏览器可以直接在ios设备上安装应用程序。<code>itms-services</code>协议需要一个plist配置文件。<code>itms-services://?action=download-manifest&amp;url=</code>是固定不变的，url根据环境变化。</p>
 
       
     </div>
