@@ -129,23 +129,23 @@
     })();
 </script>
 
-  <meta name="description" content="最近需要接入到第三方应用登陆接触到了这个OAuth，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用，目前的版本是2.0版。 所以记录下OAuth 2.0的设计思路和运行流程，做一个简明通俗的解释，主要参考材料为RFC 6749。">
+  <meta name="description" content="最近需要接入到第三方应用登陆接触到了这个OAuth概念，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用（QQ，Github，微博等），目前的版本是2.0版。 所以记录下OAuth 2.0的设计思路和运行流程，做一个简明通俗的解释，主要参考材料为RFC 6749。">
 <meta name="keywords" content="OAuth 2.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解OAuth 2.0">
 <meta property="og:url" content="http://hackycy.github.io/2019/10/25/理解OAuth-2-0/index.html">
 <meta property="og:site_name" content="小小源Bの博客">
-<meta property="og:description" content="最近需要接入到第三方应用登陆接触到了这个OAuth，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用，目前的版本是2.0版。 所以记录下OAuth 2.0的设计思路和运行流程，做一个简明通俗的解释，主要参考材料为RFC 6749。">
+<meta property="og:description" content="最近需要接入到第三方应用登陆接触到了这个OAuth概念，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用（QQ，Github，微博等），目前的版本是2.0版。 所以记录下OAuth 2.0的设计思路和运行流程，做一个简明通俗的解释，主要参考材料为RFC 6749。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://hackycy.github.io/2019/10/25/理解OAuth-2-0/1.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/10/25/理解OAuth-2-0/authorizationcode.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/10/25/理解OAuth-2-0/implicitgranttype.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/10/25/理解OAuth-2-0/ResourceOwnerPasswordCredentialsGrant.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/10/25/理解OAuth-2-0/ClientCredentialsGrant.png">
-<meta property="og:updated_time" content="2019-10-25T09:14:41.141Z">
+<meta property="og:updated_time" content="2019-10-25T09:17:02.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解OAuth 2.0">
-<meta name="twitter:description" content="最近需要接入到第三方应用登陆接触到了这个OAuth，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用，目前的版本是2.0版。 所以记录下OAuth 2.0的设计思路和运行流程，做一个简明通俗的解释，主要参考材料为RFC 6749。">
+<meta name="twitter:description" content="最近需要接入到第三方应用登陆接触到了这个OAuth概念，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用（QQ，Github，微博等），目前的版本是2.0版。 所以记录下OAuth 2.0的设计思路和运行流程，做一个简明通俗的解释，主要参考材料为RFC 6749。">
 <meta name="twitter:image" content="http://hackycy.github.io/2019/10/25/理解OAuth-2-0/1.png">
 
 
@@ -429,7 +429,7 @@
                 
               
 
-              <time title="创建时间：2019-10-25 16:56:03 / 修改时间：17:14:41" itemprop="dateCreated datePublished" datetime="2019-10-25T16:56:03+08:00">2019-10-25</time>
+              <time title="创建时间：2019-10-25 16:56:03 / 修改时间：17:17:02" itemprop="dateCreated datePublished" datetime="2019-10-25T16:56:03+08:00">2019-10-25</time>
             
 
             
@@ -507,10 +507,10 @@
       
 
       
-        <p>最近需要接入到第三方应用登陆接触到了这个<a href="http://en.wikipedia.org/wiki/OAuth" target="_blank" rel="noopener">OAuth</a>，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用，目前的版本是2.0版。</p>
+        <p>最近需要接入到第三方应用登陆接触到了这个<a href="http://en.wikipedia.org/wiki/OAuth" target="_blank" rel="noopener">OAuth</a>概念，它是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用（QQ，Github，微博等），目前的版本是2.0版。</p>
 <p>所以记录下OAuth 2.0的设计思路和运行流程，做一个简明通俗的解释，主要参考材料为<a href="http://www.rfcreader.com/#rfc6749" target="_blank" rel="noopener">RFC 6749</a>。</p>
 <a id="more"></a>
-<h1 id="名字定义"><a href="#名字定义" class="headerlink" title="名字定义"></a>名字定义</h1><p>在详细讲解OAuth 2.0之前，需要了解几个专用名词。它们对读懂后面的讲解，尤其是几张图，至关重要。</p>
+<h1 id="名词定义"><a href="#名词定义" class="headerlink" title="名词定义"></a>名词定义</h1><p>在详细讲解OAuth 2.0之前，需要了解几个专用名词。它们对读懂后面的讲解，尤其是几张图，至关重要。</p>
 <ul>
 <li><strong>Third-party application</strong>：第三方应用程序，本文中又称”客户端”（client），即上一节例子中的”云冲印”。</li>
 <li><strong>HTTP service</strong>：HTTP服务提供商，本文中简称”服务提供商”。</li>
@@ -1078,7 +1078,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#名字定义"><span class="nav-number">1.</span> <span class="nav-text">名字定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OAuth的思路"><span class="nav-number">2.</span> <span class="nav-text">OAuth的思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行流程"><span class="nav-number">3.</span> <span class="nav-text">运行流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端的授权模式"><span class="nav-number">4.</span> <span class="nav-text">客户端的授权模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#授权码模式"><span class="nav-number">4.1.</span> <span class="nav-text">授权码模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化模式"><span class="nav-number">4.2.</span> <span class="nav-text">简化模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码模式"><span class="nav-number">4.3.</span> <span class="nav-text">密码模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端模式"><span class="nav-number">4.4.</span> <span class="nav-text">客户端模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新令牌"><span class="nav-number">5.</span> <span class="nav-text">更新令牌</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#名词定义"><span class="nav-number">1.</span> <span class="nav-text">名词定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OAuth的思路"><span class="nav-number">2.</span> <span class="nav-text">OAuth的思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行流程"><span class="nav-number">3.</span> <span class="nav-text">运行流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端的授权模式"><span class="nav-number">4.</span> <span class="nav-text">客户端的授权模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#授权码模式"><span class="nav-number">4.1.</span> <span class="nav-text">授权码模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化模式"><span class="nav-number">4.2.</span> <span class="nav-text">简化模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码模式"><span class="nav-number">4.3.</span> <span class="nav-text">密码模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端模式"><span class="nav-number">4.4.</span> <span class="nav-text">客户端模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新令牌"><span class="nav-number">5.</span> <span class="nav-text">更新令牌</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
