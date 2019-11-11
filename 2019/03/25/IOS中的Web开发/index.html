@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -228,7 +228,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -238,7 +238,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -395,20 +395,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/03/25/IOS中的Web开发/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -476,7 +476,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -536,27 +536,27 @@
 <p>移动开发领域近年来已经逐渐告别了野蛮生长的时期，进入了相对成熟的时代。而一直以来 Native 和 Web 的争论从未停止，通过开发者孜孜不倦的努力，Web 的效率和 Native 的体验也一直在寻求着平衡。本文聚焦 iOS 开发和 Web 开发的交叉点，希望能通过简要的介绍，帮助开发者一窥 Hybrid 和大前端的构想。</p>
 </blockquote>
 <a id="more"></a>
-<p><img src="intro.jpg" alt=""></p>
+<p><img src="intro.jpg" alt></p>
 <h1 id="IOS中web容器与加载"><a href="#IOS中web容器与加载" class="headerlink" title="IOS中web容器与加载"></a>IOS中web容器与加载</h1><h2 id="1、IOS中的Web容器"><a href="#1、IOS中的Web容器" class="headerlink" title="1、IOS中的Web容器"></a>1、IOS中的Web容器</h2><p>目前IOS系统为开发者提供三种方式来展示Web内容</p>
 <h3 id="UIWebView"><a href="#UIWebView" class="headerlink" title="UIWebView"></a>UIWebView</h3><p>UIWebView 从 iOS2 开始就作为 App 内展示 Web 内容的容器，但是长久以来一直遭受开发者的诟病；系统级的内存泄露、极高内存峰值、较差的稳定性、Touch Delay 以及 Javascript 的运行性能及通信限制等等。在 iOS12 以后已经标记为 Deprecated 不再维护。</p>
 <h3 id="WKWebView"><a href="#WKWebView" class="headerlink" title="WKWebView"></a>WKWebView</h3><p>在 iOS 8 中，Apple 引入了新一代的 WebKit framework，同时提供了 WKWebView 用来替代传统的 UIWebView。它更加的稳定、拥有 60fps 滚动刷新率、丰富的手势、KVO、高效的 Web 和 Native 通信，默认进度条等等功能，而最重要的，是使用了和 safari 相同的 Nitro 引擎极大提升了 Javascript 的运行速度。WKWebView 独立的进程管理，也降低了内存占用及 Crash 对主 App 的影响。</p>
 <h3 id="SFSafariViewController"><a href="#SFSafariViewController" class="headerlink" title="SFSafariViewController"></a>SFSafariViewController</h3><p>在 iOS 9 中，Apple 引入了 SFSafariViewController。其特点就是在 App 内可以打开一个高度标准化的、和 Safari 一样界面和特性的页面。同时 SFSafariViewController 支持和 Safari 共享 Cookie 和表单数据等等。</p>
 <h3 id="Web容器选型"><a href="#Web容器选型" class="headerlink" title="Web容器选型"></a>Web容器选型</h3><p>对于 SFSafariViewController：由于其标准化程度之高，使之界面和交互逻辑无法和 App 统一，基于 App 的整体体验的考虑，一般都使用在相对独立的功能和模块中，最常见的就是在 App 内打开 App Store 或者广告、游戏推广的页面。</p>
 <p>对于 UIWebView/WKWebView：如果说之前由于 NSURLProtocol 的问题，好多 App 都在继续使用 UIWebView，那么随着 App 放弃维护 UIWebView（iOS12），全部的 App 应该会陆续的切换到 WKWebView 中来。当然，最初 WKWebView 也为开发者们带来了一些难题，但是随着系统的升级与业务逻辑的适配也逐步的修复，后文会列举几个最为关注的技术点。</p>
-<p>UIWebView/WKWebView 对主 App 内存的影响：<br><img src="memory.jpg" alt=""></p>
+<p>UIWebView/WKWebView 对主 App 内存的影响：<br><img src="memory.jpg" alt></p>
 <h2 id="2、WebKit-框架与使用"><a href="#2、WebKit-框架与使用" class="headerlink" title="2、WebKit 框架与使用"></a>2、WebKit 框架与使用</h2><h3 id="WebKit-framework"><a href="#WebKit-framework" class="headerlink" title="WebKit.framework"></a>WebKit.framework</h3><p>WebKit 是一个开源的 Web 浏览器引擎。每当谈到 WebKit，开发者常常迷惑于它和 WebKit2、Safari、iOS 中的 framework、以及 Chromium 等浏览器的关系。</p>
 <p>广义的 WebKit 其实就是指 WebCore，它主要包含了 HTML 和 CSS 的解析、布局和定位这类渲染 HTML 的功能逻辑。而狭义的 WebKit 就是在 WebCore 的基础上，不同平台封装 Javascript 引擎、网络层、GPU 相关的技术（WebGL、视频）、绘制渲染技术以及各个平台对应的接口，形成我们可以用的 WebView 或浏览器，也就是所谓的 WebKit Ports。</p>
-<p><img src="webkit.jpg" alt=""></p>
+<p><img src="webkit.jpg" alt></p>
 <p>比如在 Safari 中 JS 的引擎使用 JavascriptCore，而 Chromium 中使用 V8；渲染方面 Safari 使用 CoreGraphics，而 Chromium 中使用 Skia；网络方面 Safari 使用 CFNetwork，而 Chromium 中使用 Chromium stack 等等。而 WebKit2 是相对于狭义上的 WebKit 架构而言，主要变化是在 API 层支持多进程，分离了 UI 和 Web 接口的进程，使之通过 IPC 来进行通讯。</p>
 <p>对于 iOS 中的 WebKit.framework 就是在 WebCore、底层桥接、JSCore 引擎等核心模块的基础上，针对 iOS 平台的项目封装。它基于新的 WKWebView，提供了一系列浏览特性的设置，以及简单方便的加载回调。而具体类及使用，开发者可以查阅官方文档:</p>
 <blockquote>
 <p><a href="https://developer.apple.com/documentation/webkit" target="_blank" rel="noopener">https://developer.apple.com/documentation/webkit</a></p>
 </blockquote>
-<p><img src="webkit2.jpg" alt=""></p>
+<p><img src="webkit2.jpg" alt></p>
 <h3 id="Web-容器使用流程与关键节点"><a href="#Web-容器使用流程与关键节点" class="headerlink" title="Web 容器使用流程与关键节点"></a>Web 容器使用流程与关键节点</h3><p>对于大部分日常使用来说，开发者需要关注的就是 WKWebView 的创建、配置、加载、以及系统回调的接收。</p>
-<p><img src="webrongqi.jpg" alt=""></p>
+<p><img src="webrongqi.jpg" alt></p>
 <p>对于 Web 开发者，业务逻辑一般通过基于 Web 页面中 Dom 渲染的关键节点来处理。而对于 iOS 开发者，WKWebView 提供的的注册、加载和回调时机，没有明确的与 Web 加载的关键节点相关联。准确的理解和处理两个维度的加载顺序，选择合理的业务逻辑处理时机，才可以实现准确而高效的应用。</p>
-<p><img src="webrongqi2.jpg" alt=""></p>
+<p><img src="webrongqi2.jpg" alt></p>
 <h3 id="WKWebView-常见问题"><a href="#WKWebView-常见问题" class="headerlink" title="WKWebView 常见问题"></a>WKWebView 常见问题</h3><p>使用 WKWebView 带来的另外一个好处，就是我们可以通过源码理解部分加载逻辑，为 Crash 提供一些思路，或者使用一些私有方法处理复杂业务逻辑。</p>
 <p><strong>NSURLProtocol</strong></p>
 <p>WKWebView 最为显著的改变，就是不支持 NSURLProtocol。为了兼容旧的业务逻辑，一部分 App 通过 WKBrowsingContextController 中的非公开方法实现了 NSURLProtocol。</p>
@@ -582,13 +582,13 @@
 <h3 id="拦截自定义-Scheme-请求-WebViewJavascriptBridge"><a href="#拦截自定义-Scheme-请求-WebViewJavascriptBridge" class="headerlink" title="拦截自定义 Scheme 请求 - WebViewJavascriptBridge"></a>拦截自定义 Scheme 请求 - WebViewJavascriptBridge</h3><p>由于私有方法的稳定性与审核风险，开发者不愿意使用上文提到的 UIWebView 获取 JSContext 的方式进行通信，所以通常都采用基于 iframe 和自定义 Scheme 的 JavascriptBridge 进行通信。虽然在之后的 WKWebView 提供了系统函数，但是大部分 App 都需要兼容 UIWebView 与 WKWebView，所以目前的使用范围仍然十分广泛。</p>
 <p>在 Github 中类似的开源框架有很多，但是无外乎都是 Web 侧根据固定的格式创建包含通信信息的 Request，之后创建隐式 iFrame 节点请求；Native 侧在相应的 WebView 回调中解析 Request 的 Scheme，之后按照格式解析数据并处理。</p>
 <p>而对于数据传递和回调处理的问题，在兼容两种 WebView、持续的更新的 WebViewJavascriptBridge 中，iFrame request 没有直接传递数据，而是 Web 和 Native 侧维护共同的参数或回调 Queue，Native 通过 Request 中 Scheme 的解析触发对 Queue 里数据的读取。</p>
-<p><img src="jsandnative.jpg" alt=""></p>
+<p><img src="jsandnative.jpg" alt></p>
 <h2 id="脱离-WebView-的通信-JavaScriptCore"><a href="#脱离-WebView-的通信-JavaScriptCore" class="headerlink" title="脱离 WebView 的通信 JavaScriptCore"></a>脱离 WebView 的通信 JavaScriptCore</h2><h3 id="JavascriptCore"><a href="#JavascriptCore" class="headerlink" title="JavascriptCore"></a>JavascriptCore</h3><p>JavascriptCore 一直作为 WebKit 中内置的 JS 引擎使用，在 iOS7 之后，Apple 对原有的 C/C++ 代码进行了 OC 的封装，成系统级的 framework 供开发者使用。作为一个引擎来讲，JavascriptCore 的词法、语法分析，以及多层次的 JIT 编译技术都是值得深入挖掘和学习的方向，由于篇幅的限制暂且不做深入的讨论。</p>
-<p><img src="jscore.jpg" alt=""></p>
+<p><img src="jscore.jpg" alt></p>
 <h3 id="JavascriptCore-framework"><a href="#JavascriptCore-framework" class="headerlink" title="JavascriptCore.framework"></a>JavascriptCore.framework</h3><p>虽然 JavascriptCore.framework 只暴露了较少的头文件和系统函数，但却提供了在 App 中脱离 WebView 执行 Javascript 的环境和能力。</p>
 <p>JSVirtualMachine：提供了 JS 执行的底层资源及内存。虽然 Java 与 Javascript 没有一点关系，但是同样作为虚拟机，JSVM 和 JVM 做了一部分类似的事情。每个 JSVirtualMachine 独占线程，拥有独立的空间和管理，但是可以包含多个 JSContext。JSContext：提供了 JS 运行的上下文环境和接口。可以不准确的理解为，就是创建了一个 Javascript 中的 Window 对象。JSValue：提供了 OC 和 JS 间数据类型的封装和转换 Type Conversions。除了基本的数据类型，需要注意 OC 中的 Block 转换为 JS 中的 function，Class 转换为 Constructor 等等。</p>
 <p>JSManagedValue：Javascript 使用 GC 机制管理内存，而 OC 采用引用计数的方式管理内存。所以在 JavascriptCore 使用过程中，难免会遇到循环引用以及提前释放的问题。JSManagedValue 解决了在两种环境中的内存管理问题。JSExport：提供了类、属性和实例方法的调用接口。内部实现是在 ProtoType &amp; Constructor 中实现对应的属性和方法。</p>
-<p><img src="jscore2.jpg" alt=""></p>
+<p><img src="jscore2.jpg" alt></p>
 <h3 id="使用-JavascriptCore-进行通信"><a href="#使用-JavascriptCore-进行通信" class="headerlink" title="使用 JavascriptCore 进行通信"></a>使用 JavascriptCore 进行通信</h3><p>Native - Web: 通过 JavascriptCore，Native 可以直接在 Context 中执行 JS 语句，和 Web 侧进行通信和交互。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSValue *value = [<span class="keyword">self</span>.jsContext evaluateScript:<span class="string">@"document.cookie"</span>];</span><br></pre></td></tr></table></figure>
 <p>Web - Native: 对于 Web 侧向 Native 的通信，JavascriptCore 提供 两种 方式，注册 Block &amp; Export 协议。</p>
@@ -603,7 +603,7 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 替换全部方法调用</span></span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">NSString</span> *_replaceStr = <span class="string">@".__c(\"$1\")("</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 调用方法</span></span><br><span class="line">  __c: function(methodName) &#123;</span><br><span class="line">      ...</span><br><span class="line">      <span class="keyword">return</span> function()&#123;</span><br><span class="line">          ...</span><br><span class="line">          var ret = instance ? _OC_callI(instance, selectorName, args, isSuper):</span><br><span class="line">                                _OC_callC(clsName, selectorName, args)</span><br><span class="line">          <span class="keyword">return</span> _formatOCToJS(ret)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>当然对于 JSPatch 以及其他热修复的项目来说，Web 和 Native 通信只是整个框架中的一个技术点，更多的实现原理和细节由于篇幅的关系暂且不做介绍。</p>
 <h2 id="2-基于-Web-的跨平台技术"><a href="#2-基于-Web-的跨平台技术" class="headerlink" title="2. 基于 Web 的跨平台技术"></a>2. 基于 Web 的跨平台技术</h2><p>随着 Google 开源了基于 Dart 语言的 Flutter，跨平台的技术又进入了一个新的发展阶段。对于传统的跨平台技术来讲，各个公司以 JavascriptCore 作为通信桥梁，围绕着 DSL 的解析、方法表的注册、模块注册通信、参数传递的设计以及 OC Runtime 的运用等不同方向，封装成了一个又一个跨平台的项目。</p>
-<p><img src="rexiufu.jpg" alt=""></p>
+<p><img src="rexiufu.jpg" alt></p>
 <p>而在其中，以 Javascript 作为前端 DSL 的跨平台技术方案里，FaceBook 的 react-native 以及阿里 (目前托管给了 Apache) 的 Weex 最为流行。在网络上两者的比较文章有很多，集中在学习成本、框架生态、代码侵入、性能以及包大小等, 各个业务可以根据自己的重点选择合理的技术结构。</p>
 <p>而不管是 react-native 还是 Weex,Web 和 Native 的通信桥梁仍然是 JavascriptCore。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//weex 举例</span></span><br><span class="line">JSValue* (^callNativeBlock)(JSValue *, JSValue *, JSValue *) = ^JSValue*(JSValue *instance, JSValue *tasks, JSValue *callback)&#123;</span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">return</span> [JSValue valueWithInt32:(int32_t)callNative(instanceId, tasksArray, callbackId) inContext:[JSContext currentContext]];</span><br><span class="line">&#125;;</span><br><span class="line">_jsContext[<span class="string">@"callNative"</span>] = callNativeBlock;</span><br></pre></td></tr></table></figure>
@@ -611,27 +611,27 @@
 <p>这一章节更为详细的设计与实现，请移步 iOS 新闻类 App 内容页技术探索 (<a href="https://dequan1331.github.io/hybrid-page-kit.html)。" target="_blank" rel="noopener">https://dequan1331.github.io/hybrid-page-kit.html)。</a></p>
 <h2 id="1-不同业务场景的优化策略"><a href="#1-不同业务场景的优化策略" class="headerlink" title="1. 不同业务场景的优化策略"></a>1. 不同业务场景的优化策略</h2><p>对于单纯的 Web 页面来说，业界早已有了合理的优化方向以及成熟的优化方案，而对于移动客户端中的 Web 来说，开发者在进行单一的 Web 优化同时，还可以通过优化 Web 容器以及 Web 页面中数据加载方式等多个途径做出优化。</p>
 <p>所以对于 iOS 开发中的优化来说，就是通过 Native 和 Web 两个维度的优化关键渲染路径，保证 WebView 优先渲染完毕。由此我们梳理了常规 Web 页面整体的加载顺序，从中找出关键渲染路径，继而逐个分析、优化。</p>
-<p><img src="youhua.jpg" alt=""></p>
+<p><img src="youhua.jpg" alt></p>
 <h2 id="2-Web-维度的优化"><a href="#2-Web-维度的优化" class="headerlink" title="2. Web 维度的优化"></a>2. Web 维度的优化</h2><h3 id="通用-Web-优化"><a href="#通用-Web-优化" class="headerlink" title="通用 Web 优化"></a>通用 Web 优化</h3><p>对于 Web 的通用优化方案，一般来说在网络层面，可以通过 DNS 和 CDN 技术减少网络延迟、通过各种 HTTP 缓存技术减少网络请求次数、通过资源压缩和合并减少请求内容等。在渲染层面可以通过精简和优化业务代码、按需加载、防止阻塞、调整加载顺序优化等等。对于这个老生常谈的问题，业内已经有十分成熟和完整的总结，例如《Best Practices for Speeding Up Your Web Site》，已经有了很好的整理和总结。</p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>脱离较为通用的优化，在对代码侵入宽容度较高的场景中，开发者对 Web 优化有着更为激进的做法。例如在 VasSonic 中，除了 Web 容器复用、数据模板分离、预拉取和通用的优化方式外，还通过自定义 VasSonic 标签将 HTML 页面进行划分，分段进行缓存控制，以达到更高的优化效果。</p>
 <h2 id="3-Native-维度的优化"><a href="#3-Native-维度的优化" class="headerlink" title="3. Native 维度的优化"></a>3. Native 维度的优化</h2><h3 id="容器复用和预热"><a href="#容器复用和预热" class="headerlink" title="容器复用和预热"></a>容器复用和预热</h3><p>WKWebView 虽然 JIT 大幅优化了 JS 的执行速度，但是单纯的加载渲染 HTML，WKWebView 比 UIWebView 慢了很多。根据渲染的不同阶段分别对耗时进行测试，同时对比 UIWebView，我们发现 WKWebView 在初始化及渲染开始前的耗时较多。</p>
-<p><img src="loadingtime.jpg" alt=""></p>
+<p><img src="loadingtime.jpg" alt></p>
 <p>针对这种情况，业界主流的做法就是复用 &amp; 预热。预热即时在 App 启动时创建一个 WKWebView，使其内部部分逻辑预热已提升加载速度。而复用又分为两种，较为复杂的是处理边界条件已达到真正的复用，还有一种较为 Triky 的办法就是常驻一个空 WKWebView 在内存。</p>
 <p>HybridPageKit 提供了易于集成的完整 WKWebView 重用机制实现, 开发者可以无需关注复用细节，无缝的体验更为高效的 WKWebView。</p>
 <h3 id="Native-并行资源请求-amp-离线包"><a href="#Native-并行资源请求-amp-离线包" class="headerlink" title="Native 并行资源请求 &amp; 离线包"></a>Native 并行资源请求 &amp; 离线包</h3><p>由于 Web 页面内请求流程不可控以及网络环境的影响，对于 Web 的加载来说，网络请求一直是优化的重点。开发者较为常用的做法是使用 Native 并行代理数据请求，替代 Web 内核的资源加载。在客户端初始化页面的同时，并行开始网络请求数据；当 Web 页面渲染时向 Native 获取其代理请求的数据。</p>
 <p>而将并行加载和预加载做到极致的优化，就是离线包的使用。将常用的需要下载资源（HTML 模板、JS 文件、CSS 文件、占位图片）打包，App 选择合适的时机全部下载到本地，当 Web 页面渲染时向 Native 获取其数据。</p>
 <p>通过离线包的使用，Web 页面可以并行（提前）加载页面资源，同时摆脱了网络的影响，提高了页面的加载速度和成功率。当然离线包作为资源动态更新的一个方式，合理的下载时机、增量更新、加密和校验等方面都是需要进行设计和思考的方向，后文会简单介绍。</p>
 <h3 id="复杂-Dom-节点-Native-化实现"><a href="#复杂-Dom-节点-Native-化实现" class="headerlink" title="复杂 Dom 节点 Native 化实现"></a>复杂 Dom 节点 Native 化实现</h3><p>当并行请求资源，客户端代理数据请求的技术方案逐渐成熟时，由于 WKWebView 的限制，开发者不得不面对业务调整和适配。其中保留原有代理逻辑、采用 LocalServer 的方式最为普遍。但是由于 WKWebView 的进程间通信、LocalServer Socket 建立与连接、资源的重复编解码都影响了代理请求的效率。</p>
-<p><img src="dom.jpg" alt=""></p>
+<p><img src="dom.jpg" alt></p>
 <p>所以对于一些资讯类 App，通常采用 Dom 节点占位、Native 渲染实现的方式进行优化，如图片、地图、音视频等模块。这样不但能减少通信和请求的建立、提供更加友好的交互、也能并行的进行 View 的渲染和处理，同时减少 Web 页面的业务逻辑。</p>
 <p>HybridPageKit 中就提供封装好的功能框架，开发者可以简单的替换 Dom 节点为 NativeView。</p>
 <h3 id="按优先级划分业务逻辑"><a href="#按优先级划分业务逻辑" class="headerlink" title="按优先级划分业务逻辑"></a>按优先级划分业务逻辑</h3><p>从 App 的维度上看，一个 Web 页面从入口点击到渲染完成，或多或少都会有 Native 的业务逻辑并行执行。所以这个角度的优化关键渲染路径，就是优先保证 WebView 以及其他在首屏直接展示的 Native 模块优先渲染。所以承载 Web 页面的 Native 容器，可以根据业务逻辑的优先级，在保证 WebView 模块展示之后，选择合适的时机进行数据加载、视图渲染等。这样就能保证在 Native 的维度上，关键路径优先渲染。</p>
-<p><img src="youxianji.jpg" alt=""></p>
+<p><img src="youxianji.jpg" alt></p>
 <h2 id="4-优化整体流程"><a href="#4-优化整体流程" class="headerlink" title="4. 优化整体流程"></a>4. 优化整体流程</h2><p>所以整体上对于客户端来说，我们可以从 Native 维度（容器和数据加载）以及 Web 维度两个方向提升加载速度，按照页面的加载流程，整体的优化方向如下：</p>
-<p><img src="liucheng.jpg" alt=""></p>
+<p><img src="liucheng.jpg" alt></p>
 <h1 id="iOS-中-Web-相关延伸业务"><a href="#iOS-中-Web-相关延伸业务" class="headerlink" title="iOS 中 Web 相关延伸业务"></a>iOS 中 Web 相关延伸业务</h1><h2 id="1-模板引擎"><a href="#1-模板引擎" class="headerlink" title="1. 模板引擎"></a>1. 模板引擎</h2><p>为了达到并行加载数据以及并行处理复杂的展示逻辑，对于非直出类型的 Web 页面，绝大部分 App 都采用数据和模板分离下发的方式。而这样的技术架构，导致在客户端内需要增加替换对应 DSL 的模板标签，形成最终的 HTML 的业务逻辑。简单的字符串替换逻辑不但低效，还无法做到合理的组件化管理，以及组件合理的与 Native 交互，而模板引擎相关技术会使这种逻辑和表现分离的业务场景实现的更加简洁和优雅。</p>
 <p>基于模板引擎与数据分离，客户端可以根据数据并行创建子业务模块，同时在子业务模块中处理和 Native 交互的部分如图片裁剪适配、点击跳转等等，生成 HTML 代码片段。之后基于模板进行替换生成完整的页面。这样不但减少了大量的字符串替换逻辑，同时业务也得到了合理拆分。</p>
-<p><img src="template.jpg" alt=""></p>
+<p><img src="template.jpg" alt></p>
 <p>模板引擎的本质就是字符串的解析和替换拼接。在 Web 端不同的使用场景有很多不同语法的引擎类型，而在客户端较为流行的，有使用较为复杂的 MGTemplateEngine，它类似于 Smarty，支持部分模板逻辑。也有基于 mustache，Logic-less 的 GRMustache 可供选择。</p>
 <h2 id="2-资源动态更新和管理"><a href="#2-资源动态更新和管理" class="headerlink" title="2. 资源动态更新和管理"></a>2. 资源动态更新和管理</h2><p>无论是离线包、本地注入的 JS、CSS 文件、以及本地化 Web 中的默认图片，目的都是通过提前下载，替换网络请求为本地读取来优化 Web 的加载体验和成功率。而对于这些资源的管理，开发者需要从下载与更新，以及 Web 中的访问这两个方面进行设计优化。</p>
 <h3 id="下载与更新"><a href="#下载与更新" class="headerlink" title="下载与更新"></a>下载与更新</h3><p>下载与重试：对于资源或是离线包的下载，选择合适的时机、失败重载时机、失败重载次数都要根据业务灵活调整。通常为了增加成功率和及时更新，在冷启动、前后台切换、关键的操作节点，或者采用定时轮循的方式，都需要进行资源版本号或 MD5 的判断，用以触发下载逻辑。当然对于服务端来说，合理的灰度控制，也是保证业务稳定的重要途径。</p>
@@ -639,7 +639,7 @@
 <p>增量更新：为了减少资源和离线包的重复下载，业内大部分使用离线包的场景都采用了增量更新的方式。即客户端在触发请求资源时，带上本地已存在资源的标示，服务端根据标示和最新资源做对比，之后只提供新增或修改的 Patch 供客户端下载。</p>
 <h3 id="基于-LocalServer-的访问"><a href="#基于-LocalServer-的访问" class="headerlink" title="基于 LocalServer 的访问"></a>基于 LocalServer 的访问</h3><p>在完成资源的下载与更新后，如何将 Web 请求重定向到本地，大部分 App 都依赖于 NSURLProtocol。上文提到在 WKWebView 中虽然可以使用私有函数实现（或者 iOS11+ 提供系统函数），但是仍然有许多问题。</p>
 <p>目前业界一部分 App，都采用了集成 LocalServer 的方式，接管部分 Web 请求，从而达到访问本地资源的目的。同时集成了 LocalServer，通过将本地资源封装成 Response，利用 HTTP 的缓存技术，进一步的优化了读取的时间和性能，实现层次化的缓存结构。而使用了本地资源的 HTTP 缓存，就需要考虑缓存的控制和过期时间。通常可以通过在 URL 上增加本地文件的修改时间、或本地文件的 MD5 来确保缓存的有效性。</p>
-<p><img src="localserver.jpg" alt=""></p>
+<p><img src="localserver.jpg" alt></p>
 <h3 id="GCDWebServer-浅析"><a href="#GCDWebServer-浅析" class="headerlink" title="GCDWebServer 浅析"></a>GCDWebServer 浅析</h3><p>排除 Socket 类型，业界流行的 Objc 版针对 HTTP 开源的 WebServer，不外乎年久失修的 CocoaHTTPServer 以及 GCDWebServer。GCDWebServer 是一个基于 GCD 的轻量级服务器，简单的四个模块 - Server / Connection / Request / Reponse，以及通过维护 LIFO 的 Handler 队列传入业务逻辑生成响应。在排除了基于 RFC 的 Request/Response 协议设计之外，关键的代码和流程如下：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//GCDWebServer 端口绑定</span></span><br><span class="line">  bind(listeningSocket, address, length)</span><br><span class="line">  listen(listeningSocket, (<span class="keyword">int</span>)maxPendingConnections)</span><br><span class="line"></span><br><span class="line">  <span class="comment">//GCDWebServer 绑定 Socket 端口并接收数据源</span></span><br><span class="line">  dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, listeningSocket, <span class="number">0</span>, dispatch_get_global_queue(_dispatchQueuePriority, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//GCDWebServer 接收数据并创建 Connection</span></span><br><span class="line">  dispatch_source_set_event_handler(source, ^&#123;</span><br><span class="line">      ...</span><br><span class="line">     GCDWebServerConnection* connection = [(GCDWebServerConnection*)[<span class="keyword">self</span>-&gt;_connectionClass alloc] initWithServer:<span class="keyword">self</span> localAddress:localAddress remoteAddress:remoteAddress socket:socket]; </span><br><span class="line"></span><br><span class="line">  <span class="comment">//GCDWebServerConnection 读取数据</span></span><br><span class="line">  dispatch_read(_socket, length, dispatch_get_global_queue(_server.dispatchQueuePriority, <span class="number">0</span>), ^(dispatch_data_t buffer, <span class="keyword">int</span> error) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//GCDWebServerConnection 处理 GCDWebServerMatchBlock 和 GCDWebServerAsyncProcessBlock</span></span><br><span class="line">  <span class="keyword">self</span>-&gt;_request = <span class="keyword">self</span>-&gt;_handler.matchBlock(requestMethod, requestURL, requestHeaders, requestPath, requestQuery);</span><br><span class="line">  ...</span><br><span class="line">  _handler.asyncProcessBlock(request, [completion <span class="keyword">copy</span>]);</span><br></pre></td></tr></table></figure>
 <p>在 LocalServer 的使用上，也要注意端口的选择 ports used by Apple，以及前后台切换时 suspendInBackground 的设置和业务处理。</p>
@@ -649,7 +649,7 @@
 <p>针对上面的两种方式的优点不足，一个较为合理的方式是 Javascript 文件采用本地注入的方式，同时建立资源的动态更新系统（上文）。这样一方面支持了动态更新，同时也无需合作方的配合，对于不同的业务场景也可以拆分不同的 Api 进行注入，保证安全。</p>
 <h3 id="安全控制"><a href="#安全控制" class="headerlink" title="安全控制"></a>安全控制</h3><p>对于 Javascript Open Api 设计实现的另一个重要方面，就是安全性的控制。由于完整的 Api 需要支持 Native 登录、Cookies 等较为敏感的信息获取，同时也支持一些对 UI 和体验影响较多的功能如页面跳转、分享等，所以 App 需要一套权限分级的逻辑控制 Web 相关的接口调用，保证体验和安全。</p>
 <p>常规的做法就是对 Javascript Open Api 建立分级的管理，不同权限的 Web 页面只能调用各自权限内的接口。客户端通过 Domain 进行分级，同时支持动态拉取权限 Domain 白名单，灵活的配置 Web 页面的权限。在此基础上 App 内部也可以通过业务逻辑的划分，在 Native 层面使用不同的容器加载页面，而容器根据业务逻辑的不同，注入不同的 JS 文件进行 Api 权限控制。</p>
-<p><img src="safe.jpg" alt=""></p>
+<p><img src="safe.jpg" alt></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://github.com/dequan1331/HybridPageKit" target="_blank" rel="noopener">https://github.com/dequan1331/HybridPageKit</a></p>
 
       
@@ -792,7 +792,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1106,7 +1106,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

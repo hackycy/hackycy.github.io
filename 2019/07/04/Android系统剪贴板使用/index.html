@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -211,7 +211,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -221,7 +221,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -378,20 +378,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/07/04/Android系统剪贴板使用/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -447,7 +447,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -540,7 +540,7 @@
 <blockquote>
 <p>newHtmlText method need Call requires API level 16</p>
 </blockquote>
-<h1 id="ClipboardFramework架构图"><a href="#ClipboardFramework架构图" class="headerlink" title="ClipboardFramework架构图"></a>ClipboardFramework架构图</h1><p><img src="clipboardframework.png" alt=""></p>
+<h1 id="ClipboardFramework架构图"><a href="#ClipboardFramework架构图" class="headerlink" title="ClipboardFramework架构图"></a>ClipboardFramework架构图</h1><p><img src="clipboardframework.png" alt></p>
 <h1 id="ClipboardManager使用"><a href="#ClipboardManager使用" class="headerlink" title="ClipboardManager使用"></a>ClipboardManager使用</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取剪贴板服务：</span></span><br><span class="line">ClipboardManager manager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);</span><br><span class="line"><span class="comment">//然后把数据放在ClipData对象中</span></span><br><span class="line">ClipData data = ClipData.newPlainText(<span class="string">"label"</span>, <span class="string">"this is clipboard data"</span>);       </span><br><span class="line">manager.setPrimaryClip(data);</span><br></pre></td></tr></table></figure>
 <p>上面的代码就可以将文字放到剪贴板了，然后找个输入框“粘贴”就行啦。</p>
 <blockquote>
@@ -549,7 +549,7 @@
 <p><strong>URI:</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Creates a Uri based on a base Uri and a record ID based on the contact's last name</span></span><br><span class="line"><span class="comment">// Declares the base URI string</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CONTACTS = <span class="string">"content://com.example.contacts"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declares a path string for URIs that you use to copy data</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String COPY_PATH = <span class="string">"/copy"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Declares the Uri to paste to the clipboard</span></span><br><span class="line">Uri copyUri = Uri.parse(CONTACTS + COPY_PATH + <span class="string">"/"</span> + lastName);</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Creates a new URI clip object. The system uses the anonymous getContentResolver() object to</span></span><br><span class="line"><span class="comment">// get MIME types from provider. The clip object's label is "URI", and its data is</span></span><br><span class="line"><span class="comment">// the Uri previously created.</span></span><br><span class="line">ClipData clip = ClipData.newUri(getContentResolver(),<span class="string">"URI"</span>,copyUri);</span><br></pre></td></tr></table></figure>
 <p><strong>Intent:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Creates the Intent</span></span><br><span class="line">Intent appIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, com.example.demo.myapplication.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Creates a clip object with the Intent in it. Its label is "Intent" and its data is</span></span><br><span class="line"><span class="comment">// the Intent object created previously</span></span><br><span class="line">ClipData clip = ClipData.newIntent(<span class="string">"Intent"</span>,appIntent);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Creates the Intent</span></span><br><span class="line">Intent appIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, com.example.demo.myapplication<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Creates a clip object with the Intent in it. Its label is "Intent" and its data is</span></span><br><span class="line"><span class="comment">// the Intent object created previously</span></span><br><span class="line">ClipData clip = ClipData.newIntent(<span class="string">"Intent"</span>,appIntent);</span><br></pre></td></tr></table></figure>
 <h1 id="获取剪贴板内容"><a href="#获取剪贴板内容" class="headerlink" title="获取剪贴板内容"></a>获取剪贴板内容</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">ClipboardManager manager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);</span><br><span class="line"></span><br><span class="line">String resultString = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查剪贴板是否有内容</span></span><br><span class="line"><span class="keyword">if</span>(manager.hasPrimaryClip())&#123;</span><br><span class="line">		ClipData clipData = manager.getPrimaryClip();</span><br><span class="line">		<span class="keyword">int</span> count = clipData.getItemCount();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; ++i) &#123;</span><br><span class="line"></span><br><span class="line">				ClipData.Item item = clipData.getItemAt(i);</span><br><span class="line">				CharSequence str = item.coerceToText(MainActivity.<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				resultString += str;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">Log.e(<span class="string">"TAG"</span>, resultString);</span><br></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
 <li><p>任何时间，都只有一个clip对象在剪贴板里。新的复制操作都会覆盖前一个clip对象，因为用户可能从你的应用中退出，从其他应用中拷贝一个东西，所以你不能假定用户在你的应用中拷贝的上一个东西一定还放在剪贴板里。</p>
@@ -704,7 +704,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1018,7 +1018,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

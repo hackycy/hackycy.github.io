@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -214,7 +214,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -224,7 +224,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -381,20 +381,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/07/10/IOS之UIViewController/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -462,7 +462,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -521,7 +521,7 @@
         <p>UIViewController（视图控制器），顾名思义，是 MVC 设计模式中的控制器部分。UIViewController 在 UIKit 中主要功能是用于控制画面的切换，其中的 <code>view</code> 属性（UIView 类型）管理整个画面的外观。</p>
 <a id="more"></a>
 <h1 id="UIViewController生命周期"><a href="#UIViewController生命周期" class="headerlink" title="UIViewController生命周期"></a>UIViewController生命周期</h1><p>用网上拿来的一张图：</p>
-<p><img src="lifecycle.jpg" alt=""></p>
+<p><img src="lifecycle.jpg" alt></p>
 <p>ViewController 生命周期的第一步是初始化。不过具体调用的方法还有所不同。如果使用 StoryBoard 来创建 ViewController，我们不需要显式地去初始化，Storyboard 会自动使用 <code>initWithCoder:</code> 进行初始化。如果不使用 StoryBoard，我们可以使用 <code>init:</code> 函数进行初始化，<code>init:</code> 函数在实现过程中还会调用 <code>initWithNibName:bundle:</code>。 </p>
 <blockquote>
 <p>尽量避免在 VC 外部调用 <code>initWithNibName:bundle:</code>，而是把它放在 VC 的内部（参考<a href="https://stackoverflow.com/questions/2224077/when-should-i-initialize-a-view-controller-using-initwithnibname" target="_blank" rel="noopener">这里</a>）。</p>
@@ -573,7 +573,7 @@
 <blockquote>
 <p>从 iOS 6 开始，viewDidUnload 方法被废弃掉了，应用受到 memory warning 时也不会再调用 viewDidUnload 方法。我们可以通过重载 <code>- (void)didReceiveMemoryWarning</code> 和 <code>-(void)dealloc</code> 来进行清理工作。</p>
 </blockquote>
-<h1 id="控制器-View-的创建和生命周期"><a href="#控制器-View-的创建和生命周期" class="headerlink" title="控制器 View 的创建和生命周期"></a>控制器 View 的创建和生命周期</h1><p><img src="viewlife.png" alt=""></p>
+<h1 id="控制器-View-的创建和生命周期"><a href="#控制器-View-的创建和生命周期" class="headerlink" title="控制器 View 的创建和生命周期"></a>控制器 View 的创建和生命周期</h1><p><img src="viewlife.png" alt></p>
 <p>图中控制器view的加载过程中有两个很重要的方法：一个是loadView，另外一个是viewDidLoad。</p>
 <p><strong>loadView方法</strong><br>作用：loadView方法是用来负责创建UIViewController的view。</p>
 <p>首先判断下有没有指定storyboard或者xib,如果指定,就会加载它们描述的控制器的view,如果没有指定,创建一个空的view。<br>什么时候调用：每次访问UIViewController的view，当view为nil，就会调用loadView方法。</p>
@@ -601,12 +601,12 @@
 <p>当没有指定xib名称，分两种情况：如果有控制器同名的xib则加载，例如TestViewController会加载TestViewController.xib。如果没有与控制器同名的xib文件时，会加载前缀与控制器名相同而不带controller的xib（TestView.xib）</p>
 <p><strong>3、不通过sb\xib加载</strong></p>
 <p>把xib和sb文件都删除掉，什么都不加载。则会默认创建一个UIView，虽然显示为黑色，但其实该颜色是UIWindow的。</p>
-<p><img src="zindex1.png" alt=""></p>
+<p><img src="zindex1.png" alt></p>
 <p><strong>4、重写loadView方法</strong></p>
 <p>重写控制器的loadView方法:</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)loadView&#123;</span><br><span class="line">  <span class="keyword">self</span>.view = [[<span class="built_in">UIImageView</span> alloc] init];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>控制器view加载出来的时候就是我们设置的UIImageView。如果重写该方法里面什么也不写，和不通过sb\xib加载方式的运行结果相同。不过两者区别是这种方式并没有创建UIView。</p>
-<p><img src="zindex2.png" alt=""></p>
+<p><img src="zindex2.png" alt></p>
 <p><strong>结论：</strong></p>
 <ul>
 <li>重写loadView方法，则会根据重写的loadView方法创建view</li>
@@ -763,7 +763,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1077,7 +1077,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

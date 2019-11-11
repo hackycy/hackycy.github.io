@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -216,7 +216,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -226,7 +226,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -383,20 +383,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/07/08/IOS之UIAlertController使用/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -464,7 +464,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -522,7 +522,7 @@
       
         <p>当应用需要向用户提示一些重要信息或者提示用户进行选择时，可以使用警告框(Alert)或者操作表(Action Sheet)来进行提示用户。下图中左侧是警告框，右侧是操作表。</p>
 <a id="more"></a>
-<p><img src="tip.png" alt=""></p>
+<p><img src="tip.png" alt></p>
 <p>自iOS 8开始，Apple用继承自<code>UIViewController</code>的<code>UIAlertController</code>取代了<code>UIAlertView</code>和<code>UIAlertSheet</code>。</p>
 <p>警报控制器（UIAlertController）虽然有警告框和操作表两种形式，但其创建步骤是一样的。如下所示：</p>
 <ol>
@@ -545,10 +545,10 @@
 <h2 id="显示警告框"><a href="#显示警告框" class="headerlink" title="显示警告框"></a>显示警告框</h2><p>显示alert</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> presentViewController:alert animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
 <p>运行效果：</p>
-<p><img src="alert.png" alt=""></p>
+<p><img src="alert.png" alt></p>
 <p>如果再添加一个reset按钮并设置成<code>UIAlertActionStyleDestructive</code>样式，再看看效果</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="built_in">UIAlertAction</span> *reset = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"Reset"</span> style:<span class="built_in">UIAlertActionStyleDestructive</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Reset Action"</span>);</span><br><span class="line">&#125;];</span><br><span class="line">[alert addAction:reset];</span><br><span class="line"><span class="comment">//show</span></span><br><span class="line">[<span class="keyword">self</span> presentViewController:alert animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
-<p><img src="alert2.png" alt=""></p>
+<p><img src="alert2.png" alt></p>
 <p>只要上面有<code>UIAlertActionStyleCancel</code>样式的按钮，该按钮总是在最底部，其他按钮顺序由添加顺序决定。如果包含<code>UIAlertActionStyleDestructive</code>样式的按钮，一般先添加，以便在第一个位置显示。每一个警报控制器只能包含一个<em>Cancel</em>按钮，如果你添加了两个或多个，在运行时会抛出<code>NSInternalInconsistencyException</code>的异常。</p>
 <blockquote>
 <p><strong>UIAlertActionStyleDefault 和 UIAlertActionStyleCancel 的区别</strong></p>
@@ -562,14 +562,14 @@
 <p>比如这里用一个登录框来进行举例：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取UIAlertController实例</span></span><br><span class="line"><span class="built_in">UIAlertController</span> *alert = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@"登录框"</span> message:<span class="string">@"请输入用户名和密码"</span> preferredStyle:<span class="built_in">UIAlertControllerStyleAlert</span>];</span><br><span class="line"><span class="comment">//创建UIAlertAction</span></span><br><span class="line"><span class="built_in">UIAlertAction</span> *sure = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"登陆"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</span><br><span class="line">		<span class="comment">//获取textField实例，根据添加的顺序获取</span></span><br><span class="line">		<span class="built_in">UITextField</span> *loginname = alert.textFields.firstObject;</span><br><span class="line">		<span class="built_in">UITextField</span> *pwd = alert.textFields.lastObject;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"name:%@,  pwd:%@"</span>, loginname.text, pwd.text);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="built_in">UIAlertAction</span> *cancel = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"取消"</span> style:<span class="built_in">UIAlertActionStyleCancel</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"取消"</span>);        </span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">//添加到UIAlertController实例</span></span><br><span class="line">[alert addAction:sure];</span><br><span class="line">[alert addAction:cancel];</span><br><span class="line"><span class="comment">//添加TextField</span></span><br><span class="line">[alert addTextFieldWithConfigurationHandler:^(<span class="built_in">UITextField</span> * _Nonnull textField) &#123;</span><br><span class="line">   [textField setPlaceholder:<span class="string">@"name"</span>];</span><br><span class="line">&#125;];</span><br><span class="line">[alert addTextFieldWithConfigurationHandler:^(<span class="built_in">UITextField</span> * _Nonnull textField) &#123;</span><br><span class="line">    [textField setPlaceholder:<span class="string">@"password"</span>];</span><br><span class="line">    textField.secureTextEntry = <span class="literal">YES</span>;</span><br><span class="line">&#125;];</span><br><span class="line">[<span class="keyword">self</span> presentViewController:alert animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
 <p>运行效果：</p>
-<p><img src="alerttextfield.png" alt=""></p>
+<p><img src="alerttextfield.png" alt></p>
 <h1 id="创建操作表Action-Sheet"><a href="#创建操作表Action-Sheet" class="headerlink" title="创建操作表Action Sheet"></a>创建操作表Action Sheet</h1><p>操作表一般用于为用户提供一组可供选择的操作选项，如删除、恢复等。一般根据设备尺寸大小决定呈现形式，在iPhone上，操作表由底部滑出；在iPad上，操作表以弹出框（popover)形式出现。</p>
 <p>创建操作表的方法与警告框类似，唯一不同在于<code>preferredStyle:</code>参数的选择。在<code>showActionSheet:</code>方法中创建操作表。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIAlertController</span> *sheet = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@"标题"</span> message:<span class="string">@"这是message"</span> preferredStyle:<span class="built_in">UIAlertControllerStyleActionSheet</span>];</span><br></pre></td></tr></table></figure>
 <p>添加Action Sheet的按钮和添加警告框的按钮代码行为是一致的。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIAlertAction</span> *sure = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"确定"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"确定"</span>);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="built_in">UIAlertAction</span> *reset = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"重置"</span> style:<span class="built_in">UIAlertActionStyleDestructive</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"重置"</span>);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="built_in">UIAlertAction</span> *cancel = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"取消"</span> style:<span class="built_in">UIAlertActionStyleCancel</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</span><br><span class="line">		<span class="built_in">NSLog</span>(<span class="string">@"取消"</span>);</span><br><span class="line">&#125;];</span><br><span class="line">[sheet addAction:sure];</span><br><span class="line">[sheet addAction:cancel];</span><br><span class="line">[sheet addAction:reset];</span><br><span class="line"><span class="comment">//show</span></span><br><span class="line">[<span class="keyword">self</span> presentViewController:sheet animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
 <p>运行效果：</p>
-<p><img src="actionsheet.png" alt=""></p>
+<p><img src="actionsheet.png" alt></p>
 <p>如果<code>Action Sheet</code>中有取消按钮，取消按钮每次都会在底部显示，其他按钮会按照添加的顺序显示。在Action Sheet内不能添加文本框。如果你添加了文本框，在运行时会抛出下面的异常提醒：</p>
 <blockquote>
 <p>Terminating app due to uncaught exception ‘NSInternalInconsistencyException’, reason: ‘Text fields can only be added to an alert controller of style UIAlertControllerStyleAlert’</p>
@@ -581,7 +581,7 @@
 <p>Terminating app due to uncaught exception ‘NSGenericException’, reason: ‘Your application has presented a UIAlertController (&lt;UIAlertController: 0x7f88c85221f0&gt;) of style UIAlertControllerStyleActionSheet. The modalPresentationStyle of a UIAlertController with this style is UIModalPresentationPopover. You must provide location information for this popover through the alert controller’s popoverPresentationController. You must provide either a sourceView and sourceRect or a barButtonItem.  If this information is not known when you present the alert controller, you may provide it in the UIPopoverPresentationControllerDelegate method -prepareForPopoverPresentation.’</p>
 </blockquote>
 <p>现在，Action Sheet以触发它的按钮为锚点，以弹出框形式展现。</p>
-<p><img src="actionsheetipad.png" alt=""></p>
+<p><img src="actionsheetipad.png" alt></p>
 <blockquote>
 <p>当Action Sheet以弹出框形式展现时，<code>UIKit</code>会取消显示<em>Cancel</em>按钮。此时，点击popover以外任何区域和点击<em>Cancel</em>按钮效果一致，同时会调用取消按钮的完成处理程序。</p>
 </blockquote>
@@ -748,7 +748,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1062,7 +1062,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

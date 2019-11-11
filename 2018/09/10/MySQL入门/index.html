@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -229,7 +229,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -239,7 +239,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -396,20 +396,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2018/09/10/MySQL入门/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -477,7 +477,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DBA/" itemprop="url" rel="index"><span itemprop="name">DBA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DBA/" itemprop="url" rel="index"><span itemprop="name">DBA</span></a></span>
 
                 
                 
@@ -820,7 +820,7 @@
 <li>PRIMARY KEY关键字用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔。</li>
 <li>ENGINE 设置存储引擎，CHARSET 设置编码。</li>
 </ul>
-<p><img src="create_table_engine.png" alt=""></p>
+<p><img src="create_table_engine.png" alt></p>
 <h1 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h1><p>MySQL删除数据表，语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> (tablename);</span><br></pre></td></tr></table></figure></p>
 <p>示例:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DROP TABLE book;</span><br></pre></td></tr></table></figure></p>
 <h1 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h1><p>使用 <strong> INSERT INTO </strong> 语句来插入数据,语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name ( field1, field2,...fieldN )</span><br><span class="line">                       <span class="keyword">VALUES</span></span><br><span class="line">                       ( value1, value2,...valueN );</span><br></pre></td></tr></table></figure></p>
@@ -829,7 +829,7 @@
 </blockquote>
 <p>示例:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO book(book_name, author, pub, pub_date)</span><br><span class="line">    -&gt; VALUES(<span class="string">'Android Coder'</span>, <span class="string">'bitch'</span>, <span class="string">'english'</span>, NOW())</span><br></pre></td></tr></table></figure></p>
 <p>一次插入多行语句<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO book(book_name, author, pub, pub_date)</span><br><span class="line">    -&gt; VALUES</span><br><span class="line">    -&gt; (<span class="string">'python'</span>, <span class="string">'pp'</span>, <span class="string">'english'</span>, DATE(<span class="string">'2010-08-10'</span>)),</span><br><span class="line">    -&gt; (<span class="string">'kotlin'</span>, <span class="string">'kk'</span>, <span class="string">'amearica'</span>, DATE(<span class="string">'2013-07-10'</span>));</span><br></pre></td></tr></table></figure></p>
-<p><img src="insert_table_engine.png" alt=""><br><img src="inserts_table_engine.png" alt=""></p>
+<p><img src="insert_table_engine.png" alt><br><img src="inserts_table_engine.png" alt></p>
 <h1 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h1><p>使用SQL SELECT 查询数据,语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name,column_name</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line">[<span class="keyword">WHERE</span> Clause]</span><br><span class="line">[<span class="keyword">LIMIT</span> N][ <span class="keyword">OFFSET</span> M]</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>查询语句中你可以使用一个或者多个表，表之间使用逗号(,)分割，并使用WHERE语句来设定查询条件。</li>
@@ -894,7 +894,7 @@
 <p>如果我们想在 MySQL 数据表中读取指定的数据，WHERE 子句是非常有用的。<br>使用主键来作为 WHERE 子句的条件查询是非常快速的。<br>如果给定的条件在表中没有任何匹配的记录，那么查询不会返回任何数据。</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM book WHERE author=<span class="string">'bitch'</span></span><br></pre></td></tr></table></figure>
-<p><img src="select_table_engine.png" alt=""></p>
+<p><img src="select_table_engine.png" alt></p>
 <h1 id="UPDATE-查询"><a href="#UPDATE-查询" class="headerlink" title="UPDATE 查询"></a>UPDATE 查询</h1><p>使用SQL UPDATE语句修改或更新数据库中数据</p>
 <p>语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> field1=<span class="keyword">new</span>-value1, field2=<span class="keyword">new</span>-value2</span><br><span class="line">[<span class="keyword">WHERE</span> Clause]</span><br></pre></td></tr></table></figure></p>
 <ul>
@@ -903,7 +903,7 @@
 <li>你可以在一个单独表中同时更新数据。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; UPDATE book SET author = <span class="string">'jack'</span> WHERE book_id = 4;</span><br></pre></td></tr></table></figure>
-<p><img src="update_table_engine.png" alt=""></p>
+<p><img src="update_table_engine.png" alt></p>
 <h1 id="DELETE-删除"><a href="#DELETE-删除" class="headerlink" title="DELETE 删除"></a>DELETE 删除</h1><p>SQL 的 DELETE FROM 命令来删除 MySQL 数据表中的记录。<br>语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name [<span class="keyword">WHERE</span> Clause]</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>如果没有指定 WHERE 子句，MySQL 表中的所有记录将被删除。</li>
@@ -912,7 +912,7 @@
 </ul>
 <p>请谨慎</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DELETE FROM book WHERE book_name = <span class="string">'TEST'</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="delete_table_engine.png" alt=""></p>
+<p><img src="delete_table_engine.png" alt></p>
 <h1 id="LIKE-子句"><a href="#LIKE-子句" class="headerlink" title="LIKE 子句"></a>LIKE 子句</h1><p>MySQL 中使用 SQL SELECT 命令来读取数据， 同时我们可以在 SELECT 语句中使用 WHERE 子句来获取指定的记录。<br>WHERE 子句中可以使用等号 = 来设定获取数据的条件，如 “runoob_author = ‘RUNOOB.COM’”。<br>但是有时候我们需要获取 runoob_author 字段含有 “COM” 字符的所有记录，这时我们就需要在 WHERE 子句中使用 SQL LIKE 子句。<br>SQL LIKE 子句中使用百分号 %字符来表示任意字符，类似于UNIX或正则表达式中的星号 *。<br>如果没有使用百分号 %, LIKE 子句与等号 = 的效果是一样的。</p>
 <p>语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field1, field2,...fieldN </span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> field1 <span class="keyword">LIKE</span> condition1 [<span class="keyword">AND</span> [<span class="keyword">OR</span>]] filed2 = <span class="string">'somevalue'</span></span><br></pre></td></tr></table></figure></p>
 <ul>
@@ -927,9 +927,9 @@
 <p>like 匹配/模糊匹配，会与 % 和 _ 结合使用。<br>‘%a’     //以a结尾的数据<br>‘a%’     //以a开头的数据<br>‘%a%’    //含有a的数据<br>‘_a_’    //三位且中间字母是a的<br>‘<em>a’     //两位且结尾字母是a的<br>‘a</em>‘     //两位且开头字母是a的</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM book WHERE pub LIKE <span class="string">'a%'</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="like_table_engine.png" alt=""></p>
+<p><img src="like_table_engine.png" alt></p>
 <h1 id="UNION-操作符"><a href="#UNION-操作符" class="headerlink" title="UNION 操作符"></a>UNION 操作符</h1><p>MySQL UNION 操作符用于连接两个以上的 SELECT 语句的结果组合到一个结果集合中。多个 SELECT 语句会删除重复的数据。</p>
-<p>语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> expression1, expression2, ... expression_n</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">tables</span></span><br><span class="line">[<span class="keyword">WHERE</span> conditions]</span><br><span class="line"><span class="keyword">UNION</span> [ALL | <span class="keyword">DISTINCT</span>]</span><br><span class="line"><span class="keyword">SELECT</span> expression1, expression2, ... expression_n</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">tables</span></span><br><span class="line">[<span class="keyword">WHERE</span> conditions];</span><br></pre></td></tr></table></figure></p>
+<p>语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> expression1, expression2, ... expression_n</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">tables</span></span><br><span class="line">[<span class="keyword">WHERE</span> conditions]</span><br><span class="line"><span class="keyword">UNION</span> [<span class="keyword">ALL</span> | <span class="keyword">DISTINCT</span>]</span><br><span class="line"><span class="keyword">SELECT</span> expression1, expression2, ... expression_n</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">tables</span></span><br><span class="line">[<span class="keyword">WHERE</span> conditions];</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>expression1, expression2, … expression_n: 要检索的列。</li>
 <li>tables: 要检索的数据表。</li>
@@ -948,11 +948,11 @@
 <li>你可以添加 WHERE…LIKE 子句来设置条件。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM book ORDER BY pub_date ASC;</span><br></pre></td></tr></table></figure>
-<p><img src="orderby_table_engine.png" alt=""></p>
+<p><img src="orderby_table_engine.png" alt></p>
 <h1 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h1><p>GROUP BY 语句根据一个或多个列对结果集进行分组。<br>在分组的列上我们可以使用 COUNT, SUM, AVG,等函数。</p>
 <p>语法<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name, <span class="keyword">function</span>(column_name)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">operator</span> <span class="keyword">value</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> column_name;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT COUNT(*), book_name FROM book GROUP BY book_name;</span><br></pre></td></tr></table></figure>
-<p><img src="groupby_table_engine.png" alt=""></p>
+<p><img src="groupby_table_engine.png" alt></p>
 <p><strong> 注意 </strong></p>
 <ul>
 <li>group by 语句用法有一个注意点，在 select 语句中，所查询的字段除了聚合函数（SUM ,AVG,COUNT…)以外 必须只能是分组的字段，举例：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> book_id,book_name,<span class="keyword">count</span>(*) <span class="keyword">FROM</span> book <span class="keyword">GROUP</span> <span class="keyword">BY</span> book_name;</span><br></pre></td></tr></table></figure>
@@ -976,9 +976,9 @@
 <li>&lt;=&gt;: 比较操作符（不同于=运算符），当比较的的两个值为 NULL 时返回 true。</li>
 </ul>
 <p>关于 NULL 的条件比较运算是比较特殊的。你不能使用 = NULL 或 != NULL 在列中查找 NULL 值 。<br>在 MySQL 中，NULL 值与任何其它值的比较（即使是 NULL）永远返回 false，即 NULL = NULL 返回false 。<br>MySQL 中处理 NULL 使用 IS NULL 和 IS NOT NULL 运算符。</p>
-<p>实例:<br><img src="null_1.png" alt=""><br>表中有一行有NULL值的数据，如果使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM book WHERE pub = NULL;</span><br></pre></td></tr></table></figure></p>
-<p>会出现<br><img src="null_2.png" alt=""><br>判断NULL， =和！=是不起作用的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM book WHERE author IS NULL;</span><br><span class="line">mysql&gt; SELECT * FROM book WHERE author IS NOT NULL;</span><br></pre></td></tr></table></figure></p>
-<p><img src="null_3.png" alt=""><br><img src="null_4.png" alt=""></p>
+<p>实例:<br><img src="null_1.png" alt><br>表中有一行有NULL值的数据，如果使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM book WHERE pub = NULL;</span><br></pre></td></tr></table></figure></p>
+<p>会出现<br><img src="null_2.png" alt><br>判断NULL， =和！=是不起作用的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM book WHERE author IS NULL;</span><br><span class="line">mysql&gt; SELECT * FROM book WHERE author IS NOT NULL;</span><br></pre></td></tr></table></figure></p>
+<p><img src="null_3.png" alt><br><img src="null_4.png" alt></p>
 <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p><a href="http://www.runoob.com/mysql/mysql-regexp.html" target="_blank" rel="noopener">案例</a></p>
 <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你即需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</p>
 <ul>
@@ -1006,7 +1006,7 @@
 <li>ROLLBACK TO identifier；把事务回滚到标记点；</li>
 <li>SET TRANSACTION；用来设置事务的隔离级别。InnoDB存储引擎提供事务的隔离级别有READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ和SERIALIZABLE。</li>
 </ul>
-<p><a href="http://www.runoob.com/mysql/mysql-transaction.html" target="_blank" rel="noopener">案例</a><br><img src="transition.png" alt=""></p>
+<p><a href="http://www.runoob.com/mysql/mysql-transaction.html" target="_blank" rel="noopener">案例</a><br><img src="transition.png" alt></p>
 <h1 id="ALTER命令"><a href="#ALTER命令" class="headerlink" title="ALTER命令"></a>ALTER命令</h1><p>当我们需要修改数据表名或者修改数据表字段时，就需要使用到MySQL ALTER命令。</p>
 <p>ALTER TABLE：添加，修改，删除表的列，约束等表的定义。</p>
 <ul>
@@ -1034,9 +1034,9 @@
 <li>修改列属性：alter table t_book modify name varchar(22);</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc book;</span><br><span class="line">mysql&gt; desc reader;</span><br></pre></td></tr></table></figure>
-<p><img src="desc_table_reader_and_book.png" alt=""><br>添加book_id列到reader表，并添加外键约束(book表中的book_id)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE reader ADD book_id INT UNSIGNED;</span><br><span class="line">mysql&gt; desc reader;</span><br></pre></td></tr></table></figure></p>
-<p><img src="alter_reader_add_bid.png" alt=""><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE reader ADD CONSTRAINT fk_book_reader FOREIGN key</span><br><span class="line">    -&gt; reader(book_id) REFERENCES book(book_id);</span><br></pre></td></tr></table></figure></p>
-<p><img src="reader_add_foreign_key.png" alt=""><br>出现1215详情见另一篇文章[MySQL错误集]</p>
+<p><img src="desc_table_reader_and_book.png" alt><br>添加book_id列到reader表，并添加外键约束(book表中的book_id)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE reader ADD book_id INT UNSIGNED;</span><br><span class="line">mysql&gt; desc reader;</span><br></pre></td></tr></table></figure></p>
+<p><img src="alter_reader_add_bid.png" alt><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE reader ADD CONSTRAINT fk_book_reader FOREIGN key</span><br><span class="line">    -&gt; reader(book_id) REFERENCES book(book_id);</span><br></pre></td></tr></table></figure></p>
+<p><img src="reader_add_foreign_key.png" alt><br>出现1215详情见另一篇文章[MySQL错误集]</p>
 <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>MySQL索引的建立对于MySQL的高效运行是很重要的，索引可以大大提高MySQL的检索速度。<br>打个比方，如果合理的设计且使用索引的MySQL是一辆兰博基尼的话，那么没有设计和使用索引的MySQL就是一个人力三轮车。<br>索引分单列索引和组合索引。单列索引，即一个索引只包含单个列，一个表可以有多个单列索引，但这不是组合索引。组合索引，即一个索引包含多个列。<br>创建索引时，你需要确保该索引是应用在  SQL 查询语句的条件(一般作为 WHERE 子句的条件)。<br>实际上，索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录。<br>上面都在说使用索引的好处，但过多的使用索引将会造成滥用。因此索引也会有它的缺点：虽然索引大大提高了查询速度，同时却会降低更新表的速度，如对表进行INSERT、UPDATE和DELETE。因为更新表时，MySQL不仅要保存数据，还要保存一下索引文件。<br>建立索引会占用磁盘空间的索引文件。</p>
 <h1 id="显示索引"><a href="#显示索引" class="headerlink" title="显示索引"></a>显示索引</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW INDEX FROM table_name\G</span><br></pre></td></tr></table></figure>
 <h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>这是最基本的索引，它没有任何限制。它有以下几种创建方式：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> indexName <span class="keyword">ON</span> mytable(cname(<span class="keyword">length</span>));</span><br></pre></td></tr></table></figure></p>
@@ -1045,7 +1045,7 @@
 <h3 id="创建表的时候直接指定"><a href="#创建表的时候直接指定" class="headerlink" title="创建表的时候直接指定"></a>创建表的时候直接指定</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> mytable(  </span><br><span class="line">  <span class="keyword">ID</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,   </span><br><span class="line">  username <span class="built_in">VARCHAR</span>(<span class="number">16</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,  </span><br><span class="line">  <span class="keyword">INDEX</span> [indexName] (username(<span class="keyword">length</span>))  </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <h3 id="删除索引的语法"><a href="#删除索引的语法" class="headerlink" title="删除索引的语法"></a>删除索引的语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> [indexName] <span class="keyword">ON</span> mytable;</span><br></pre></td></tr></table></figure>
 <p>为book表中book_name建立基本的索引<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE INDEX INDEX_BOOKNAME ON book(book_name(50));</span><br></pre></td></tr></table></figure></p>
-<p><img src="create_index.png" alt=""></p>
+<p><img src="create_index.png" alt></p>
 <h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>它与前面的普通索引类似，不同的就是：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。它有以下几种创建方式：</p>
 <h3 id="创建索引-1"><a href="#创建索引-1" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> indexName <span class="keyword">ON</span> mytable(username(<span class="keyword">length</span>))</span><br></pre></td></tr></table></figure>
 <h3 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> mytable <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [indexName] (username(<span class="keyword">length</span>))</span><br></pre></td></tr></table></figure>
@@ -1067,7 +1067,7 @@
 <p>语法和建表差不多，只不过 <strong> TABLE </strong> 关键字改成 <strong> TEMPORARY TABLE </strong> 即可。</p>
 <p>删除和普通删除表语法没区别。</p>
 <h1 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h1><p>使用 <strong> SHOW CREATE TABLE </strong> 命令获取创建数据表(CREATE TABLE) 语句，该语句包含了原数据表的结构，索引等。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW CREATE TABLE book\G</span><br></pre></td></tr></table></figure></p>
-<p><img src="show_create_table.png" alt=""></p>
+<p><img src="show_create_table.png" alt></p>
 <p>复制表的内容，你就可以使用 <strong> INSERT INTO … SELECT </strong> 语句来实现<br><a href="http://www.runoob.com/mysql/mysql-clone-tables.html" target="_blank" rel="noopener">案例</a></p>
 <p>note:<br>来给大家区分下mysql复制表的两种方式。<br>第一、只复制表结构到新表<br>create table 新表 select <em> from 旧表 where 1=2<br>或者<br>create table 新表 like 旧表<br>第二、复制表结构及数据到新表<br>create table新表 select </em> from 旧表 </p>
 <h1 id="序列使用"><a href="#序列使用" class="headerlink" title="序列使用"></a>序列使用</h1><p>MySQL 序列是一组整数：1, 2, 3, …，由于一张数据表只能有一个字段自增主键， 如果你想实现其他字段也实现自动增加，就可以使用MySQL序列来实现。</p>
@@ -1231,7 +1231,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1545,7 +1545,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

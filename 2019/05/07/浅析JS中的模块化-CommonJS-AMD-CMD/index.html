@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -212,7 +212,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -222,7 +222,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -379,20 +379,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/05/07/浅析JS中的模块化-CommonJS-AMD-CMD/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -460,7 +460,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
 
                 
                 
@@ -540,7 +540,7 @@
 <blockquote>
 <p>node编程中最重要的思想之一就是模块，而正是这个思想，让JavaScript的大规模工程成为可能。模块化编程在js界流行，也是基于此，随后在浏览器端，requirejs和seajs之类的工具包也出现了，可以说在对应规范下，require统治了ES6之前的所有模块化编程，即使现在，在ES6 module被完全实现之前，还是这样。</p>
 </blockquote>
-<p><img src="commonjs.png" alt=""></p>
+<p><img src="commonjs.png" alt></p>
 <p>例如在Node中，Node 应用由模块组成，采用 CommonJS 模块规范。</p>
 <p>每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。</p>
 <p>CommonJS规范规定，每个模块内部，<code>module</code>变量代表当前模块。这个变量是一个对象，它的·<code>exports</code>属性（即·<code>module.exports</code>）是对外的接口。加载某个模块，其实是加载该模块的·<code>module.exports</code>属性。</p>
@@ -565,7 +565,7 @@
 </ul>
 <p>详细学习使用请参考链接：<a href="https://javascript.ruanyifeng.com/nodejs/module.html" target="_blank" rel="noopener">https://javascript.ruanyifeng.com/nodejs/module.html</a></p>
 <h1 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h1><p>有了服务器端的模块化后，很自然客户端也需要进行模块化，最好两者能够兼容，并且在服务器和浏览器都能够运行。也由于一个重大的局限，使得CommonJS规范不适用于浏览器环境上。</p>
-<p><img src="amd.png" alt=""></p>
+<p><img src="amd.png" alt></p>
 <p>就例如上述中CommonJS中的案例代码，在未加载完第一行的<code>require(&#39;./user.js&#39;)</code>代码时，后面的<code>module1.m1()</code>等的方法都会进行等待第一行完成后才可以继续运行。这对服务端来说不是问题，因为所有的模块都存放在本地硬盘，没有网络等其他原因，可以很快的同步加载完成，只需要等待硬盘的读取时间。但是对于浏览器环境，却是一个很大的问题，因为所有的模块都放置于服务端，等待时间不是取决于硬盘，而是取决于网速的快慢，这就导致了可能会导致等待时间过长，导致浏览器出现’假死’状态。</p>
 <p>因此浏览器端的模块不可以采用’同步加载’（synchronous），只能使用’异步加载’（asynchronous）。这就是<a href="[https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88">AMD</a>](<a href="https://github.com/amdjs/amdjs-api/wiki/AMD-(中文版))规范的诞生背景。" target="_blank" rel="noopener">https://github.com/amdjs/amdjs-api/wiki/AMD-(中文版))规范的诞生背景。</a></p>
 <blockquote>
@@ -586,7 +586,7 @@
 <p>RequireJS的基本思想是，通过define方法，将代码定义为模块；通过require方法，实现代码的模块加载。</p>
 </blockquote>
 <p>首先，将require.js嵌入网页，然后就能在网页中进行模块化编程了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">data-main</span>=<span class="string">"app"</span> <span class="attr">src</span>=<span class="string">"https://requirejs.org/docs/release/2.3.6/comments/require.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">data-main</span>=<span class="string">"app"</span> <span class="attr">src</span>=<span class="string">"https://requirejs.org/docs/release/2.3.6/comments/require.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面代码的<code>data-main</code>属性不可省略，用于指定主代码所在的脚本文件，在上例中为当前目录下的<code>app.js</code>文件。用户自定义的代码就放在这个<code>app.js</code>文件中。</p>
 <p><strong>define方法：定义模块</strong></p>
 <ul>
@@ -818,7 +818,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1132,7 +1132,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

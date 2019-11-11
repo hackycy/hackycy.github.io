@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -224,7 +224,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -234,7 +234,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -391,20 +391,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/05/22/Android-UI适配指南/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -472,7 +472,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -530,17 +530,17 @@
       
         <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在Android开发中，由于Android碎片化严重，屏幕分辨率千奇百怪，而想要在各种分辨率的设备上显示基本一致的效果，适配成本越来越高。虽然Android官方提供了dp单位来适配，但其在各种奇怪分辨率下表现却不尽如人意。</p>
 <a id="more"></a>
-<p><img src="fenbutu.png" alt=""></p>
+<p><img src="fenbutu.png" alt></p>
 <p><strong>Android屏幕分辨率分布图</strong></p>
-<p><img src="afenbutu.png" alt=""></p>
+<p><img src="afenbutu.png" alt></p>
 <p><strong>对比IOS屏幕分辨率分布图</strong></p>
-<p><img src="ifenbutu.png" alt=""></p>
+<p><img src="ifenbutu.png" alt></p>
 <p>所以Android的屏幕适配已经为重中之重的话题。</p>
 <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>屏幕尺寸、屏幕分辨率、屏幕像素密度</p>
 <p>屏幕尺寸：屏幕对角线长度，单位是英寸，我们常说的多少多少寸，比如4.7存手机、5.7存手机，指的就是这个。</p>
 <p>屏幕分辨率：如 1920×1080，是指在手机屏幕的像素点的个数，单位是px，1px = 1 像素点，一般是纵向像素 × 横向像素，意味着高有 1920 个像素点，宽有 1080 个像素点。</p>
 <p>屏幕像素密度：是指每英寸上的像素点数，单位是 dpi（dotper inch）。像素密度和屏幕尺寸和屏幕分辨率有关，它是由对角线的像素点数除以屏幕的大小得到的，关系如下：</p>
-<p><img src="dpicalc.png" alt=""></p>
+<p><img src="dpicalc.png" alt></p>
 <p>单一变化条件下，屏幕尺寸越小、分辨率越高，像素密度越大，反之越小。</p>
 <blockquote>
 <p>与PPI的概念和计算方式是相同的</p>
@@ -569,10 +569,10 @@
 <p>而dpi是根据屏幕真实的分辨率和尺寸来计算的，每个设备都可能不一样的。</p>
 <p>而因为Android碎片化非常严重的原因就导致了dpi的值非常乱，根本没有规律可循，即使dp适配可以做到80%的适配，但是效果还是差强人意。</p>
 <p>我们用案例来看一下对比：</p>
-<p><img src="avd.png" alt=""></p>
+<p><img src="avd.png" alt></p>
 <p>这里创建了两个个模拟器，同样的分辨率<code>480 * 800</code>两种类别的设备，同样的放一张图片，布局代码</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/iv_adapterimg"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@mipmap/img"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:scaleType</span>=<span class="string">"fitXY"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"300dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"300dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="p480dpshipei.png" alt=""></p>
+<p><img src="p480dpshipei.png" alt></p>
 <p>同样的代码，设置为300dp，但是两台机型却表现得不尽人意。这里就要涉及到上面一些公式的概念进行换算了，因为最终都会转换成px，我们来换算一下：</p>
 <p><strong>480*800 5.1寸机型下</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dpi = √(480^2 * 800^2)/ 5.1 = 182.93</span><br><span class="line">px = 300 * (183 / 160) = 342</span><br></pre></td></tr></table></figure>
@@ -669,9 +669,9 @@
 <p>那么问题来了，<code>ro.sf.lcd_density</code>的值在哪里找到，其配置文件路径在手机的<code>/system/build.prop</code>文件中。</p>
 <p>可以使用adb命令来将文件进行导出。但是要注意的是，avd模拟器下该文件没有<code>ro.sf.lcd_density</code>该配置项。但是可以在<code>emulator根目录下/config.ini</code>中的<code>hw.lcd.density</code>可以找到配置的值。</p>
 <p>4寸模拟器下<code>config.ini</code>的<code>hw.lcd.density</code>值</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hw.lcd.density=240</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">hw.lcd.density</span>=<span class="number">240</span></span><br></pre></td></tr></table></figure>
 <p>我们将4寸的模拟器的配置文件修改成160后查看打印日志:</p>
-<p><img src="hw_log.png" alt=""></p>
+<p><img src="hw_log.png" alt></p>
 <p>可以查看到日志的输出和上面原来的输出发生了改变，改成了自己配置的值。但是该选项只是avd模拟器环境下，真机或者一些游戏模拟器环境下都是在<code>/system/build.prop</code>配置文件中<code>ro.sf.lcd_density</code>的值。一般该值都是出厂时就编译好的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ro.sf.lcd_density=240</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -679,21 +679,21 @@
 </blockquote>
 <p>所以dp都是使用系统定义的dpi来进行换算的。而非是说单纯的使用物理分辨率和尺寸来计算的。但依然如此，Android的碎片化还是让dp直接适配还是无法让人满意，尽管dp适配可以解决小部分的适配问题。</p>
 <h1 id="宽高限定符适配"><a href="#宽高限定符适配" class="headerlink" title="宽高限定符适配"></a>宽高限定符适配</h1><p>为了高效的实现UI开发，出现了新的适配方案，我把它称作宽高限定符适配。简单说，就是穷举市面上所有的Android手机的宽高像素值：</p>
-<p><img src="genvalue.png" alt=""></p>
+<p><img src="genvalue.png" alt></p>
 <p>然后我们根据一个基准，为基准的意思就是,比如设计图的尺寸为<code>480 * 800</code>的分辨率，有个300*300px的ImageView，则</p>
 <ul>
 <li>宽度为480，将任何分辨率的宽度分为480份，每一份1px，取值为x1-x480。</li>
 <li>高度为800，将任何分辨率的高度分为800份，每一份1px，取值为y1-y800。</li>
 </ul>
 <p>则对于540 * 860的分辨率来说</p>
-<p><img src="layxcalc.png" alt=""></p>
+<p><img src="layxcalc.png" alt></p>
 <p>可以看到x1 = 540 / 基准 = 540 / 480 = 1.12 ;而其他分辨率的计算方式相同。</p>
 <p>看一下使用该方式适配的对比结果，同样适用dp适配所使用的布局</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@mipmap/img"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:scaleType</span>=<span class="string">"fitXY"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"@dimen/x300"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"@dimen/y300"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>修改了ImageView的宽和高，适配结果为下图</p>
-<p><img src="valueshipei.png" alt=""></p>
+<p><img src="valueshipei.png" alt></p>
 <p>再看看不同机型分辨率下的表现</p>
-<p><img src="valueshipei2.png" alt=""></p>
+<p><img src="valueshipei2.png" alt></p>
 <p>可以看到对比于使用dp方案来适配的结果要完美上许多。通过dimens引用去寻找该分辨率的文件夹下面对应的值。这样基本可以解决我们的适配问题。</p>
 <p>那么重点来了，既然可以适配，但为什么很少人使用该方案呢，这就涉及到该方案的一个致命的缺点：那就是需要精准命中才能适配。如果values限定符下的分辨率没有对应上手机，则就只能用默认的values下的dimens文件了。如果使用默认尺寸，而又不同于设计稿的尺寸，就可以会发生UI变形。简单的说容错率太低了。</p>
 <blockquote>
@@ -721,7 +721,7 @@
 <p>但是框架要在运行时会在onMeasure里面做变换，自定义的控件可能会被影响或限制，可能有些特定的控件，需要单独适配，这里面可能存在的暗坑是不可预见的。因为这是由框架来完成，并非系统完成。并且该库作者已经放弃维护了。</p>
 <h1 id="smallestWidth适配"><a href="#smallestWidth适配" class="headerlink" title="smallestWidth适配"></a>smallestWidth适配</h1><p>smallestWidth适配也叫做sw限定符适配。值得是Android会识别屏幕可用宽度和高度的最小尺寸的dp值，然后再根据识别的结果去资源文件中寻找对应的限定符的文件夹下的资源文件。</p>
 <p>这种机制上和上文提到的宽高限定符适配原理上是一样的。都是通过系统特定的规则选择对应的文件。</p>
-<p><img src="genswvalue.png" alt=""></p>
+<p><img src="genswvalue.png" alt></p>
 <p>例如，比如一台手机的dpi为480，横向分辨率为1080px，根据公式px = dp(dpi/160)，横向的dp值是360dp。则系统就会自动去寻找<code>value-sw360dp</code>的文件夹以及对应的资源文件。</p>
 <blockquote>
 <p>理论条件下物理dp等于系统dp</p>
@@ -734,7 +734,7 @@
 <p>计算完后，那么对应的布局文件编写代码：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/iv_adapterimg"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@mipmap/img"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:scaleType</span>=<span class="string">"fitXY"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"@dimen/qb_px_300"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"@dimen/qb_px_300"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行一下来看看适配的效果：</p>
-<p><img src="swvalueshipei.png" alt=""></p>
+<p><img src="swvalueshipei.png" alt></p>
 <p>smallestWidth的适配机制由系统保证，我们只需要针对这套规则生成对应的资源文件即可，不会出现什么难以解决的问题，也根本不会影响我们的业务逻辑代码，而且只要我们生成的资源文件分布合理，，即使对应的smallestWidth值没有找到完全对应的资源文件，它也能向下兼容，寻找最接近的资源文件。</p>
 <p>当然该方案也有他的缺点，生成的文件夹越多，也就意味着生成的dimens文件的覆盖范围和尺寸范围越大，apk的安装包也会增加，宽高限定符适配方案也同样有着该缺点。</p>
 <blockquote>
@@ -767,7 +767,7 @@
 <p>今日头条方案代码实现：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.app.Activity;</span><br><span class="line"><span class="keyword">import</span> android.app.Application;</span><br><span class="line"><span class="keyword">import</span> android.content.ComponentCallbacks;</span><br><span class="line"><span class="keyword">import</span> android.content.res.Configuration;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">import</span> android.util.DisplayMetrics;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">float</span> sNoncompatDensity;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">float</span> sNoncompatScaledDensity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setCustomDensity</span><span class="params">(@NonNull Activity activity, @NonNull <span class="keyword">final</span> Application application)</span></span>&#123;</span><br><span class="line">        <span class="keyword">final</span> DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( sNoncompatDensity == <span class="number">0</span>) &#123;</span><br><span class="line">            sNoncompatDensity = appDisplayMetrics.density;</span><br><span class="line">            sNoncompatScaledDensity = appDisplayMetrics.scaledDensity;</span><br><span class="line">            application.registerComponentCallbacks(<span class="keyword">new</span> ComponentCallbacks() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConfigurationChanged</span><span class="params">(Configuration newConfig)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(newConfig != <span class="keyword">null</span> &amp;&amp; newConfig.fontScale &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        sNoncompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLowMemory</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> targetDensity = (<span class="keyword">float</span>) (appDisplayMetrics.widthPixels / <span class="number">480.0</span>);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> targetDensityDPI = (<span class="keyword">int</span>) (targetDensity * <span class="number">160</span>);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">float</span> targetScaledDensity = targetDensity * (sNoncompatScaledDensity / sNoncompatDensity);</span><br><span class="line"></span><br><span class="line">        appDisplayMetrics.density  = targetDensity;</span><br><span class="line">        appDisplayMetrics.densityDpi = targetDensityDPI;</span><br><span class="line">        appDisplayMetrics.scaledDensity = targetScaledDensity;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();</span><br><span class="line">        activityDisplayMetrics.density  = targetDensity;</span><br><span class="line">        activityDisplayMetrics.densityDpi = targetDensityDPI;</span><br><span class="line">        activityDisplayMetrics.scaledDensity = targetScaledDensity;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后在activity#onCreate方法中调用即可，在setContentView之前。运行看看适配的效果：</p>
-<p><img src="toutiaoshipei.png" alt=""></p>
+<p><img src="toutiaoshipei.png" alt></p>
 <blockquote>
 <p>以设计图宽480dp去适配的，如果要以高维度适配，可以再扩展下代码即可</p>
 </blockquote>
@@ -941,7 +941,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1255,7 +1255,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

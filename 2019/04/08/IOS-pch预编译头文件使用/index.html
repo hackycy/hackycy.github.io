@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -214,7 +214,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -224,7 +224,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -381,20 +381,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/04/08/IOS-pch预编译头文件使用/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -450,7 +450,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -525,7 +525,7 @@
 <li><p>找到<code>Prefix Header</code>项</p>
 </li>
 </ul>
-<p><img src="pch_config.png" alt=""></p>
+<p><img src="pch_config.png" alt></p>
 <p>双击可弹出输入框，给Prefix Header设置路径，只需要点击pch文件然后按住鼠标左键拖过来就行，但是<code>/Users/zjyzy/WorkPlace/xcode/AllDemo/BarDemo/BarDemo/PrefixHeader.pch</code>代表的是绝对路径，当用别的电脑时就不能识别了，这时就可以用到<code>$(SRCROOT)</code>来替换，在iOS中<code>$(SRCROOT)</code>代表的是项目根目录下，路径形式为：<br><code>$(SRCROOT)/当前工程名字/需要包含头文件所在文件夹</code><br>所以把路径改为:<br><code>$(SRCROOT)/BarDemo/PrefixHeader.pch</code></p>
 <h1 id="PCH使用"><a href="#PCH使用" class="headerlink" title="PCH使用"></a>PCH使用</h1><p>一般来说在你向pch添加全局的头文件之前,必须添加以下代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __OBJC__</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
@@ -536,9 +536,9 @@
 <p><code>TTLog</code>为自定义名称,在项目中输出则将<code>NSLog</code>替换为<code>TTLog</code>即可。</p>
 </blockquote>
 <p><strong>宏定义的debug /release切换，见下图操作步骤</strong></p>
-<p><img src="rd.png" alt=""></p>
+<p><img src="rd.png" alt></p>
 <p>在选择了<code>Edit Scheme</code>后<code>run info</code>中切换<code>debug/release</code>模式</p>
-<p><img src="rd2.png" alt=""></p>
+<p><img src="rd2.png" alt></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://my.oschina.net/goboy/blog/1838003" target="_blank" rel="noopener">https://my.oschina.net/goboy/blog/1838003</a></p>
 <p><a href="https://www.jianshu.com/p/a1d61f5cc454" target="_blank" rel="noopener">https://www.jianshu.com/p/a1d61f5cc454</a></p>
 
@@ -682,7 +682,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -996,7 +996,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

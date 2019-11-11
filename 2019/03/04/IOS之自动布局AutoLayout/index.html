@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -214,7 +214,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -224,7 +224,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -381,20 +381,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/03/04/IOS之自动布局AutoLayout/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -462,7 +462,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -645,14 +645,14 @@
 <h3 id="对其他的view没有任何关系时，添加到自己的view上"><a href="#对其他的view没有任何关系时，添加到自己的view上" class="headerlink" title="对其他的view没有任何关系时，添加到自己的view上"></a>对其他的view没有任何关系时，添加到自己的view上</h3><p>比如说添加一个按钮的宽和高的约束，对其他的view没有任何关系，则将约束添加到自己身上。</p>
 <p>为按钮添加一个宽和高为两百的约束<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIButton</span> *btn1;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">    <span class="built_in">NSLayoutConstraint</span> *c1 = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:<span class="keyword">self</span>.btn1 attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeWidth</span> multiplier:<span class="number">1</span> constant:<span class="number">200</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLayoutConstraint</span> *c2 = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:<span class="keyword">self</span>.btn1 attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeHeight</span> multiplier:<span class="number">1</span> constant:<span class="number">200</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.btn1.translatesAutoresizingMaskIntoConstraints = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span>.btn1 addConstraint:c1];</span><br><span class="line">    [<span class="keyword">self</span>.btn1 addConstraint:c2];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="对于两个同层级view之间的约束关系，则添加到他们的父View上"><a href="#对于两个同层级view之间的约束关系，则添加到他们的父View上" class="headerlink" title="对于两个同层级view之间的约束关系，则添加到他们的父View上"></a>对于两个同层级view之间的约束关系，则添加到他们的父View上</h3><p>例如<code>3.1</code>与<code>3.2</code>为同层级view，约束关系则添加到父view<code>2.1</code>上。</p>
-<p><img src="auto1.png" alt=""></p>
+<p><img src="auto1.png" alt></p>
 <p>添加了一个蓝色view的上边线与绿色view的下边线对其的约束，两个view为同级约束，则添加到了父view上。</p>
-<p><img src="auto2.png" alt=""></p>
+<p><img src="auto2.png" alt></p>
 <h3 id="对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上"><a href="#对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上" class="headerlink" title="对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上"></a>对于两个不同层级的view之间的约束关系，则添加到它们最近的共同的父view上</h3><p>例如<code>3.3</code>与<code>3.5</code>为同层级view，约束关系则添加到父view<code>1</code>上。</p>
-<p><img src="auto3.png" alt=""></p>
+<p><img src="auto3.png" alt></p>
 <p>但是相对于这种情况应该用的很少。</p>
 <h3 id="对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上"><a href="#对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上" class="headerlink" title="对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上"></a>对于两个有层次关系的view之间的约束关系，则添加到层次较高的那个view上</h3><p>例如<code>1</code>和<code>2.3</code>为父子关系的view，约束关系则添加到view<code>1</code>上</p>
-<p><img src="auto5.png" alt=""></p>
+<p><img src="auto5.png" alt></p>
 <h1 id="刷新约束"><a href="#刷新约束" class="headerlink" title="刷新约束"></a>刷新约束</h1><p>可以通过<code>setNeedsUpdateConstraints</code>和<code>layoutIfNeeded</code>两个方法来刷新约束，使得UIView重新布局。</p>
 <h1 id="Masonry框架"><a href="#Masonry框架" class="headerlink" title="Masonry框架"></a>Masonry框架</h1><p>Masonry是AutoLayout的一个第三方类库，用链式语法封装了冗长的AutoLayout代码</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSArray</span> *)mas_makeConstraints:(<span class="keyword">void</span>(^)(MASConstraintMaker *make))block;</span><br><span class="line">- (<span class="built_in">NSArray</span> *)mas_updateConstraints:(<span class="keyword">void</span>(^)(MASConstraintMaker *make))block;</span><br><span class="line">- (<span class="built_in">NSArray</span> *)mas_remakeConstraints:(<span class="keyword">void</span>(^)(MASConstraintMaker *make))block;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">mas_makeConstraints 只负责新增约束 Autolayout不能同时存在两条针对于同一对象的约束 否则会报错 </span></span><br><span class="line"><span class="comment">mas_updateConstraints 针对上面的情况 会更新在block中出现的约束 不会导致出现两个相同约束的情况</span></span><br><span class="line"><span class="comment">mas_remakeConstraints 则会清除之前的所有约束 仅保留最新的约束</span></span><br><span class="line"><span class="comment">三种函数善加利用 就可以应对各种情况了</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
@@ -808,7 +808,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1122,7 +1122,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

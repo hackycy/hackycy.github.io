@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -213,7 +213,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -223,7 +223,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -380,20 +380,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/04/01/Android中MVC、MVP、MVVM介绍/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -449,7 +449,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -508,7 +508,7 @@
         <p><strong>MVC,MVP,MVVM简单介绍</strong></p>
 <a id="more"></a>
 <h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p><code>MVC</code>全名是<code>Model-View-Controller</code>，是模型(model)-视图(view)-控制器(controller)的缩写，一种软件设计的典范，用一种业务逻辑、数据、界面显示分离的方式来组织代码，在改进和个性化定制洁面以及用户交互的同时，不需要重新编写业务逻辑。其中<code>Model</code>层处理数据，业务逻辑等。<code>View</code>层处理界面的显示结果。<code>Controller</code>层起到桥梁的作用，来控制<code>View</code>层和<code>Model</code>层通信以此来达到分离视图显示和业务逻辑层。</p>
-<p><img src="mvc.png" alt=""></p>
+<p><img src="mvc.png" alt></p>
 <p>我们往往把Android中界面部分的实现也理解为采用了MVC框架，常常把Activity理解为MVC模式中的Controller。</p>
 <p><strong>看似没有什么特别的地方，但是由几个需要特别关注的关键点：</strong></p>
 <ul>
@@ -532,7 +532,7 @@
 <li><strong>Model:</strong>对数据的操作、对网络等的操作，和业务相关的逻辑处理</li>
 <li><strong>Presenter:</strong>作为View与Model交互的中间纽带，处理与用户交互的逻辑。可以把Presenter理解为一个中间层的角色，它接受Model层的数据，并且处理之后传递给View层，还需要处理View层的用户<br>交互等操作。</li>
 </ul>
-<p><img src="mvp.png" alt=""></p>
+<p><img src="mvp.png" alt></p>
 <p><strong>关键点</strong></p>
 <ul>
 <li>View不再负责同步的逻辑，而是由Presenter负责。Presenter中既有业务逻辑也有同步逻辑。</li>
@@ -550,7 +550,7 @@
 </ul>
 <h1 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h1><p><code>MVVM</code>模式（Mode-View-ViewModel），和<code>MVP</code>模式相比，<code>MVVM</code>模式用ViewModel替换了Presenter，其他层基本上与<code>MVP</code>模式一直，<code>ViewModel</code>可以理解成是<code>View</code>的数据模型和<code>Presenter</code>的合体。</p>
 <p><code>MVVM</code>采用双向绑定（data-binding）。View的变动，自动反应在ViewModel，反之亦然。这种模式实际上是框架替应用开发者做了一些工作（相当于ViewModel类是由库帮我们生成的），开发者只需要较少代码就能实现比较复杂的交互。</p>
-<p><img src="mvvm.png" alt=""></p>
+<p><img src="mvvm.png" alt></p>
 <p><strong>MVVM调用关系</strong></p>
 <p>MVVM的调用关系和MVP一样。但是，在ViewModel当中会有一个叫Binder，或者是Data-binding engine的东西。以前全部由Presenter负责的View和Model之间数据同步操作交由给Binder处理。你只需要在View的模版语法当中，指令式地声明View上的显示的内容是和Model的哪一块数据绑定的。当ViewModel对进行Model更新的时候，Binder会自动把数据更新到View上去，当用户对View进行操作（例如表单输入），Binder也会自动把数据更新到Model上去。这种方式称为：Two-way data-binding，双向数据绑定。可以简单而不恰当地理解为一个模版引擎，但是会根据数据变更实时渲染。</p>
 <p><strong>关键点</strong></p>
@@ -711,7 +711,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1025,7 +1025,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -219,7 +219,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -229,7 +229,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -386,20 +386,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/09/25/github和git基操/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -455,7 +455,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/程序人生/" itemprop="url" rel="index"><span itemprop="name">程序人生</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序人生/" itemprop="url" rel="index"><span itemprop="name">程序人生</span></a></span>
 
                 
                 
@@ -514,24 +514,24 @@
         <p>一些Git 和 GitHub基操。</p>
 <a id="more"></a>
 <h1 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h1><h2 id="快捷键-t-和-w"><a href="#快捷键-t-和-w" class="headerlink" title="快捷键: t 和 w"></a>快捷键: t 和 w</h2><p>在你的源码浏览页面，按 <strong>t</strong> 可以快速进入模糊文件名搜索模式：</p>
-<p><img src="1.png" alt=""></p>
+<p><img src="1.png" alt></p>
 <p>在你仓库主页，按 <strong>w</strong> 可以快速进行分支过滤：</p>
-<p><img src="2.png" alt=""></p>
+<p><img src="2.png" alt></p>
 <p>在任意 GitHub 页面中，按 <strong>?</strong> 展示当前页面可用的快捷键：</p>
-<p><img src="3.png" alt=""></p>
+<p><img src="3.png" alt></p>
 <h2 id="忽略空格-w-1"><a href="#忽略空格-w-1" class="headerlink" title="忽略空格: ?w=1"></a>忽略空格: ?w=1</h2><p>在任意的 diff URL 添加 <strong>?w=1</strong> 用来整理缩进:</p>
-<p><img src="4.jpg" alt=""></p>
+<p><img src="4.jpg" alt></p>
 <h2 id="按范围过滤提交记录-master-time-master"><a href="#按范围过滤提交记录-master-time-master" class="headerlink" title="按范围过滤提交记录: master@{time}..master"></a>按范围过滤提交记录: master@{time}..master</h2><p>你可以创建一个对比页面通过使用 URL github.com/user/repo/compare/{range}。范围 (range) 可以是两个 SHA 例如 sha1…sha2 或者两个分支名称例如 master…my-branch。范围同时也非常智能的支持使用时间作为关注点。你可以通过 master@{1.day.ago}…master 过滤从昨天开始的提交。例如：链接，<a href="https://github.com/rails/rails/compare/master@{1.day.ago}…master" target="_blank" rel="noopener">https://github.com/rails/rails/compare/master@{1.day.ago}…master</a> 显示 Rails 项目中全部昨天开始的提交记录和变化：</p>
-<p><img src="5.jpg" alt=""></p>
+<p><img src="5.jpg" alt></p>
 <p>##按作者过滤提交记录: ?author=github_handle</p>
 <p>你可以通过在对比页面URL中增加 ?author=github_handle 来按作者过滤提交记录。例如：链接 <a href="https://github.com/dynjs/dynjs/commits/master?author=jingweno" target="_blank" rel="noopener">https://github.com/dynjs/dynjs/commits/master?author=jingweno</a> 显示 jingweno 对 <strong>Dynjs</strong> 的提交记录：</p>
-<p><img src="6.jpg" alt=""></p>
+<p><img src="6.jpg" alt></p>
 <h2 id="diff-和-patch"><a href="#diff-和-patch" class="headerlink" title=".diff 和 .patch"></a>.diff 和 .patch</h2><p>在比较页面、合并请求页面或者评论页面的URL后增加 .diff 或者 .patch，可以得到 diff 或者 patch 的文本格式。例如：链接 <a href="https://github.com/rails/rails/compare/master@{1.day.ago}…master.patch" target="_blank" rel="noopener">https://github.com/rails/rails/compare/master@{1.day.ago}…master.patch</a> 显示Rails项目中全部昨天开始的提交记录和变化的文本格式：</p>
-<p><img src="7.jpg" alt=""></p>
+<p><img src="7.jpg" alt></p>
 <h2 id="链接行"><a href="#链接行" class="headerlink" title="链接行"></a>链接行</h2><p>在文件展示页面，点击某行或者通过按 SHIFT 选择多行，URL 会有相应的改变。如果你要给你的队友分享一段代码是非常方便的：</p>
-<p><img src="8.jpg" alt=""></p>
+<p><img src="8.jpg" alt></p>
 <h2 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h2><p>在合并请求、问题、或者任何评论中，sha和问题码(例如：#1)会被自动链接。并且，你也可以链接其它仓库的 sha 或者问题码，格式：<code>user/repo@sha1</code> 或者 <code>user/repo#1</code>。下面是一个评论中通过sha自动链接的例子：</p>
-<p><img src="9.jpg" alt=""></p>
+<p><img src="9.jpg" alt></p>
 <h2 id="hub"><a href="#hub" class="headerlink" title="hub"></a>hub</h2><p>Hub 是 GitHub的命令行。它提供了Git和Github之间的集成。一个最有用的命令就是在命令行输入 hub pull-request 创建pull request。详见 <strong>readme.</strong>（<a href="https://github.com/defunkt/hub#commands）。" target="_blank" rel="noopener">https://github.com/defunkt/hub#commands）。</a></p>
 <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="git-log-p-FILE"><a href="#git-log-p-FILE" class="headerlink" title="git log -p FILE"></a><strong>git log -p FILE</strong></h2><p>查看 README.md 的修改历史，例如：</p>
 <blockquote>
@@ -710,7 +710,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1024,7 +1024,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

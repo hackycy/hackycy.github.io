@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -218,7 +218,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -228,7 +228,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -385,20 +385,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2018/09/07/hexo-github-搭建个人博客/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -466,7 +466,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
 
                 
                 
@@ -566,8 +566,8 @@
 <h2 id="点击出现桃心效果"><a href="#点击出现桃心效果" class="headerlink" title="点击出现桃心效果"></a>点击出现桃心效果</h2><p>浏览器输入：<a href="http://7u2ss1.com1.z0.glb.clouddn.com/love.js" target="_blank" rel="noopener">http://7u2ss1.com1.z0.glb.clouddn.com/love.js</a></p>
 <p>拷贝所有代码，在/themes/next/source/js/src里面新建love.js，然后在\themes\next\layout_layout.swig文件末尾添加以下代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 页面点击小红心 --&gt; </span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"/js/src/love.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="设置网站图标"><a href="#设置网站图标" class="headerlink" title="设置网站图标"></a>设置网站图标</h2><p>默认的网站图标是一个N，当然是需要制定一个图了，在网上找到图后，将其放在 <strong> /themes/next/source/images </strong> 里面,找到主题配置文件中的favicon关键字，进行替换,如图<br><img src="favicon_replace.png" alt=""></p>
-<h2 id="实现统计功能"><a href="#实现统计功能" class="headerlink" title="实现统计功能"></a>实现统计功能</h2><p><strong> 实现效果图 </strong><br><img src="word_count.png" alt=""></p>
+<h2 id="设置网站图标"><a href="#设置网站图标" class="headerlink" title="设置网站图标"></a>设置网站图标</h2><p>默认的网站图标是一个N，当然是需要制定一个图了，在网上找到图后，将其放在 <strong> /themes/next/source/images </strong> 里面,找到主题配置文件中的favicon关键字，进行替换,如图<br><img src="favicon_replace.png" alt></p>
+<h2 id="实现统计功能"><a href="#实现统计功能" class="headerlink" title="实现统计功能"></a>实现统计功能</h2><p><strong> 实现效果图 </strong><br><img src="word_count.png" alt></p>
 <p>具体实现方法<br>在博客根目录下,git-bash<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-wordcount --save</span><br></pre></td></tr></table></figure></p>
 <p>然后在主题的配置文件中，配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Post wordcount display settings</span><br><span class="line"># Dependencies: https://github.com/willin/hexo-wordcount</span><br><span class="line">word_count: true</span><br></pre></td></tr></table></figure></p>
 <p><strong> 修改主题 swig 布局 </strong><br>为了能在文章信息处显示字数，我们需要修改 <strong> themes/next/layout/_macro/post.swig </strong> ，在 <strong> class </strong> 为 <strong> post-meta </strong> 的 div 中的添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.word_count %&#125;</span><br><span class="line">    &lt;span class=&quot;post-letters-count&quot;&gt;</span><br><span class="line">        &amp;nbsp; | &amp;nbsp;</span><br><span class="line">        &lt;i class=&quot;fa fa-align-right&quot;&gt;&lt;/i&gt;</span><br><span class="line">        &lt;span&gt;字数统计:&#123;&#123; wordcount(post.content) &#125;&#125;字&lt;/span&gt;</span><br><span class="line">        &amp;nbsp; | &amp;nbsp;</span><br><span class="line">        &lt;i class=&quot;fa fa-align-left&quot;&gt;&lt;/i&gt;</span><br><span class="line">        &lt;span&gt;阅读时长:&#123;&#123; min2read(post.content) &#125;&#125;分&lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure></p>
@@ -578,7 +578,7 @@
 <h2 id="修改文章底部的那个带-号的标签"><a href="#修改文章底部的那个带-号的标签" class="headerlink" title="修改文章底部的那个带#号的标签"></a>修改文章底部的那个带#号的标签</h2><p><strong> 具体实现方法 </strong></p>
 <p>修改模板 <strong> /themes/next/layout/_macro/post.swig </strong> ，搜索 <strong> rel=”tag”&gt;# </strong> ，将 <strong> # </strong> 换成 <strong> <i class="fa fa-tag"></i> </strong></p>
 <h2 id="在网站底部加上访问量"><a href="#在网站底部加上访问量" class="headerlink" title="在网站底部加上访问量"></a>在网站底部加上访问量</h2><p><strong> 具体实现方法 </strong><br>打开 <strong> \themes\next\layout_partials\footer.swig </strong> 文件,在 <strong> copyright </strong> 前加上画红线这句话：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script <span class="keyword">async</span> src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>然后再合适的位置添加显示统计的代码，如图：<br><img src="site_count.png" alt=""><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"powered-by"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-user-md"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></span><br><span class="line">    本站访客数:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    &amp;nbsp|&amp;nbsp</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后再合适的位置添加显示统计的代码，如图：<br><img src="site_count.png" alt><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"powered-by"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-user-md"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></span><br><span class="line">    本站访客数:<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    &amp;nbsp|&amp;nbsp</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>在这里有两中不同计算方式的统计代码：</p>
 <ul>
 <li><p>pv的方式，单个用户连续点击n篇文章，记录n次访问量</p>
@@ -588,8 +588,8 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span></span><br><span class="line">  本站总访问量<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="文章加密访问"><a href="#文章加密访问" class="headerlink" title="文章加密访问"></a>文章加密访问</h2><p>打开 <strong> themes\next\layout_partials\head </strong> 文件,在以下位置插入这样一段代码：<br><img src="safe_read.png" alt=""><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>) &#123;</span><br><span class="line">                alert(<span class="string">'密码错误！'</span>);</span><br><span class="line">                <span class="keyword">if</span> (history.length === <span class="number">1</span>) &#123;</span><br><span class="line">                    location.replace(<span class="string">"http://xxxxxxx.xxx"</span>); <span class="comment">// 这里替换成你的首页</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    history.back();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后在文章上写成类似这样：<br><img src="safe_read_demo.png" alt=""><br>就ok啦，不过很容易被破解掉噢</p>
+<h2 id="文章加密访问"><a href="#文章加密访问" class="headerlink" title="文章加密访问"></a>文章加密访问</h2><p>打开 <strong> themes\next\layout_partials\head </strong> 文件,在以下位置插入这样一段代码：<br><img src="safe_read.png" alt><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>) &#123;</span><br><span class="line">                alert(<span class="string">'密码错误！'</span>);</span><br><span class="line">                <span class="keyword">if</span> (history.length === <span class="number">1</span>) &#123;</span><br><span class="line">                    location.replace(<span class="string">"http://xxxxxxx.xxx"</span>); <span class="comment">// 这里替换成你的首页</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    history.back();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后在文章上写成类似这样：<br><img src="safe_read_demo.png" alt><br>就ok啦，不过很容易被破解掉噢</p>
 <p><strong> 当然还有另一种方式 </strong><br><a href="https://github.com/MikeCoder/hexo-blog-encrypt/blob/master/ReadMe.zh.md" target="_blank" rel="noopener">guide1</a><br><a href="https://github.com/edolphin-ydf/hexo-encrypt" target="_blank" rel="noopener">guide2</a><br>按照指引就可以啦~</p>
 <h1 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h1><p>首先需要进行创建您个人的github账户</p>
 <ol start="0">
@@ -603,7 +603,7 @@
 <li><p>安装 hexo-deployer-git。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>创建github仓库<br><img src="new_repo.png" alt=""><br>仓库名中填写<code>&lt;github的用户名&gt;.github.io</code></p>
+<li><p>创建github仓库<br><img src="new_repo.png" alt><br>仓库名中填写<code>&lt;github的用户名&gt;.github.io</code></p>
 </li>
 <li>修改 <strong> _config.yml </strong> 文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt; </span><br><span class="line">  branch: [branch]</span><br><span class="line">  message: [message]</span><br></pre></td></tr></table></figure>
 </li>
@@ -615,7 +615,7 @@
 </ol>
 <p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p>
 <ol start="7">
-<li>进入博客的github所在仓库，进入仓库设置,查看GitHub Pages<br><img src="github_page.png" alt=""><br>即可完成部署</li>
+<li>进入博客的github所在仓库，进入仓库设置,查看GitHub Pages<br><img src="github_page.png" alt><br>即可完成部署</li>
 </ol>
 <h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><p>这里只提到一些编写过程中遇到的问题</p>
 <p><a href="https://coding.net/help/doc/project/markdown.html#i-6" target="_blank" rel="noopener">markdown语法</a></p>
@@ -778,7 +778,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1092,7 +1092,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

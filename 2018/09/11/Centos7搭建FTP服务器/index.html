@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -211,7 +211,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -221,7 +221,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -378,20 +378,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2018/09/11/Centos7搭建FTP服务器/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -459,7 +459,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/FTP/" itemprop="url" rel="index"><span itemprop="name">FTP</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FTP/" itemprop="url" rel="index"><span itemprop="name">FTP</span></a></span>
 
                 
                 
@@ -534,7 +534,7 @@
 <h1 id="启动VSFTPD"><a href="#启动VSFTPD" class="headerlink" title="启动VSFTPD"></a>启动VSFTPD</h1><p>开机启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> vsftpd.service</span><br><span class="line">$ systemctl start vsftpd.service</span><br></pre></td></tr></table></figure></p>
 <h1 id="创建FTP用户"><a href="#创建FTP用户" class="headerlink" title="创建FTP用户"></a>创建FTP用户</h1><p>修改完vsftpd的配置文件之后我们还是不能使用vsftpd，因为我们还没有设置ftp的用户。<br>添加一个名为ftpuser的用户，用户文件夹位置为：/home/ftpdir，且禁止此用户登陆服务器：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ useradd -d /home/ftpdir -s /sbin/nologin ftpuser</span><br><span class="line">$ passwd ftpuser</span><br></pre></td></tr></table></figure></p>
 <p>这时候系统会要求您输入新的密码并且重复一遍。顺便一提在SSH中，密码一般不会回显，所以初学者可能会觉得输进去没反应，其实是已经输进去了。<br>调整文件夹权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ chmod 777 /home/ftpdir</span><br><span class="line">$ <span class="built_in">cd</span> /home</span><br><span class="line">$ ls -l</span><br></pre></td></tr></table></figure></p>
-<p><img src="chmod_ftpdir.png" alt=""></p>
+<p><img src="chmod_ftpdir.png" alt></p>
 <h1 id="调整防火墙"><a href="#调整防火墙" class="headerlink" title="调整防火墙"></a>调整防火墙</h1><p>我这里用的是传统的管理方式<br>在CentOS 7或RHEL 7或Fedora中防火墙由firewalld来管理，需要还原<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl stop firewalld  </span><br><span class="line">$ systemctl mask firewalld</span><br></pre></td></tr></table></figure></p>
 <p>并且安装iptables-services：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install iptables-services -y</span><br></pre></td></tr></table></figure></p>
 <p>设置开机启动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> iptables</span><br><span class="line">$ systemctl start iptables</span><br></pre></td></tr></table></figure></p>
@@ -694,7 +694,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1008,7 +1008,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

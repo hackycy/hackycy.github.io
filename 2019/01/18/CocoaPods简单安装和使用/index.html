@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -220,7 +220,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -230,7 +230,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -387,20 +387,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/01/18/CocoaPods简单安装和使用/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -468,7 +468,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -530,28 +530,28 @@
 <h2 id="更换镜像"><a href="#更换镜像" class="headerlink" title="更换镜像"></a>更换镜像</h2><p>删除自带镜像<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove https://rubygems.org/</span><br></pre></td></tr></table></figure></p>
 <p>更换<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources -a https://gems.ruby-china.com/</span><br></pre></td></tr></table></figure></p>
 <p>查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources -l</span><br></pre></td></tr></table></figure></p>
-<p>如图显示即为替换镜像成功<br><img src="gemsourcel.png" alt=""></p>
+<p>如图显示即为替换镜像成功<br><img src="gemsourcel.png" alt></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod setup</span><br></pre></td></tr></table></figure>
-<p><img src="podsetup.png" alt=""></p>
+<p><img src="podsetup.png" alt></p>
 <p>到这里CocoaPods就已经安装完毕了。</p>
 <h1 id="使用CocoaPods"><a href="#使用CocoaPods" class="headerlink" title="使用CocoaPods"></a>使用CocoaPods</h1><h2 id="查找第三方库"><a href="#查找第三方库" class="headerlink" title="查找第三方库"></a>查找第三方库</h2><p>比如说要查找某个库，直接在终端输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod search QMUIKit</span><br></pre></td></tr></table></figure>
 <p>完成后他会自动进入一个新的页面显示搜索结果，上下滑动查看更多，要退出的话按wq就可以了。以后再搜索就不需要建索引了。</p>
 <h2 id="引入第三方库到项目中"><a href="#引入第三方库到项目中" class="headerlink" title="引入第三方库到项目中"></a>引入第三方库到项目中</h2><p>这里演示第三方库为QMUIKit</p>
-<p>打开xcode新建一个项目，打开终端，进入项目路径中。<br><img src="projectpwd.png" alt=""></p>
+<p>打开xcode新建一个项目，打开终端，进入项目路径中。<br><img src="projectpwd.png" alt></p>
 <p>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod init</span><br></pre></td></tr></table></figure></p>
-<p>将自动生成一个Podfile文件，也可以自己生成，命令生成有默认模板<br><img src="projectpwd.png" alt=""></p>
-<p>vim编写,添加qmuikit<br><img src="podqmui.png" alt=""></p>
+<p>将自动生成一个Podfile文件，也可以自己生成，命令生成有默认模板<br><img src="projectpwd.png" alt></p>
+<p>vim编写,添加qmuikit<br><img src="podqmui.png" alt></p>
 <p>安装第三方库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure></p>
-<p><img src="podinstall.png" alt=""></p>
+<p><img src="podinstall.png" alt></p>
 <p>查看项目目录变化</p>
-<p>在访达中<br><img src="fd.png" alt=""></p>
+<p>在访达中<br><img src="fd.png" alt></p>
 <p>原本使用xcodeproj打开项目，但是现在要改变成xcworkspace打开项目了。</p>
-<p><img src="installcomple.png" alt=""></p>
+<p><img src="installcomple.png" alt></p>
 <p>这样就可以正常使用该库啦。但是有时候没有只能提示时候，需要更改<code>Build Settings</code>中的<code>User header search paths</code>添加<code>$(SRCROOT)</code>并选择<code>recursive</code></p>
-<p><img src="setting.png" alt=""></p>
-<p><img src="showtip.png" alt=""></p>
+<p><img src="setting.png" alt></p>
+<p><img src="showtip.png" alt></p>
 <h2 id="增加第三方"><a href="#增加第三方" class="headerlink" title="增加第三方"></a>增加第三方</h2><p>继续编写Podfile文件添加第三方库然后在执行<code>pod install</code>就可以了</p>
 <h2 id="更新第三方"><a href="#更新第三方" class="headerlink" title="更新第三方"></a>更新第三方</h2><p>第三方库们都有人在维护升级，我们需要隔断时间就要更新下我们工程中第三方库的版本。只需要终端输入命令<code>pod update</code>就可以了。<br>如果遇到<code>pod install</code>或者<code>pod update</code>慢的问题，原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少。加参数的命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod install --verbose --no-repo-update</span><br><span class="line">pod update --verbose --no-repo-update</span><br></pre></td></tr></table></figure>
@@ -704,7 +704,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1018,7 +1018,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

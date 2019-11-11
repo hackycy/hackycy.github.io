@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -211,7 +211,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -221,7 +221,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -378,20 +378,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/03/24/Mysql优化小技巧/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -459,7 +459,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DBA/" itemprop="url" rel="index"><span itemprop="name">DBA</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DBA/" itemprop="url" rel="index"><span itemprop="name">DBA</span></a></span>
 
                 
                 
@@ -521,7 +521,7 @@
 <h1 id="2、明知只有一条查询结果，那请使用’LIMIT-1’"><a href="#2、明知只有一条查询结果，那请使用’LIMIT-1’" class="headerlink" title="2、明知只有一条查询结果，那请使用’LIMIT 1’"></a>2、明知只有一条查询结果，那请使用’LIMIT 1’</h1><p>‘LIMIT 1’可以避免全表扫描，找到对应结果就不会再继续扫描了</p>
 <h1 id="3、为列选择合适的数据类型"><a href="#3、为列选择合适的数据类型" class="headerlink" title="3、为列选择合适的数据类型"></a>3、为列选择合适的数据类型</h1><p>能用<code>TINYINT</code>就不用<code>SMALLLINT</code>,能用<code>SMALLINT</code>就不用<code>INT</code>，内存消耗越小越好</p>
 <h1 id="4、将大的DELETE，UPDATE或者INSERT查询变成多个小查询"><a href="#4、将大的DELETE，UPDATE或者INSERT查询变成多个小查询" class="headerlink" title="4、将大的DELETE，UPDATE或者INSERT查询变成多个小查询"></a>4、将大的DELETE，UPDATE或者INSERT查询变成多个小查询</h1><p>为了达到更好的性能以及更好的数据控制，可以将它们变成多个小查询</p>
-<p><img src="moresql.png" alt=""></p>
+<p><img src="moresql.png" alt></p>
 <h1 id="5、如果结果集允许重复的话，使用UNION-ALL代替UNION"><a href="#5、如果结果集允许重复的话，使用UNION-ALL代替UNION" class="headerlink" title="5、如果结果集允许重复的话，使用UNION ALL代替UNION"></a>5、如果结果集允许重复的话，使用UNION ALL代替UNION</h1><p>因为UNION ALL不去重复，效率高于UNION</p>
 <h1 id="6、为获得相同结果集的多次执行，请保持SQL语句前后一致"><a href="#6、为获得相同结果集的多次执行，请保持SQL语句前后一致" class="headerlink" title="6、为获得相同结果集的多次执行，请保持SQL语句前后一致"></a>6、为获得相同结果集的多次执行，请保持SQL语句前后一致</h1><p>目的是为了充分利用查询缓冲，比如根据地域或者产品id查询产品价格，第一次使用了<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> price <span class="keyword">FROM</span> <span class="keyword">order</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">123456</span> <span class="keyword">and</span> region = <span class="string">'BEIJING'</span>;</span><br></pre></td></tr></table></figure></p>
 <p>那么第二次同样的查询，请保持以上语句的一致性，比如不要将where语句里面的id和region位置调换顺序。</p>
@@ -676,7 +676,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -990,7 +990,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

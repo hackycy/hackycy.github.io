@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -212,7 +212,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -222,7 +222,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -379,20 +379,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/08/12/IOS之NSUserDefaults/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -460,7 +460,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
 
                 
                 
@@ -518,7 +518,7 @@
       
         <h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><p><code>NSUserDefaults</code>类提供了一个与默认系统交互的编程接口。默认系统允许应用程序自定义其行为以匹配用户的首选项。例如，您可以允许用户指定其首选的测量单位或媒体播放速度。应用程序通过为用户默认数据库中的一组参数指定值来存储这些首选项。这些参数被称为默认值，因为它们通常用于确定应用程序启动时的默认状态或默认情况下的行为方式。在运行时，使用<code>NSUserDefaults</code>对象从用户的默认数据库中读取应用程序使用的默认值。nsUserDefaults缓存信息，以避免每次需要默认值时都必须打开用户的默认数据库。当您设置默认值时，它会在您的进程内同步更改，并异步更改为持久存储和其他进程。</p>
 <a id="more"></a>
-<p><img src="overview.png" alt=""></p>
+<p><img src="overview.png" alt></p>
 <p>如果是一些大型数据，毫无疑问是用一些SQLite或者FMDB等来存储大量数据。但是又一些轻量级别的数据，例如用户的信息、用户的偏好设置，使用该类是最为简单方便的。它通过键值对的方式来来存储一系列的偏好设置来把对象存储/读取相应的<code>plist</code>文件中。那么既然是一个<code>plist</code>，则NSUserDefaults能够存储的数据类型有<a href="https://developer.apple.com/documentation/foundation/nsdata?language=objc" target="_blank" rel="noopener"><code>NSData</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsstring?language=objc" target="_blank" rel="noopener"><code>NSString</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsnumber?language=objc" target="_blank" rel="noopener"><code>NSNumber</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsdate?language=objc" target="_blank" rel="noopener"><code>NSDate</code></a>, <a href="https://developer.apple.com/documentation/foundation/nsarray?language=objc" target="_blank" rel="noopener"><code>NSArray</code></a>, 和<a href="https://developer.apple.com/documentation/foundation/nsdictionary?language=objc" target="_blank" rel="noopener"><code>NSDictionary</code></a>。如果需要存储某些不支持的类型，可以先将其归档为NSData类型再进行存储。</p>
 <p><strong>NSUserDefaults</strong>是一个单例类，在整个程序运行过程中只有一个实例对象，同时也是线程安全的。获取方式：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSUserDefaults</span> *defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br></pre></td></tr></table></figure>
@@ -561,7 +561,7 @@
 <p>通过代码获取路径后：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"path : %@"</span>, path);</span><br></pre></td></tr></table></figure>
 <p>将路径复制到Finder中，前往：</p>
-<p><img src="cunchu.png" alt=""></p>
+<p><img src="cunchu.png" alt></p>
 <h1 id="关于synchronize方法"><a href="#关于synchronize方法" class="headerlink" title="关于synchronize方法"></a>关于synchronize方法</h1><p>该方法是为了强制存储，但其实是没有必要的，该方法系统会默认调用。</p>
 <blockquote>
 <p>Waits for any pending asynchronous updates to the defaults database and returns; this method is unnecessary and shouldn’t be used.</p>
@@ -710,7 +710,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1024,7 +1024,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

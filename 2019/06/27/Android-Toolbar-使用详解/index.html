@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -215,7 +215,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -225,7 +225,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -382,20 +382,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/06/27/Android-Toolbar-使用详解/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -463,7 +463,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -563,27 +563,27 @@
 <li><strong>如果只是当成一个普通控件使用，即不调用<code>setSupportActionBar(mToolbar);</code>方法，可以使用<code>mToolbar.inflateMenu</code>方法来设置菜单。</strong></li>
 </ul>
 <h1 id="其他样式修改"><a href="#其他样式修改" class="headerlink" title="其他样式修改"></a>其他样式修改</h1><h2 id="修改Toolbar-popup-menu样式"><a href="#修改Toolbar-popup-menu样式" class="headerlink" title="修改Toolbar popup menu样式"></a>修改Toolbar popup menu样式</h2><p>点击右上角的三个点，会弹出一个popup menu，如下所示：</p>
-<p><img src="popup_show.png" alt=""></p>
+<p><img src="popup_show.png" alt></p>
 <p>可以看到弹出菜单的样式是白底黑字，那么有没有办法改变它的背景颜色呢，使得菜单显示为黑底白字。这肯定是有的。</p>
 <p>在<code>styles.xml</code>文件中新建一个主题</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- toolbar弹出菜单样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ToolbarPopupTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark"</span>&gt;</span><span class="undefined">   </span></span><br><span class="line"><span class="xml">     <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorBackground"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- toolbar弹出菜单样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ToolbarPopupTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark"</span>&gt;</span>   </span><br><span class="line"><span class="xml">     <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorBackground"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>可以看到这个主题的parent是直接继承自<code>ThemeOverlay.AppCompat.Dark</code>，是支持包的一个主题，并且我们在内部声明了<code>android:colorBackground</code>这个属性，我们只要更改这个属性就能变更菜单的背景颜色了。接下来我们在布局文件中引入这个主题，这也很简单，为toolbar添加额外的属性如下:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:popupTheme="@style/ToolbarPopupTheme"</span><br></pre></td></tr></table></figure>
 <p>运行效果：</p>
-<p><img src="popup_show2.png" alt=""></p>
+<p><img src="popup_show2.png" alt></p>
 <h2 id="修改Toolbar-popup-menu-弹出位置"><a href="#修改Toolbar-popup-menu-弹出位置" class="headerlink" title="修改Toolbar popup menu 弹出位置"></a>修改Toolbar popup menu 弹出位置</h2><p>在上图看到，弹出的菜单的位置是过于偏上的，我们可以修改它的位置，让它在toolbar的下面，这样看起来也美观一些：</p>
 <p>修改<code>styles.xml</code>文件，添加</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- toolbar弹出菜单样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ToolbarPopupTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorBackground"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"actionOverflowMenuStyle"</span>&gt;</span>@style/OverflowMenuStyle<span class="tag">&lt;/<span class="name">item</span>&gt;</span> </span></span><br><span class="line"><span class="xml">  	<span class="comment">&lt;!--新增一个item，用于控制menu--&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"OverflowMenuStyle"</span> <span class="attr">parent</span>=<span class="string">"Widget.AppCompat.Light.PopupMenu.Overflow"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"overlapAnchor"</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">  	<span class="comment">&lt;!--把该属性改为false即可使menu位置位于toolbar之下--&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- toolbar弹出菜单样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ToolbarPopupTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark"</span>&gt;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorBackground"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"actionOverflowMenuStyle"</span>&gt;</span>@style/OverflowMenuStyle<span class="tag">&lt;/<span class="name">item</span>&gt;</span> </span></span><br><span class="line"><span class="xml">  	<span class="comment">&lt;!--新增一个item，用于控制menu--&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"OverflowMenuStyle"</span> <span class="attr">parent</span>=<span class="string">"Widget.AppCompat.Light.PopupMenu.Overflow"</span>&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"overlapAnchor"</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span>  </span></span><br><span class="line"><span class="xml">  	<span class="comment">&lt;!--把该属性改为false即可使menu位置位于toolbar之下--&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>布局文件中引用该主题</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:popupTheme="@style/ToolbarPopupTheme"</span><br></pre></td></tr></table></figure>
 <p>运行效果：</p>
-<p><img src="popup_show3.png" alt=""></p>
+<p><img src="popup_show3.png" alt></p>
 <h2 id="修改Action-Menu-Item-的文字颜色"><a href="#修改Action-Menu-Item-的文字颜色" class="headerlink" title="修改Action Menu Item 的文字颜色"></a>修改Action Menu Item 的文字颜色</h2><p>在<code>styles.xml</code>文件中，在popup menu的主题添加：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- toolbar弹出菜单样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ToolbarPopupTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorBackground"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"actionOverflowMenuStyle"</span>&gt;</span>@style/OverflowMenuStyle<span class="tag">&lt;/<span class="name">item</span>&gt;</span> <span class="comment">&lt;!--新增一个item，用于控制menu--&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textColorPrimary"</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- toolbar弹出菜单样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"ToolbarPopupTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark"</span>&gt;</span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorBackground"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"actionOverflowMenuStyle"</span>&gt;</span>@style/OverflowMenuStyle<span class="tag">&lt;/<span class="name">item</span>&gt;</span> <span class="comment">&lt;!--新增一个item，用于控制menu--&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:textColorPrimary"</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>布局文件中引用该主题</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app:popupTheme="@style/ToolbarPopupTheme"</span><br></pre></td></tr></table></figure>
 <p>运行效果：</p>
-<p><img src="popup_show4.png" alt=""></p>
+<p><img src="popup_show4.png" alt></p>
 <h1 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h1><h2 id="设置监听事件不生效"><a href="#设置监听事件不生效" class="headerlink" title="设置监听事件不生效"></a>设置监听事件不生效</h2><p>看一下代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initToolbar</span><span class="params">()</span></span>&#123;</span><br><span class="line">		mToolbar = findViewById(R.id.toolbar);</span><br><span class="line">		mToolbar.setTitle(<span class="string">""</span>);</span><br><span class="line">		mToolbar.setNavigationOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">						<span class="comment">//。。。</span></span><br><span class="line">				&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		mToolbar.setOnMenuItemClickListener(<span class="keyword">new</span> Toolbar.OnMenuItemClickListener() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onMenuItemClick</span><span class="params">(MenuItem item)</span> </span>&#123;</span><br><span class="line">						<span class="comment">//。。。</span></span><br><span class="line">						<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		setSupportActionBar(mToolbar);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码正常设置监听但是就是监听事件就是没有触发，查询后，监听事件必须在<code>setSupportActionBar(mToolbar);</code>之后设置。</p>
@@ -733,7 +733,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1047,7 +1047,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

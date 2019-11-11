@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -224,7 +224,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -234,7 +234,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -391,20 +391,20 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hackycy">
       <meta itemprop="description" content="一个腼腆幽默的程序猿">
       <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="小小源Bの博客">
     </span>
 
@@ -472,7 +472,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a></span>
 
                 
                 
@@ -545,7 +545,7 @@
 <p>pt在css单位中属于真正的绝对单位，1pt = 1/72(inch),inch及英寸，而1英寸等于2.54厘米。<br>pt = 1/72(英寸), px = 1/dpi(英寸)</p>
 </blockquote>
 <p>不同的设备，其图像基本单位是不同的，比如显示器的点距，可以认为是显示器的物理像素。现在的液晶显示器的点距一般在0.25mm到0.29mm之间。而打印机的墨点，也可以认为是打印机的物理像素，300DPI就是0.085mm，600DPI就是0.042mm。</p>
-<p><img src="dp.jpeg" alt=""></p>
+<p><img src="dp.jpeg" alt></p>
 <p><strong>注意</strong>，我们通常所说的显示器分辨率，其实是指桌面设定的分辨率，而不是显示器的物理分辨率。只不过现在液晶显示器成为主流，由于液晶的显示原理与CRT不同，只有在桌面分辨率与物理分辨率一致的情况下，显示效果最佳，所以现在我们的桌面分辨率几乎总是与显示器的物理分辨率一致了。</p>
 <h2 id="CSS像素"><a href="#CSS像素" class="headerlink" title="CSS像素"></a>CSS像素</h2><p><strong>CSS像素</strong>（css pixel）是Web编程概念，指的是CSS样式代码中使用的逻辑像素。</p>
 <p>在CSS规范中，长度单位分为两类：绝对（absolute）单位和相对（relative）单位。而px是一个相对单位，相对于设备像素。</p>
@@ -553,9 +553,9 @@
 <p>举个例子理解：</p>
 <p>使用PC端浏览器打开一个网页，网页中有一个宽400px的盒子（块级元素）。浏览器宽为800px，那么这个盒子的宽此时应该占据页面的一半。但是我们使用浏览器中页面放大功能，放大200%，也就是原来的两倍，那么此时该盒子宽应该占满了整个页面。但是既没有调整浏览器窗口大小，也没有改变任何的css样式，但是该盒子却看上去放大了一倍。这是因为使用页面放大功能把css像素放大了两倍。</p>
 <p>CSS像素与屏幕像素1：1同样大小时：</p>
-<p><img src="csslizi1.png" alt=""></p>
+<p><img src="csslizi1.png" alt></p>
 <p>CSS像素(黑色边框)开始被拉伸，此时1个CSS像素大于1个屏幕像素</p>
-<p><img src="csslizi2.png" alt=""></p>
+<p><img src="csslizi2.png" alt></p>
 <p>默认情况下一个CSS像素应该是等同于一个物理像素的，但是浏览器放大的操作让一个CSS像素等于两倍的设备像素。</p>
 <p>而在移动端中的高PPI的设备上，CSS像素在默认情况下就相当于多个设备像素，如iPhone5使用的是Retina视网膜屏幕，使用<code>2px * 2px</code>的设备像素代表<code>1px * 1px</code>的CSS像素。所以设备像素为<code>640 * 1136</code>，而CSS像素为<code>320px * 568px</code>。</p>
 <p><strong>设备独立像素（Device Independent Pixel）简写DIP或DP</strong></p>
@@ -569,9 +569,9 @@
 </blockquote>
 <h3 id="PPI：屏幕密度"><a href="#PPI：屏幕密度" class="headerlink" title="PPI：屏幕密度"></a>PPI：屏幕密度</h3><p><code>ppi</code>:表示每英寸所拥有的像素数目，数值越高，代表显示屏能够以越高的密度显示图像。即每英寸像素取值，更确切的说法应该是像素密度，也就是衡量单位物理面积内拥有像素值的情况。</p>
 <p><code>ppi</code>的计算公式可以查阅资料<a href="https://zh.wikipedia.org/wiki/%E6%AF%8F%E8%8B%B1%E5%AF%B8%E5%83%8F%E7%B4%A0" target="_blank" rel="noopener">ppi计算公式</a>。</p>
-<p><img src="ppicalc.png" alt=""></p>
+<p><img src="ppicalc.png" alt></p>
 <p>来算一下数学</p>
-<p><img src="calclizi.png" alt=""></p>
+<p><img src="calclizi.png" alt></p>
 <p>图中以屏幕尺寸为4寸的<code>iPhone 5s</code>为例，分辨率为<code>1136 x 640</code>，代入公式像素密度为<code>326PPI</code>。计算结果会有出入。</p>
 <blockquote>
 <p><strong>DPI</strong>: 每英寸多少点。如果是在当用于描述显示器设备时，ppi和dpi是同一概念，是相等的。</p>
@@ -580,7 +580,7 @@
 <p>一张图片在屏幕上显示时，它的像素点数是规则排列的，每个像素点都有特定的位置和颜色。</p>
 <p>当使用打印机进行打印时，打印机可能不会规则的将这些点打印出来，而是使用一个个打印点来呈现这张图像，这些打印点之间会有一定的空隙，这就是<code>DPI</code>所描述的：打印点的密度</p>
 </blockquote>
-<p><img src="dpiprint.png" alt=""></p>
+<p><img src="dpiprint.png" alt></p>
 <blockquote>
 <p>在上面的图像中我们可以清晰的看到，打印机是如何使用墨点来打印一张图像。所以，打印机的<code>DPI</code>越高，打印图像的精细程度就越高，同时这也会消耗更多的墨点和时间。</p>
 </blockquote>
@@ -591,7 +591,7 @@
 <li>与 <strong>理想视口</strong>(下文将提到)的关系：<code>DPR = 屏幕横向设备像素 / 理想视口的宽度</code></li>
 </ul>
 <p>在一台移动终端中，设备像素的大小是固定的，不可变的。但是<code>设备独立像素dip</code>是可以被拉长或压缩的。</p>
-<p><img src="whatisdip.png" alt=""></p>
+<p><img src="whatisdip.png" alt></p>
 <p>例如iPhone5s中使用的是Retina视网膜屏幕，即PPI超过300的都叫做超高密度屏幕，只不过苹果公司给了换了个高大上的名字：Retina视网膜屏幕。</p>
 <p>但是在普通屏幕下1个设备像素等于一个CSS像素的设备已经很少了，比如 Iphone 5s 设备像素比为2，Iphone 6s 设备像素比为3。至于安卓机中的设备像素比就更多了，有1.3、1.5、2、3等等。</p>
 <p><strong>如何理解DPR</strong></p>
@@ -604,7 +604,7 @@
 <blockquote>
 <p>设备宽高为375 × 667，可以理解为设备独立像素(或css像素)。<br>dpr为2，根据上面的计算公式，其物理像素就为750 × 1334。</p>
 </blockquote>
-<p><img src="csspixel.png" alt=""></p>
+<p><img src="csspixel.png" alt></p>
 <p>上图中可以看出，对于这样的css样式：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: 2<span class="selector-tag">px</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 2<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
 <p>在不同的屏幕上(普通屏幕 vs retina屏幕)，css像素所呈现的大小(物理尺寸)是一致的，不同的是1个css像素所对应的物理像素个数是不一致的。</p>
@@ -620,7 +620,7 @@
 </blockquote>
 <p><strong>兼容性</strong></p>
 <p>来自<a href="https://caniuse.com/#search=window.devicePixelRatio" target="_blank" rel="noopener">caniuse.com</a></p>
-<p><img src="caniusedevicepixelratio.png" alt=""></p>
+<p><img src="caniusedevicepixelratio.png" alt></p>
 <p>喜忧参半。好的是Safari, Android WebKit, Chrome 22+(Android), Opera Mobile, BlackBerry WebKit, QQ, Palm WebKit, 及Dolfin都能正确实现该属性。</p>
 <p>当然，大部分这些浏览器仍然运行在<code>devicePixelRatio</code>值应该为<code>1</code>的系统上，当它们移动到视网膜类似设备时候，可能就会遇到问题。</p>
 <blockquote>
@@ -652,7 +652,7 @@
 <h1 id="分辨率、像素和屏幕尺寸"><a href="#分辨率、像素和屏幕尺寸" class="headerlink" title="分辨率、像素和屏幕尺寸"></a>分辨率、像素和屏幕尺寸</h1><p>分辨率是指一个块屏幕的像素尺寸。比如说<code>1334 * 750</code>是iPhone6的分辨率。</p>
 <p>屏幕尺寸是指显示屏幕对角线的尺寸，一般用英寸来表示。</p>
 <p>询问别人一粒像素有多大是一个非常鸡贼的问题（小心面试遇到这样的题），虽然我们说像素是构成屏幕的发光的点，是物理的，但是像素在脱离了屏幕尺寸之后是没有大小可言的，你可以将 1920 * 1080 颗像素放到一台 40 寸的小米电视机里面，也可以将同样多的像素全部塞到一台 5.5 寸的 iPhone7 Plus 手机里面去，那么对于 40 寸的电视而言，每个像素颗粒当然会大于 5.5 寸的手机的像素。</p>
-<p><img src="tvandphone.jpeg" alt=""></p>
+<p><img src="tvandphone.jpeg" alt></p>
 <p>所以光看屏幕的分辨率对于设计师来说是不具备多少实际意义的，通过分辨率计算得出的像素密度（PPI）才是设计师要关心的问题，我们通过屏幕分辨率和屏幕尺寸就能计算出屏幕的像素密度的。</p>
 <p>再次使用 iPhone（6~7）作为例子。我们知道该屏幕的横向物理尺寸为 2.3 英寸 ，且横向具有 750 颗像素，根据下面的公式，我们能够算出 iPhone（6~7）的屏幕是 326 PPI，意为每寸存在 326 颗像素。</p>
 <p>其实不论我们怎么除，计算得出来的像素密度（PPI）都会是这个数，宽存在像素除以宽物理长度，高存在像素除以高物理长度，得数都接近于 326。</p>
@@ -674,7 +674,7 @@
 <p>视口(<code>viewport</code>)代表当前可见的计算机图形区域。在<code>Web</code>浏览器术语中，通常与浏览器窗口相同，但不包括浏览器的<code>UI</code>， 菜单栏等——即指你正在浏览的文档的那一部分。</p>
 </blockquote>
 <h2 id="可视视口"><a href="#可视视口" class="headerlink" title="可视视口"></a>可视视口</h2><p>可视视口就是目前在屏幕上显示页面的一部分。用户可以滚动以更改用户自己所看到的部分，或者缩放以更改可视窗口的大小。</p>
-<p><img src="visualviewport.jpg" alt=""></p>
+<p><img src="visualviewport.jpg" alt></p>
 <p>但是，CSS布局（尤其是百分比宽度）是相对于布局视口计算的， 布局视口比视觉视口宽得多。</p>
 <p>因此，<code>&lt;html&gt;</code>元素最初采用布局视口的宽度，并且您的CSS被解释为屏幕明显比手机屏幕宽。这可确保您网站的布局与桌面浏览器上的布局相同。</p>
 <p>布局视口有多宽？这与浏览器不同。<code>Safari iPhone</code>使用<code>980px</code>，<code>Opera</code>使用<code>850px</code>，<code>Android WebKit</code>使用<code>800px</code>和<code>IE</code>使用<code>974px</code>。</p>
@@ -683,10 +683,10 @@
 </blockquote>
 <h2 id="布局视口"><a href="#布局视口" class="headerlink" title="布局视口"></a>布局视口</h2><p>一般移动设备的浏览器都默认设置了一个 viewport 元标签，定义一个虚拟的布局视口（layout viewport），用于解决早期的页面在手机上显示的问题。iOS, Android 基本都将这个视口分辨率设置为 980px，所以 PC 上的网页基本能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页。</p>
 <p><strong>完全缩小的情况下：visual viewport = layout viewport</strong></p>
-<p><img src="vv=lv.jpg" alt=""></p>
+<p><img src="vv=lv.jpg" alt></p>
 <p>浏览器选择了布局视口的尺寸，使其在完全缩小模式下完全覆盖屏幕（因此等于可视视口）.</p>
 <p><strong>不完全缩小的情况下：layout viewport &gt; visual viewport</strong></p>
-<p><img src="lv&gt;vv.jpg" alt=""></p>
+<p><img src="lv&gt;vv.jpg" alt></p>
 <p>布局视口的宽度和高度等于在不完全缩小模式下可以在屏幕上显示的任何宽度和高度。当用户放大这些尺寸时保持不变。</p>
 <p>在放大和缩小的过程中，<code>visual viewport</code>和<code>layout viewport</code>的宽，高都没发生任何的变化,变化的仅仅就像是用户拿着这个<code>visual viewport</code>去远离或者靠近<code>layout viewport</code>，在远离或者靠近的过程中，就会呈现出缩放的效果来。</p>
 <blockquote>
@@ -706,7 +706,7 @@
 <p><strong>视觉视口和缩放比例的关系为：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">visual viewport宽度 = ideal viewport宽度 / 当前缩放值</span><br><span class="line"></span><br><span class="line">当前缩放值 = 理想视口宽度  / 视觉视口宽度</span><br></pre></td></tr></table></figure>
 <p>所以，当用户放大时，视觉视口将会变小，CSS 像素将跨越更多的物理像素。</p>
-<h2 id="获取视口大小"><a href="#获取视口大小" class="headerlink" title="获取视口大小"></a>获取视口大小</h2><p><img src="getviewport.png" alt=""></p>
+<h2 id="获取视口大小"><a href="#获取视口大小" class="headerlink" title="获取视口大小"></a>获取视口大小</h2><p><img src="getviewport.png" alt></p>
 <ul>
 <li><p><code>window.innerHeight</code>：获取浏览器视觉视口高度（包括垂直滚动条）。</p>
 </li>
@@ -800,7 +800,7 @@
 <h1 id="动态改变meta-viewport标签"><a href="#动态改变meta-viewport标签" class="headerlink" title="动态改变meta viewport标签"></a>动态改变meta viewport标签</h1><h2 id="第一种方式："><a href="#第一种方式：" class="headerlink" title="第一种方式："></a>第一种方式：</h2><p>使用<code>document.write</code>来动态输出<code>meta viewport</code>标签，例如</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;'</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h2><p>通过<code>setAttribute</code>来改变</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">id</span>=<span class="string">"testViewport"</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width = 380"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> mvp = <span class="built_in">document</span>.getElementById(<span class="string">'testViewport'</span>);</span></span><br><span class="line"><span class="javascript">mvp.setAttribute(<span class="string">'content'</span>,<span class="string">'width=480'</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">id</span>=<span class="string">"testViewport"</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width = 380"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> mvp = <span class="built_in">document</span>.getElementById(<span class="string">'testViewport'</span>);</span></span><br><span class="line"><span class="javascript">mvp.setAttribute(<span class="string">'content'</span>,<span class="string">'width=480'</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://segmentfault.com/a/1190000015884091" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015884091</a></p>
 <p><a href="https://www.quirksmode.org/mobile/viewports.html" target="_blank" rel="noopener">https://www.quirksmode.org/mobile/viewports.html</a></p>
 <p><a href="https://www.quirksmode.org/mobile/viewports2.html" target="_blank" rel="noopener">https://www.quirksmode.org/mobile/viewports2.html</a></p>
@@ -954,7 +954,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
             
@@ -1268,7 +1268,7 @@
     </span>
     &nbsp|&nbsp
   </div>
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
