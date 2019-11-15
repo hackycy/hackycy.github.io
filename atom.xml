@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>小小源Bの博客</title>
+  <title>思忆技术</title>
   
-  <subtitle>zj&amp;ycy</subtitle>
+  <subtitle>si-yee.com</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hackycy.github.io/"/>
