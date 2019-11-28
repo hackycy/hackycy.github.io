@@ -1,6 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker入门（一）——基本概念与安装</title>
+    <url>/2019/11/27/Docker%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><p>Docker 是一个开源的应用容器引擎，基于 <a href="https://www.runoob.com/go/go-tutorial.html" target="_blank" rel="noopener">Go 语言</a> 并遵从 Apache2.0 协议开源。</p>
+<p>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
+<p>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。</p>
+<p>Docker 从 17.03 版本之后分为 CE（Community Edition: 社区版） 和 EE（Enterprise Edition: 企业版）</p>
+<a id="more"></a>
+<p>Docker 使用 <code>Google</code> 公司推出的 <a href="https://golang.org/" target="_blank" rel="noopener">Go 语言</a> 进行开发实现，基于 <code>Linux</code> 内核的 <a href="https://zh.wikipedia.org/wiki/Cgroups" target="_blank" rel="noopener">cgroup</a>，<a href="https://en.wikipedia.org/wiki/Linux_namespaces" target="_blank" rel="noopener">namespace</a>，以及 <a href="https://en.wikipedia.org/wiki/Aufs" target="_blank" rel="noopener">AUFS</a> 类的 <a href="https://en.wikipedia.org/wiki/Union_mount" target="_blank" rel="noopener">Union FS</a> 等技术，对进程进行封装隔离，属于 <a href="https://en.wikipedia.org/wiki/Operating-system-level_virtualization" target="_blank" rel="noopener">操作系统层面的虚拟化技术</a>。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。最初实现是基于 <a href="https://linuxcontainers.org/lxc/introduction/" target="_blank" rel="noopener">LXC</a>，从 0.7 版本以后开始去除 <code>LXC</code>，转而使用自行开发的 <a href="https://github.com/docker/libcontainer" target="_blank" rel="noopener">libcontainer</a>，从 1.11 开始，则进一步演进为使用 <a href="https://github.com/opencontainers/runc" target="_blank" rel="noopener">runC</a> 和 <a href="https://github.com/containerd/containerd" target="_blank" rel="noopener">containerd</a>。</p>
+<p><img src="docker-on-linux.png" alt></p>
+<blockquote>
+<p><code>runc</code> 是一个 Linux 命令行工具，用于根据 <a href="https://github.com/opencontainers/runtime-spec" target="_blank" rel="noopener">OCI容器运行时规范</a> 创建和运行容器。</p>
+<p><code>containerd</code> 是一个守护程序，它管理容器生命周期，提供了在一个节点上执行容器和管理镜像的最小功能集。</p>
+</blockquote>
+<p>Docker在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极大的简化了容器的创建和维护。使得 <code>Docker</code> 技术比虚拟机技术更为轻便、快捷。</p>
+<p>下面的图片比较了 <strong>Docker</strong> 和传统虚拟化方式的不同之处。传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。</p>
+<p><img src="virtualization.png" alt></p>
+<p><img src="docker.png" alt></p>
+<h1 id="Docker优点"><a href="#Docker优点" class="headerlink" title="Docker优点"></a>Docker优点</h1><p> Docker 是一个用于开发，交付和运行应用程序的开放平台。Docker 使您能够将应用程序与基础架构分开，从而可以快速交付软件。借助 Docker，您可以与管理应用程序相同的方式来管理基础架构。通过利用 Docker 的方法来快速交付，测试和部署代码，您可以大大减少编写代码和在生产环境中运行代码之间的延迟。 </p>
+<h2 id="快速，一致地交付您的应用程序"><a href="#快速，一致地交付您的应用程序" class="headerlink" title="快速，一致地交付您的应用程序"></a>快速，一致地交付您的应用程序</h2><p>Docker 允许开发人员使用您提供的应用程序或服务的本地容器在标准化环境中工作，从而简化了开发的生命周期。</p>
+<p>容器非常适合持续集成和持续交付（CI / CD）工作流程，请考虑以下示例方案：</p>
+<ul>
+<li>您的开发人员在本地编写代码，并使用 Docker 容器与同事共享他们的工作。</li>
+<li>他们使用 Docker 将其应用程序推送到测试环境中，并执行自动或手动测试。</li>
+<li>当开发人员发现错误时，他们可以在开发环境中对其进行修复，然后将其重新部署到测试环境中，以进行测试和验证。</li>
+<li>测试完成后，将修补程序推送给生产环境，就像将更新的镜像推送到生产环境一样简单。</li>
+</ul>
+<h2 id="响应式部署和扩展"><a href="#响应式部署和扩展" class="headerlink" title="响应式部署和扩展"></a>响应式部署和扩展</h2><p>Docker 是基于容器的平台，允许高度可移植的工作负载。Docker 容器可以在开发人员的本机上，数据中心的物理或虚拟机上，云服务上或混合环境中运行。</p>
+<p>Docker 的可移植性和轻量级的特性，还可以使您轻松地完成动态管理的工作负担，并根据业务需求指示，实时扩展或拆除应用程序和服务。</p>
+<h2 id="更轻松的维护和扩展"><a href="#更轻松的维护和扩展" class="headerlink" title="更轻松的维护和扩展"></a>更轻松的维护和扩展</h2><p> Docker 使用的分层存储以及镜像的技术，使得应用重复部分的复用更为容易，也使得应用的维护更新更加简单，基于基础镜像进一步扩展镜像也变得非常简单。此外，<code>Docker</code> 团队同各个开源项目团队一起维护了一大批高质量的 <a href="https://hub.docker.com/search/?type=image&amp;image_filter=official" target="_blank" rel="noopener">官方镜像</a>，既可以直接在生产环境使用，又可以作为基础进一步定制，大大的降低了应用服务的镜像制作成本。 </p>
+<h2 id="在同一硬件上运行更多工作负载"><a href="#在同一硬件上运行更多工作负载" class="headerlink" title="在同一硬件上运行更多工作负载"></a>在同一硬件上运行更多工作负载</h2><p> Docker 轻巧快速。它为基于虚拟机管理程序的虚拟机提供了可行、经济、高效的替代方案，因此您可以利用更多的计算能力来实现业务目标。Docker 非常适合于高密度环境以及中小型部署，而您可以用更少的资源做更多的事情。 </p>
+<h2 id="对比传统虚拟机总结"><a href="#对比传统虚拟机总结" class="headerlink" title="对比传统虚拟机总结"></a>对比传统虚拟机总结</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">容器</th>
+<th style="text-align:left">虚拟机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">启动</td>
+<td style="text-align:left">秒级</td>
+<td style="text-align:left">分钟级</td>
+</tr>
+<tr>
+<td style="text-align:left">硬盘使用</td>
+<td style="text-align:left">一般为 <code>MB</code></td>
+<td style="text-align:left">一般为 <code>GB</code></td>
+</tr>
+<tr>
+<td style="text-align:left">性能</td>
+<td style="text-align:left">接近原生</td>
+<td style="text-align:left">弱于</td>
+</tr>
+<tr>
+<td style="text-align:left">系统支持量</td>
+<td style="text-align:left">单机支持上千个容器</td>
+<td style="text-align:left">一般几十个</td>
+</tr>
+</tbody>
+</table>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>Docker 包括三个基本概念</p>
+<ul>
+<li>镜像（<code>Image</code>）</li>
+<li>容器（<code>Container</code>）</li>
+<li>仓库（<code>Repository</code>）</li>
+</ul>
+<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><p>我们都知道，操作系统分为内核和用户空间。对于 Linux 而言，内核启动后，会挂载 <code>root</code> 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 <code>root</code> 文件系统。比如官方镜像 <code>ubuntu:18.04</code> 就包含了完整的一套 Ubuntu 18.04 最小系统的 <code>root</code> 文件系统。</p>
+<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
+<h3 id="分层存储"><a href="#分层存储" class="headerlink" title="分层存储"></a>分层存储</h3><p>因为镜像包含操作系统完整的 <code>root</code> 文件系统，其体积往往是庞大的，因此在 Docker 设计时，就充分利用 <a href="https://en.wikipedia.org/wiki/Union_mount" target="_blank" rel="noopener">Union FS</a> 的技术，将其设计为分层存储的架构。所以严格来说，镜像并非是像一个 ISO 那样的打包文件，镜像只是一个虚拟的概念，其实际体现并非由一个文件组成，而是由一组文件系统组成，或者说，由多层文件系统联合组成。</p>
+<p>镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除前一层的文件，而是仅在当前层标记为该文件已删除。在最终容器运行的时候，虽然不会看到这个文件，但是实际上该文件会一直跟随镜像。因此，在构建镜像的时候，需要额外小心，每一层尽量只包含该层需要添加的东西，任何额外的东西应该在该层构建结束前清理掉。</p>
+<p>分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。</p>
+<p>关于镜像构建，将会在后续相关章节中做进一步的讲解。</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>镜像（<code>Image</code>）和容器（<code>Container</code>）的关系，就像是面向对象程序设计中的 <code>类</code> 和 <code>实例</code> 一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
+<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 <a href="https://en.wikipedia.org/wiki/Linux_namespaces" target="_blank" rel="noopener">命名空间</a>。因此容器可以拥有自己的 <code>root</code> 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会混淆容器和虚拟机。</p>
+<p>前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为 <strong>容器存储层</strong>。</p>
+<p>容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。</p>
+<p>按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 <a href="https://yeasy.gitbooks.io/docker_practice/content/data_management/volume.html" target="_blank" rel="noopener">数据卷（Volume）</a>、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主（或网络存储）发生读写，其性能和稳定性更高。</p>
+<p>数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器删除或者重新运行之后，数据却不会丢失。</p>
+<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><h3 id="Docker-Registry"><a href="#Docker-Registry" class="headerlink" title="Docker Registry"></a>Docker Registry</h3><p>镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，<a href="https://yeasy.gitbooks.io/docker_practice/content/repository/registry.html" target="_blank" rel="noopener">Docker Registry</a> 就是这样的服务。</p>
+<p>一个 <strong>Docker Registry</strong> 中可以包含多个 <strong>仓库</strong>（<code>Repository</code>）；每个仓库可以包含多个 <strong>标签</strong>（<code>Tag</code>）；每个标签对应一个镜像。</p>
+<p>通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 <code>&lt;仓库名&gt;:&lt;标签&gt;</code> 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 <code>latest</code> 作为默认标签。</p>
+<p>以 <a href="https://hub.docker.com/_/ubuntu" target="_blank" rel="noopener">Ubuntu 镜像</a> 为例，<code>ubuntu</code> 是仓库的名字，其内包含有不同的版本标签，如，<code>16.04</code>, <code>18.04</code>。我们可以通过 <code>ubuntu:16.04</code>，或者 <code>ubuntu:18.04</code> 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 <code>ubuntu</code>，那将视为 <code>ubuntu:latest</code>。</p>
+<p>仓库名经常以 <em>两段式路径</em> 形式出现，比如 <code>jwilder/nginx-proxy</code>，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。</p>
+<h3 id="Docker-Registry-公开服务"><a href="#Docker-Registry-公开服务" class="headerlink" title="Docker Registry 公开服务"></a>Docker Registry 公开服务</h3><p>Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。</p>
+<p>最常使用的 Registry 公开服务是官方的 <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 <a href="https://coreos.com/" target="_blank" rel="noopener">CoreOS</a> 的 <a href="https://quay.io/repository/" target="_blank" rel="noopener">Quay.io</a>，CoreOS 相关的镜像存储在这里；Google 的 <a href="https://cloud.google.com/container-registry/" target="_blank" rel="noopener">Google Container Registry</a>，<a href="https://kubernetes.io/" target="_blank" rel="noopener">Kubernetes</a> 的镜像使用的就是这个服务。</p>
+<p>由于某些原因，在国内访问这些服务可能会比较慢。国内的一些云服务商提供了针对 Docker Hub 的镜像服务（<code>Registry Mirror</code>），这些镜像服务被称为<strong>加速器</strong>。常见的有 <a href="https://cr.console.aliyun.com/#/accelerator" target="_blank" rel="noopener">阿里云加速器</a>、<a href="https://www.daocloud.io/mirror#accelerator-doc" target="_blank" rel="noopener">DaoCloud 加速器</a> 等。使用加速器会直接从国内的地址下载 Docker Hub 的镜像，比直接从 Docker Hub 下载速度会提高很多。在 <a href="https://yeasy.gitbooks.io/docker_practice/content/install/mirror.html" target="_blank" rel="noopener">安装 Docker</a> 一节中有详细的配置方法。</p>
+<p>国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 <a href="https://hub.tenxcloud.com/" target="_blank" rel="noopener">时速云镜像仓库</a>、<a href="https://c.163.com/hub#/m/library/" target="_blank" rel="noopener">网易云镜像服务</a>、<a href="https://hub.daocloud.io/" target="_blank" rel="noopener">DaoCloud 镜像市场</a>、<a href="https://cr.console.aliyun.com/" target="_blank" rel="noopener">阿里云镜像库</a> 等。</p>
+<h3 id="私有-Docker-Registry"><a href="#私有-Docker-Registry" class="headerlink" title="私有 Docker Registry"></a>私有 Docker Registry</h3><p>除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 <a href="https://hub.docker.com/_/registry/" target="_blank" rel="noopener">Docker Registry</a> 镜像，可以直接使用做为私有 Registry 服务。在 <a href="https://yeasy.gitbooks.io/docker_practice/content/repository/registry.html" target="_blank" rel="noopener">私有仓库</a> 一节中，会有进一步的搭建私有 Registry 服务的讲解。</p>
+<p>开源的 Docker Registry 镜像只提供了 <a href="https://docs.docker.com/registry/spec/api/" target="_blank" rel="noopener">Docker Registry API</a> 的服务端实现，足以支持 <code>docker</code> 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。在官方的商业化版本 <a href="https://docs.docker.com/datacenter/dtr/2.0/" target="_blank" rel="noopener">Docker Trusted Registry</a> 中，提供了这些高级功能。</p>
+<p>除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，甚至提供了用户界面以及一些高级功能。比如，<a href="https://github.com/goharbor/harbor" target="_blank" rel="noopener">Harbor</a> 和 <a href="https://yeasy.gitbooks.io/docker_practice/content/repository/nexus3_registry.html" target="_blank" rel="noopener">Sonatype Nexus</a>。</p>
+<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1><p>Docker 分为 CE 和 EE 两大版本。CE 即社区版（免费，支持周期 7 个月），EE 即企业版，强调安全，付费使用，支持周期 24 个月。</p>
+<p>Docker CE 分为 <code>stable</code> <code>test</code> 和 <code>nightly</code> 三个更新频道。每六个月发布一个 <code>stable</code> 版本 (<code>18.09</code>, <code>19.03</code>, <code>19.09</code>…)。</p>
+<p>官方网站上有各种环境下的 <a href="https://docs.docker.com/install/" target="_blank" rel="noopener">安装指南</a>，这里主要介绍 Docker CE 在 <code>Linux</code> 、 <code>macOS</code> 上的安装。</p>
+<h2 id="Linux—CentOS"><a href="#Linux—CentOS" class="headerlink" title="Linux—CentOS"></a>Linux—CentOS</h2><h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><p> Docker CE 支持 64 位版本 CentOS 7，并且要求内核版本不低于 3.10。 CentOS 7 满足最低内核的要求，但由于内核版本比较低，部分功能（如 <code>overlay2</code> 存储层驱动）无法使用，并且部分功能可能不太稳定。 </p>
+<h3 id="卸载旧版本"><a href="#卸载旧版本" class="headerlink" title="卸载旧版本"></a>卸载旧版本</h3><p> 旧版本的 Docker 称为 <code>docker</code> 或者 <code>docker-engine</code>，使用以下命令卸载旧版本： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
+<h3 id="使用yum安装"><a href="#使用yum安装" class="headerlink" title="使用yum安装"></a>使用yum安装</h3><p> 执行以下命令安装依赖包： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils \</span><br><span class="line">           device-mapper-persistent-data \</span><br><span class="line">           lvm2</span><br></pre></td></tr></table></figure>
+<p>鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。</p>
+<p>执行下面的命令添加 <code>yum</code> 软件源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 官方源</span></span><br><span class="line"><span class="comment"># $ sudo yum-config-manager \</span></span><br><span class="line"><span class="comment">#     --add-repo \</span></span><br><span class="line"><span class="comment">#     https://download.docker.com/linux/centos/docker-ce.repo</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 如果需要测试版本的 Docker CE 请使用以下命令： </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo yum-config-manager --<span class="built_in">enable</span> docker-ce-test</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 如果需要每日构建版本的 Docker CE 请使用以下命令： </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo yum-config-manager --<span class="built_in">enable</span> docker-ce-nightly</span><br></pre></td></tr></table></figure>
+<h3 id="安装Docker-CE"><a href="#安装Docker-CE" class="headerlink" title="安装Docker CE"></a>安装Docker CE</h3><p> 更新 <code>yum</code> 软件源缓存，并安装 <code>docker-ce</code>。 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo yum makecache fast</span><br><span class="line">$ sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
+<h3 id="使用脚本自动安装"><a href="#使用脚本自动安装" class="headerlink" title="使用脚本自动安装"></a>使用脚本自动安装</h3><p> 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，CentOS 系统上可以使用这套脚本安装，另外可以通过 <code>--mirror</code> 选项使用国内源进行安装： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br><span class="line"><span class="comment"># $ sudo sh get-docker.sh --mirror AzureChinaCloud</span></span><br></pre></td></tr></table></figure>
+<p> 执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。 </p>
+<h3 id="启动Docker"><a href="#启动Docker" class="headerlink" title="启动Docker"></a>启动Docker</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">enable</span> docker</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+<h3 id="建立-docker-用户组"><a href="#建立-docker-用户组" class="headerlink" title="建立 docker 用户组"></a>建立 docker 用户组</h3><p>默认情况下，<code>docker</code> 命令会使用 <a href="https://en.wikipedia.org/wiki/Unix_domain_socket" target="_blank" rel="noopener">Unix socket</a> 与 Docker 引擎通讯。而只有 <code>root</code> 用户和 <code>docker</code> 组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统上不会直接使用 <code>root</code> 用户。因此，更好地做法是将需要使用 <code>docker</code> 的用户加入 <code>docker</code> 用户组。</p>
+<p>建立 <code>docker</code> 组：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo groupadd docker</span><br></pre></td></tr></table></figure>
+<p> 将当前用户加入 <code>docker</code> 组： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
+<p> 退出当前终端并重新登录，进行如下测试。 </p>
+<h3 id="测试-Docker-是否安装正确"><a href="#测试-Docker-是否安装正确" class="headerlink" title="测试 Docker 是否安装正确"></a>测试 Docker 是否安装正确</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run hello-world</span><br><span class="line"></span><br><span class="line">Unable to find image <span class="string">'hello-world:latest'</span> locally</span><br><span class="line">latest: Pulling from library/hello-world</span><br><span class="line">d1725b59e92d: Pull complete</span><br><span class="line">Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> hello-world:latest</span><br><span class="line"></span><br><span class="line">Hello from Docker!</span><br><span class="line">This message shows that your installation appears to be working correctly.</span><br><span class="line"></span><br><span class="line">To generate this message, Docker took the following steps:</span><br><span class="line"> 1. The Docker client contacted the Docker daemon.</span><br><span class="line"> 2. The Docker daemon pulled the <span class="string">"hello-world"</span> image from the Docker Hub.</span><br><span class="line">    (amd64)</span><br><span class="line"> 3. The Docker daemon created a new container from that image <span class="built_in">which</span> runs the</span><br><span class="line">    executable that produces the output you are currently reading.</span><br><span class="line"> 4. The Docker daemon streamed that output to the Docker client, <span class="built_in">which</span> sent it</span><br><span class="line">    to your terminal.</span><br><span class="line"></span><br><span class="line">To try something more ambitious, you can run an Ubuntu container with:</span><br><span class="line"> $ docker run -it ubuntu bash</span><br><span class="line"></span><br><span class="line">Share images, automate workflows, and more with a free Docker ID:</span><br><span class="line"> https://hub.docker.com/</span><br><span class="line"></span><br><span class="line">For more examples and ideas, visit:</span><br><span class="line"> https://docs.docker.com/get-started/</span><br></pre></td></tr></table></figure>
+<p> 若能正常输出以上信息，则说明安装成功。 </p>
+<h2 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h2><h3 id="系统要求-1"><a href="#系统要求-1" class="headerlink" title="系统要求"></a>系统要求</h3><p> <a href="https://docs.docker.com/docker-for-mac/" target="_blank" rel="noopener">Docker Desktop for Mac</a> 要求系统最低为 macOS Sierra 10.12。 </p>
+<h3 id="Homebrew-安装"><a href="#Homebrew-安装" class="headerlink" title="Homebrew 安装"></a>Homebrew 安装</h3><p> <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a> 的 <a href="https://caskroom.github.io/" target="_blank" rel="noopener">Cask</a> 已经支持 Docker Desktop for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install docker</span><br></pre></td></tr></table></figure>
+<h3 id="手动下载安装"><a href="#手动下载安装" class="headerlink" title="手动下载安装"></a>手动下载安装</h3><p> <a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">https://hub.docker.com/editions/community/docker-ce-desktop-mac</a> </p>
+<p><a href="https://docs.docker.com/toolbox/overview/" target="_blank" rel="noopener">https://docs.docker.com/toolbox/overview/</a></p>
+<blockquote>
+<p>点击链接注册Docker ID即可下载。傻瓜式安装。安装后点击图标运行即可。</p>
+<p>可关掉开机自启。preference -&gt; general -&gt; start Docker Desktop when you log in</p>
+</blockquote>
+<p>启动终端后，通过命令可以检查安装后的 Docker 版本。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker --version</span><br><span class="line">Docker version 19.03.5, build 633a0ea</span><br></pre></td></tr></table></figure>
+<h2 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h2><p>国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了国内加速器服务，例如：</p>
+<ul>
+<li><a href="https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy" target="_blank" rel="noopener">Azure 中国镜像 <code>https://dockerhub.azk8s.cn</code></a></li>
+<li><a href="https://cr.console.aliyun.com/cn-hangzhou/mirrors" target="_blank" rel="noopener">阿里云加速器(需登录账号获取)</a></li>
+<li><a href="https://kirk-enterprise.github.io/hub-docs/#/user-guide/mirror" target="_blank" rel="noopener">七牛云加速器 <code>https://reg-mirror.qiniu.com</code></a></li>
+</ul>
+<blockquote>
+<p>由于镜像服务可能出现宕机，建议同时配置多个镜像。</p>
+<p>国内各大云服务商均提供了 Docker 镜像加速服务，建议根据运行 Docker 的云平台选择对应的镜像加速服务，具体请参考官方文档。</p>
+</blockquote>
+<p>这里以 Azure 中国镜像 <code>https://dockerhub.azk8s.cn</code> 为例进行介绍。</p>
+<h3 id="Ubuntu-16-04-、Debian-8-、CentOS-7"><a href="#Ubuntu-16-04-、Debian-8-、CentOS-7" class="headerlink" title="Ubuntu 16.04+、Debian 8+、CentOS 7"></a>Ubuntu 16.04+、Debian 8+、CentOS 7</h3><p> 对于使用 <a href="https://www.freedesktop.org/wiki/Software/systemd/" target="_blank" rel="noopener">systemd</a> 的系统，请在 <code>/etc/docker/daemon.json</code> 中写入如下内容（如果文件不存在请新建该文件） </p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"registry-mirrors"</span>: [</span><br><span class="line">    <span class="string">"https://dockerhub.azk8s.cn"</span>,</span><br><span class="line">    <span class="string">"https://reg-mirror.qiniu.com"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。 </p>
+</blockquote>
+<p> 之后重新启动服务。 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 注意：如果您之前查看旧教程，修改了 <code>docker.service</code> 文件内容，请去掉您添加的内容（<code>--registry-mirror=https://dockerhub.azk8s.cn</code>）。 </p>
+</blockquote>
+<h3 id="macOS-1"><a href="#macOS-1" class="headerlink" title="macOS"></a>macOS</h3><p> 对于使用 macOS 的用户，在任务栏点击 Docker Desktop 应用图标 -&gt; <code>Perferences</code>，在左侧导航菜单选择 <code>Docker Engine</code>，在右侧像下边一样编辑 json 文件。修改完成之后，点击 <code>Apply &amp; Restart</code> 按钮，Docker 就会重启并应用配置的镜像地址了。 </p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"registry-mirrors"</span>: [</span><br><span class="line">    <span class="string">"https://dockerhub.azk8s.cn"</span>,</span><br><span class="line">    <span class="string">"https://reg-mirror.qiniu.com"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="检查加速器是否生效"><a href="#检查加速器是否生效" class="headerlink" title="检查加速器是否生效"></a>检查加速器是否生效</h3><p> 执行 <code>$ docker info</code>，如果从结果中看到了如下内容，说明配置成功。 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Registry Mirrors:</span><br><span class="line"> https://dockerhub.azk8s.cn/</span><br></pre></td></tr></table></figure>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>Docker 官网：<a href="https://www.docker.com/" target="_blank" rel="noopener">https://www.docker.com</a></p>
+<p>Github Docker 源码：<a href="https://github.com/docker/docker-ce" target="_blank" rel="noopener">https://github.com/docker/docker-ce</a></p>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>了解JSON Web Token</title>
     <url>/2019/11/11/%E4%BA%86%E8%A7%A3JSON-Web-Token/</url>
     <content><![CDATA[<p>JSON Web Token（缩写 JWT）是目前最流行的跨域认证解决方案。<a href="https://jwt.io" target="_blank" rel="noopener">JWT</a></p>
@@ -9366,8 +9537,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -10203,8 +10374,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -10231,8 +10402,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
