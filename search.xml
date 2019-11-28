@@ -130,12 +130,13 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install docker</span><br></pre></td></tr></table></figure>
 <h3 id="手动下载安装"><a href="#手动下载安装" class="headerlink" title="手动下载安装"></a>手动下载安装</h3><p> <a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">https://hub.docker.com/editions/community/docker-ce-desktop-mac</a> </p>
 <p><a href="https://docs.docker.com/toolbox/overview/" target="_blank" rel="noopener">https://docs.docker.com/toolbox/overview/</a></p>
+<p>也可以点击以下链接直接下载 <a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="noopener">Stable</a> 或 <a href="https://download.docker.com/mac/edge/Docker.dmg" target="_blank" rel="noopener">Edge</a> 版本的 Docker Desktop for Mac。</p>
 <blockquote>
 <p>点击链接注册Docker ID即可下载。傻瓜式安装。安装后点击图标运行即可。</p>
 <p>可关掉开机自启。preference -&gt; general -&gt; start Docker Desktop when you log in</p>
 </blockquote>
 <p>启动终端后，通过命令可以检查安装后的 Docker 版本。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker --version</span><br><span class="line">Docker version 19.03.5, build 633a0ea</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker --version</span><br><span class="line">Docker version 19.03.5, build 633a0ea</span><br><span class="line">$ docker-compose --version</span><br><span class="line">docker-compose version 1.24.1, build 4667896b</span><br><span class="line">$ docker-machine --version</span><br><span class="line">docker-machine version 0.16.2, build bd45ab13</span><br></pre></td></tr></table></figure>
 <h2 id="镜像加速器"><a href="#镜像加速器" class="headerlink" title="镜像加速器"></a>镜像加速器</h2><p>国内从 Docker Hub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。国内很多云服务商都提供了国内加速器服务，例如：</p>
 <ul>
 <li><a href="https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md#22-container-registry-proxy" target="_blank" rel="noopener">Azure 中国镜像 <code>https://dockerhub.azk8s.cn</code></a></li>
