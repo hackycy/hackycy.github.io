@@ -157,16 +157,16 @@
 <p>同样的，可以通过 <code>docker logs</code> 命令来查看应用的信息。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker logs -f serene_buck</span><br><span class="line"> * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)</span><br><span class="line">172.17.0.1 - - [02/Dec/2019 06:27:22] <span class="string">"GET / HTTP/1.1"</span> 200 -</span><br><span class="line">172.17.0.1 - - [02/Dec/2019 06:27:23] <span class="string">"GET /favicon.ico HTTP/1.1"</span> 404 -</span><br></pre></td></tr></table></figure>
 <p><code>-p</code> 则可以指定要映射的端口，并且，在一个指定端口上只可以绑定一个容器。支持的格式有 <code>ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort</code>。</p>
-<h4 id="映射所有接口地址"><a href="#映射所有接口地址" class="headerlink" title="映射所有接口地址"></a>映射所有接口地址</h4><p>使用 <code>hostPort:containerPort</code> 格式本地的 8000 端口映射到容器的 5000 端口，可以执行</p>
+<h3 id="映射所有接口地址"><a href="#映射所有接口地址" class="headerlink" title="映射所有接口地址"></a>映射所有接口地址</h3><p>使用 <code>hostPort:containerPort</code> 格式本地的 8000 端口映射到容器的 5000 端口，可以执行</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -d -p 8000:5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
 <p>此时默认会绑定本地所有接口上的所有地址。</p>
-<h4 id="映射到指定地址的指定端口"><a href="#映射到指定地址的指定端口" class="headerlink" title="映射到指定地址的指定端口"></a>映射到指定地址的指定端口</h4><p>可以使用 <code>ip:hostPort:containerPort</code> 格式指定映射使用一个特定地址，比如 localhost 地址 127.0.0.1</p>
+<h3 id="映射到指定地址的指定端口"><a href="#映射到指定地址的指定端口" class="headerlink" title="映射到指定地址的指定端口"></a>映射到指定地址的指定端口</h3><p>可以使用 <code>ip:hostPort:containerPort</code> 格式指定映射使用一个特定地址，比如 localhost 地址 127.0.0.1</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
-<h4 id="映射到指定地址的任意端口"><a href="#映射到指定地址的任意端口" class="headerlink" title="映射到指定地址的任意端口"></a>映射到指定地址的任意端口</h4><p>使用 <code>ip::containerPort</code> 绑定 localhost 的任意端口到容器的 5000 端口，本地主机会自动分配一个端口。</p>
+<h3 id="映射到指定地址的任意端口"><a href="#映射到指定地址的任意端口" class="headerlink" title="映射到指定地址的任意端口"></a>映射到指定地址的任意端口</h3><p>使用 <code>ip::containerPort</code> 绑定 localhost 的任意端口到容器的 5000 端口，本地主机会自动分配一个端口。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -d -p 127.0.0.1::5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
 <p>还可以使用 <code>udp</code> 标记来指定 <code>udp</code> 端口</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py</span><br></pre></td></tr></table></figure>
-<h4 id="查看映射端口配置"><a href="#查看映射端口配置" class="headerlink" title="查看映射端口配置"></a>查看映射端口配置</h4><p>使用 <code>docker port</code> 来查看当前映射的端口配置，也可以查看到绑定的地址</p>
+<h3 id="查看映射端口配置"><a href="#查看映射端口配置" class="headerlink" title="查看映射端口配置"></a>查看映射端口配置</h3><p>使用 <code>docker port</code> 来查看当前映射的端口配置，也可以查看到绑定的地址</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker port 5f2b 5000</span><br><span class="line">0.0.0.0:8000</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意：</p>
@@ -218,6 +218,9 @@
 <p><code>--dns-search=DOMAIN</code> 设定容器的搜索域，当设定搜索域为 <code>.example.com</code> 时，在搜索一个名为 host 的主机时，DNS 不仅搜索 host，还会搜索 <code>host.example.com</code>。</p>
 <p>注意：如果在容器启动时没有指定最后两个参数，Docker 会默认用主机上的<code>/etc/resolv.conf</code> 来配置容器。</p>
 </blockquote>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>Docker 官网：<a href="https://www.docker.com/" target="_blank" rel="noopener">https://www.docker.com</a></p>
+<p>Github Docker 源码：<a href="https://github.com/docker/docker-ce" target="_blank" rel="noopener">https://github.com/docker/docker-ce</a></p>
+<p>Docker命令大全：<a href="https://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-command-manual.html</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
