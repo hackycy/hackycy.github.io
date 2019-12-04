@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Jenkins更换语言</title>
+    <url>/2019/12/04/Jenkins%E6%9B%B4%E6%8D%A2%E8%AF%AD%E8%A8%80/</url>
+    <content><![CDATA[<p>最近学习Jenkins中，使用Docker安装完成后，Jenkins的默认语言是狗血的繁体版本，想更换成英文版本或者中文版本。</p>
+<a id="more"></a>
+<h1 id="更换Google浏览器默认语言"><a href="#更换Google浏览器默认语言" class="headerlink" title="更换Google浏览器默认语言"></a>更换Google浏览器默认语言</h1><p>我google之前设置的默认语言第一位是中文繁体版本，我现在直接删除掉了。后面Jenkins就更换回了英文版本。</p>
+<p><img src="changegooglelan.png" alt></p>
+<h1 id="使用Locale插件"><a href="#使用Locale插件" class="headerlink" title="使用Locale插件"></a>使用Locale插件</h1><p>繁体版本下找到插件为<code>管理Jenkins</code>-&gt;<code>外掛程式管理</code></p>
+<p><img src="findplugin.png" alt></p>
+<p>在可用的插件列表搜索Locale插件，选择直接安装。</p>
+<p><img src="findplugin2.png" alt></p>
+<p>安装完成后，进入<code>管理Jenkins</code>-&gt;<code>设定系统</code></p>
+<p><img src="setting.png" alt></p>
+<p>应用并保存即可。</p>
+<blockquote>
+<p>记住Ignore browser preference and force this language to all users这个单选框要勾选上，否则不生效</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>两种方式中，第二种中文好像并不是完全支持，有些中文有些英文。</p>
+<p>所以我选择了使用第一种方式。学习的情况下还是多些习惯英文吧。</p>
+]]></content>
+      <categories>
+        <category>Jenkins</category>
+      </categories>
+      <tags>
+        <tag>Jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker入门（三）——镜像</title>
     <url>/2019/12/02/Docker%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E9%95%9C%E5%83%8F/</url>
     <content><![CDATA[<p>镜像是 Docker 的三大组件之一。</p>
@@ -9876,8 +9903,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -10713,8 +10740,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -10741,8 +10768,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
