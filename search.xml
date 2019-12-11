@@ -108,7 +108,7 @@
 <p>如果标准输入传入的是文本文件，则将其视为 <code>Dockerfile</code>，并开始构建。这种形式由于直接从标准输入中读取 Dockerfile 的内容，它没有上下文，因此不可以像其他方法那样可以将本地文件 <code>COPY</code> 进镜像之类的事情。</p>
 <h3 id="从标准输入中读取上下文压缩包进行构建"><a href="#从标准输入中读取上下文压缩包进行构建" class="headerlink" title="从标准输入中读取上下文压缩包进行构建"></a>从标准输入中读取上下文压缩包进行构建</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker build - &lt; context.tar.gz</span><br></pre></td></tr></table></figure>
 <p>如果发现标准输入的文件格式是 <code>gzip</code>、<code>bzip2</code> 以及 <code>xz</code> 的话，将会使其为上下文压缩包，直接将其展开，将里面视为上下文，并开始构建。</p>
-<h1 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h1><h3 id="COPY-复制文件"><a href="#COPY-复制文件" class="headerlink" title="COPY 复制文件"></a>COPY 复制文件</h3><p>格式：</p>
+<h1 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h1><h2 id="COPY-复制文件"><a href="#COPY-复制文件" class="headerlink" title="COPY 复制文件"></a>COPY 复制文件</h2><p>格式：</p>
 <ul>
 <li><code>COPY [--chown=:] &lt;源路径&gt;... &lt;目标路径&gt;</code></li>
 <li><code>COPY [--chown=:] [&quot;&lt;源路径1&gt;&quot;,... &quot;&lt;目标路径&gt;&quot;]</code></li>
@@ -122,7 +122,7 @@
 <p>此外，还需要注意一点，使用 <code>COPY</code> 指令，源文件的各种元数据都会保留。比如读、写、执行权限、文件变更时间等。这个特性对于镜像定制很有用。特别是构建相关文件都在使用 Git 进行管理的时候。</p>
 <p>在使用该指令的时候还可以加上 <code>--chown=:</code> 选项来改变文件的所属用户及所属组。</p>
 <figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=55:mygroup files* /mydir/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=bin files* /mydir/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=1 files* /mydir/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --chown=10:11 files* /mydir/</span></span><br></pre></td></tr></table></figure>
-<h3 id="ADD-更高级的复制文件"><a href="#ADD-更高级的复制文件" class="headerlink" title="ADD 更高级的复制文件"></a>ADD 更高级的复制文件</h3><p><code>ADD</code> 指令和 <code>COPY</code> 的格式和性质基本一致。但是在 <code>COPY</code> 基础上增加了一些功能。</p>
+<h2 id="ADD-更高级的复制文件"><a href="#ADD-更高级的复制文件" class="headerlink" title="ADD 更高级的复制文件"></a>ADD 更高级的复制文件</h2><p><code>ADD</code> 指令和 <code>COPY</code> 的格式和性质基本一致。但是在 <code>COPY</code> 基础上增加了一些功能。</p>
 <p>比如 <code>&lt;源路径&gt;</code> 可以是一个 <code>URL</code>，这种情况下，Docker 引擎会试图去下载这个链接的文件放到 <code>&lt;目标路径&gt;</code> 去。下载后的文件权限自动设置为 <code>600</code>，如果这并不是想要的权限，那么还需要增加额外的一层 <code>RUN</code> 进行权限调整，另外，如果下载的是个压缩包，需要解压缩，也一样还需要额外的一层 <code>RUN</code> 指令进行解压缩。所以不如直接使用 <code>RUN</code> 指令，然后使用 <code>wget</code> 或者 <code>curl</code> 工具下载，处理权限、解压缩、然后清理无用文件更合理。因此，这个功能其实并不实用，而且不推荐使用。</p>
 <p>如果 <code>&lt;源路径&gt;</code> 为一个 <code>tar</code> 压缩文件的话，压缩格式为 <code>gzip</code>, <code>bzip2</code> 以及 <code>xz</code> 的情况下，<code>ADD</code> 指令将会自动解压缩这个压缩文件到 <code>&lt;目标路径&gt;</code> 去。</p>
 <p>在某些情况下，这个自动解压缩的功能非常有用，比如官方镜像 <code>ubuntu</code> 中：</p>
@@ -133,7 +133,7 @@
 <p>因此在 <code>COPY</code> 和 <code>ADD</code> 指令中选择的时候，可以遵循这样的原则，所有的文件复制均使用 <code>COPY</code> 指令，仅在需要自动解压缩的场合使用 <code>ADD</code>。</p>
 <p>在使用该指令的时候还可以加上 <code>--chown=:</code> 选项来改变文件的所属用户及所属组。</p>
 <figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=55:mygroup files* /mydir/</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=bin files* /mydir/</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=1 files* /mydir/</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> --chown=10:11 files* /mydir/</span></span><br></pre></td></tr></table></figure>
-<h3 id="CMD-容器启动命令"><a href="#CMD-容器启动命令" class="headerlink" title="CMD 容器启动命令"></a>CMD 容器启动命令</h3><p><code>CMD</code> 指令的格式和 <code>RUN</code> 相似，也是两种格式：</p>
+<h2 id="CMD-容器启动命令"><a href="#CMD-容器启动命令" class="headerlink" title="CMD 容器启动命令"></a>CMD 容器启动命令</h2><p><code>CMD</code> 指令的格式和 <code>RUN</code> 相似，也是两种格式：</p>
 <ul>
 <li><code>shell</code> 格式：<code>CMD &lt;命令&gt;</code></li>
 <li><code>exec</code> 格式：<code>CMD [&quot;可执行文件&quot;, &quot;参数1&quot;, &quot;参数2&quot;...]</code></li>
@@ -156,12 +156,12 @@
 <p>而使用 <code>service nginx start</code> 命令，则是希望 upstart 来以后台守护进程形式启动 <code>nginx</code> 服务。而刚才说了 <code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。</p>
 <p>正确的做法是直接执行 <code>nginx</code> 可执行文件，并且要求以前台形式运行。比如：</p>
 <figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"nginx"</span>, <span class="string">"-g"</span>, <span class="string">"daemon off;"</span>]</span></span><br></pre></td></tr></table></figure>
-<h3 id="ENTRYPOINT-入口点"><a href="#ENTRYPOINT-入口点" class="headerlink" title="ENTRYPOINT 入口点"></a>ENTRYPOINT 入口点</h3><p><code>ENTRYPOINT</code> 的格式和 <code>RUN</code> 指令格式一样，分为 <code>exec</code> 格式和 <code>shell</code> 格式。</p>
+<h2 id="ENTRYPOINT-入口点"><a href="#ENTRYPOINT-入口点" class="headerlink" title="ENTRYPOINT 入口点"></a>ENTRYPOINT 入口点</h2><p><code>ENTRYPOINT</code> 的格式和 <code>RUN</code> 指令格式一样，分为 <code>exec</code> 格式和 <code>shell</code> 格式。</p>
 <p><code>ENTRYPOINT</code> 的目的和 <code>CMD</code> 一样，都是在指定容器启动程序及参数。<code>ENTRYPOINT</code> 在运行时也可以替代，不过比 <code>CMD</code> 要略显繁琐，需要通过 <code>docker run</code> 的参数 <code>--entrypoint</code> 来指定。</p>
 <p>当指定了 <code>ENTRYPOINT</code> 后，<code>CMD</code> 的含义就发生了改变，不再是直接的运行其命令，而是将 <code>CMD</code> 的内容作为参数传给 <code>ENTRYPOINT</code> 指令，换句话说实际执行时，将变为：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;ENTRYPOINT&gt; <span class="string">"&lt;CMD&gt;"</span></span><br></pre></td></tr></table></figure>
 <p>那么有了 <code>CMD</code> 后，为什么还要有 <code>ENTRYPOINT</code> 呢？这种 <code>&quot;&quot;</code> 有什么好处么？让我们来看几个场景。</p>
-<h4 id="场景一：让镜像变成像命令一样使用"><a href="#场景一：让镜像变成像命令一样使用" class="headerlink" title="场景一：让镜像变成像命令一样使用"></a>场景一：让镜像变成像命令一样使用</h4><p>假设我们需要一个得知自己当前公网 IP 的镜像，那么可以先用 <code>CMD</code> 来实现：</p>
+<h3 id="场景一：让镜像变成像命令一样使用"><a href="#场景一：让镜像变成像命令一样使用" class="headerlink" title="场景一：让镜像变成像命令一样使用"></a>场景一：让镜像变成像命令一样使用</h3><p>假设我们需要一个得知自己当前公网 IP 的镜像，那么可以先用 <code>CMD</code> 来实现：</p>
 <figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">18.04</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">    &amp;&amp; apt-get install -y curl \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -rf /var/lib/apt/lists/*</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"curl"</span>, <span class="string">"-s"</span>, <span class="string">"https://ip.cn"</span> ]</span></span><br></pre></td></tr></table></figure>
 <p>假如我们使用 <code>docker build -t myip .</code> 来构建镜像的话，如果我们需要查询当前公网 IP，只需要执行：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run myip</span><br><span class="line">当前 IP：61.148.226.66 来自：北京市 联通</span><br></pre></td></tr></table></figure>
@@ -175,7 +175,7 @@
 <p>这次我们再来尝试直接使用 <code>docker run myip -i</code>：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run myip</span><br><span class="line">当前 IP：61.148.226.66 来自：北京市 联通</span><br><span class="line"></span><br><span class="line">$ docker run myip -i</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx/1.8.0</span><br><span class="line">Date: Tue, 22 Nov 2016 05:12:40 GMT</span><br><span class="line">Content-Type: text/html; charset=UTF-8</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">X-Powered-By: PHP/5.6.24-1~dotdeb+7.1</span><br><span class="line">X-Cache: MISS from cache-2</span><br><span class="line">X-Cache-Lookup: MISS from cache-2:80</span><br><span class="line">X-Cache: MISS from proxy-2_6</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Via: 1.1 cache-2:80, 1.1 proxy-2_6:8006</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">当前 IP：61.148.226.66 来自：北京市 联通</span><br></pre></td></tr></table></figure>
 <p>可以看到，这次成功了。这是因为当存在 <code>ENTRYPOINT</code> 后，<code>CMD</code> 的内容将会作为参数传给 <code>ENTRYPOINT</code>，而这里 <code>-i</code> 就是新的 <code>CMD</code>，因此会作为参数传给 <code>curl</code>，从而达到了我们预期的效果。</p>
-<h4 id="场景二：应用运行前的准备工作"><a href="#场景二：应用运行前的准备工作" class="headerlink" title="场景二：应用运行前的准备工作"></a>场景二：应用运行前的准备工作</h4><p>启动容器就是启动主进程，但有些时候，启动主进程前，需要一些准备工作。</p>
+<h3 id="场景二：应用运行前的准备工作"><a href="#场景二：应用运行前的准备工作" class="headerlink" title="场景二：应用运行前的准备工作"></a>场景二：应用运行前的准备工作</h3><p>启动容器就是启动主进程，但有些时候，启动主进程前，需要一些准备工作。</p>
 <p>比如 <code>mysql</code> 类的数据库，可能需要一些数据库配置、初始化的工作，这些工作要在最终的 mysql 服务器运行之前解决。</p>
 <p>此外，可能希望避免使用 <code>root</code> 用户去启动服务，从而提高安全性，而在启动服务前还需要以 <code>root</code> 身份执行一些必要的准备工作，最后切换到服务用户身份启动服务。或者除了服务外，其它命令依旧可以使用 <code>root</code> 身份执行，方便调试等。</p>
 <p>这些准备工作是和容器 <code>CMD</code> 无关的，无论 <code>CMD</code> 为什么，都需要事先进行一个预处理的工作。这种情况下，可以写一个脚本，然后放入 <code>ENTRYPOINT</code> 中去执行，而这个脚本会将接到的参数（也就是 <code></code>）作为命令，在脚本最后执行。比如官方镜像 <code>redis</code> 中就是这么做的：</p>
@@ -184,7 +184,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># allow the container to be started with `--user`</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$1</span>"</span> = <span class="string">'redis-server'</span> -a <span class="string">"<span class="variable">$(id -u)</span>"</span> = <span class="string">'0'</span> ]; <span class="keyword">then</span></span><br><span class="line">    chown -R redis .</span><br><span class="line">    <span class="built_in">exec</span> su-exec redis <span class="string">"<span class="variable">$0</span>"</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> <span class="string">"<span class="variable">$@</span>"</span></span><br></pre></td></tr></table></figure>
 <p>该脚本的内容就是根据 <code>CMD</code> 的内容来判断，如果是 <code>redis-server</code> 的话，则切换到 <code>redis</code> 用户身份启动服务器，否则依旧使用 <code>root</code> 身份执行。比如：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run -it redis id</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br></pre></td></tr></table></figure>
-<h3 id="ENV-设置环境变量"><a href="#ENV-设置环境变量" class="headerlink" title="ENV 设置环境变量"></a>ENV 设置环境变量</h3><p>格式有两种：</p>
+<h2 id="ENV-设置环境变量"><a href="#ENV-设置环境变量" class="headerlink" title="ENV 设置环境变量"></a>ENV 设置环境变量</h2><p>格式有两种：</p>
 <ul>
 <li><code>ENV</code></li>
 <li><code>ENV = =...</code></li>
@@ -197,11 +197,11 @@
 <p>在这里先定义了环境变量 <code>NODE_VERSION</code>，其后的 <code>RUN</code> 这层里，多次使用 <code>$NODE_VERSION</code> 来进行操作定制。可以看到，将来升级镜像构建版本的时候，只需要更新 <code>7.2.0</code> 即可，<code>Dockerfile</code> 构建维护变得更轻松了。</p>
 <p>下列指令可以支持环境变量展开： <code>ADD</code>、<code>COPY</code>、<code>ENV</code>、<code>EXPOSE</code>、<code>FROM</code>、<code>LABEL</code>、<code>USER</code>、<code>WORKDIR</code>、<code>VOLUME</code>、<code>STOPSIGNAL</code>、<code>ONBUILD</code>、<code>RUN</code>。</p>
 <p>可以从这个指令列表里感觉到，环境变量可以使用的地方很多，很强大。通过环境变量，我们可以让一份 <code>Dockerfile</code> 制作更多的镜像，只需使用不同的环境变量即可。</p>
-<h3 id="ARG-构建参数"><a href="#ARG-构建参数" class="headerlink" title="ARG 构建参数"></a>ARG 构建参数</h3><p>格式：<code>ARG &lt;参数名&gt;[=&lt;默认值&gt;]</code></p>
+<h2 id="ARG-构建参数"><a href="#ARG-构建参数" class="headerlink" title="ARG 构建参数"></a>ARG 构建参数</h2><p>格式：<code>ARG &lt;参数名&gt;[=&lt;默认值&gt;]</code></p>
 <p>构建参数和 <code>ENV</code> 的效果一样，都是设置环境变量。所不同的是，<code>ARG</code> 所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的。但是不要因此就使用 <code>ARG</code> 保存密码之类的信息，因为 <code>docker history</code> 还是可以看到所有值的。</p>
 <p><code>Dockerfile</code> 中的 <code>ARG</code> 指令是定义参数名称，以及定义其默认值。该默认值可以在构建命令 <code>docker build</code> 中用 <code>--build-arg &lt;参数名&gt;=&lt;值&gt;</code> 来覆盖。</p>
 <p>在 1.13 之前的版本，要求 <code>--build-arg</code> 中的参数名，必须在 <code>Dockerfile</code> 中用 <code>ARG</code> 定义过了，换句话说，就是 <code>--build-arg</code> 指定的参数，必须在 <code>Dockerfile</code> 中使用了。如果对应参数没有被使用，则会报错退出构建。从 1.13 开始，这种严格的限制被放开，不再报错退出，而是显示警告信息，并继续构建。这对于使用 CI 系统，用同样的构建流程构建不同的 <code>Dockerfile</code> 的时候比较有帮助，避免构建命令必须根据每个 Dockerfile 的内容修改。</p>
-<h3 id="VOLUME-定义匿名卷"><a href="#VOLUME-定义匿名卷" class="headerlink" title="VOLUME 定义匿名卷"></a>VOLUME 定义匿名卷</h3><p>格式为：</p>
+<h2 id="VOLUME-定义匿名卷"><a href="#VOLUME-定义匿名卷" class="headerlink" title="VOLUME 定义匿名卷"></a>VOLUME 定义匿名卷</h2><p>格式为：</p>
 <ul>
 <li><code>VOLUME [&quot;&lt;路径1&gt;&quot;, &quot;&lt;路径2&gt;&quot;...]</code></li>
 <li><code>VOLUME &lt;路径&gt;</code></li>
@@ -211,23 +211,23 @@
 <p>这里的 <code>/data</code> 目录就会在运行时自动挂载为匿名卷，任何向 <code>/data</code> 中写入的信息都不会记录进容器存储层，从而保证了容器存储层的无状态化。当然，运行时可以覆盖这个挂载设置。比如：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d -v mydata:/data xxxx</span><br></pre></td></tr></table></figure>
 <p>在这行命令中，就使用了 <code>mydata</code> 这个命名卷挂载到了 <code>/data</code> 这个位置，替代了 <code>Dockerfile</code> 中定义的匿名卷的挂载配置。</p>
-<h3 id="EXPOSE-声明端口"><a href="#EXPOSE-声明端口" class="headerlink" title="EXPOSE 声明端口"></a>EXPOSE 声明端口</h3><p>格式为 <code>EXPOSE &lt;端口1&gt; [&lt;端口2&gt;...]</code>。</p>
+<h2 id="EXPOSE-声明端口"><a href="#EXPOSE-声明端口" class="headerlink" title="EXPOSE 声明端口"></a>EXPOSE 声明端口</h2><p>格式为 <code>EXPOSE &lt;端口1&gt; [&lt;端口2&gt;...]</code>。</p>
 <p><code>EXPOSE</code> 指令是声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务。在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；另一个用处则是在运行时使用随机端口映射时，也就是 <code>docker run -P</code> 时，会自动随机映射 <code>EXPOSE</code> 的端口。</p>
 <p>要将 <code>EXPOSE</code> 和在运行时使用 <code>-p &lt;宿主端口&gt;:&lt;容器端口&gt;</code> 区分开来。<code>-p</code>，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，而 <code>EXPOSE</code> 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射。</p>
-<h3 id="WORKDIR-指定工作目录"><a href="#WORKDIR-指定工作目录" class="headerlink" title="WORKDIR 指定工作目录"></a>WORKDIR 指定工作目录</h3><p>格式为 <code>WORKDIR &lt;工作目录路径&gt;</code>。</p>
+<h2 id="WORKDIR-指定工作目录"><a href="#WORKDIR-指定工作目录" class="headerlink" title="WORKDIR 指定工作目录"></a>WORKDIR 指定工作目录</h2><p>格式为 <code>WORKDIR &lt;工作目录路径&gt;</code>。</p>
 <p>使用 <code>WORKDIR</code> 指令可以来指定工作目录（或者称为当前目录），以后各层的当前目录就被改为指定的目录，如该目录不存在，<code>WORKDIR</code> 会帮你建立目录。</p>
 <p>之前提到一些初学者常犯的错误是把 <code>Dockerfile</code> 等同于 Shell 脚本来书写，这种错误的理解还可能会导致出现下面这样的错误：</p>
 <figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">cd</span> /app</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"hello"</span> &gt; world.txt</span></span><br></pre></td></tr></table></figure>
 <p>如果将这个 <code>Dockerfile</code> 进行构建镜像运行后，会发现找不到 <code>/app/world.txt</code> 文件，或者其内容不是 <code>hello</code>。原因其实很简单，在 Shell 中，连续两行是同一个进程执行环境，因此前一个命令修改的内存状态，会直接影响后一个命令；而在 <code>Dockerfile</code> 中，这两行 <code>RUN</code> 命令的执行环境根本不同，是两个完全不同的容器。这就是对 <code>Dockerfile</code> 构建分层存储的概念不了解所导致的错误。</p>
 <p>之前说过每一个 <code>RUN</code> 都是启动一个容器、执行命令、然后提交存储层文件变更。第一层 <code>RUN cd /app</code> 的执行仅仅是当前进程的工作目录变更，一个内存上的变化而已，其结果不会造成任何文件变更。而到第二层的时候，启动的是一个全新的容器，跟第一层的容器更完全没关系，自然不可能继承前一层构建过程中的内存变化。</p>
 <p>因此如果需要改变以后各层的工作目录的位置，那么应该使用 <code>WORKDIR</code> 指令。</p>
-<h3 id="USER-指定当前用户"><a href="#USER-指定当前用户" class="headerlink" title="USER 指定当前用户"></a>USER 指定当前用户</h3><p>格式：<code>USER &lt;用户名&gt;[:&lt;用户组&gt;]</code></p>
+<h2 id="USER-指定当前用户"><a href="#USER-指定当前用户" class="headerlink" title="USER 指定当前用户"></a>USER 指定当前用户</h2><p>格式：<code>USER &lt;用户名&gt;[:&lt;用户组&gt;]</code></p>
 <p><code>USER</code> 指令和 <code>WORKDIR</code> 相似，都是改变环境状态并影响以后的层。<code>WORKDIR</code> 是改变工作目录，<code>USER</code> 则是改变之后层的执行 <code>RUN</code>, <code>CMD</code> 以及 <code>ENTRYPOINT</code> 这类命令的身份。</p>
 <p>当然，和 <code>WORKDIR</code> 一样，<code>USER</code> 只是帮助你切换到指定用户而已，这个用户必须是事先建立好的，否则无法切换。</p>
 <figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="bash"> groupadd -r redis &amp;&amp; useradd -r -g redis redis</span></span><br><span class="line"><span class="keyword">USER</span> redis</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> [ <span class="string">"redis-server"</span> ]</span></span><br></pre></td></tr></table></figure>
 <p>如果以 <code>root</code> 执行的脚本，在执行期间希望改变身份，比如希望以某个已经建立好的用户来运行某个服务进程，不要使用 <code>su</code> 或者 <code>sudo</code>，这些都需要比较麻烦的配置，而且在 TTY 缺失的环境下经常出错。建议使用 <a href="https://github.com/tianon/gosu" target="_blank" rel="noopener"><code>gosu</code></a>。</p>
 <figure class="highlight docker"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 建立 redis 用户，并使用 gosu 换另一个用户执行命令</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> groupadd -r redis &amp;&amp; useradd -r -g redis redis</span></span><br><span class="line"><span class="comment"># 下载 gosu</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> wget -O /usr/<span class="built_in">local</span>/bin/gosu <span class="string">"https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64"</span> \</span></span><br><span class="line"><span class="bash">    &amp;&amp; chmod +x /usr/<span class="built_in">local</span>/bin/gosu \</span></span><br><span class="line"><span class="bash">    &amp;&amp; gosu nobody <span class="literal">true</span></span></span><br><span class="line"><span class="comment"># 设置 CMD，并以另外的用户执行</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">"exec"</span>, <span class="string">"gosu"</span>, <span class="string">"redis"</span>, <span class="string">"redis-server"</span> ]</span></span><br></pre></td></tr></table></figure>
-<h3 id="HEALTHCHECK-健康检查"><a href="#HEALTHCHECK-健康检查" class="headerlink" title="HEALTHCHECK 健康检查"></a>HEALTHCHECK 健康检查</h3><p>格式：</p>
+<h2 id="HEALTHCHECK-健康检查"><a href="#HEALTHCHECK-健康检查" class="headerlink" title="HEALTHCHECK 健康检查"></a>HEALTHCHECK 健康检查</h2><p>格式：</p>
 <ul>
 <li><code>HEALTHCHECK [选项] CMD &lt;命令&gt;</code>：设置检查容器健康状况的命令</li>
 <li><code>HEALTHCHECK NONE</code>：如果基础镜像有健康检查指令，使用这行可以屏蔽掉其健康检查指令</li>
@@ -258,7 +258,7 @@
 <p>如果健康检查连续失败超过了重试次数，状态就会变为 <code>(unhealthy)</code>。</p>
 <p>为了帮助排障，健康检查命令的输出（包括 <code>stdout</code> 以及 <code>stderr</code>）都会被存储于健康状态里，可以用 <code>docker inspect</code> 来查看。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker inspect --format <span class="string">'&#123;&#123;json .State.Health&#125;&#125;'</span> web | python -m json.tool</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"FailingStreak"</span>: 0,</span><br><span class="line">    <span class="string">"Log"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"End"</span>: <span class="string">"2016-11-25T14:35:37.940957051Z"</span>,</span><br><span class="line">            <span class="string">"ExitCode"</span>: 0,</span><br><span class="line">            <span class="string">"Output"</span>: <span class="string">"&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n&lt;title&gt;Welcome to nginx!&lt;/title&gt;\n&lt;style&gt;\n    body &#123;\n        width: 35em;\n        margin: 0 auto;\n        font-family: Tahoma, Verdana, Arial, sans-serif;\n    &#125;\n&lt;/style&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;\n&lt;p&gt;If you see this page, the nginx web server is successfully installed and\nworking. Further configuration is required.&lt;/p&gt;\n\n&lt;p&gt;For online documentation and support please refer to\n&lt;a href=\"http://nginx.org/\"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;\nCommercial support is available at\n&lt;a href=\"http://nginx.com/\"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;\n\n&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n"</span>,</span><br><span class="line">            <span class="string">"Start"</span>: <span class="string">"2016-11-25T14:35:37.780192565Z"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"Status"</span>: <span class="string">"healthy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="ONBUILD-为他人做嫁衣裳"><a href="#ONBUILD-为他人做嫁衣裳" class="headerlink" title="ONBUILD 为他人做嫁衣裳"></a>ONBUILD 为他人做嫁衣裳</h3><p>格式：<code>ONBUILD &lt;其它指令&gt;</code>。</p>
+<h2 id="ONBUILD-为他人做嫁衣裳"><a href="#ONBUILD-为他人做嫁衣裳" class="headerlink" title="ONBUILD 为他人做嫁衣裳"></a>ONBUILD 为他人做嫁衣裳</h2><p>格式：<code>ONBUILD &lt;其它指令&gt;</code>。</p>
 <p><code>ONBUILD</code> 是一个特殊的指令，它后面跟的是其它指令，比如 <code>RUN</code>, <code>COPY</code> 等，而这些指令，在当前镜像构建时并不会被执行。只有当以当前镜像为基础镜像，去构建下一级镜像的时候才会被执行。</p>
 <p><code>Dockerfile</code> 中的其它指令都是为了定制当前镜像而准备的，唯有 <code>ONBUILD</code> 是为了帮助别人定制自己而准备的。</p>
 <p>假设我们要制作 Node.js 所写的应用的镜像。我们都知道 Node.js 使用 <code>npm</code> 进行包管理，所有依赖、配置、启动信息等会放到 <code>package.json</code> 文件里。在拿到程序代码后，需要先进行 <code>npm install</code> 才可以获得所有需要的依赖。然后就可以通过 <code>npm start</code> 来启动应用。因此，一般来说会这样写 <code>Dockerfile</code>：</p>
