@@ -467,6 +467,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 支持 # 号注释</span></span><br><span class="line">MONGO_VERSION=3.6</span><br></pre></td></tr></table></figure>
 <p>执行 <code>docker-compose up</code> 则会启动一个 <code>mongo:3.6</code> 镜像的容器。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener">https://docs.docker.com/compose/compose-file/</a></p>
+<p>本文章摘抄于：<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -894,6 +895,7 @@
 <p>最后，为了减少层数和复杂度，避免频繁地使用 <code>USER</code> 来回切换用户。</p>
 <h3 id="WORKDIR"><a href="#WORKDIR" class="headerlink" title="WORKDIR"></a>WORKDIR</h3><p>为了清晰性和可靠性，你应该总是在 <code>WORKDIR</code> 中使用绝对路径。另外，你应该使用 <code>WORKDIR</code> 来替代类似于 <code>RUN cd ... &amp;&amp; do-something</code> 的指令，后者难以阅读、排错和维护。</p>
 <h2 id="官方镜像示例"><a href="#官方镜像示例" class="headerlink" title="官方镜像示例"></a>官方镜像示例</h2><p>这些官方镜像的 Dockerfile 都是参考典范：<a href="https://github.com/docker-library/docs" target="_blank" rel="noopener">https://github.com/docker-library/docs</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>本文章摘抄于：<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -988,6 +990,7 @@
 <p>使用 SSL 加密以后程序需要访问就不能采用修改配置的访问了。具体方法如下：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ openssl s_client -showcerts -connect YourDomainName OR HostIP:443 &lt;/dev/null 2&gt;/dev/null|openssl x509 -outform PEM &gt;ca.crt</span><br><span class="line">$ cat ca.crt | sudo tee -a /etc/ssl/certs/ca-certificates.crt</span><br><span class="line">$ systemctl restart docker</span><br></pre></td></tr></table></figure>
 <p>使用 <code>docker login YourDomainName OR HostIP</code> 进行测试，用户名密码填写上面 Nexus 中生成的。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>本文章摘抄于：<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -1120,6 +1123,7 @@
 <p>每个镜像都由很多层次构成，Docker 使用 <a href="https://en.wikipedia.org/wiki/UnionFS" target="_blank" rel="noopener">Union FS</a> 将这些不同的层结合到一个镜像中去。</p>
 <p>通常 Union FS 有两个用途, 一方面可以实现不借助 LVM、RAID 将多个 disk 挂到同一个目录下,另一个更常用的就是将一个只读的分支和一个可写的分支联合在一起，Live CD 正是基于此方法可以允许在镜像不变的基础上允许用户在其上进行一些写操作。</p>
 <p>Docker 在 AUFS 上构建的容器也是利用了类似的原理。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>本文章摘抄于：<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -1349,6 +1353,7 @@
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>Docker 官网：<a href="https://www.docker.com/" target="_blank" rel="noopener">https://www.docker.com</a></p>
 <p>Github Docker 源码：<a href="https://github.com/docker/docker-ce" target="_blank" rel="noopener">https://github.com/docker/docker-ce</a></p>
 <p>Docker命令大全：<a href="https://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-command-manual.html</a></p>
+<p>本文章摘抄于：<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -1525,7 +1530,7 @@
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>Docker 官网：<a href="https://www.docker.com/" target="_blank" rel="noopener">https://www.docker.com</a></p>
 <p>Github Docker 源码：<a href="https://github.com/docker/docker-ce" target="_blank" rel="noopener">https://github.com/docker/docker-ce</a></p>
 <p>Docker命令大全：<a href="https://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-command-manual.html</a></p>
-<p>文章摘抄于：<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/</a></p>
+<p>本文章摘抄于：<a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -11766,8 +11771,8 @@
       <tags>
         <tag>环境搭建</tag>
         <tag>Homebrew</tag>
-        <tag>Maven</tag>
         <tag>Mac</tag>
+        <tag>Maven</tag>
       </tags>
   </entry>
   <entry>
