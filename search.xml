@@ -10906,8 +10906,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -11743,8 +11743,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -11771,8 +11771,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -13515,8 +13515,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>Centos7</tag>
+        <tag>Mysql</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
@@ -13592,6 +13592,16 @@ go run 编译并运行Go程序
 <h2 id="文章加密访问"><a href="#文章加密访问" class="headerlink" title="文章加密访问"></a>文章加密访问</h2><p>打开 <strong> themes\next\layout_partials\head </strong> 文件,在以下位置插入这样一段代码：<br><img src="safe_read.png" alt><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>) &#123;</span><br><span class="line">                alert(<span class="string">'密码错误！'</span>);</span><br><span class="line">                <span class="keyword">if</span> (history.length === <span class="number">1</span>) &#123;</span><br><span class="line">                    location.replace(<span class="string">"http://xxxxxxx.xxx"</span>); <span class="comment">// 这里替换成你的首页</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    history.back();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后在文章上写成类似这样：<br><img src="safe_read_demo.png" alt><br>就ok啦，不过很容易被破解掉噢</p>
 <p><strong> 当然还有另一种方式 </strong><br><a href="https://github.com/MikeCoder/hexo-blog-encrypt/blob/master/ReadMe.zh.md" target="_blank" rel="noopener">guide1</a><br><a href="https://github.com/edolphin-ydf/hexo-encrypt" target="_blank" rel="noopener">guide2</a><br>按照指引就可以啦~</p>
+<h2 id="Fancybox3图片浏览"><a href="#Fancybox3图片浏览" class="headerlink" title="Fancybox3图片浏览"></a>Fancybox3图片浏览</h2><p>博客上的图片点击浏览功能插件。</p>
+<p>如果已经安装了旧版，则先删除</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rm -rf themes/next/<span class="built_in">source</span>/lib/fancybox</span><br></pre></td></tr></table></figure>
+<p>然后bash去到<code>themes/next</code>目录</p>
+<p>获取插件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/theme-next-fancybox3 <span class="built_in">source</span>/lib/fancybox</span><br></pre></td></tr></table></figure>
+<p>修改next主题下的<code>_config.yml</code>文件</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fancybox:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>如果想要配置CDN，则再加上</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">fancybox:</span> <span class="string">//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js</span></span><br><span class="line">  <span class="attr">fancybox_css:</span> <span class="string">//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css</span></span><br></pre></td></tr></table></figure>
 <h1 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h1><p>首先需要进行创建您个人的github账户</p>
 <ol start="0">
 <li>创建公钥<br>打开git-bash,执行<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"your_email@youremail.com"</span></span><br></pre></td></tr></table></figure>
@@ -13623,7 +13633,7 @@ go run 编译并运行Go程序
 <h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>这里涉及到<a href="https://hexo.io/zh-cn/docs/asset-folders" target="_blank" rel="noopener">资源文件夹</a></p>
 <h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><p>当Hexo项目中只用到少量图片时，可以将图片统一放在 <strong> source/images </strong> 文件夹中，通过markdown语法访问它们。<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![](/images/image.jpg)</span><br></pre></td></tr></table></figure></p>
 <h3 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h3><p>图片除了可以放在统一的 <strong> source/images </strong> 文件夹中，还可以放在文章自己的目录中。文章的目录可以通过配置 <strong> config.yml </strong>来生成。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure></p>
-<p>把 <strong> _config.yml </strong> 中配置post_asset_folder设置为true后，通过命令hexo new &lt;文章名字&gt;，hexo就会在文章的目录下建立一个和文章同名的文件夹，然后把图片资源放进该文件夹下，即可通过<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![](images/image.jpg)</span><br></pre></td></tr></table></figure></p>
+<p>把 <strong> _config.yml </strong> 中配置post_asset_folder设置为true后，通过命令hexo new &lt;文章名字&gt;，hexo就会在文章的目录下建立一个和文章同名的文件夹，然后把图片资源放进该文件夹下，即可通过<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![](image.jpg)</span><br></pre></td></tr></table></figure></p>
 <p>记住和第一点绝对路径有区别，别在路径前面加/，否则会出错</p>
 <h2 id="文档格式"><a href="#文档格式" class="headerlink" title="文档格式"></a>文档格式</h2><p>假设我们的文章名为 “hello hexo markdwon”，在命令行键入以下命令即可：</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: hello hexo markdown</span><br><span class="line">date: 2016-11-16 18:11:25</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
