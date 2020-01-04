@@ -249,10 +249,10 @@
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/5b800057f2d8" target="_blank" rel="noopener">https://www.jianshu.com/p/5b800057f2d8</a></p>
 ]]></content>
       <categories>
-        <category>JAVA</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>JAVA</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -12185,8 +12185,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -13022,9 +13022,9 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
+        <tag>Homebrew</tag>
         <tag>Mac</tag>
         <tag>Composer</tag>
-        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
@@ -13050,8 +13050,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -14794,8 +14794,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>Centos7</tag>
+        <tag>Mysql</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
