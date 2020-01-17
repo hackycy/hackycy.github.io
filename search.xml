@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决Android Studio——Configuration on demand is not supported by the current version of the Android Gradle</title>
+    <url>/2020/01/17/%E8%A7%A3%E5%86%B3Android-Studio%E2%80%94%E2%80%94Configuration-on-demand-is-not-supported-by-the-current-version-of-the-Android-Gradle/</url>
+    <content><![CDATA[<p>【错误】<br>Configuration on demand is not supported by the current version of the Android Gradle plugin since you are using Gradle version 4.6 or above. </p>
+<p>Suggestion: disable configuration on demand by setting org.gradle.configureondemand=false in your gradle.properties file or use a Gradle version less than 4.6.</p>
+<p>【翻译】<br>由于使用你正在使用 Gradle 版本4.6或以上，当前版本的Android的 Gradle 插件不支持按需配置。</p>
+<p>建议：通过在你的 gradle.properties 文件中设置 org.gradle.configureondemand=false 禁用按需配置，或者使用一个低于4.6版本的 Gradle。</p>
+<a id="more"></a>
+<p><strong>解决方案1：降级</strong></p>
+<p>打开 <strong>gradle-wrapper.properties</strong> 文件，修改 <strong>distributionUrl</strong> 参数，将其后面修改为低于4.6版本的 Gradle。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-4.1-all.zip</span><br></pre></td></tr></table></figure>
+<p><img src="properties.png" alt></p>
+<p><strong>解决方法2：禁用按需配置</strong></p>
+<p>1、打开 <strong>gradle.properties</strong> 文件，共有两个：<strong>Global Properties</strong> 和 <strong>Project Properties</strong>，将其中的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.gradle.configureondemand=true</span><br></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.gradle.configureondemand=false</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>或删除该语句，或注释掉该语句。</p>
+</blockquote>
+<p>2、或者通过 <strong>Preferences</strong> 菜单，找到 <strong>Build, Execution, Deployment</strong> 里面的 <strong>Compiler</strong>，将右面的 <strong>Configure on demand</strong> 取消勾选。</p>
+<p><img src="panel.png" alt></p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java 8 新特性一览</title>
     <url>/2020/01/04/Java-8-%E6%96%B0%E7%89%B9%E6%80%A7%E4%B8%80%E8%A7%88/</url>
     <content><![CDATA[<p>Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。 Oracle 公司于 2014 年 3 月 18 日发布 Java 8 ，它支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。</p>
@@ -12203,8 +12234,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -13040,8 +13071,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -13068,8 +13099,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -14812,8 +14843,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>Centos7</tag>
+        <tag>Mysql</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>

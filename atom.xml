@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hackycy.github.io/"/>
-  <updated>2020-01-04T04:10:31.097Z</updated>
+  <updated>2020-01-17T06:54:30.444Z</updated>
   <id>http://hackycy.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决Android Studio——Configuration on demand is not supported by the current version of the Android Gradle</title>
+    <link href="http://hackycy.github.io/2020/01/17/%E8%A7%A3%E5%86%B3Android-Studio%E2%80%94%E2%80%94Configuration-on-demand-is-not-supported-by-the-current-version-of-the-Android-Gradle/"/>
+    <id>http://hackycy.github.io/2020/01/17/解决Android-Studio——Configuration-on-demand-is-not-supported-by-the-current-version-of-the-Android-Gradle/</id>
+    <published>2020-01-17T06:45:50.000Z</published>
+    <updated>2020-01-17T06:54:30.444Z</updated>
+    
+    <content type="html"><![CDATA[<p>【错误】<br>Configuration on demand is not supported by the current version of the Android Gradle plugin since you are using Gradle version 4.6 or above. </p><p>Suggestion: disable configuration on demand by setting org.gradle.configureondemand=false in your gradle.properties file or use a Gradle version less than 4.6.</p><p>【翻译】<br>由于使用你正在使用 Gradle 版本4.6或以上，当前版本的Android的 Gradle 插件不支持按需配置。</p><p>建议：通过在你的 gradle.properties 文件中设置 org.gradle.configureondemand=false 禁用按需配置，或者使用一个低于4.6版本的 Gradle。</p><a id="more"></a><p><strong>解决方案1：降级</strong></p><p>打开 <strong>gradle-wrapper.properties</strong> 文件，修改 <strong>distributionUrl</strong> 参数，将其后面修改为低于4.6版本的 Gradle。如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-4.1-all.zip</span><br></pre></td></tr></table></figure><p><img src="properties.png" alt></p><p><strong>解决方法2：禁用按需配置</strong></p><p>1、打开 <strong>gradle.properties</strong> 文件，共有两个：<strong>Global Properties</strong> 和 <strong>Project Properties</strong>，将其中的</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.configureondemand=true</span><br></pre></td></tr></table></figure><p>修改为</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.configureondemand=false</span><br></pre></td></tr></table></figure><blockquote><p>或删除该语句，或注释掉该语句。</p></blockquote><p>2、或者通过 <strong>Preferences</strong> 菜单，找到 <strong>Build, Execution, Deployment</strong> 里面的 <strong>Compiler</strong>，将右面的 <strong>Configure on demand</strong> 取消勾选。</p><p><img src="panel.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【错误】&lt;br&gt;Configuration on demand is not supported by the current version of the Android Gradle plugin since you are using Gradle version 4.6 or above. &lt;/p&gt;
+&lt;p&gt;Suggestion: disable configuration on demand by setting org.gradle.configureondemand=false in your gradle.properties file or use a Gradle version less than 4.6.&lt;/p&gt;
+&lt;p&gt;【翻译】&lt;br&gt;由于使用你正在使用 Gradle 版本4.6或以上，当前版本的Android的 Gradle 插件不支持按需配置。&lt;/p&gt;
+&lt;p&gt;建议：通过在你的 gradle.properties 文件中设置 org.gradle.configureondemand=false 禁用按需配置，或者使用一个低于4.6版本的 Gradle。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://hackycy.github.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://hackycy.github.io/tags/Android/"/>
+    
+      <category term="Android Studio" scheme="http://hackycy.github.io/tags/Android-Studio/"/>
+    
+  </entry>
   
   <entry>
     <title>Java 8 新特性一览</title>
@@ -451,28 +478,6 @@
     
     
       <category term="QPS、TPS、PV、UV、GMV、IP、RPS" scheme="http://hackycy.github.io/tags/QPS%E3%80%81TPS%E3%80%81PV%E3%80%81UV%E3%80%81GMV%E3%80%81IP%E3%80%81RPS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android SharedPreferences使用</title>
-    <link href="http://hackycy.github.io/2019/08/13/Android-SharedPreferences%E4%BD%BF%E7%94%A8/"/>
-    <id>http://hackycy.github.io/2019/08/13/Android-SharedPreferences使用/</id>
-    <published>2019-08-13T05:57:52.000Z</published>
-    <updated>2019-08-13T08:46:52.767Z</updated>
-    
-    <content type="html"><![CDATA[<p>Sharedpreferences是Android平台上一个轻量级的存储类，用来保存应用程序的各种配置信息，其本质是一个以“键-值”对的方式保存数据的xml文件，其文件保存在<code>/data/data/${pkg}/shared_prefs</code>目录下。在全局变量上看，其优点是不会产生Application 、 静态变量的OOM（out of memory）和空指针问题，其缺点是效率没有上面的两种方法高。<strong>SharedPreferences实现是线程安全的，但不是进程安全的。</strong></p><a id="more"></a><h1 id="获取SharedPreferences"><a href="#获取SharedPreferences" class="headerlink" title="获取SharedPreferences"></a>获取SharedPreferences</h1><p>使用 SharedPreferences 来存储数据，首先需要获取到 SharedPreferences 对象。Android中主要提供了两种方法用于得到 SharedPreferences 对象。</p><h2 id="Context-类中的-getSharedPreferences-方法："><a href="#Context-类中的-getSharedPreferences-方法：" class="headerlink" title="Context 类中的 getSharedPreferences()方法："></a>Context 类中的 getSharedPreferences()方法：</h2><p>此方法接收两个参数，第一个参数用于指定 SharedPreferences 文件的名称，如果指定的文件不存在则会创建一个，第二个参数用于指定操作模式，主要有以下几种模式可以选择。<code>MODE_PRIVATE</code> 是默认的操作模式，和直接传入 0 效果是相同的。<br><code>MODE_WORLD_READABLE</code> 和 <code>MODE_WORLD_WRITEABLE</code> 这两种模式已在 Android 4.2 版本中被废弃。</p><ul><li><strong>Context.MODE_PRIVATE：</strong>为默认操作模式,代表该文件是私有数据,只能被应用本身访问,在该模式下,写入的内容会覆盖原文件的内容；</li><li><strong>Context.MODE_APPEND：</strong>模式会检查文件是否存在,存在就往文件追加内容,否则就创建新文件；</li><li><strong>Context.MODE_WORLD_READABLE：</strong>表示当前文件可以被其他应用读取；</li><li><strong>Context.MODE_WORLD_WRITEABLE：</strong>表示当前文件可以被其他应用写入；</li></ul><h2 id="PreferenceManager-类中的-getDefaultSharedPreferences-方法："><a href="#PreferenceManager-类中的-getDefaultSharedPreferences-方法：" class="headerlink" title="PreferenceManager 类中的 getDefaultSharedPreferences()方法："></a>PreferenceManager 类中的 getDefaultSharedPreferences()方法：</h2><p>这是一个静态方法，它接收一个 Context 参数，并自动使用当前应用程序的包名作为前缀来命名 SharedPreferences 文件。<del>[已废弃]</del></p><h1 id="SharedPreferences的使用"><a href="#SharedPreferences的使用" class="headerlink" title="SharedPreferences的使用"></a>SharedPreferences的使用</h1><p>SharedPreferences对象本身只能获取数据而不支持存储和修改,存储修改是通过SharedPreferences.edit()获取的内部接口Editor对象实现。</p><h2 id="存储数据"><a href="#存储数据" class="headerlink" title="存储数据"></a>存储数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sp = getSharedPreferences(<span class="string">"user"</span>, Context.MODE_PRIVATE);</span><br><span class="line">SharedPreferences.Editor editor = sp.edit();</span><br><span class="line">editor.putBoolean(<span class="string">"isBoy"</span>, <span class="keyword">true</span>);</span><br><span class="line">editor.putString(<span class="string">"username"</span>, <span class="string">"xiaohong"</span>);</span><br><span class="line">editor.putInt(<span class="string">"wage"</span>, <span class="number">6000</span>);</span><br><span class="line">editor.commit();</span><br></pre></td></tr></table></figure><h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sp = getSharedPreferences(<span class="string">"user"</span>, Context.MODE_PRIVATE);</span><br><span class="line">String username = sp.getString(<span class="string">"username"</span>, <span class="string">""</span>);</span><br><span class="line"><span class="keyword">boolean</span> isBoy = sp.getBoolean(<span class="string">"isBoy"</span>, <span class="keyword">false</span>);</span><br><span class="line"><span class="keyword">int</span> wage = sp.getInt(<span class="string">"wage"</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure><h2 id="删除指定数据"><a href="#删除指定数据" class="headerlink" title="删除指定数据"></a>删除指定数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sp = getSharedPreferences(<span class="string">"user"</span>, Context.MODE_PRIVATE);</span><br><span class="line">SharedPreferences.Editor editor = sp.edit();</span><br><span class="line">editor.remove(<span class="string">"wage"</span>);</span><br><span class="line">editor.commit();</span><br></pre></td></tr></table></figure><h2 id="清空数据"><a href="#清空数据" class="headerlink" title="清空数据"></a>清空数据</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sp = getSharedPreferences(<span class="string">"user"</span>, Context.MODE_PRIVATE);</span><br><span class="line">SharedPreferences.Editor editor = sp.edit();</span><br><span class="line">editor.clear();</span><br><span class="line">editor.commit();</span><br></pre></td></tr></table></figure><p><strong>注意</strong>：如果在 Fragment 中使用SharedPreferences 时，需要放在onAttach(Activity activity)里面进行SharedPreferences的初始化，否则会报空指针 即 getActivity()会可能返回null ！</p><h2 id="读写其他应用的SharedPreferences"><a href="#读写其他应用的SharedPreferences" class="headerlink" title="读写其他应用的SharedPreferences"></a>读写其他应用的SharedPreferences</h2><p> 1. 在创建SharedPreferences时，指定MODE_WORLD_READABLE模式，表明该SharedPreferences数据可以被其他程序读取；<br> 2. 创建其他应用程序对应的Context；<br> 3. 使用其他程序的Context获取对应的SharedPreferences；<br> 4. 如果是写入数据，使用Editor接口即可，所有其他操作均和前面一致；</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"><span class="comment">//这里的com.example.mpreferences 就是应用的包名</span></span><br><span class="line">  Context mcontext = createPackageContext(<span class="string">"com.example.mpreferences"</span>, CONTEXT_IGNORE_SECURITY);</span><br><span class="line">  SharedPreferences msharedpreferences = mcontext.getSharedPreferences(<span class="string">"name_preference"</span>, MODE_PRIVATE);</span><br><span class="line">  <span class="keyword">int</span> count = msharedpreferences.getInt(<span class="string">"count"</span>, <span class="number">0</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="SharedPreferences-Editor对象中commit和apply的区别"><a href="#SharedPreferences-Editor对象中commit和apply的区别" class="headerlink" title="SharedPreferences.Editor对象中commit和apply的区别"></a>SharedPreferences.Editor对象中commit和apply的区别</h1><ul><li>apply没有返回值而commit返回boolean表明修改是否提交成功 ；</li><li>commit是把内容同步提交到硬盘的，而apply先立即把修改提交到内存，然后开启一个异步的线程提交到硬盘，并且如果提交失败，你不会收到任何通知。</li><li>所有commit提交是同步过程，效率会比apply异步提交的速度慢，在不关心提交结果是否成功的情况下，优先考虑apply方法。</li><li>apply是使用异步线程写入磁盘，commit是同步写入磁盘。所以我们在主线程使用的commit的时候，需要考虑是否会出现ANR问题。（不适合大量数据存储）</li></ul><h1 id="查看Sharedpreferencesd-保存数据的xml文件"><a href="#查看Sharedpreferencesd-保存数据的xml文件" class="headerlink" title="查看Sharedpreferencesd 保存数据的xml文件"></a>查看Sharedpreferencesd 保存数据的xml文件</h1><p>模拟器下直接打开打开AS，找到窗口右下角的<code>Device File Explorer</code>进行查看：</p><p><img src="file.png" alt></p><blockquote><p>真机环境下需要root。</p></blockquote><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://juejin.im/post/5adc444df265da0b886d00bc" target="_blank" rel="noopener">https://juejin.im/post/5adc444df265da0b886d00bc</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Sharedpreferences是Android平台上一个轻量级的存储类，用来保存应用程序的各种配置信息，其本质是一个以“键-值”对的方式保存数据的xml文件，其文件保存在&lt;code&gt;/data/data/${pkg}/shared_prefs&lt;/code&gt;目录下。在全局变量上看，其优点是不会产生Application 、 静态变量的OOM（out of memory）和空指针问题，其缺点是效率没有上面的两种方法高。&lt;strong&gt;SharedPreferences实现是线程安全的，但不是进程安全的。&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://hackycy.github.io/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://hackycy.github.io/tags/Android/"/>
     
   </entry>
   
