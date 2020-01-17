@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决Android Studio报错——No toolchains found in the NDK toolchains folder for ABI with prefix: mips64el-linux-android</title>
+    <url>/2020/01/17/%E8%A7%A3%E5%86%B3Android-Studio%E6%8A%A5%E9%94%99%E2%80%94%E2%80%94No-toolchains-found-in-the-NDK-toolchains-folder-for-ABI-with-prefix-mips64el-linux-android/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>打开了一个使用了老版本构建的项目，本身自己的开发环境一直在更新，导致打开出现了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">No toolchains found <span class="keyword">in</span> the NDK toolchains folder <span class="keyword">for</span> ABI with prefix: mips64el-linux-android</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>如图所示</p>
+<p><img src="toolchainerror.png" alt></p>
+<blockquote>
+<p>显然这个错误是由于Android3.0（当然也可能是更高的版本）开发环境的版本更新所导致的</p>
+</blockquote>
+<h1 id="解决方案1"><a href="#解决方案1" class="headerlink" title="解决方案1"></a>解决方案1</h1><p>找到NDK的配置目录<code>File</code>-&gt;<code>Project Structure</code>-&gt;<code>SDK Location</code></p>
+<p><img src="ndklocaltion.png" alt></p>
+<p>打开命令行，进入到Android NDK Location目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Users/zjyzy/Library/Android/sdk/ndk-bundle</span><br></pre></td></tr></table></figure>
+<p>在进入到toolchains目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> toolchains</span><br></pre></td></tr></table></figure>
+<p>输入，即配置软连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ln -sf aarch64-linux-android-4.9 mips64el-linux-android</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>或者ln -s arm-linux-androideabi-4.9 mipsel-linux-android</p>
+</blockquote>
+<p>即可解决。</p>
+<h1 id="解决方案2"><a href="#解决方案2" class="headerlink" title="解决方案2"></a>解决方案2</h1><p>去Android官网下载，我只使用了方案1解决了问题，方案2未尝试。</p>
+<p>放个别人的链接：<a href="https://blog.csdn.net/qq_24118527/article/details/82867864" target="_blank" rel="noopener">https://blog.csdn.net/qq_24118527/article/details/82867864</a></p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java 8 新特性一览</title>
     <url>/2020/01/04/Java-8-%E6%96%B0%E7%89%B9%E6%80%A7%E4%B8%80%E8%A7%88/</url>
     <content><![CDATA[<p>Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。 Oracle 公司于 2014 年 3 月 18 日发布 Java 8 ，它支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。</p>
@@ -12185,8 +12219,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -13022,8 +13056,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -13050,8 +13084,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -14794,8 +14828,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
