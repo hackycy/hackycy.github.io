@@ -4420,7 +4420,7 @@
 <p>即新版本的NDK与3.0及以前旧版的Android Gradle plugin插件不兼容</p>
 <p><strong>解决方案2</strong></p>
 <p>找到NDK的配置目录<code>File</code>-&gt;<code>Project Structure</code>-&gt;<code>SDK Location</code></p>
-<p><img src="/Users/zjyzy/Documents/Blog/source/_posts/ndklocaltion.png" alt></p>
+<p><img src="ndklocaltion.png" alt></p>
 <p>打开命令行，进入到Android NDK Location目录</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Users/zjyzy/Library/Android/sdk/ndk-bundle</span><br></pre></td></tr></table></figure>
 <p>在进入到toolchains目录</p>
@@ -14812,8 +14812,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
