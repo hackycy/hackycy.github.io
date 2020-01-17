@@ -22,6 +22,8 @@
 </blockquote>
 <p>2、或者通过 <strong>Preferences</strong> 菜单，找到 <strong>Build, Execution, Deployment</strong> 里面的 <strong>Compiler</strong>，将右面的 <strong>Configure on demand</strong> 取消勾选。</p>
 <p><img src="panel.png" alt></p>
+<p><strong>参考链接</strong></p>
+<p><a href="https://stackoverflow.com/questions/49990933/configuration-on-demand-is-not-supported-by-the-current-version-of-the-android-g" target="_blank" rel="noopener">https://stackoverflow.com/questions/49990933/configuration-on-demand-is-not-supported-by-the-current-version-of-the-android-g</a></p>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -4468,6 +4470,13 @@
 <p><strong>解决方案3</strong></p>
 <p>去Android官网下载，我只使用了方案1解决了问题，方案2未尝试。</p>
 <p>放个别人的链接：<a href="https://blog.csdn.net/qq_24118527/article/details/82867864" target="_blank" rel="noopener">https://blog.csdn.net/qq_24118527/article/details/82867864</a></p>
+<p><strong>解决方案4</strong></p>
+<blockquote>
+<p>升级到Android Studio 3.1.2版本后，原有的NDK由r16升级到r17，因为r17不再支持mips，导致<code>ndk-bundle/toolchains/mips64el-linux-android-4.9/prebuilt/linux-x86_64/bin/mips64el-linux-android-strip</code> 找不到, 导致编译报：<strong>Error:org.gradle.process.internal.ExecException: A problem occurred starting process ‘command ‘…\ndk-bundle\toolchains\aarch64-linux-android-4.9\prebuilt\windows-x86_64\bin\aarch64-linux-android-strip’’</strong>。</p>
+</blockquote>
+<p>网上找到的解决办法是删掉NDK或者降级使用r16的NDK，这其实是治标不治本的，这里的解决办法是在<code>build.gradle</code>脚本里排除mips</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        ndk &#123;</span><br><span class="line">            <span class="comment">//支持的CPU架构，如armeabi、x86、mips等</span></span><br><span class="line">            abiFilters <span class="string">"armeabi"</span>, <span class="string">"x86"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    packagingOptions &#123;</span><br><span class="line">        doNotStrip <span class="string">'*/mips/*.so'</span></span><br><span class="line">        doNotStrip <span class="string">'*/mips64/*.so'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参阅：<a href="https://stackoverflow.com/questions/42739916/aarch64-linux-android-strip-file-missing" target="_blank" rel="noopener">https://stackoverflow.com/questions/42739916/aarch64-linux-android-strip-file-missing</a></p>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -12234,8 +12243,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -13071,8 +13080,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -13099,8 +13108,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -14843,8 +14852,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
