@@ -156,7 +156,7 @@
 <p>这个泄露是因为 Message 会持有 Handler，而又因为 <strong>Java 的特性，内部类会持有外部类</strong>，使得 Activity 会被 Handler 持有，这样最终就导致 Activity 泄露。</p>
 <p>解决该问题的最有效的方法是：<strong>将 Handler 定义成静态的内部类，在内部持有 Activity 的弱引用，并及时移除所有消息</strong>。</p>
 <p>示例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> DemoActivity extends Activity &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SafeHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> WeakReference&lt;DemoActivity&gt; ref;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SafeHandler</span><span class="params">(DemoActivity activity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ref = <span class="keyword">new</span> WeakReference(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(<span class="keyword">final</span> Message msg)</span> </span>&#123;</span><br><span class="line">        DemoActivity activity = ref.get();</span><br><span class="line">        <span class="keyword">if</span> (activity != <span class="keyword">null</span>) &#123;</span><br><span class="line">            activity.handleMessage(msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> SafeHandler mSafeHandler = <span class="keyword">new</span> SafeHandler(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// .... do somthing</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//移除消息，加一层保障：</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  	mSafeHandler.removeCallbacksAndMessages(<span class="keyword">null</span>);</span><br><span class="line">  	<span class="keyword">super</span>.onDestroy();</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SafeHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> WeakReference&lt;DemoActivity&gt; ref;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SafeHandler</span><span class="params">(DemoActivity activity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ref = <span class="keyword">new</span> WeakReference(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(<span class="keyword">final</span> Message msg)</span> </span>&#123;</span><br><span class="line">        DemoActivity activity = ref.get();</span><br><span class="line">        <span class="keyword">if</span> (activity != <span class="keyword">null</span>) &#123;</span><br><span class="line">            activity.handleMessage(msg);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> SafeHandler mSafeHandler = <span class="keyword">new</span> SafeHandler(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// .... do somthing</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//移除消息，加一层保障：</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  	mSafeHandler.removeCallbacksAndMessages(<span class="keyword">null</span>);</span><br><span class="line">  	<span class="keyword">super</span>.onDestroy();</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>注意：单纯的在 <code>onDestroy</code> 移除消息并不保险，因为 <code>onDestroy</code> 并不一定执行。</strong></p>
 </blockquote>
@@ -13267,8 +13267,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -14104,8 +14104,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -14132,8 +14132,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
