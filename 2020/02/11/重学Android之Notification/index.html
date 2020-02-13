@@ -144,7 +144,7 @@
 <meta property="og:description" content="什么是通知通知是一个可以在应用程序正常的用户界面之外显示给用户的消息。通知发出时，它首先出现在状态栏的通知区域中，用户打开通知抽屉可查看通知详情。通知区域和通知抽屉都是用户可以随时查看的系统控制区域。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://hackycy.github.io/2020/02/11/重学Android之Notification/notificationshow.png">
-<meta property="og:updated_time" content="2020-02-11T09:18:10.953Z">
+<meta property="og:updated_time" content="2020-02-13T09:54:41.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重学Android之Notification">
 <meta name="twitter:description" content="什么是通知通知是一个可以在应用程序正常的用户界面之外显示给用户的消息。通知发出时，它首先出现在状态栏的通知区域中，用户打开通知抽屉可查看通知详情。通知区域和通知抽屉都是用户可以随时查看的系统控制区域。">
@@ -431,12 +431,24 @@
                 
               
 
-              <time title="创建时间：2020-02-11 15:48:37 / 修改时间：17:18:10" itemprop="dateCreated datePublished" datetime="2020-02-11T15:48:37+08:00">2020-02-11</time>
+              <time title="创建时间：2020-02-11 15:48:37" itemprop="dateCreated datePublished" datetime="2020-02-11T15:48:37+08:00">2020-02-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-13 17:54:41" itemprop="dateModified" datetime="2020-02-13T17:54:41+08:00">2020-02-13</time>
               
             
           </span>
@@ -489,7 +501,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:968字</span>
+              <span>字数统计:1k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:4分</span>
@@ -557,16 +569,17 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NotificationManager mNotificationManager;</span><br><span class="line">mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line"><span class="comment">// 第一个参数为ID，后续更新通知会使用到</span></span><br><span class="line">mNotificationManager.notify(<span class="number">0</span>, notificationNormal);</span><br></pre></td></tr></table></figure>
 <h3 id="更新通知"><a href="#更新通知" class="headerlink" title="更新通知"></a>更新通知</h3><p>更新通知很简单，只需再次发送相同ID的通知即可，如果之前的通知依然存在则会更新通知属性，如果之前通知不存在则重新创建。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builder = <span class="keyword">new</span> NotificationCompat.Builder(<span class="keyword">this</span>)</span><br><span class="line">        .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">        .setContentTitle(<span class="string">"更新的通知标题"</span>)</span><br><span class="line">        .setContentText(<span class="string">"更新的通知内容"</span>);</span><br><span class="line"></span><br><span class="line">builder.setContentIntent(secPendingIntent);</span><br><span class="line"></span><br><span class="line">Notification notificationUpdate = builder.build();</span><br><span class="line"><span class="comment">// 保证与上述创建的相同ID即可。</span></span><br><span class="line">mNotificationManager.notify(<span class="number">0</span>, notificationUpdate);</span><br></pre></td></tr></table></figure>
-<h3 id="取消通知"><a href="#取消通知" class="headerlink" title="取消通知"></a>取消通知</h3><p>取消通知有如下4种方式:</p>
+<h3 id="取消通知"><a href="#取消通知" class="headerlink" title="取消通知"></a>取消通知</h3><p>取消通知有如下几种方式:</p>
 <ul>
 <li>点击通知栏的清除按钮，会清除所有可清除的通知</li>
-<li>设置了 <code>setAutoCancel()</code> 或 <code>FLAG_AUTO_CANCEL</code>的通知，点击该通知时会清除它</li>
-<li>通过 NotificationManager 调用 cancel() 方法清除指定ID的通知</li>
+<li>设置了 setAutoCancel() 或 FLAG_AUTO_CANCEL 的通知，点击该通知时会清除它</li>
+<li>通过 NotificationManager 调用 cancel(int id) 方法清除指定 ID 的通知</li>
+<li>通过 NotificationManager 调用 cancel(String tag, int id) 方法清除指定 TAG 和 ID 的通知</li>
 <li>通过 NotificationManager 调用 cancelAll() 方法清除所有该应用之前发送的通知</li>
 </ul>
 <p>添加<code>setAutoCancel</code>方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NotificationCompat.Builder builderNormal = <span class="keyword">new</span> NotificationCompat.Builder(<span class="keyword">this</span>)</span><br><span class="line">        .setAutoCancel(<span class="keyword">true</span>)</span><br><span class="line">        .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">        .setContentTitle(<span class="string">"普通的通知标题"</span>)</span><br><span class="line">        .setContentText(<span class="string">"普通的通知内容"</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.android.com/guide/topics/ui/notifiers/notifications.html" target="_blank" rel="noopener">https://developer.android.com/guide/topics/ui/notifiers/notifications.html</a></p>
+<h2 id="通知类型"><a href="#通知类型" class="headerlink" title="通知类型"></a>通知类型</h2><h3 id="大视图通知"><a href="#大视图通知" class="headerlink" title="大视图通知"></a>大视图通知</h3><h2 id="通知常见属性"><a href="#通知常见属性" class="headerlink" title="通知常见属性"></a>通知常见属性</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.android.com/guide/topics/ui/notifiers/notifications.html" target="_blank" rel="noopener">https://developer.android.com/guide/topics/ui/notifiers/notifications.html</a></p>
 <p><a href="https://developer.android.com/reference/android/app/Notification.html" target="_blank" rel="noopener">https://developer.android.com/reference/android/app/Notification.html</a></p>
 
       
@@ -984,7 +997,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是通知"><span class="nav-number">1.</span> <span class="nav-text">什么是通知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通知的基础用法"><span class="nav-number">2.</span> <span class="nav-text">通知的基础用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通知创建方式区别"><span class="nav-number">2.1.</span> <span class="nav-text">通知创建方式区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">2.2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通知的必要属性"><span class="nav-number">2.2.1.</span> <span class="nav-text">通知的必要属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个通知"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建一个通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新通知"><span class="nav-number">2.2.3.</span> <span class="nav-text">更新通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消通知"><span class="nav-number">2.2.4.</span> <span class="nav-text">取消通知</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是通知"><span class="nav-number">1.</span> <span class="nav-text">什么是通知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通知的基础用法"><span class="nav-number">2.</span> <span class="nav-text">通知的基础用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通知创建方式区别"><span class="nav-number">2.1.</span> <span class="nav-text">通知创建方式区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">2.2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通知的必要属性"><span class="nav-number">2.2.1.</span> <span class="nav-text">通知的必要属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个通知"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建一个通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新通知"><span class="nav-number">2.2.3.</span> <span class="nav-text">更新通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消通知"><span class="nav-number">2.2.4.</span> <span class="nav-text">取消通知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知类型"><span class="nav-number">2.3.</span> <span class="nav-text">通知类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大视图通知"><span class="nav-number">2.3.1.</span> <span class="nav-text">大视图通知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知常见属性"><span class="nav-number">2.4.</span> <span class="nav-text">通知常见属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
