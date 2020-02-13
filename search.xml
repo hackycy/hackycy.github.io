@@ -197,7 +197,7 @@
 <p>从 Android2.3 开始调用 setForeground 将后台 Service 设置为前台 Service 时，必须在系统的通知栏发送一条通知，也就是前台 Service 与一条可见的通知时绑定在一起的。</p>
 <p>对于不需要常驻通知栏的应用来说，该方案虽好，但却是用户感知的，无法直接使用。</p>
 <p>对于 API level &lt; 18 ：调用startForeground(ID， new Notification())，发送空的Notification ，图标则不会显示。对于 API level &gt;= 18：在需要提优先级的service A启动一个InnerService，两个服务同时startForeground，且绑定同样的 ID。Stop 掉InnerService ，这样通知栏图标即被移除。这方案实际利用了Android前台service的漏洞。</p>
-<p><strong>该方案适用范围：7.1.1系统以下</strong>，8.0后的系统通知栏API的变更以及前台服务的变更导致失效。</p>
+<p><strong>该方案适用范围：7.1.1系统以下</strong>，8.0后的系统通知栏API的变更以及前台服务的变更导致通知栏常驻，造成用户感知。</p>
 <h3 id="具体方案实现-1"><a href="#具体方案实现-1" class="headerlink" title="具体方案实现"></a>具体方案实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProcessService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String TAG = ProcessService<span class="class">.<span class="keyword">class</span>.<span class="title">getSimpleName</span>()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> PROCESS_SERVICE_ID = -<span class="number">10001</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"Not yet implemented"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; <span class="number">18</span>) &#123;</span><br><span class="line">            <span class="comment">// API &lt; 18 ，此方法能有效隐藏Notification上的图标</span></span><br><span class="line">            startForeground(PROCESS_SERVICE_ID, <span class="keyword">new</span> Notification());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Intent innerIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, ProcessInnerService<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            startService(innerIntent);</span><br><span class="line">            startForeground(PROCESS_SERVICE_ID, <span class="keyword">new</span> Notification());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> START_STICKY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 给 API &gt;= 18 的平台上用的保活手段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ProcessInnerService</span> <span class="keyword">extends</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Nullable</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IBinder <span class="title">onBind</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"Not yet implemented"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">onStartCommand</span><span class="params">(Intent intent, <span class="keyword">int</span> flags, <span class="keyword">int</span> startId)</span> </span>&#123;</span><br><span class="line">            startForeground(PROCESS_SERVICE_ID, <span class="keyword">new</span> Notification());</span><br><span class="line">            stopSelf();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="进程死后拉活的方案"><a href="#进程死后拉活的方案" class="headerlink" title="进程死后拉活的方案"></a>进程死后拉活的方案</h1><h2 id="利用系统广播拉活"><a href="#利用系统广播拉活" class="headerlink" title="利用系统广播拉活"></a>利用系统广播拉活</h2><p>在发生特定系统事件时，系统会发出响应的广播，通过在 AndroidManifest 中“静态”注册对应的广播监听器，即可在发生响应事件时拉活。</p>
 <p>常用的用于拉活的广播事件包括：</p>
@@ -13502,8 +13502,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -14339,8 +14339,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -14367,8 +14367,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
