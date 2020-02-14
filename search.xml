@@ -45,6 +45,16 @@
 </ul>
 <p>2、定义并设置一个通知动作(Action)</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Intent secIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, SecActivity<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">PendingIntent secPendingIntent = PendingIntent.getActivity(<span class="keyword">this</span>, <span class="number">0</span>,</span><br><span class="line">        secIntent, PendingIntent.FLAG_UPDATE_CURRENT);</span><br><span class="line">builder.setContentIntent(secPendingIntent);</span><br></pre></td></tr></table></figure>
+<p>PendingIntent 是一种特殊的 Intent ，字面意思可以解释为延迟的 Intent ，用于在某个事件结束后执行特定的 Action 。从上面带 Action 的通知也能验证这一点，当用户点击通知时，才会执行。<br>PendingIntent 是 Android 系统管理并持有的用于描述和获取原始数据的对象的标志(引用)。也就是说，<strong>即便创建该PendingIntent对象的进程被杀死了，这个PendingItent对象在其他进程中还是可用的</strong>。<br>日常使用中的短信、闹钟等都用到了 PendingIntent。</p>
+<p>PendingIntent 主要可以通过以下三种方式获取：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取一个用于启动 Activity 的 PendingIntent 对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PendingIntent <span class="title">getActivity</span><span class="params">(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取一个用于启动 Service 的 PendingIntent 对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PendingIntent <span class="title">getService</span><span class="params">(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取一个用于向 BroadcastReceiver 广播的 PendingIntent 对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PendingIntent <span class="title">getBroadcast</span><span class="params">(Context context, <span class="keyword">int</span> requestCode, Intent intent, <span class="keyword">int</span> flags)</span></span></span><br></pre></td></tr></table></figure>
+<p>PendingIntent 具有以下几种 flag：</p>
+<ul>
+<li><strong>FLAG_CANCEL_CURRENT:</strong>如果当前系统中已经存在一个相同的 PendingIntent 对象，那么就将先将已有的 PendingIntent 取消，然后重新生成一个 PendingIntent 对象。</li>
+<li><strong>FLAG_NO_CREATE:</strong>如果当前系统中不存在相同的 PendingIntent 对象，系统将不会创建该 PendingIntent 对象而是直接返回 null 。</li>
+<li><strong>FLAG_ONE_SHOT:</strong>该 PendingIntent 只作用一次。</li>
+<li><strong>FLAG_UPDATE_CURRENT:</strong>如果系统中已存在该 PendingIntent 对象，那么系统将保留该 PendingIntent 对象，但是会使用新的 Intent 来更新之前 PendingIntent 中的 Intent 对象数据，例如更新 Intent 中的 Extras。</li>
+</ul>
 <p>3、生成<code>Notification</code>对象</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Notification notificationNormal = builderNormal.build();</span><br></pre></td></tr></table></figure>
 <p>4、使用<code>NotificationManager</code>发送通知</p>
@@ -61,8 +71,14 @@
 </ul>
 <p>添加<code>setAutoCancel</code>方法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">NotificationCompat.Builder builderNormal = <span class="keyword">new</span> NotificationCompat.Builder(<span class="keyword">this</span>)</span><br><span class="line">        .setAutoCancel(<span class="keyword">true</span>)</span><br><span class="line">        .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">        .setContentTitle(<span class="string">"普通的通知标题"</span>)</span><br><span class="line">        .setContentText(<span class="string">"普通的通知内容"</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="通知类型"><a href="#通知类型" class="headerlink" title="通知类型"></a>通知类型</h2><h3 id="大视图通知"><a href="#大视图通知" class="headerlink" title="大视图通知"></a>大视图通知</h3><h2 id="通知常见属性"><a href="#通知常见属性" class="headerlink" title="通知常见属性"></a>通知常见属性</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.android.com/guide/topics/ui/notifiers/notifications.html" target="_blank" rel="noopener">https://developer.android.com/guide/topics/ui/notifiers/notifications.html</a></p>
+<h2 id="通知类型"><a href="#通知类型" class="headerlink" title="通知类型"></a>通知类型</h2><h3 id="大视图通知"><a href="#大视图通知" class="headerlink" title="大视图通知"></a>大视图通知</h3><p>通知有两种视图：普通视图和大视图。</p>
+<p>默认情况下为普通视图，可通过<code>NotificationCompat.Builder.setStyle()</code>设置大视图。</p>
+<blockquote>
+<p>注: 大视图(Big Views)由Android 4.1(API level 16)开始引入，且仅支持Android 4.1及更高版本。</p>
+</blockquote>
+<h2 id="通知常见属性"><a href="#通知常见属性" class="headerlink" title="通知常见属性"></a>通知常见属性</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.android.com/guide/topics/ui/notifiers/notifications.html" target="_blank" rel="noopener">https://developer.android.com/guide/topics/ui/notifiers/notifications.html</a></p>
 <p><a href="https://developer.android.com/reference/android/app/Notification.html" target="_blank" rel="noopener">https://developer.android.com/reference/android/app/Notification.html</a></p>
+<p><a href="https://www.cnblogs.com/travellife/p/Android-Notification-xiang-jie-yiji-ben-cao-zuo.html" target="_blank" rel="noopener">https://www.cnblogs.com/travellife/p/Android-Notification-xiang-jie-yiji-ben-cao-zuo.html</a></p>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -13502,8 +13518,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -14339,8 +14355,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -14367,8 +14383,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
