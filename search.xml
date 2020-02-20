@@ -13666,23 +13666,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Mysql命令行导入/出数据库</title>
-    <url>/2019/03/11/Mysql%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AF%BC%E5%85%A5-%E5%87%BA%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<p>通常开发都会使用<code>Navicat</code>或者<code>PhpMyAdmin</code>来进行数据库管理，即使方便，但是用于部署时就需要知道原生的一些命令。</p>
-<a id="more"></a>
-<h1 id="mysqldump导出数据库"><a href="#mysqldump导出数据库" class="headerlink" title="mysqldump导出数据库"></a>mysqldump导出数据库</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysqldump -u 数据库用户名 -p 数据库名称 &gt; 导出数据库名称.sql</span><br></pre></td></tr></table></figure>
-<p>如：<br><code>mysqldump -u root -p 1111 &gt; 1111_bak.sql</code>，回车后输入密码<br>导出到当前目录。</p>
-<h1 id="mysql导入数据库"><a href="#mysql导入数据库" class="headerlink" title="mysql导入数据库"></a>mysql导入数据库</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql -u 数据库用户名 -p 导入数据库名称 &lt; 导入数据库源文件名称.sql</span><br></pre></td></tr></table></figure>
-<p>如：<br><code>mysql -u root -p 1111 &lt; 1111_bak.sql</code>，回车后输入密码<br>从当前目录导入。</p>
-]]></content>
-      <categories>
-        <category>DBA</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android无法获取本地服务器(Localhost)解决方案</title>
     <url>/2019/03/10/Android%E6%97%A0%E6%B3%95%E8%8E%B7%E5%8F%96%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8-Localhost-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>在Android开发中通过localhost或127.0.0.1访问本地服务器时，会报java.net.ConnectException: localhost/127.0.0.1:8083 -Connection refused异常。</p>
