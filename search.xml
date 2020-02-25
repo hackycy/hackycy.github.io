@@ -7629,612 +7629,150 @@
     <url>/2019/05/11/Android-Manifest%E6%9D%83%E9%99%90%E6%8F%8F%E8%BF%B0%E8%A1%A8/</url>
     <content><![CDATA[<p>Android权限描述，方便自己查找。</p>
 <a id="more"></a>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">权限</th>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_CHECKIN_PROPERTIES</td>
-<td style="text-align:left">访问登记属性</td>
-<td style="text-align:left">读取或写入登记check-in数据库属性表的权限</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_COARSE_LOCATION</td>
-<td style="text-align:left">获取错略位置</td>
-<td style="text-align:left">通过WiFi或移动基站的方式获取用户错略的经纬度信息,定位精度大概误差在30~1500米</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_FINE_LOCATION</td>
-<td style="text-align:left">获取精确位置</td>
-<td style="text-align:left">通过GPS芯片接收卫星的定位信息,定位精度达10米以内</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_LOCATION_EXTRA_COMMANDS</td>
-<td style="text-align:left">访问定位额外命令</td>
-<td style="text-align:left">允许程序访问额外的定位提供者指令</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_MOCK_LOCATION</td>
-<td style="text-align:left">获取模拟定位信息</td>
-<td style="text-align:left">获取模拟定位信息,一般用于帮助开发者调试应用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_NETWORK_STATE</td>
-<td style="text-align:left">获取网络状态</td>
-<td style="text-align:left">获取网络信息状态,如当前的网络连接是否有效</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_SURFACE_FLINGER</td>
-<td style="text-align:left">访问Surface Flinger</td>
-<td style="text-align:left">Android平台上底层的图形显示支持,一般用于游戏或照相机预览界面和底层模式的屏幕截图</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCESS_WIFI_STATE</td>
-<td style="text-align:left">获取WiFi状态</td>
-<td style="text-align:left">获取当前WiFi接入的状态以及WLAN热点的信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.ACCOUNT_MANAGER</td>
-<td style="text-align:left">账户管理</td>
-<td style="text-align:left">获取账户验证信息,主要为GMail账户信息,只有系统级进程才能访问的权限</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.AUTHENTICATE_ACCOUNTS</td>
-<td style="text-align:left">验证账户</td>
-<td style="text-align:left">允许一个程序通过账户验证方式访问账户管理ACCOUNT_MANAGER相关信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BATTERY_STATS</td>
-<td style="text-align:left">电量统计</td>
-<td style="text-align:left">获取电池电量统计信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BIND_APPWIDGET</td>
-<td style="text-align:left">绑定小插件</td>
-<td style="text-align:left">允许一个程序告诉appWidget服务需要访问小插件的数据库,只有非常少的应用才用到此权限</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BIND_DEVICE_ADMIN</td>
-<td style="text-align:left">绑定设备管理</td>
-<td style="text-align:left">请求系统管理员接收者receiver,只有系统才能使用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BIND_INPUT_METHOD</td>
-<td style="text-align:left">绑定输入法</td>
-<td style="text-align:left">请求InputMethodService服务,只有系统才能使用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BIND_REMOTEVIEWS</td>
-<td style="text-align:left">绑定RemoteView</td>
-<td style="text-align:left">必须通过RemoteViewsService服务来请求,只有系统才能用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BIND_WALLPAPER</td>
-<td style="text-align:left">绑定壁纸</td>
-<td style="text-align:left">必须通过WallpaperService服务来请求,只有系统才能用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BLUETOOTH</td>
-<td style="text-align:left">使用蓝牙</td>
-<td style="text-align:left">允许程序连接配对过的蓝牙设备</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BLUETOOTH_ADMIN</td>
-<td style="text-align:left">蓝牙管理</td>
-<td style="text-align:left">允许程序进行发现和配对新的蓝牙设备</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BRICK</td>
-<td style="text-align:left">变成砖头</td>
-<td style="text-align:left">能够禁用手机,非常危险,顾名思义就是让手机变成砖头</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BROADCAST_PACKAGE_REMOVED</td>
-<td style="text-align:left">应用删除时广播</td>
-<td style="text-align:left">当一个应用在删除时触发一个广播</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BROADCAST_SMS</td>
-<td style="text-align:left">收到短信时广播</td>
-<td style="text-align:left">当收到短信时触发一个广播</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BROADCAST_STICKY</td>
-<td style="text-align:left">连续广播</td>
-<td style="text-align:left">允许一个程序收到广播后快速收到下一个广播</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.BROADCAST_WAP_PUSH</td>
-<td style="text-align:left">WAP PUSH广播</td>
-<td style="text-align:left">WAP PUSH服务收到后触发一个广播</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CALL_PHONE</td>
-<td style="text-align:left">拨打电话</td>
-<td style="text-align:left">允许程序从非系统拨号器里输入电话号码</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CALL_PRIVILEGED</td>
-<td style="text-align:left">通话权限</td>
-<td style="text-align:left">允许程序拨打电话,替换系统的拨号器界面</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CAMERA</td>
-<td style="text-align:left">拍照权限</td>
-<td style="text-align:left">允许访问摄像头进行拍照</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CHANGE_COMPONENT_ENABLED_STATE</td>
-<td style="text-align:left">改变组件状态</td>
-<td style="text-align:left">改变组件是否启用状态</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CHANGE_CONFIGURATION</td>
-<td style="text-align:left">改变配置</td>
-<td style="text-align:left">允许当前应用改变配置,如定位</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CHANGE_NETWORK_STATE</td>
-<td style="text-align:left">改变网络状态</td>
-<td style="text-align:left">改变网络状态如是否能联网</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CHANGE_WIFI_MULTICAST_STATE</td>
-<td style="text-align:left">改变WiFi多播状态</td>
-<td style="text-align:left">改变WiFi多播状态</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CHANGE_WIFI_STATE</td>
-<td style="text-align:left">改变WiFi状态</td>
-<td style="text-align:left">改变WiFi状态</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CLEAR_APP_CACHE</td>
-<td style="text-align:left">清除应用缓存</td>
-<td style="text-align:left">清除应用缓存</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CLEAR_APP_USER_DATA</td>
-<td style="text-align:left">清除用户数据</td>
-<td style="text-align:left">清除应用的用户数据</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CWJ_GROUP</td>
-<td style="text-align:left">底层访问权限</td>
-<td style="text-align:left">允许CWJ账户组访问底层信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CELL_PHONE_MASTER_EX</td>
-<td style="text-align:left">手机优化大师扩展权限</td>
-<td style="text-align:left">手机优化大师扩展权限</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.CONTROL_LOCATION_UPDATES</td>
-<td style="text-align:left">控制定位更新</td>
-<td style="text-align:left">允许获得移动网络定位信息改变</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.DELETE_CACHE_FILES</td>
-<td style="text-align:left">删除缓存文件</td>
-<td style="text-align:left">允许应用删除缓存文件</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.DELETE_PACKAGES</td>
-<td style="text-align:left">删除应用</td>
-<td style="text-align:left">允许程序删除应用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.DEVICE_POWER</td>
-<td style="text-align:left">电源管理</td>
-<td style="text-align:left">允许访问底层电源管理</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.DIAGNOSTIC</td>
-<td style="text-align:left">应用诊断</td>
-<td style="text-align:left">允许程序到RW到诊断资源</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.DISABLE_KEYGUARD</td>
-<td style="text-align:left">禁用键盘锁</td>
-<td style="text-align:left">允许程序禁用键盘锁</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.DUMP</td>
-<td style="text-align:left">转存系统信息</td>
-<td style="text-align:left">允许程序获取系统dump信息从系统服务</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.EXPAND_STATUS_BAR</td>
-<td style="text-align:left">状态栏控制</td>
-<td style="text-align:left">允许程序扩展或收缩状态栏</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.FACTORY_TEST</td>
-<td style="text-align:left">工厂测试模式</td>
-<td style="text-align:left">允许程序运行工厂测试模式</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.FLASHLIGHT</td>
-<td style="text-align:left">使用闪光灯</td>
-<td style="text-align:left">允许访问闪光灯</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.FORCE_BACK</td>
-<td style="text-align:left">强制后退</td>
-<td style="text-align:left">允许程序强制使用back后退按键,无论Activity是否在顶层</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.GET_ACCOUNTS</td>
-<td style="text-align:left">访问账户Gmail列表</td>
-<td style="text-align:left">访问GMail账户列表</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.GET_PACKAGE_SIZE</td>
-<td style="text-align:left">获取应用大小</td>
-<td style="text-align:left">获取应用的文件大小</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.GET_TASKS</td>
-<td style="text-align:left">获取任务信息</td>
-<td style="text-align:left">允许程序获取当前或最近运行的应用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.GLOBAL_SEARCH</td>
-<td style="text-align:left">允许全局搜索</td>
-<td style="text-align:left">允许程序使用全局搜索功能</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.HARDWARE_TEST</td>
-<td style="text-align:left">硬件测试</td>
-<td style="text-align:left">访问硬件辅助设备,用于硬件测试</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.INJECT_EVENTS</td>
-<td style="text-align:left">注射事件</td>
-<td style="text-align:left">允许访问本程序的底层事件,获取按键、轨迹球的事件流</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.INSTALL_LOCATION_PROVIDER</td>
-<td style="text-align:left">安装定位提供</td>
-<td style="text-align:left">安装定位提供</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.INSTALL_PACKAGES</td>
-<td style="text-align:left">安装应用程序</td>
-<td style="text-align:left">允许程序安装应用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.INTERNAL_SYSTEM_WINDOW</td>
-<td style="text-align:left">内部系统窗口</td>
-<td style="text-align:left">允许程序打开内部窗口,不对第三方应用程序开放此权限</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.INTERNET</td>
-<td style="text-align:left">访问网络</td>
-<td style="text-align:left">访问网络连接,可能产生GPRS流量</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.KILL_BACKGROUND_PROCESSES</td>
-<td style="text-align:left">结束后台进程</td>
-<td style="text-align:left">允许程序调用killBackgroundProcesses(String).方法结束后台进程</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MANAGE_ACCOUNTS</td>
-<td style="text-align:left">管理账户</td>
-<td style="text-align:left">允许程序管理AccountManager中的账户列表</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MANAGE_APP_TOKENS</td>
-<td style="text-align:left">管理程序引用</td>
-<td style="text-align:left">管理创建、摧毁、Z轴顺序,仅用于系统</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MTWEAK_USER</td>
-<td style="text-align:left">高级权限</td>
-<td style="text-align:left">允许mTweak用户访问高级系统权限</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MTWEAK_FORUM</td>
-<td style="text-align:left">社区权限</td>
-<td style="text-align:left">允许使用mTweak社区权限</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MASTER_CLEAR</td>
-<td style="text-align:left">软格式化</td>
-<td style="text-align:left">允许程序执行软格式化,删除系统配置信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MODIFY_AUDIO_SETTINGS</td>
-<td style="text-align:left">修改声音设置</td>
-<td style="text-align:left">修改声音设置信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MODIFY_PHONE_STATE</td>
-<td style="text-align:left">修改电话状态</td>
-<td style="text-align:left">修改电话状态,如飞行模式,但不包含替换系统拨号器界面</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MOUNT_FORMAT_FILESYSTEMS</td>
-<td style="text-align:left">格式化文件系统</td>
-<td style="text-align:left">格式化可移动文件系统,比如格式化清空SD卡</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.MOUNT_UNMOUNT_FILESYSTEMS</td>
-<td style="text-align:left">挂载文件系统</td>
-<td style="text-align:left">挂载、反挂载外部文件系统</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.NFC</td>
-<td style="text-align:left">允许NFC通讯</td>
-<td style="text-align:left">允许程序执行NFC近距离通讯操作,用于移动支持</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.PERSISTENT_ACTIVITY</td>
-<td style="text-align:left">永久Activity</td>
-<td style="text-align:left">创建一个永久的Activity,该功能标记为将来将被移除</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.PROCESS_OUTGOING_CALLS</td>
-<td style="text-align:left">处理拨出电话</td>
-<td style="text-align:left">允许程序监视,修改或放弃播出电话</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_CALENDAR</td>
-<td style="text-align:left">读取日程提醒</td>
-<td style="text-align:left">允许程序读取用户的日程信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_CONTACTS</td>
-<td style="text-align:left">读取联系人</td>
-<td style="text-align:left">允许应用访问联系人通讯录信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_FRAME_BUFFER</td>
-<td style="text-align:left">屏幕截图</td>
-<td style="text-align:left">读取帧缓存用于屏幕截图</td>
-</tr>
-<tr>
-<td style="text-align:center">com.android.browser.permission.READ_HISTORY_BOOKMARKS</td>
-<td style="text-align:left">读取收藏夹和历史记录</td>
-<td style="text-align:left">读取浏览器收藏夹和历史记录</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_INPUT_STATE</td>
-<td style="text-align:left">读取输入状态</td>
-<td style="text-align:left">读取当前键的输入状态,仅用于系统</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_LOGS</td>
-<td style="text-align:left">读取系统日志</td>
-<td style="text-align:left">读取系统底层日志</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_PHONE_STATE</td>
-<td style="text-align:left">读取电话状态</td>
-<td style="text-align:left">访问电话状态</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_SMS</td>
-<td style="text-align:left">读取短信内容</td>
-<td style="text-align:left">读取短信内容</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_SYNC_SETTINGS</td>
-<td style="text-align:left">读取同步设置</td>
-<td style="text-align:left">读取同步设置,读取Google在线同步设置</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.READ_SYNC_STATS</td>
-<td style="text-align:left">读取同步状态</td>
-<td style="text-align:left">读取同步状态,获得Google在线同步状态</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.REBOOT</td>
-<td style="text-align:left">重启设备</td>
-<td style="text-align:left">允许程序重新启动设备</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.RECEIVE_BOOT_COMPLETED</td>
-<td style="text-align:left">开机自动允许</td>
-<td style="text-align:left">允许程序开机自动运行</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.RECEIVE_MMS</td>
-<td style="text-align:left">接收彩信</td>
-<td style="text-align:left">接收彩信</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.RECEIVE_SMS</td>
-<td style="text-align:left">接收短信</td>
-<td style="text-align:left">接收短信</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.RECEIVE_WAP_PUSH</td>
-<td style="text-align:left">接收Wap Push</td>
-<td style="text-align:left">接收WAP PUSH信息</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.RECORD_AUDIO</td>
-<td style="text-align:left">录音</td>
-<td style="text-align:left">录制声音通过手机或耳机的麦克</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.REORDER_TASKS</td>
-<td style="text-align:left">排序系统任务</td>
-<td style="text-align:left">重新排序系统Z轴运行中的任务</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.RESTART_PACKAGES</td>
-<td style="text-align:left">结束系统任务</td>
-<td style="text-align:left">结束任务通过restartPackage(String)方法,该方式将在外来放弃</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SEND_SMS</td>
-<td style="text-align:left">发送短信</td>
-<td style="text-align:left">发送短信</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_ACTIVITY_WATCHER</td>
-<td style="text-align:left">设置Activity观察其</td>
-<td style="text-align:left">设置Activity观察器一般用于monkey测试</td>
-</tr>
-<tr>
-<td style="text-align:center">com.android.alarm.permission.SET_ALARM</td>
-<td style="text-align:left">设置闹铃提醒</td>
-<td style="text-align:left">设置闹铃提醒</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_ALWAYS_FINISH</td>
-<td style="text-align:left">设置总是退出</td>
-<td style="text-align:left">设置程序在后台是否总是退出</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_ANIMATION_SCALE</td>
-<td style="text-align:left">设置动画缩放</td>
-<td style="text-align:left">设置全局动画缩放</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_DEBUG_APP</td>
-<td style="text-align:left">设置调试程序</td>
-<td style="text-align:left">设置调试程序,一般用于开发</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_ORIENTATION</td>
-<td style="text-align:left">设置屏幕方向</td>
-<td style="text-align:left">设置屏幕方向为横屏或标准方式显示,不用于普通应用</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_PREFERRED_APPLICATIONS</td>
-<td style="text-align:left">设置应用参数</td>
-<td style="text-align:left">设置应用的参数,已不再工作具体查看addPackageToPreferred(String)介绍</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_PROCESS_LIMIT</td>
-<td style="text-align:left">设置进程限制</td>
-<td style="text-align:left">允许程序设置最大的进程数量的限制</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_TIME</td>
-<td style="text-align:left">设置系统时间</td>
-<td style="text-align:left">设置系统时间</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_TIME_ZONE</td>
-<td style="text-align:left">设置系统时区</td>
-<td style="text-align:left">设置系统时区</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_WALLPAPER</td>
-<td style="text-align:left">设置桌面壁纸</td>
-<td style="text-align:left">设置桌面壁纸</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SET_WALLPAPER_HINTS</td>
-<td style="text-align:left">设置壁纸建议</td>
-<td style="text-align:left">设置壁纸建议</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SIGNAL_PERSISTENT_PROCESSES</td>
-<td style="text-align:left">发送永久进程信号</td>
-<td style="text-align:left">发送一个永久的进程信号</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.STATUS_BAR</td>
-<td style="text-align:left">状态栏控制</td>
-<td style="text-align:left">允许程序打开、关闭、禁用状态栏</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SUBSCRIBED_FEEDS_READ</td>
-<td style="text-align:left">访问订阅内容</td>
-<td style="text-align:left">访问订阅信息的数据库</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SUBSCRIBED_FEEDS_WRITE</td>
-<td style="text-align:left">写入订阅内容</td>
-<td style="text-align:left">写入或修改订阅内容的数据库</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.SYSTEM_ALERT_WINDOW</td>
-<td style="text-align:left">显示系统窗口</td>
-<td style="text-align:left">显示系统窗口</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.UPDATE_DEVICE_STATS</td>
-<td style="text-align:left">更新设备状态</td>
-<td style="text-align:left">更新设备状态</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.USE_CREDENTIALS</td>
-<td style="text-align:left">使用证书</td>
-<td style="text-align:left">允许程序请求验证从AccountManager</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.USE_SIP</td>
-<td style="text-align:left">使用SIP视频</td>
-<td style="text-align:left">允许程序使用SIP视频服务</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.VIBRATE</td>
-<td style="text-align:left">使用振动</td>
-<td style="text-align:left">允许振动</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WAKE_LOCK</td>
-<td style="text-align:left">唤醒锁定</td>
-<td style="text-align:left">允许程序在手机屏幕关闭后后台进程仍然运行</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_APN_SETTINGS</td>
-<td style="text-align:left">写入GPRS接入点设置</td>
-<td style="text-align:left">写入网络GPRS接入点设置</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_CALENDAR</td>
-<td style="text-align:left">写入日程提醒</td>
-<td style="text-align:left">写入日程,但不可读取</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_CONTACTS</td>
-<td style="text-align:left">写入联系人</td>
-<td style="text-align:left">写入联系人,但不可读取</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_EXTERNAL_STORAGE</td>
-<td style="text-align:left">写入外部存储</td>
-<td style="text-align:left">允许程序写入外部存储,如SD卡上写文件</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_GSERVICES</td>
-<td style="text-align:left">写入Google地图数据</td>
-<td style="text-align:left">允许程序写入Google Map服务数据</td>
-</tr>
-<tr>
-<td style="text-align:center">com.android.browser.permission.WRITE_HISTORY_BOOKMARKS</td>
-<td style="text-align:left">写入收藏夹和历史记录</td>
-<td style="text-align:left">写入浏览器历史记录或收藏夹,但不可读取</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_SECURE_SETTINGS</td>
-<td style="text-align:left">读写系统敏感设置</td>
-<td style="text-align:left">允许程序读写系统安全敏感的设置项</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_SETTINGS</td>
-<td style="text-align:left">读写系统设置</td>
-<td style="text-align:left">允许读写系统设置项</td>
-</tr>
-<tr>
-<td style="text-align:center">android.permission.WRITE_SMS</td>
-<td style="text-align:left">编写短信</td>
-<td style="text-align:left">允许编写短信</td>
-</tr>
-</tbody>
-</table>
+<p>1.android.permission.WRITE_USER_DICTIONARY允许应用程序向用户词典中写入新词</p>
+<p>2.android.permission.WRITE_SYNC_SETTINGS写入Google在线同步设置</p>
+<p>3.android.permission.WRITE_SOCIAL_STREAM读取用户的社交信息流</p>
+<p>4.android.permission.WRITE_SMS允许程序写短信</p>
+<p>5.android.permission.WRITE_SETTINGS允许程序读取或写入系统设置</p>
+<p>6.android.permission.WRITE_SECURE_SETTINGS允许应用程序读取或写入安全系统设置</p>
+<p>7.android.permission.WRITE_PROFILE允许程序写入个人资料数据</p>
+<p>8.com.android.browser.permission.WRITE_HISTORY_BOOKMARKS允许一个应用程序写(但不可读)用户的浏览历史和书签</p>
+<p>9.android.permission.WRITE_GSERVICES允许程序修改Google服务地图</p>
+<p>10.android.permission.WRITE_EXTERNAL_STORAGE允许程序写入外部存储,如SD卡上写文件</p>
+<p>11.android.permission.WRITE_CONTACTS写入联系人,但不可读取</p>
+<p>12.android.permission.WRITE_CALL_LOG允许程序写入（但是不能读）用户的联系人数据</p>
+<p>13.android.permission.WRITE_CALENDAR允许程序写入日程，但不可读取</p>
+<p>14.android.permission.WRITE_APN_SETTINGS允许程序写入网络GPRS接入点设置</p>
+<p>15.android.permission.WAKE_LOCK允许程序在手机屏幕关闭后后台进程仍然运行</p>
+<p>16.android.permission.VIBRATE允许程序振动</p>
+<p>17.android.permission.USE_SIP允许程序使用SIP视频服务</p>
+<p>18.android.permission.USE_CREDENTIALS允许程序请求验证从AccountManager</p>
+<p>19.android.permission.UPDATE_DEVICE_STATS允许程序更新设备状态</p>
+<p>20.com.android.launcher.permission.UNINSTALL_SHORTCUT删除快捷方式</p>
+<p>21.android.permission.TRANSMIT_IR允许使用设备的红外发射器，如果可用</p>
+<p>22.android.permission.SYSTEM_ALERT_WINDOW允许程序显示系统窗口</p>
+<p>23.android.permission.SUBSCRIBED_FEEDS_WRITE允许程序写入或修改订阅内容的数据库</p>
+<p>24.android.permission.SUBSCRIBED_FEEDS_READ允许程序访问订阅信息的数据库</p>
+<p>22.android.permission.STATUS_BAR允许程序打开、关闭、禁用状态栏</p>
+<p>23.android.permission.SIGNAL_PERSISTENT_PROCESSES允许程序发送一个永久的进程信号</p>
+<p>24.android.permission.SET_WALLPAPER_HINTS允许程序设置壁纸建议</p>
+<p>25.android.permission.SET_WALLPAPER允许程序设置桌面壁纸</p>
+<p>26.android.permission.SET_TIME_ZONE允许程序设置系统时区</p>
+<p>27.android.permission.SET_TIME允许程序设置系统时间</p>
+<p>28.android.permission.SET_PROCESS_LIMIT允许程序设置最大的进程数量的限制</p>
+<p>29.android.permission.SET_PREFERRED_APPLICATIONS允许程序设置应用的参数，已不再工作具体查看addPackageToPreferred(String) 介绍</p>
+<p>30.android.permission.SET_POINTER_SPEED无法被第三方应用获得，系统权限</p>
+<p>31.android.permission.SET_ORIENTATION允许程序设置屏幕方向为横屏或标准方式显示，不用于普通应用</p>
+<p>32.android.permission.SET_DEBUG_APP允许程序设置调试程序，一般用于开发</p>
+<p>33.android.permission.SET_ANIMATION_SCALE允许程序设置全局动画缩放</p>
+<p>34.android.permission.SET_ALWAYS_FINISH允许程序设置程序在后台是否总是退出</p>
+<p>36.com.android.alarm.permission.SET_ALARM允许程序设置闹铃提醒</p>
+<p>37.android.permission.SET_ACTIVITY_WATCHER允许程序设置Activity观察器一般用于monkey测试</p>
+<p>38.android.permission.SEND_SMS允许程序发送短信</p>
+<p>39.android.permission.SEND_RESPOND_VIA_MESSAGE允许用户在来电的时候用你的应用进行即时的短信息回复。</p>
+<p>40.android.permission.RESTART_PACKAGES允许程序结束任务通过restartPackage(String)方法，该方式将在外来放弃</p>
+<p>41.android.permission.REORDER_TASKS允许程序重新排序系统Z轴运行中的任务</p>
+<p>42.android.permission.RECORD_AUDIO允许程序录制声音通过手机或耳机的麦克</p>
+<p>43.android.permission.RECEIVE_WAP_PUSH允许程序接收WAP PUSH信息</p>
+<p>44.android.permission.RECEIVE_SMS允许程序接收短信</p>
+<p>45.android.permission.RECEIVE_MMS允许程序接收彩信</p>
+<p>46.android.permission.RECEIVE_BOOT_COMPLETED允许程序开机自动运行</p>
+<p>47.android.permission.REBOOT允许程序重新启动设备</p>
+<p>48.android.permission.READ_USER_DICTIONARY从一个提供器中获取数据，针对对应的提供器，应用程序需要“读访问权限”</p>
+<p>49.android.permission.READ_SYNC_STATS允许程序读取同步状态，获得Google在线同步状态</p>
+<p>50.android.permission.READ_SYNC_SETTINGS允许程序读取同步设置，读取Google在线同步设置</p>
+<p>51.android.permission.READ_SOCIAL_STREAM读取用户的社交信息流</p>
+<p>52.android.permission.READ_SMS允许程序读取短信内容</p>
+<p>53.android.permission.READ_PROFILE访问用户个人资料</p>
+<p>54.android.permission.READ_PHONE_STATE允许程序访问电话状态</p>
+<p>55.android.permission.READ_LOGS允许程序读取系统底层日志</p>
+<p>56.android.permission.READ_INPUT_STATE允许程序读取当前键的输入状态，仅用于系统</p>
+<p>57.com.android.browser.permission.READ_HISTORY_BOOKMARKS允许程序读取浏览器收藏夹和历史记录</p>
+<p>58.android.permission.READ_FRAME_BUFFER允许程序读取帧缓存用于屏幕截图</p>
+<p>59.android.permission.READ_EXTERNAL_STORAGE程序可以读取设备外部存储空间（内置SDcard和外置SDCard）的文件，如果您的App已经添加了“WRITE_EXTERNAL_STORAGE ”权限 ，则就没必要添加读的权限了，写权限已经包含了读权限了。</p>
+<p>60.android.permission.READ_CONTACTS允许程序访问联系人通讯录信息</p>
+<p>61.android.permission.READ_CALL_LOG读取通话记录</p>
+<p>62.android.permission.READ_CALENDAR允许程序读取用户的日程信息</p>
+<p>63.android.permission.PROCESS_OUTGOING_CALLS允许程序监视，修改或放弃播出电话</p>
+<p>64.android.permission.PERSISTENT_ACTIVITY允许程序创建一个永久的Activity，该功能标记为将来将被移除</p>
+<p>65.android.permission.NFC允许程序执行NFC近距离通讯操作，用于移动支持</p>
+<p>66.android.permission.MOUNT_UNMOUNT_FILESYSTEMS允许程序挂载、反挂载外部文件系统</p>
+<p>67.android.permission.MOUNT_FORMAT_FILESYSTEMS允许程序格式化可移动文件系统，比如格式化清空SD卡</p>
+<p>68.android.permission.MODIFY_PHONE_STATE允许程序修改电话状态，如飞行模式，但不包含替换系统拨号器界面</p>
+<p>69.android.permission.MODIFY_AUDIO_SETTINGS允许程序修改声音设置信息</p>
+<p>70.android.permission.MEDIA_CONTENT_CONTROL允许一个应用程序知道什么是播放和控制其内容。不被第三方应用使用。</p>
+<p>71.android.permission.MASTER_CLEAR允许程序执行软格式化，删除系统配置信息</p>
+<p>72.android.permission.MANAGE_DOCUMENTS允许一个应用程序来管理文档的访问，通常是一个文档选择器部分</p>
+<p>73.android.permission.MANAGE_APP_TOKENS管理创建、摧毁、Z轴顺序，仅用于系统</p>
+<p>74.android.permission.MANAGE_ACCOUNTS允许程序管理AccountManager中的账户列表</p>
+<p>75.android.permission.LOCATION_HARDWARE允许一个应用程序中使用定位功能的硬件，不使用第三方应用</p>
+<p>76.android.permission.KILL_BACKGROUND_PROCESSES允许程序调用killBackgroundProcesses(String).方法结束后台进程</p>
+<p>77.android.permission.INTERNET允许程序访问网络连接，可能产生GPRS流量</p>
+<p>78.android.permission.INTERNAL_SYSTEM_WINDOW允许程序打开内部窗口，不对第三方应用程序开放此权限</p>
+<p>79.com.android.launcher.permission.INSTALL_SHORTCUT创建快捷方式</p>
+<p>80.android.permission.INSTALL_PACKAGES允许程序安装应用</p>
+<p>81.android.permission.INSTALL_LOCATION_PROVIDER允许程序安装定位提供</p>
+<p>82.android.permission.INJECT_EVENTS允许程序访问本程序的底层事件，获取按键、轨迹球的事件流</p>
+<p>83.android.permission.HARDWARE_TEST允许程序访问硬件辅助设备，用于硬件测试</p>
+<p>84.android.permission.GLOBAL_SEARCH允许程序允许全局搜索</p>
+<p>85.android.permission.GET_TOP_ACTIVITY_INFO允许一个应用程序检索私有信息是当前最顶级的活动，不被第三方应用使用</p>
+<p>86.android.permission.GET_TASKS允许程序获取任务信息</p>
+<p>87.android.permission.GET_PACKAGE_SIZE允许程序获取应用的文件大小</p>
+<p>88.android.permission.GET_ACCOUNTS允许程序访问账户Gmail列表</p>
+<p>89.android.permission.FORCE_BACK允许程序强制使用back后退按键，无论Activity是否在顶层</p>
+<p>90.android.permission.FLASHLIGHT允许访问闪光灯</p>
+<p>91.android.permission.FACTORY_TEST允许程序运行工厂测试模式</p>
+<p>92.android.permission.EXPAND_STATUS_BAR允许程序扩展或收缩状态栏</p>
+<p>93.android.permission.DUMP允许程序获取系统dump信息从系统服务</p>
+<p>94.android.permission.DISABLE_KEYGUARD允许程序禁用键盘锁</p>
+<p>95.android.permission.DIAGNOSTIC允许程序到RW到诊断资源</p>
+<p>96.android.permission.DEVICE_POWER允许程序访问底层电源管理</p>
+<p>97.android.permission.DELETE_PACKAGES允许程序删除应用</p>
+<p>98.android.permission.DELETE_CACHE_FILES允许程序删除缓存文件</p>
+<p>99.android.permission.CONTROL_LOCATION_UPDATES允许程序获得移动网络定位信息改变</p>
+<p>100.android.permission.CLEAR_APP_USER_DATA允许程序清除用户数据</p>
+<p>101.android.permission.CLEAR_APP_CACHE允许程序清除应用缓存</p>
+<p>102.android.permission.CHANGE_WIFI_STATE允许程序改变WiFi状态</p>
+<p>103.android.permission.CHANGE_WIFI_MULTICAST_STATE允许程序改变WiFi多播状态</p>
+<p>104.android.permission.CHANGE_NETWORK_STATE允许程序改变网络状态,如是否联网</p>
+<p>105.android.permission.CHANGE_CONFIGURATION允许当前应用改变配置，如定位</p>
+<p>106.android.permission.CHANGE_COMPONENT_ENABLED_STATE改变组件是否启用状态</p>
+<p>107.android.permission.CAPTURE_VIDEO_OUTPUT允许一个应用程序捕获视频输出，不被第三方应用使用</p>
+<p>108.android.permission.CAPTURE_SECURE_VIDEO_OUTPUT允许一个应用程序捕获视频输出。不被第三方应用使用</p>
+<p>109.android.permission.CAPTURE_AUDIO_OUTPUT允许一个应用程序捕获音频输出。不被第三方应用使用</p>
+<p>110.android.permission.CAMERA允许程序访问摄像头进行拍照</p>
+<p>111.android.permission.CALL_PRIVILEGED允许程序拨打电话，替换系统的拨号器界面</p>
+<p>112.android.permission.CALL_PHONE允许程序从非系统拨号器里拨打电话</p>
+<p>113.android.permission.BROADCAST_WAP_PUSHWAP PUSH服务收到后触发一个广播</p>
+<p>114.android.permission.BROADCAST_STICKY允许程序收到广播后快速收到下一个广播</p>
+<p>115.android.permission.BROADCAST_SMS允许程序当收到短信时触发一个广播</p>
+<p>116.android.permission.BROADCAST_PACKAGE_REMOVED允许程序删除时广播</p>
+<p>117.android.permission.BRICK能够禁用手机，非常危险，顾名思义就是让手机变成砖头</p>
+<p>118.android.permission.BLUETOOTH_PRIVILEGED允许应用程序配对蓝牙设备，而无需用户交互。这不是第三方应用程序可用。</p>
+<p>119.android.permission.BLUETOOTH_ADMIN允许程序进行发现和配对新的蓝牙设备</p>
+<p>120.android.permission.BLUETOOTH允许程序连接配对过的蓝牙设备</p>
+<p>121.android.permission.BIND_WALLPAPER必须通过WallpaperService服务来请求，只有系统才能用</p>
+<p>122.android.permission.BIND_VPN_SERVICE绑定VPN服务必须通过VpnService服务来请求,只有系统才能用</p>
+<p>123.android.permission.BIND_TEXT_SERVICE必须要求textservice(例如吗 spellcheckerservice)，以确保只有系统可以绑定到它。</p>
+<p>124.android.permission.BIND_REMOTEVIEWS必须通过RemoteViewsService服务来请求，只有系统才能用</p>
+<p>125.android.permission.BIND_PRINT_SERVICE必须要求由printservice，以确保只有系统可以绑定到它。</p>
+<p>126.android.permission.BIND_NOTIFICATION_LISTENER_SERVICE必须要求由notificationlistenerservice，以确保只有系统可以绑定到它。</p>
+<p>127.android.permission.BIND_NFC_SERVICE由hostapduservice或offhostapduservice必须确保只有系统可以绑定到它。</p>
+<p>128.android.permission.BIND_INPUT_METHOD请求InputMethodService服务，只有系统才能使用</p>
+<p>129.android.permission.BIND_DEVICE_ADMIN请求系统管理员接收者receiver，只有系统才能使用</p>
+<p>130.android.permission.BIND_APPWIDGET允许程序告诉appWidget服务需要访问小插件的数据库，只有非常少的应用才用到此权限</p>
+<p>131.android.permission.BIND_ACCESSIBILITY_SERVICE请求accessibilityservice服务，以确保只有系统可以绑定到它。</p>
+<p>132.android.permission.AUTHENTICATE_ACCOUNTS允许程序通过账户验证方式访问账户管理ACCOUNT_MANAGER相关信息</p>
+<p>133.com.android.voicemail.permission.ADD_VOICEMAIL允许一个应用程序添加语音邮件系统</p>
+<p>134.android.permission.ACCOUNT_MANAGER允许程序获取账户验证信息，主要为GMail账户信息，只有系统级进程才能访问的权限</p>
+<p>135.android.permission.ACCESS_WIFI_STATE允许程序获取当前WiFi接入的状态以及WLAN热点的信息</p>
+<p>136.android.permission.ACCESS_SURFACE_FLINGERAndroid平台上底层的图形显示支持，一般用于游戏或照相机预览界面和底层模式的屏幕截图</p>
+<p>137.android.permission.ACCESS_NETWORK_STATE允许程序获取网络信息状态，如当前的网络连接是否有效</p>
+<p>138.android.permission.ACCESS_MOCK_LOCATION允许程序获取模拟定位信息，一般用于帮助开发者调试应用</p>
+<p>139.android.permission.ACCESS_LOCATION_EXTRA_COMMANDS允许程序访问额外的定位提供者指令</p>
+<p>140.android.permission.ACCESS_FINE_LOCATION允许程序通过GPS芯片接收卫星的定位信息</p>
+<p>141.android.permission.ACCESS_COARSE_LOCATION允许程序通过WiFi或移动基站的方式获取用户错略的经纬度信息</p>
+<p>142.android.permission.ACCESS_CHECKIN_PROPERTIES允许程序读取或写入登记check-in数据库属性表的权限</p>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -16150,8 +15688,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>Centos7</tag>
+        <tag>Mysql</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
