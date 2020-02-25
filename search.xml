@@ -13096,8 +13096,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -13916,8 +13916,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -13944,8 +13944,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
@@ -15688,8 +15688,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
