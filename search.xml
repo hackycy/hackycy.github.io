@@ -1,6 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android TextView富文本之Html标签</title>
+    <url>/2020/03/19/Android-TextView%E5%AF%8C%E6%96%87%E6%9C%AC%E4%B9%8BHtml%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TextView作为一个我们经常使用到的控件，但是在写一些UI的时候会遇到一些特别的情况，来看一下示例图：</p>
+<a id="more"></a>
+<p><img src="anli.png" alt></p>
+<p>券的价格是需要突出显示的，还有原价也需要显示一个删除线。</p>
+<h1 id="TextView的多样化显示"><a href="#TextView的多样化显示" class="headerlink" title="TextView的多样化显示"></a>TextView的多样化显示</h1><p>如果是显示不同样的大小文本字体颜色可以直接使用SpannableString实现。但是这里使用HTML标签来实现效果。</p>
+<p>例如图上的券后文本，可以使用：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">mTextView.setText(Html.fromHtml(<span class="string">"&lt;small&gt;券后仅&lt;/small&gt;&lt;big&gt; 20 &lt;/big&gt;&lt;small&gt;元&lt;/small&gt;"</span>));</span><br></pre></td></tr></table></figure>
+<p>如果在strings.xml中定义时候需要注意，需要转义HTML标签，不然的话 经过Android处理后 所有的HTML标签都给过滤掉了。需要把所有的“&lt;”用“&lt;”替换，例如： </p>
+<p><code>&lt;string name=&quot;htmlText&quot;&gt;&amp;lt;strong&gt;粗体&amp;lt;/strong&gt;&lt;/string&gt;</code></p>
+<p>如果文本内容比较长， 则转义起来比较麻烦，并且阅读也不太方便，这种情况下可以使用XML的CDATA标记， 如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"discount_price2"</span>&gt;</span>&lt;![CDATA[&lt;small&gt;券后仅&lt;/small&gt;&lt;big&gt; %1$s &lt;/big&gt;&lt;small&gt;元&lt;/small&gt;]]&gt;<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>strings.xml中节点是支持占位符的，如下所示：</p>
+<p><code>&lt;string name=&quot;data&quot;&gt;整数型:%1$d，浮点型：%2$.2f，字符串:%3$s&lt;/string&gt;</code></p>
+<p>其中%后面是占位符的位置，从1开始，</p>
+<p><strong>$ 后面是填充数据的类型</strong></p>
+<ul>
+<li>$d：表示整数型；</li>
+<li>$f ：表示浮点型，其中f前面的.2表示小数的位数</li>
+<li>$s：表示字符串</li>
+</ul>
+</blockquote>
+<p>下面是一些常用的HTML标签。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Tags</th>
+<th style="text-align:left">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">b, strong</td>
+<td style="text-align:left">Bold</td>
+</tr>
+<tr>
+<td style="text-align:left">i, em, cite, dfn</td>
+<td style="text-align:left">Italics</td>
+</tr>
+<tr>
+<td style="text-align:left">u</td>
+<td style="text-align:left">Underline</td>
+</tr>
+<tr>
+<td style="text-align:left">sub</td>
+<td style="text-align:left">Subtext</td>
+</tr>
+<tr>
+<td style="text-align:left">sup</td>
+<td style="text-align:left">Supertext</td>
+</tr>
+<tr>
+<td style="text-align:left">big</td>
+<td style="text-align:left">Big</td>
+</tr>
+<tr>
+<td style="text-align:left">small</td>
+<td style="text-align:left">Small</td>
+</tr>
+<tr>
+<td style="text-align:left">tt</td>
+<td style="text-align:left">Monospace</td>
+</tr>
+<tr>
+<td style="text-align:left">h1 … h6</td>
+<td style="text-align:left">Headlines</td>
+</tr>
+<tr>
+<td style="text-align:left">img</td>
+<td style="text-align:left">Image</td>
+</tr>
+<tr>
+<td style="text-align:left">font</td>
+<td style="text-align:left">Font face and color</td>
+</tr>
+<tr>
+<td style="text-align:left">blockquote</td>
+<td style="text-align:left">For longer quotes</td>
+</tr>
+<tr>
+<td style="text-align:left">a</td>
+<td style="text-align:left">Link</td>
+</tr>
+<tr>
+<td style="text-align:left">div, p</td>
+<td style="text-align:left">Paragraph</td>
+</tr>
+<tr>
+<td style="text-align:left">br</td>
+<td style="text-align:left">Linefeed</td>
+</tr>
+</tbody>
+</table>
+<p>中文版：</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;br&gt;</code></td>
+<td>插入一个换行符，标签是空标签</td>
+</tr>
+<tr>
+<td><code>&lt;p&gt;</code></td>
+<td>定义段落，标签会自动在其前后各添加一个空行</td>
+</tr>
+<tr>
+<td><code>&lt;h1&gt;</code></td>
+<td>h1标题</td>
+</tr>
+<tr>
+<td><code>&lt;h2&gt;</code></td>
+<td>h2标题</td>
+</tr>
+<tr>
+<td><code>&lt;h3&gt;</code></td>
+<td>h3标题</td>
+</tr>
+<tr>
+<td><code>&lt;h4&gt;</code></td>
+<td>h4标题</td>
+</tr>
+<tr>
+<td><code>&lt;h5&gt;</code></td>
+<td>h5标题</td>
+</tr>
+<tr>
+<td><code>&lt;h6&gt;</code></td>
+<td>h6标题</td>
+</tr>
+<tr>
+<td><code>&lt;div&gt;</code></td>
+<td>文档分节</td>
+</tr>
+<tr>
+<td><code>&lt;strong&gt;</code></td>
+<td>把文本定义为语气更强的强调的内容。TextView中表现为文本加粗</td>
+</tr>
+<tr>
+<td><code>&lt;b&gt;</code></td>
+<td>文本加粗</td>
+</tr>
+<tr>
+<td><code>&lt;em&gt;</code></td>
+<td>把文本定义为强调的内容。TextView中表现为斜体文本效果。</td>
+</tr>
+<tr>
+<td><code>&lt;cite&gt;</code></td>
+<td>定义引用，TextView中表现为斜体文本效果</td>
+</tr>
+<tr>
+<td><code>&lt;dfn&gt;</code></td>
+<td>标记那些对特殊术语或短语的定义。TextView中表现为斜体文本效果。</td>
+</tr>
+<tr>
+<td><code>&lt;i&gt;</code></td>
+<td>显示斜体文本效果</td>
+</tr>
+<tr>
+<td><code>&lt;big&gt;</code></td>
+<td>呈现大号字体效果</td>
+</tr>
+<tr>
+<td><code>&lt;small&gt;</code></td>
+<td>呈现小号字体效果</td>
+</tr>
+<tr>
+<td><code>&lt;strike&gt;</code></td>
+<td>定义删除线样式的文字</td>
+</tr>
+<tr>
+<td><code>&lt;font size=&quot;...&quot; color=&quot;...&quot; face=&quot;...&quot;&gt;</code></td>
+<td>规定文本的字体、字体尺寸、字体颜色   color：文本颜色；size：文本大小；face：文本字体</td>
+</tr>
+<tr>
+<td><code>&lt;blockquote&gt;</code></td>
+<td>将<code>&lt;blockquote&gt;</code> 与 <code>&lt;/blockquote&gt;</code>之间的文本从常规文本中分离出来,通常在左、右两边进行缩进，有时使用斜体</td>
+</tr>
+<tr>
+<td><code>&lt;tt&gt;</code></td>
+<td>呈现类似打字机或者等宽的文本效果</td>
+</tr>
+<tr>
+<td><code>&lt;a&gt;</code></td>
+<td>定义超链接。最重要的属性是 href 属性，它指示链接的目标。 href：指示链接的目标</td>
+</tr>
+<tr>
+<td><code>&lt;u&gt;</code></td>
+<td>为文本添加下划线</td>
+</tr>
+<tr>
+<td><code>&lt;sup&gt;</code></td>
+<td>定义上标文本</td>
+</tr>
+<tr>
+<td><code>&lt;sub&gt;</code></td>
+<td>定义下标文本</td>
+</tr>
+<tr>
+<td><code>&lt;img src=&quot;...&quot;&gt;</code></td>
+<td>向网页中嵌入一幅图像。<code>&lt;img&gt;</code>标签并不会在网页中插入图像，而是从网页上链接图像。<code>&lt;img&gt;</code> 标签创建的是被引用图像的占位空间。   src：图像的url；alt：图像的替代文本</td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.csdn.net/github_37847975/article/details/75425633" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/75425633</a></p>
+<p><a href="https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task" target="_blank" rel="noopener">https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task</a></p>
+<p><a href="https://blog.csdn.net/ganggang1st/article/details/6804086" target="_blank" rel="noopener">https://blog.csdn.net/ganggang1st/article/details/6804086</a></p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决Android Studio——Received close_notify during handshake</title>
     <url>/2020/02/18/%E8%A7%A3%E5%86%B3Android-Studio%E2%80%94%E2%80%94Received-close-notify-during-handshake/</url>
     <content><![CDATA[<p><strong>问题ERROR ： Received close_notify during handshake</strong></p>
