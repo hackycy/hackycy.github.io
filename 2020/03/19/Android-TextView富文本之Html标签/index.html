@@ -144,7 +144,7 @@
 <meta property="og:description" content="前言TextView作为一个我们经常使用到的控件，但是在写一些UI的时候会遇到一些特别的情况，来看一下示例图：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://hackycy.github.io/2020/03/19/Android-TextView富文本之Html标签/anli.png">
-<meta property="og:updated_time" content="2020-03-19T11:04:29.349Z">
+<meta property="og:updated_time" content="2020-03-20T03:18:03.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android TextView富文本之Html标签">
 <meta name="twitter:description" content="前言TextView作为一个我们经常使用到的控件，但是在写一些UI的时候会遇到一些特别的情况，来看一下示例图：">
@@ -431,12 +431,24 @@
                 
               
 
-              <time title="创建时间：2020-03-19 11:59:58 / 修改时间：19:04:29" itemprop="dateCreated datePublished" datetime="2020-03-19T11:59:58+08:00">2020-03-19</time>
+              <time title="创建时间：2020-03-19 11:59:58" itemprop="dateCreated datePublished" datetime="2020-03-19T11:59:58+08:00">2020-03-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-20 11:18:03" itemprop="dateModified" datetime="2020-03-20T11:18:03+08:00">2020-03-20</time>
               
             
           </span>
@@ -489,7 +501,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:998字</span>
+              <span>字数统计:1.1k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:4分</span>
@@ -718,6 +730,9 @@
 </tr>
 </tbody>
 </table>
+<h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><p>在使用<code>&lt;strike&gt;</code>时，6.0系统可能会不显示。则需要在代码中使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加删除线      </span></span><br><span class="line">tv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//在代码中设置加粗            </span></span><br><span class="line">tv.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//添加下划线        </span></span><br><span class="line">tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);</span><br></pre></td></tr></table></figure>
+<p>要什么效果可以自己在代码中设置，选择不同的 Flags 就行了。</p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.csdn.net/github_37847975/article/details/75425633" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/75425633</a></p>
 <p><a href="https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task" target="_blank" rel="noopener">https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task</a></p>
 <p><a href="https://blog.csdn.net/ganggang1st/article/details/6804086" target="_blank" rel="noopener">https://blog.csdn.net/ganggang1st/article/details/6804086</a></p>
@@ -1137,7 +1152,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextView的多样化显示"><span class="nav-number">2.</span> <span class="nav-text">TextView的多样化显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextView的多样化显示"><span class="nav-number">2.</span> <span class="nav-text">TextView的多样化显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意点"><span class="nav-number">3.</span> <span class="nav-text">注意点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -1182,7 +1197,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>276.5k</span>字
+    本站总字数:<span>276.6k</span>字
     </span>
     &nbsp|&nbsp
   </div>

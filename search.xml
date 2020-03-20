@@ -212,6 +212,9 @@
 </tr>
 </tbody>
 </table>
+<h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><p>在使用<code>&lt;strike&gt;</code>时，6.0系统可能会不显示。则需要在代码中使用：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//添加删除线      </span></span><br><span class="line">tv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//在代码中设置加粗            </span></span><br><span class="line">tv.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//添加下划线        </span></span><br><span class="line">tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);</span><br></pre></td></tr></table></figure>
+<p>要什么效果可以自己在代码中设置，选择不同的 Flags 就行了。</p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.csdn.net/github_37847975/article/details/75425633" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/75425633</a></p>
 <p><a href="https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task" target="_blank" rel="noopener">https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task</a></p>
 <p><a href="https://blog.csdn.net/ganggang1st/article/details/6804086" target="_blank" rel="noopener">https://blog.csdn.net/ganggang1st/article/details/6804086</a></p>
@@ -14140,8 +14143,8 @@
       <tags>
         <tag>环境搭建</tag>
         <tag>Mac</tag>
-        <tag>Homebrew</tag>
         <tag>Composer</tag>
+        <tag>Homebrew</tag>
       </tags>
   </entry>
   <entry>
@@ -14168,8 +14171,8 @@
       <tags>
         <tag>环境搭建</tag>
         <tag>Mac</tag>
-        <tag>Maven</tag>
         <tag>Homebrew</tag>
+        <tag>Maven</tag>
       </tags>
   </entry>
   <entry>
@@ -15911,8 +15914,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
         <tag>Centos7</tag>
+        <tag>Mysql</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
