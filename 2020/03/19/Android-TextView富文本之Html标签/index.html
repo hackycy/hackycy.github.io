@@ -144,7 +144,7 @@
 <meta property="og:description" content="前言TextView作为一个我们经常使用到的控件，但是在写一些UI的时候会遇到一些特别的情况，来看一下示例图：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://hackycy.github.io/2020/03/19/Android-TextView富文本之Html标签/anli.png">
-<meta property="og:updated_time" content="2020-03-20T03:18:03.270Z">
+<meta property="og:updated_time" content="2020-03-24T09:41:04.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android TextView富文本之Html标签">
 <meta name="twitter:description" content="前言TextView作为一个我们经常使用到的控件，但是在写一些UI的时候会遇到一些特别的情况，来看一下示例图：">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-20 11:18:03" itemprop="dateModified" datetime="2020-03-20T11:18:03+08:00">2020-03-20</time>
+                <time title="修改时间：2020-03-24 17:41:04" itemprop="dateModified" datetime="2020-03-24T17:41:04+08:00">2020-03-24</time>
               
             
           </span>
@@ -501,10 +501,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:1.1k字</span>
+              <span>字数统计:1.4k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:4分</span>
+              <span>阅读时长:6分</span>
             </span>
           
 
@@ -730,12 +730,25 @@
 </tr>
 </tbody>
 </table>
-<h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><p>在使用<code>&lt;strike&gt;</code>时，6.0系统可能会不显示。则需要在代码中使用：</p>
+<h1 id="strike标签使用注意"><a href="#strike标签使用注意" class="headerlink" title="strike标签使用注意"></a>strike标签使用注意</h1><p>在使用<code>&lt;strike&gt;</code>时，6.0系统可能会不显示。则需要在代码中使用：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加删除线      </span></span><br><span class="line">tv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//在代码中设置加粗            </span></span><br><span class="line">tv.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//添加下划线        </span></span><br><span class="line">tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);</span><br></pre></td></tr></table></figure>
 <p>要什么效果可以自己在代码中设置，选择不同的 Flags 就行了。</p>
+<h1 id="a标签使用注意"><a href="#a标签使用注意" class="headerlink" title="a标签使用注意"></a>a标签使用注意</h1><p>使用a标签后设置了href属性后，不做任何设置是无法进行点击跳转的，需要TextView解析设置一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tv.setText(Html.fromHtml(url));<span class="comment">//解析html</span></span><br><span class="line">tv.setMovementMethod(LinkMovementMethod.getInstance());<span class="comment">//设置可点击</span></span><br></pre></td></tr></table></figure>
+<p>或着xml中添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:autoLink="web"</span><br></pre></td></tr></table></figure>
+<p>这样默认是用浏览器打开a标签里面的链接。</p>
+<p><strong>但是如果要获取到a标签的点击事件和链接的话，那么就要换一个方法：</strong></p>
+<p>在TextView布局中增加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:autoLink="all"</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setLinkClickable</span><span class="params">(<span class="keyword">final</span> SpannableStringBuilder clickableHtmlBuilder,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">final</span> URLSpan urlSpan)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start = clickableHtmlBuilder.getSpanStart(urlSpan);</span><br><span class="line">    <span class="keyword">int</span> end = clickableHtmlBuilder.getSpanEnd(urlSpan);</span><br><span class="line">    <span class="keyword">int</span> flags = clickableHtmlBuilder.getSpanFlags(urlSpan);</span><br><span class="line">        ClickableSpan clickableSpan = <span class="keyword">new</span> ClickableSpan() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//Do something with URL here.</span></span><br><span class="line">                String url = urlSpan.getURL();</span><br><span class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>,url,Toast.LENGTH_SHORT).show();</span><br><span class="line">                System.out.println(url);</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">//            public void updateDrawState(TextPaint ds) &#123;</span></span><br><span class="line"><span class="comment">//                //设置颜色</span></span><br><span class="line"><span class="comment">//                ds.setColor(Color.argb(255, 54, 92, 124));</span></span><br><span class="line"><span class="comment">//                //设置是否要下划线</span></span><br><span class="line"><span class="comment">//                ds.setUnderlineText(false);</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">    clickableHtmlBuilder.setSpan(clickableSpan, start, end, flags);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> CharSequence <span class="title">getClickableHtml</span><span class="params">(String html)</span> </span>&#123;</span><br><span class="line">    Spanned spannedHtml = Html.fromHtml(html);</span><br><span class="line">    SpannableStringBuilder clickableHtmlBuilder = <span class="keyword">new</span> SpannableStringBuilder(spannedHtml);</span><br><span class="line">    URLSpan[] urls = clickableHtmlBuilder.getSpans(<span class="number">0</span>, spannedHtml.length(), URLSpan<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">final</span> URLSpan span : urls) &#123;</span><br><span class="line">        setLinkClickable(clickableHtmlBuilder, span);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> clickableHtmlBuilder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tv.setText(getClickableHtml(url));</span><br><span class="line">tv.setMovementMethod(LocalLinkMovementMethod.getInstance());</span><br></pre></td></tr></table></figure>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.csdn.net/github_37847975/article/details/75425633" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/75425633</a></p>
 <p><a href="https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task" target="_blank" rel="noopener">https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task</a></p>
 <p><a href="https://blog.csdn.net/ganggang1st/article/details/6804086" target="_blank" rel="noopener">https://blog.csdn.net/ganggang1st/article/details/6804086</a></p>
+<p><a href="https://blog.csdn.net/yulyu/article/details/52244925" target="_blank" rel="noopener">https://blog.csdn.net/yulyu/article/details/52244925</a></p>
 
       
     </div>
@@ -1156,7 +1169,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextView的多样化显示"><span class="nav-number">2.</span> <span class="nav-text">TextView的多样化显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意点"><span class="nav-number">3.</span> <span class="nav-text">注意点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextView的多样化显示"><span class="nav-number">2.</span> <span class="nav-text">TextView的多样化显示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#strike标签使用注意"><span class="nav-number">3.</span> <span class="nav-text">strike标签使用注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a标签使用注意"><span class="nav-number">4.</span> <span class="nav-text">a标签使用注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -1201,7 +1214,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>277.4k</span>字
+    本站总字数:<span>277.7k</span>字
     </span>
     &nbsp|&nbsp
   </div>

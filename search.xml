@@ -239,12 +239,25 @@
 </tr>
 </tbody>
 </table>
-<h1 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h1><p>在使用<code>&lt;strike&gt;</code>时，6.0系统可能会不显示。则需要在代码中使用：</p>
+<h1 id="strike标签使用注意"><a href="#strike标签使用注意" class="headerlink" title="strike标签使用注意"></a>strike标签使用注意</h1><p>在使用<code>&lt;strike&gt;</code>时，6.0系统可能会不显示。则需要在代码中使用：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//添加删除线      </span></span><br><span class="line">tv.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//在代码中设置加粗            </span></span><br><span class="line">tv.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);  </span><br><span class="line"><span class="comment">//添加下划线        </span></span><br><span class="line">tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);</span><br></pre></td></tr></table></figure>
 <p>要什么效果可以自己在代码中设置，选择不同的 Flags 就行了。</p>
+<h1 id="a标签使用注意"><a href="#a标签使用注意" class="headerlink" title="a标签使用注意"></a>a标签使用注意</h1><p>使用a标签后设置了href属性后，不做任何设置是无法进行点击跳转的，需要TextView解析设置一下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">tv.setText(Html.fromHtml(url));<span class="comment">//解析html</span></span><br><span class="line">tv.setMovementMethod(LinkMovementMethod.getInstance());<span class="comment">//设置可点击</span></span><br></pre></td></tr></table></figure>
+<p>或着xml中添加</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">android:autoLink="web"</span><br></pre></td></tr></table></figure>
+<p>这样默认是用浏览器打开a标签里面的链接。</p>
+<p><strong>但是如果要获取到a标签的点击事件和链接的话，那么就要换一个方法：</strong></p>
+<p>在TextView布局中增加</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">android:autoLink="all"</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setLinkClickable</span><span class="params">(<span class="keyword">final</span> SpannableStringBuilder clickableHtmlBuilder,</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">final</span> URLSpan urlSpan)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start = clickableHtmlBuilder.getSpanStart(urlSpan);</span><br><span class="line">    <span class="keyword">int</span> end = clickableHtmlBuilder.getSpanEnd(urlSpan);</span><br><span class="line">    <span class="keyword">int</span> flags = clickableHtmlBuilder.getSpanFlags(urlSpan);</span><br><span class="line">        ClickableSpan clickableSpan = <span class="keyword">new</span> ClickableSpan() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//Do something with URL here.</span></span><br><span class="line">                String url = urlSpan.getURL();</span><br><span class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>,url,Toast.LENGTH_SHORT).show();</span><br><span class="line">                System.out.println(url);</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">//            public void updateDrawState(TextPaint ds) &#123;</span></span><br><span class="line"><span class="comment">//                //设置颜色</span></span><br><span class="line"><span class="comment">//                ds.setColor(Color.argb(255, 54, 92, 124));</span></span><br><span class="line"><span class="comment">//                //设置是否要下划线</span></span><br><span class="line"><span class="comment">//                ds.setUnderlineText(false);</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">    clickableHtmlBuilder.setSpan(clickableSpan, start, end, flags);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> CharSequence <span class="title">getClickableHtml</span><span class="params">(String html)</span> </span>&#123;</span><br><span class="line">    Spanned spannedHtml = Html.fromHtml(html);</span><br><span class="line">    SpannableStringBuilder clickableHtmlBuilder = <span class="keyword">new</span> SpannableStringBuilder(spannedHtml);</span><br><span class="line">    URLSpan[] urls = clickableHtmlBuilder.getSpans(<span class="number">0</span>, spannedHtml.length(), URLSpan<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">final</span> URLSpan span : urls) &#123;</span><br><span class="line">        setLinkClickable(clickableHtmlBuilder, span);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> clickableHtmlBuilder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">tv.setText(getClickableHtml(url));</span><br><span class="line">tv.setMovementMethod(LocalLinkMovementMethod.getInstance());</span><br></pre></td></tr></table></figure>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://blog.csdn.net/github_37847975/article/details/75425633" target="_blank" rel="noopener">https://blog.csdn.net/github_37847975/article/details/75425633</a></p>
 <p><a href="https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task" target="_blank" rel="noopener">https://blog.csdn.net/bhadx520/article/details/47433203?depth_1-utm_source=distribute.pc_relevant_right.none-task&amp;utm_source=distribute.pc_relevant_right.none-task</a></p>
 <p><a href="https://blog.csdn.net/ganggang1st/article/details/6804086" target="_blank" rel="noopener">https://blog.csdn.net/ganggang1st/article/details/6804086</a></p>
+<p><a href="https://blog.csdn.net/yulyu/article/details/52244925" target="_blank" rel="noopener">https://blog.csdn.net/yulyu/article/details/52244925</a></p>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -13349,8 +13362,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -14169,8 +14182,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Composer</tag>
       </tags>
   </entry>
@@ -14197,8 +14210,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Homebrew</tag>
         <tag>Mac</tag>
+        <tag>Homebrew</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
