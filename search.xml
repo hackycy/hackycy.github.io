@@ -14253,9 +14253,13 @@
 <h1 id="升级CocoaPods"><a href="#升级CocoaPods" class="headerlink" title="升级CocoaPods"></a>升级CocoaPods</h1><p>升级CocoaPods版本的命令和安装CocoaPods的命令一样，都是<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure></p>
 <h1 id="卸载CocoaPods"><a href="#卸载CocoaPods" class="headerlink" title="卸载CocoaPods"></a>卸载CocoaPods</h1><p>卸载CocoaPods的命令是<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gem uninstall cocoapods</span><br></pre></td></tr></table></figure></p>
 <h1 id="CocoaPods-Mac-App"><a href="#CocoaPods-Mac-App" class="headerlink" title="CocoaPods Mac App"></a>CocoaPods Mac App</h1><p>CocoaPods桌面应用版下载地址：<a href="https://cocoapods.org/app" target="_blank" rel="noopener">https://cocoapods.org/app</a></p>
+<h1 id="Mac-升级到10-13之后-Cocoapods-不能用"><a href="#Mac-升级到10-13之后-Cocoapods-不能用" class="headerlink" title="Mac 升级到10.13之后 Cocoapods 不能用"></a>Mac 升级到10.13之后 Cocoapods 不能用</h1><p>两句话：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo gem update --system</span><br><span class="line">sudo gem install cocoapods -n /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<p>两行解决问题。或者可以尝试重新安装。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://juejin.im/entry/5c067eb56fb9a04a0a5ef583?utm_source=gold_browser_extension" target="_blank" rel="noopener">https://juejin.im/entry/5c067eb56fb9a04a0a5ef583?utm_source=gold_browser_extension</a></li>
 <li><a href="https://guides.cocoapods.org/syntax/podfile.html#podfile" target="_blank" rel="noopener">https://guides.cocoapods.org/syntax/podfile.html#podfile</a></li>
+<li><a href="https://www.jianshu.com/p/91f3b9d8f402" target="_blank" rel="noopener">https://www.jianshu.com/p/91f3b9d8f402</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -15954,8 +15958,8 @@ go run 编译并运行Go程序
         <category>DBA</category>
       </categories>
       <tags>
-        <tag>Centos7</tag>
         <tag>Mysql</tag>
+        <tag>Centos7</tag>
         <tag>环境搭建</tag>
       </tags>
   </entry>
