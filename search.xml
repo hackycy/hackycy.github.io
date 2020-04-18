@@ -14202,8 +14202,8 @@
       <tags>
         <tag>环境搭建</tag>
         <tag>Homebrew</tag>
-        <tag>Mac</tag>
         <tag>Composer</tag>
+        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -14271,6 +14271,20 @@
 <h2 id="删除第三方"><a href="#删除第三方" class="headerlink" title="删除第三方"></a>删除第三方</h2><p>当我们需要去掉某个第三方库时，只需要在Podfile删除该引入该库的语句，然后执行<code>pod update</code>或者<code>pod install</code>就可以了。</p>
 <h1 id="升级CocoaPods"><a href="#升级CocoaPods" class="headerlink" title="升级CocoaPods"></a>升级CocoaPods</h1><p>升级CocoaPods版本的命令和安装CocoaPods的命令一样，都是<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure></p>
 <h1 id="卸载CocoaPods"><a href="#卸载CocoaPods" class="headerlink" title="卸载CocoaPods"></a>卸载CocoaPods</h1><p>卸载CocoaPods的命令是<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gem uninstall cocoapods</span><br></pre></td></tr></table></figure></p>
+<h1 id="更换gem和pod-repo源"><a href="#更换gem和pod-repo源" class="headerlink" title="更换gem和pod repo源"></a>更换gem和pod repo源</h1><h2 id="gem更换源"><a href="#gem更换源" class="headerlink" title="gem更换源"></a>gem更换源</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gem sources --remove https://rubygems.org/ <span class="comment"># 移除默认源</span></span><br><span class="line">$ gem sources -a https://gems.ruby-china.com/ <span class="comment"># 添加Ruby China镜像</span></span><br><span class="line">$ gem sources -l</span><br></pre></td></tr></table></figure>
+<p>确保只有<code>gems.ruby-china.org</code>源</p>
+<h2 id="pod-repo换源"><a href="#pod-repo换源" class="headerlink" title="pod repo换源"></a>pod repo换源</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo remove master</span><br><span class="line">$ pod repo add master https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git</span><br><span class="line">$ pod repo update</span><br></pre></td></tr></table></figure>
+<p>我们把它换成<code>清华tuna</code>源</p>
+<p>对于旧版的 CocoaPods 可以使用如下方法使用 tuna 的镜像</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pod repo remove master</span><br><span class="line">$ pod repo add master https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git</span><br><span class="line">$ pod repo update</span><br></pre></td></tr></table></figure>
+<p>新版的 CocoaPods 不允许用pod repo add直接添加master库了。如果执行<code>pod repo add</code>出现错误</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">to setup the master specs repo.....</span><br></pre></td></tr></table></figure>
+<p>那么使用以下办法</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">$ pod repo <span class="keyword">remove</span> master</span><br><span class="line">$ git clone https:<span class="comment">//mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git ~/.cocoapods/repos/master</span></span><br></pre></td></tr></table></figure>
+<p>另外，如果<code>Podfile</code>文件中有</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://github.com/CocoaPods/Specs.git'</span></span><br></pre></td></tr></table></figure>
+<p>也需要把它换成repo的源，否则依然是使用GitHub源<br> 上面的步骤都完成后，即可使用</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line">$ pod install</span><br><span class="line">$ pod update</span><br></pre></td></tr></table></figure>
 <h1 id="CocoaPods-Mac-App"><a href="#CocoaPods-Mac-App" class="headerlink" title="CocoaPods Mac App"></a>CocoaPods Mac App</h1><p>CocoaPods桌面应用版下载地址：<a href="https://cocoapods.org/app" target="_blank" rel="noopener">https://cocoapods.org/app</a></p>
 <h1 id="Mac-升级到10-13之后-Cocoapods-不能用"><a href="#Mac-升级到10-13之后-Cocoapods-不能用" class="headerlink" title="Mac 升级到10.13之后 Cocoapods 不能用"></a>Mac 升级到10.13之后 Cocoapods 不能用</h1><p>两句话：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo gem update --system</span><br><span class="line">sudo gem install cocoapods -n /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>

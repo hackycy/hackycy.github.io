@@ -153,7 +153,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/01/18/CocoaPods简单安装和使用/installcomple.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/01/18/CocoaPods简单安装和使用/setting.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/01/18/CocoaPods简单安装和使用/showtip.png">
-<meta property="og:updated_time" content="2020-04-04T09:38:31.462Z">
+<meta property="og:updated_time" content="2020-04-18T18:17:52.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocoaPods简单安装和使用">
 <meta name="twitter:description" content="什么是CocoaPodsCocoaPods是专门为iOS工程提供对第三方库的依赖的管理工具，通过CocoaPods，我们可以更方便地管理每个第三方库的版本，而且不需要我们做太多的配置。直观、集中和自动化地管理我们项目的第三方库。">
@@ -457,7 +457,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-04 17:38:31" itemprop="dateModified" datetime="2020-04-04T17:38:31+08:00">2020-04-04</time>
+                <time title="修改时间：2020-04-19 02:17:52" itemprop="dateModified" datetime="2020-04-19T02:17:52+08:00">2020-04-19</time>
               
             
           </span>
@@ -510,10 +510,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:723字</span>
+              <span>字数统计:961字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:2分</span>
+              <span>阅读时长:3分</span>
             </span>
           
 
@@ -564,6 +564,20 @@
 <h2 id="删除第三方"><a href="#删除第三方" class="headerlink" title="删除第三方"></a>删除第三方</h2><p>当我们需要去掉某个第三方库时，只需要在Podfile删除该引入该库的语句，然后执行<code>pod update</code>或者<code>pod install</code>就可以了。</p>
 <h1 id="升级CocoaPods"><a href="#升级CocoaPods" class="headerlink" title="升级CocoaPods"></a>升级CocoaPods</h1><p>升级CocoaPods版本的命令和安装CocoaPods的命令一样，都是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install cocoapods</span><br></pre></td></tr></table></figure></p>
 <h1 id="卸载CocoaPods"><a href="#卸载CocoaPods" class="headerlink" title="卸载CocoaPods"></a>卸载CocoaPods</h1><p>卸载CocoaPods的命令是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem uninstall cocoapods</span><br></pre></td></tr></table></figure></p>
+<h1 id="更换gem和pod-repo源"><a href="#更换gem和pod-repo源" class="headerlink" title="更换gem和pod repo源"></a>更换gem和pod repo源</h1><h2 id="gem更换源"><a href="#gem更换源" class="headerlink" title="gem更换源"></a>gem更换源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources --remove https://rubygems.org/ <span class="comment"># 移除默认源</span></span><br><span class="line">$ gem sources -a https://gems.ruby-china.com/ <span class="comment"># 添加Ruby China镜像</span></span><br><span class="line">$ gem sources -l</span><br></pre></td></tr></table></figure>
+<p>确保只有<code>gems.ruby-china.org</code>源</p>
+<h2 id="pod-repo换源"><a href="#pod-repo换源" class="headerlink" title="pod repo换源"></a>pod repo换源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pod repo remove master</span><br><span class="line">$ pod repo add master https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git</span><br><span class="line">$ pod repo update</span><br></pre></td></tr></table></figure>
+<p>我们把它换成<code>清华tuna</code>源</p>
+<p>对于旧版的 CocoaPods 可以使用如下方法使用 tuna 的镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pod repo remove master</span><br><span class="line">$ pod repo add master https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git</span><br><span class="line">$ pod repo update</span><br></pre></td></tr></table></figure>
+<p>新版的 CocoaPods 不允许用pod repo add直接添加master库了。如果执行<code>pod repo add</code>出现错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">to setup the master specs repo.....</span><br></pre></td></tr></table></figure>
+<p>那么使用以下办法</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pod repo <span class="keyword">remove</span> master</span><br><span class="line">$ git clone https:<span class="comment">//mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git ~/.cocoapods/repos/master</span></span><br></pre></td></tr></table></figure>
+<p>另外，如果<code>Podfile</code>文件中有</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://github.com/CocoaPods/Specs.git'</span></span><br></pre></td></tr></table></figure>
+<p>也需要把它换成repo的源，否则依然是使用GitHub源<br> 上面的步骤都完成后，即可使用</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pod install</span><br><span class="line">$ pod update</span><br></pre></td></tr></table></figure>
 <h1 id="CocoaPods-Mac-App"><a href="#CocoaPods-Mac-App" class="headerlink" title="CocoaPods Mac App"></a>CocoaPods Mac App</h1><p>CocoaPods桌面应用版下载地址：<a href="https://cocoapods.org/app" target="_blank" rel="noopener">https://cocoapods.org/app</a></p>
 <h1 id="Mac-升级到10-13之后-Cocoapods-不能用"><a href="#Mac-升级到10-13之后-Cocoapods-不能用" class="headerlink" title="Mac 升级到10.13之后 Cocoapods 不能用"></a>Mac 升级到10.13之后 Cocoapods 不能用</h1><p>两句话：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo gem update --system</span><br><span class="line">sudo gem install cocoapods -n /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
@@ -993,7 +1007,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是CocoaPods"><span class="nav-number">1.</span> <span class="nav-text">什么是CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装CocoaPods"><span class="nav-number">2.</span> <span class="nav-text">安装CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新gem"><span class="nav-number">2.1.</span> <span class="nav-text">更新gem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换镜像"><span class="nav-number">2.2.</span> <span class="nav-text">更换镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.4.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用CocoaPods"><span class="nav-number">3.</span> <span class="nav-text">使用CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找第三方库"><span class="nav-number">3.1.</span> <span class="nav-text">查找第三方库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入第三方库到项目中"><span class="nav-number">3.2.</span> <span class="nav-text">引入第三方库到项目中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加第三方"><span class="nav-number">3.3.</span> <span class="nav-text">增加第三方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新第三方"><span class="nav-number">3.4.</span> <span class="nav-text">更新第三方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除第三方"><span class="nav-number">3.5.</span> <span class="nav-text">删除第三方</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级CocoaPods"><span class="nav-number">4.</span> <span class="nav-text">升级CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卸载CocoaPods"><span class="nav-number">5.</span> <span class="nav-text">卸载CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CocoaPods-Mac-App"><span class="nav-number">6.</span> <span class="nav-text">CocoaPods Mac App</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-升级到10-13之后-Cocoapods-不能用"><span class="nav-number">7.</span> <span class="nav-text">Mac 升级到10.13之后 Cocoapods 不能用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是CocoaPods"><span class="nav-number">1.</span> <span class="nav-text">什么是CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装CocoaPods"><span class="nav-number">2.</span> <span class="nav-text">安装CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新gem"><span class="nav-number">2.1.</span> <span class="nav-text">更新gem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换镜像"><span class="nav-number">2.2.</span> <span class="nav-text">更换镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.4.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用CocoaPods"><span class="nav-number">3.</span> <span class="nav-text">使用CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找第三方库"><span class="nav-number">3.1.</span> <span class="nav-text">查找第三方库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入第三方库到项目中"><span class="nav-number">3.2.</span> <span class="nav-text">引入第三方库到项目中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加第三方"><span class="nav-number">3.3.</span> <span class="nav-text">增加第三方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新第三方"><span class="nav-number">3.4.</span> <span class="nav-text">更新第三方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除第三方"><span class="nav-number">3.5.</span> <span class="nav-text">删除第三方</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级CocoaPods"><span class="nav-number">4.</span> <span class="nav-text">升级CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卸载CocoaPods"><span class="nav-number">5.</span> <span class="nav-text">卸载CocoaPods</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更换gem和pod-repo源"><span class="nav-number">6.</span> <span class="nav-text">更换gem和pod repo源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gem更换源"><span class="nav-number">6.1.</span> <span class="nav-text">gem更换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pod-repo换源"><span class="nav-number">6.2.</span> <span class="nav-text">pod repo换源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CocoaPods-Mac-App"><span class="nav-number">7.</span> <span class="nav-text">CocoaPods Mac App</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-升级到10-13之后-Cocoapods-不能用"><span class="nav-number">8.</span> <span class="nav-text">Mac 升级到10.13之后 Cocoapods 不能用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -1038,7 +1052,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>278k</span>字
+    本站总字数:<span>278.3k</span>字
     </span>
     &nbsp|&nbsp
   </div>
