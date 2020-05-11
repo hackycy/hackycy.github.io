@@ -22,6 +22,10 @@
 <meta name="theme-color" content="#222">
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
 
 
 
@@ -151,7 +155,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2018/09/07/hexo-github-搭建个人博客/safe_read_demo.png">
 <meta property="og:image" content="http://hackycy.github.io/2018/09/07/hexo-github-搭建个人博客/new_repo.png">
 <meta property="og:image" content="http://hackycy.github.io/2018/09/07/hexo-github-搭建个人博客/github_page.png">
-<meta property="og:updated_time" content="2020-05-11T09:00:13.531Z">
+<meta property="og:updated_time" content="2020-05-11T09:42:32.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo + github 搭建个人博客">
 <meta name="twitter:description" content="我的历史上第一篇教程，Hexo+github搭建个人博客。虽然网上有很多，但是想从这一篇开始我的写作之路。">
@@ -426,7 +430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-11 17:00:13" itemprop="dateModified" datetime="2020-05-11T17:00:13+08:00">2020-05-11</time>
+                <time title="修改时间：2020-05-11 17:42:32" itemprop="dateModified" datetime="2020-05-11T17:42:32+08:00">2020-05-11</time>
               
             
           </span>
@@ -479,10 +483,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:4.5k字</span>
+              <span>字数统计:4.7k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:20分</span>
+              <span>阅读时长:21分</span>
             </span>
           
 
@@ -598,7 +602,13 @@
 <p>其中选择 <strong> .post-body </strong> 是为了不影响标题，选择 <strong> p </strong>  是为了不影响首页“阅读全文”的显示样式,颜色可以自己定义。</p>
 <h2 id="添加背景"><a href="#添加背景" class="headerlink" title="添加背景"></a>添加背景</h2><p>在 <strong> theme/next/source/css/_custom </strong> 文件夹下打开 <strong> custom.styl </strong> 文件，往里面添加以下代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;   </span><br><span class="line">        <span class="attribute">background</span>:<span class="built_in">url</span>(图片链接);</span><br><span class="line">        <span class="attribute">background-size</span>:cover;</span><br><span class="line">        <span class="attribute">background-repeat</span>:no-repeat;</span><br><span class="line">        <span class="attribute">background-attachment</span>:fixed;</span><br><span class="line">        <span class="attribute">background-position</span>:center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>本地图片将图片放至主题目录下 <strong> source\images </strong></p>
-<h2 id="修改文章底部的那个带-号的标签"><a href="#修改文章底部的那个带-号的标签" class="headerlink" title="修改文章底部的那个带#号的标签"></a>修改文章底部的那个带#号的标签</h2><p><strong> 具体实现方法 </strong></p>
+<h2 id="打赏功能"><a href="#打赏功能" class="headerlink" title="打赏功能"></a>打赏功能</h2><p>找到Next主题下的配置文件中的：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reward</span></span><br><span class="line"><span class="attr">reward_comment:</span> <span class="string">坚持技术分享，您的支持将鼓励我继续创作！</span></span><br><span class="line"><span class="attr">wechatpay:</span> <span class="string">/images/wechatpay.png</span></span><br><span class="line"><span class="attr">alipay:</span> <span class="string">/images/alipay.jpg</span></span><br><span class="line"><span class="comment">#bitcoin: /images/bitcoin.png</span></span><br></pre></td></tr></table></figure>
+<p>配置文字和对应收款码即可</p>
+<p><strong>删除打赏文字闪动样式</strong></p>
+<p>进入<code>themes\next\source\css\_common\components\post\post-reward.styl</code>,找到以下样式并删除</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#wechat</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">    <span class="attribute">-webkit-animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">    <span class="attribute">-moz-animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#alipay</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">    <span class="attribute">-webkit-animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">    <span class="attribute">-moz-animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#bitcoin</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">    <span class="attribute">-webkit-animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">    <span class="attribute">-moz-animation</span>: roll <span class="number">1s</span> infinite linear;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="修改文章底部的那个带-号的标签"><a href="#修改文章底部的那个带-号的标签" class="headerlink" title="修改文章底部的那个带#号的标签"></a>修改文章底部的那个带#号的标签</h2><p><strong>具体实现方法</strong></p>
 <p>修改模板 <code>/themes/next/layout/_macro/post.swig</code> ，搜索 <code>rel=&quot;tag&quot;&gt;#</code>，将<code>#</code>换成 <code>&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</code></p>
 <h2 id="在网站底部加上访问量"><a href="#在网站底部加上访问量" class="headerlink" title="在网站底部加上访问量"></a>在网站底部加上访问量</h2><p><strong> 具体实现方法 </strong><br>打开 <code>\themes\next\layout\_partials\footer.swig</code> 文件,在<code>copyright</code>前加上画红线这句话：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script <span class="keyword">async</span> src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
@@ -626,7 +636,10 @@
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">fancybox:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>如果想要配置CDN，则再加上</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">fancybox:</span> <span class="string">//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js</span></span><br><span class="line">  <span class="attr">fancybox_css:</span> <span class="string">//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css</span></span><br></pre></td></tr></table></figure>
-<h1 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h1><p>首先需要进行创建您个人的github账户</p>
+<h2 id="代码块复制"><a href="#代码块复制" class="headerlink" title="代码块复制"></a>代码块复制</h2><p>在Next主题配置文件中找到：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Manual define the border radius in codeblock</span></span><br><span class="line">  <span class="comment"># Leave it empty for the default 1</span></span><br><span class="line">  <span class="attr">border_radius:</span></span><br><span class="line">  <span class="comment"># Add copy button on codeblock</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Show text copy result</span></span><br><span class="line">    <span class="attr">show_result:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>开启即可</p>
+<h2 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h2><h1 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h1><p>首先需要进行创建您个人的github账户</p>
 <ol start="0">
 <li>创建公钥<br>打开git-bash,执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"your_email@youremail.com"</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -784,6 +797,26 @@
       
 
       
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+               <div id="needsharebutton-postbottom">
+                 <span class="btn">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                 </span>
+               </div>
+            
+          </div>
+        
+        </div>
       
       
 
@@ -1149,7 +1182,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些前戏"><span class="nav-number">1.</span> <span class="nav-text">一些前戏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始使用"><span class="nav-number">2.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提"><span class="nav-number">2.1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">2.2.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建"><span class="nav-number">3.</span> <span class="nav-text">搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo命令"><span class="nav-number">4.</span> <span class="nav-text">Hexo命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">4.1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new"><span class="nav-number">4.2.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generate"><span class="nav-number">4.3.</span> <span class="nav-text">generate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server"><span class="nav-number">4.4.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deploy"><span class="nav-number">4.5.</span> <span class="nav-text">deploy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clean"><span class="nav-number">4.6.</span> <span class="nav-text">clean</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo美化"><span class="nav-number">5.</span> <span class="nav-text">Hexo美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主题安装"><span class="nav-number">5.1.</span> <span class="nav-text">主题安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用主题"><span class="nav-number">5.2.</span> <span class="nav-text">启用主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题设定"><span class="nav-number">5.3.</span> <span class="nav-text">主题设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态背景"><span class="nav-number">5.4.</span> <span class="nav-text">动态背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击出现桃心效果"><span class="nav-number">5.5.</span> <span class="nav-text">点击出现桃心效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置网站图标"><span class="nav-number">5.6.</span> <span class="nav-text">设置网站图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地搜索"><span class="nav-number">5.7.</span> <span class="nav-text">本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面加载进度条"><span class="nav-number">5.8.</span> <span class="nav-text">页面加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章浏览进度条"><span class="nav-number">5.9.</span> <span class="nav-text">文章浏览进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现统计功能"><span class="nav-number">5.10.</span> <span class="nav-text">实现统计功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章内链接文本样式"><span class="nav-number">5.11.</span> <span class="nav-text">修改文章内链接文本样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加背景"><span class="nav-number">5.12.</span> <span class="nav-text">添加背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章底部的那个带-号的标签"><span class="nav-number">5.13.</span> <span class="nav-text">修改文章底部的那个带#号的标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在网站底部加上访问量"><span class="nav-number">5.14.</span> <span class="nav-text">在网站底部加上访问量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章加密访问"><span class="nav-number">5.15.</span> <span class="nav-text">文章加密访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fancybox3图片浏览"><span class="nav-number">5.16.</span> <span class="nav-text">Fancybox3图片浏览</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署-1"><span class="nav-number">6.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">7.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入图片"><span class="nav-number">7.1.</span> <span class="nav-text">插入图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对路径"><span class="nav-number">7.1.1.</span> <span class="nav-text">绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对路径"><span class="nav-number">7.1.2.</span> <span class="nav-text">相对路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档格式"><span class="nav-number">7.2.</span> <span class="nav-text">文档格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章分类"><span class="nav-number">7.3.</span> <span class="nav-text">文章分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章摘要"><span class="nav-number">7.4.</span> <span class="nav-text">文章摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo内置标签"><span class="nav-number">8.</span> <span class="nav-text">Hexo内置标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Note提示块"><span class="nav-number">8.1.</span> <span class="nav-text">Note提示块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tab标签"><span class="nav-number">8.2.</span> <span class="nav-text">Tab标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Label标签"><span class="nav-number">8.3.</span> <span class="nav-text">Label标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Button按钮"><span class="nav-number">8.4.</span> <span class="nav-text">Button按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用站内链接"><span class="nav-number">8.5.</span> <span class="nav-text">引用站内链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">9.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些前戏"><span class="nav-number">1.</span> <span class="nav-text">一些前戏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始使用"><span class="nav-number">2.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提"><span class="nav-number">2.1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">2.2.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建"><span class="nav-number">3.</span> <span class="nav-text">搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo命令"><span class="nav-number">4.</span> <span class="nav-text">Hexo命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">4.1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new"><span class="nav-number">4.2.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generate"><span class="nav-number">4.3.</span> <span class="nav-text">generate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server"><span class="nav-number">4.4.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deploy"><span class="nav-number">4.5.</span> <span class="nav-text">deploy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clean"><span class="nav-number">4.6.</span> <span class="nav-text">clean</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo美化"><span class="nav-number">5.</span> <span class="nav-text">Hexo美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主题安装"><span class="nav-number">5.1.</span> <span class="nav-text">主题安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用主题"><span class="nav-number">5.2.</span> <span class="nav-text">启用主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题设定"><span class="nav-number">5.3.</span> <span class="nav-text">主题设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态背景"><span class="nav-number">5.4.</span> <span class="nav-text">动态背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点击出现桃心效果"><span class="nav-number">5.5.</span> <span class="nav-text">点击出现桃心效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置网站图标"><span class="nav-number">5.6.</span> <span class="nav-text">设置网站图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地搜索"><span class="nav-number">5.7.</span> <span class="nav-text">本地搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面加载进度条"><span class="nav-number">5.8.</span> <span class="nav-text">页面加载进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章浏览进度条"><span class="nav-number">5.9.</span> <span class="nav-text">文章浏览进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现统计功能"><span class="nav-number">5.10.</span> <span class="nav-text">实现统计功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章内链接文本样式"><span class="nav-number">5.11.</span> <span class="nav-text">修改文章内链接文本样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加背景"><span class="nav-number">5.12.</span> <span class="nav-text">添加背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打赏功能"><span class="nav-number">5.13.</span> <span class="nav-text">打赏功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改文章底部的那个带-号的标签"><span class="nav-number">5.14.</span> <span class="nav-text">修改文章底部的那个带#号的标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在网站底部加上访问量"><span class="nav-number">5.15.</span> <span class="nav-text">在网站底部加上访问量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章加密访问"><span class="nav-number">5.16.</span> <span class="nav-text">文章加密访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fancybox3图片浏览"><span class="nav-number">5.17.</span> <span class="nav-text">Fancybox3图片浏览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码块复制"><span class="nav-number">5.18.</span> <span class="nav-text">代码块复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分享"><span class="nav-number">5.19.</span> <span class="nav-text">分享</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署-1"><span class="nav-number">6.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">7.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插入图片"><span class="nav-number">7.1.</span> <span class="nav-text">插入图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对路径"><span class="nav-number">7.1.1.</span> <span class="nav-text">绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对路径"><span class="nav-number">7.1.2.</span> <span class="nav-text">相对路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档格式"><span class="nav-number">7.2.</span> <span class="nav-text">文档格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章分类"><span class="nav-number">7.3.</span> <span class="nav-text">文章分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章摘要"><span class="nav-number">7.4.</span> <span class="nav-text">文章摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo内置标签"><span class="nav-number">8.</span> <span class="nav-text">Hexo内置标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Note提示块"><span class="nav-number">8.1.</span> <span class="nav-text">Note提示块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tab标签"><span class="nav-number">8.2.</span> <span class="nav-text">Tab标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Label标签"><span class="nav-number">8.3.</span> <span class="nav-text">Label标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Button按钮"><span class="nav-number">8.4.</span> <span class="nav-text">Button按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用站内链接"><span class="nav-number">8.5.</span> <span class="nav-text">引用站内链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">9.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -1194,7 +1227,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>282.2k</span>字
+    本站总字数:<span>282.4k</span>字
     </span>
     &nbsp|&nbsp
   </div>
@@ -1392,6 +1425,27 @@
 
 
   
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
   
 
   
