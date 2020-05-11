@@ -16223,7 +16223,7 @@ go run 编译并运行Go程序
 <h2 id="代码块复制"><a href="#代码块复制" class="headerlink" title="代码块复制"></a>代码块复制</h2><p>在Next主题配置文件中找到：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Manual define the border radius in codeblock</span></span><br><span class="line">  <span class="comment"># Leave it empty for the default 1</span></span><br><span class="line">  <span class="attr">border_radius:</span></span><br><span class="line">  <span class="comment"># Add copy button on codeblock</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Show text copy result</span></span><br><span class="line">    <span class="attr">show_result:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>开启即可</p>
-<h2 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h2><h1 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h1><p>首先需要进行创建您个人的github账户</p>
+<h1 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h1><p>首先需要进行创建您个人的github账户</p>
 <ol start="0">
 <li>创建公钥<br>打开git-bash,执行<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"your_email@youremail.com"</span></span><br></pre></td></tr></table></figure>
 </li>
