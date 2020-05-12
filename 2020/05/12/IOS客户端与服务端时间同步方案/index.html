@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="前言最近项目的编写中，接口需要提交精确到秒级的时间戳用作校验。但是仅靠new Date().timeIntervalSince1970会面临着本地的时间与服务器时间不一致的问题。那么本文方案能让本地应用时间与服务器时间存在误差范围内保持同步，减少应用出错率。">
+<meta name="keywords" content="Ios,timestamp,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOS客户端与服务端时间同步方案">
+<meta property="og:url" content="http://hackycy.github.io/2020/05/12/IOS客户端与服务端时间同步方案/index.html">
+<meta property="og:site_name" content="思忆技术">
+<meta property="og:description" content="前言最近项目的编写中，接口需要提交精确到秒级的时间戳用作校验。但是仅靠new Date().timeIntervalSince1970会面临着本地的时间与服务器时间不一致的问题。那么本文方案能让本地应用时间与服务器时间存在误差范围内保持同步，减少应用出错率。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-12T03:27:20.666Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IOS客户端与服务端时间同步方案">
+<meta name="twitter:description" content="前言最近项目的编写中，接口需要提交精确到秒级的时间戳用作校验。但是仅靠new Date().timeIntervalSince1970会面临着本地的时间与服务器时间不一致的问题。那么本文方案能让本地应用时间与服务器时间存在误差范围内保持同步，减少应用出错率。">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="思忆技术" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2020/05/12/IOS客户端与服务端时间同步方案/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>IOS客户端与服务端时间同步方案 | 思忆技术</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">思忆技术</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">思忆，分享技术</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">55</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">120</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2020/05/12/IOS客户端与服务端时间同步方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="“被窝是天堂开设在人间的分店。”">
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="思忆技术">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">IOS客户端与服务端时间同步方案
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-12 10:35:16 / 修改时间：11:27:20" itemprop="dateCreated datePublished" datetime="2020-05-12T10:35:16+08:00">2020-05-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ios/" itemprop="url" rel="index"><span itemprop="name">Ios</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/12/IOS客户端与服务端时间同步方案/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/12/IOS客户端与服务端时间同步方案/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:2k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:10分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目的编写中，接口需要提交精确到秒级的时间戳用作校验。但是仅靠<code>new Date().timeIntervalSince1970</code>会面临着本地的时间与服务器时间不一致的问题。那么本文方案能让本地应用时间与服务器时间存在误差范围内保持同步，减少应用出错率。</p>
+<a id="more"></a>
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><ul>
+<li>获取设备当前时间 <code>Now</code>，该值受系统时间影响，用户如果修改时间，值也会随着变化；</li>
+<li>获取设备上次重启的时间 <code>BootTime</code>，该值受系统时间影响，用户如果修改时间，值也会随着变化；</li>
+<li>由上面 <code>iOS</code> 提供的两个接口，我们可以获取到<strong>设备自上次重启后运行的时间</strong>（<code>BootTime - Now</code>），该值与系统时间无关；<span class="label danger">`-`这个不是减，指的是区间，下面同理</span> </li>
+<li>在必要的时刻获取一下服务器时间，然后记录这个时刻的<strong>设备自上次重启后运行的时间</strong>（<code>BootTime - Now</code>）</li>
+<li>后续时间获取：<strong>现在服务器时间 = 以前服务器时间 + 现在设备自上次重启后运行的时间 - 以前服务器时间的获取时刻的设备自上次重启后运行的时间</strong></li>
+<li>利用AFNetworking自动同步时间</li>
+</ul>
+<h1 id="时间的获取"><a href="#时间的获取" class="headerlink" title="时间的获取"></a>时间的获取</h1><p><strong>获取now的Unix Time</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">now</span>() -&gt; <span class="title">Int</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> now = timeval()</span><br><span class="line">	<span class="keyword">var</span> tz = timezone()</span><br><span class="line">	gettimeofday(&amp;now, &amp;tz)</span><br><span class="line">	<span class="keyword">return</span> now.tv_sec</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>获取设备上次重启的 Unix Time</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">boottime</span>() -&gt; <span class="title">Int</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> mid = [<span class="type">CTL_KERN</span>, <span class="type">KERN_BOOTTIME</span>]</span><br><span class="line">	<span class="keyword">var</span> boottime = timeval()</span><br><span class="line">	<span class="keyword">var</span> size = <span class="type">MemoryLayout</span>.size(ofValue: boottime)</span><br><span class="line">  <span class="keyword">if</span> sysctl(&amp;mid, <span class="number">2</span>, &amp;boottime, &amp;size, <span class="literal">nil</span>, <span class="number">0</span>) != -<span class="number">1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> boottime.tv_sec</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>获取设备自上次重启后运行的时间</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">now() - boottime()</span><br></pre></td></tr></table></figure>
+<h1 id="TimeUtils编写"><a href="#TimeUtils编写" class="headerlink" title="TimeUtils编写"></a>TimeUtils编写</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeUtils</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">var</span> isServerTime: <span class="type">Bool</span> = <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">var</span> diffTime: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  	<span class="comment">/// 项目中所有获取时间的方法</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">getServerTime</span>() -&gt; <span class="title">Int</span> </span>&#123;</span><br><span class="line">        objc_sync_enter(<span class="keyword">self</span>)</span><br><span class="line">        <span class="keyword">defer</span> &#123;</span><br><span class="line">            objc_sync_exit(<span class="keyword">self</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> !isServerTime &#123;</span><br><span class="line">            <span class="keyword">let</span> t = <span class="type">Date</span>().timestamp</span><br><span class="line">            <span class="keyword">return</span> t</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> t = diffTime + (now() - boottime())</span><br><span class="line">        <span class="keyword">return</span> t</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 用于计算时间</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">calibrationTime</span>(<span class="title">lastServerTime</span>: <span class="title">Int</span>) -&gt; <span class="title">Int</span> </span>&#123;</span><br><span class="line">        objc_sync_enter(<span class="keyword">self</span>)</span><br><span class="line">        <span class="keyword">defer</span> &#123;</span><br><span class="line">            objc_sync_exit(<span class="keyword">self</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        diffTime = lastServerTime - (now() - boottime())</span><br><span class="line">        isServerTime = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">return</span> lastServerTime</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 获取当前 Unix Time</span></span><br><span class="line">    <span class="comment">/// - Returns: 当前 Unix Time</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">now</span>() -&gt; <span class="title">Int</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> now = timeval()</span><br><span class="line">        <span class="keyword">var</span> tz = timezone()</span><br><span class="line">        gettimeofday(&amp;now, &amp;tz)</span><br><span class="line">        <span class="keyword">return</span> now.tv_sec</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  	<span class="comment">/// 获取当前 Unix Time</span></span><br><span class="line">    <span class="comment">/// - Returns: 当前 Unix Time</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">boottime</span>() -&gt; <span class="title">Int</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> mid = [<span class="type">CTL_KERN</span>, <span class="type">KERN_BOOTTIME</span>]</span><br><span class="line">        <span class="keyword">var</span> boottime = timeval()</span><br><span class="line">        <span class="keyword">var</span> size = <span class="type">MemoryLayout</span>.size(ofValue: boottime)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> sysctl(&amp;mid, <span class="number">2</span>, &amp;boottime, &amp;size, <span class="literal">nil</span>, <span class="number">0</span>) != -<span class="number">1</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> boottime.tv_sec</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Date</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> timestamp: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> timeInterval: <span class="type">TimeInterval</span> = <span class="keyword">self</span>.timeIntervalSince1970</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Int</span>(timeInterval)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="利用AFNetworking同步时间"><a href="#利用AFNetworking同步时间" class="headerlink" title="利用AFNetworking同步时间"></a>利用AFNetworking同步时间</h1><p>利用AFN发起请求返回时通过HTTP Header来获取服务器时间，时间格式以<a href="https://link.jianshu.com/?t=https%3A%2F%2Ftools.ietf.org%2Fhtml%2Frfc7231%23section-7.1.1.1" target="_blank" rel="noopener">RFC-7231</a>中定义的”HTTP日期”格式来发送，解析该时间需要用到以下的OC代码，Swift项目请自行用<code>Bridging-Header</code></p>
+<p><strong>NSDate+InternetDateTime.h</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  NSDate+InternetDateTime.h</span><br><span class="line">//  MWFeedParser</span><br><span class="line">//</span><br><span class="line">//  Created by Michael Waterfall on 07/10/2010.</span><br><span class="line">//  Copyright 2010 Michael Waterfall. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">// Formatting hints</span><br><span class="line">typedef enum &#123;</span><br><span class="line">    DateFormatHintNone, </span><br><span class="line">    DateFormatHintRFC822, </span><br><span class="line">    DateFormatHintRFC3339</span><br><span class="line">&#125; DateFormatHint;</span><br><span class="line"></span><br><span class="line">// A category to parse internet date &amp; time strings</span><br><span class="line">@interface NSDate (InternetDateTime)</span><br><span class="line"></span><br><span class="line">// Get date from RFC3339 or RFC822 string</span><br><span class="line">// - A format/specification hint can be used to speed up, </span><br><span class="line">//   otherwise both will be attempted in order to get a date</span><br><span class="line">+ (NSDate *)dateFromInternetDateTimeString:(NSString *)dateString </span><br><span class="line">                                formatHint:(DateFormatHint)hint;</span><br><span class="line"></span><br><span class="line">// Get date from a string using a specific date specification</span><br><span class="line">+ (NSDate *)dateFromRFC3339String:(NSString *)dateString;</span><br><span class="line">+ (NSDate *)dateFromRFC822String:(NSString *)dateString;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><strong>NSDate+InternetDateTime.m</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  NSDate+InternetDateTime.m</span><br><span class="line">//  MWFeedParser</span><br><span class="line">//</span><br><span class="line">//  Created by Michael Waterfall on 07/10/2010.</span><br><span class="line">//  Copyright 2010 Michael Waterfall. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;NSDate+InternetDateTime.h&quot;</span><br><span class="line"></span><br><span class="line">// Always keep the formatter around as they&apos;re expensive to instantiate</span><br><span class="line">static NSDateFormatter *_internetDateTimeFormatter = nil;</span><br><span class="line"></span><br><span class="line">// Good info on internet dates here:</span><br><span class="line">// http://developer.apple.com/iphone/library/qa/qa2010/qa1480.html</span><br><span class="line">@implementation NSDate (InternetDateTime)</span><br><span class="line"></span><br><span class="line">// Instantiate single date formatter</span><br><span class="line">+ (NSDateFormatter *)internetDateTimeFormatter &#123;</span><br><span class="line">    @synchronized(self) &#123;</span><br><span class="line">        if (!_internetDateTimeFormatter) &#123;</span><br><span class="line">            NSLocale *en_US_POSIX = [[NSLocale alloc] initWithLocaleIdentifier:@&quot;en_US_POSIX&quot;];</span><br><span class="line">            _internetDateTimeFormatter = [[NSDateFormatter alloc] init];</span><br><span class="line">            [_internetDateTimeFormatter setLocale:en_US_POSIX];</span><br><span class="line">            [_internetDateTimeFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return _internetDateTimeFormatter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Get a date from a string - hint can be used to speed up</span><br><span class="line">+ (NSDate *)dateFromInternetDateTimeString:(NSString *)dateString formatHint:(DateFormatHint)hint &#123;</span><br><span class="line">     // Keep dateString around a while (for thread-safety)</span><br><span class="line">	NSDate *date = nil;</span><br><span class="line">    if (dateString) &#123;</span><br><span class="line">        if (hint != DateFormatHintRFC3339) &#123;</span><br><span class="line">            // Try RFC822 first</span><br><span class="line">            date = [NSDate dateFromRFC822String:dateString];</span><br><span class="line">            if (!date) date = [NSDate dateFromRFC3339String:dateString];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // Try RFC3339 first</span><br><span class="line">            date = [NSDate dateFromRFC3339String:dateString];</span><br><span class="line">            if (!date) date = [NSDate dateFromRFC822String:dateString];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     // Finished with date string</span><br><span class="line">	return date;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// See http://www.faqs.org/rfcs/rfc822.html</span><br><span class="line">+ (NSDate *)dateFromRFC822String:(NSString *)dateString &#123;</span><br><span class="line">     // Keep dateString around a while (for thread-safety)</span><br><span class="line">    NSDate *date = nil;</span><br><span class="line">    if (dateString) &#123;</span><br><span class="line">        NSDateFormatter *dateFormatter = [NSDate internetDateTimeFormatter];</span><br><span class="line">        @synchronized(dateFormatter) &#123;</span><br><span class="line"></span><br><span class="line">            // Process</span><br><span class="line">            NSString *RFC822String = [[NSString stringWithString:dateString] uppercaseString];</span><br><span class="line">            if ([RFC822String rangeOfString:@&quot;,&quot;].location != NSNotFound) &#123;</span><br><span class="line">                if (!date) &#123; // Sun, 19 May 2002 15:21:36 GMT</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;EEE, d MMM yyyy HH:mm:ss zzz&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">                if (!date) &#123; // Sun, 19 May 2002 15:21 GMT</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;EEE, d MMM yyyy HH:mm zzz&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">                if (!date) &#123; // Sun, 19 May 2002 15:21:36</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;EEE, d MMM yyyy HH:mm:ss&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">                if (!date) &#123; // Sun, 19 May 2002 15:21</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;EEE, d MMM yyyy HH:mm&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (!date) &#123; // 19 May 2002 15:21:36 GMT</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;d MMM yyyy HH:mm:ss zzz&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">                if (!date) &#123; // 19 May 2002 15:21 GMT</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;d MMM yyyy HH:mm zzz&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">                if (!date) &#123; // 19 May 2002 15:21:36</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;d MMM yyyy HH:mm:ss&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">                if (!date) &#123; // 19 May 2002 15:21</span><br><span class="line">                    [dateFormatter setDateFormat:@&quot;d MMM yyyy HH:mm&quot;]; </span><br><span class="line">                    date = [dateFormatter dateFromString:RFC822String];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (!date) NSLog(@&quot;Could not parse RFC822 date: \&quot;%@\&quot; Possible invalid format.&quot;, dateString);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     // Finished with date string</span><br><span class="line">    return date;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// See http://www.faqs.org/rfcs/rfc3339.html</span><br><span class="line">+ (NSDate *)dateFromRFC3339String:(NSString *)dateString &#123;</span><br><span class="line">     // Keep dateString around a while (for thread-safety)</span><br><span class="line">    NSDate *date = nil;</span><br><span class="line">    if (dateString) &#123;</span><br><span class="line">        NSDateFormatter *dateFormatter = [NSDate internetDateTimeFormatter];</span><br><span class="line">        @synchronized(dateFormatter) &#123;</span><br><span class="line">            </span><br><span class="line">            // Process date</span><br><span class="line">            NSString *RFC3339String = [[NSString stringWithString:dateString] uppercaseString];</span><br><span class="line">            RFC3339String = [RFC3339String stringByReplacingOccurrencesOfString:@&quot;Z&quot; withString:@&quot;-0000&quot;];</span><br><span class="line">            // Remove colon in timezone as it breaks NSDateFormatter in iOS 4+.</span><br><span class="line">            // - see https://devforums.apple.com/thread/45837</span><br><span class="line">            if (RFC3339String.length &gt; 20) &#123;</span><br><span class="line">                RFC3339String = [RFC3339String stringByReplacingOccurrencesOfString:@&quot;:&quot; </span><br><span class="line">                                                                         withString:@&quot;&quot; </span><br><span class="line">                                                                            options:0</span><br><span class="line">                                                                              range:NSMakeRange(20, RFC3339String.length-20)];</span><br><span class="line">            &#125;</span><br><span class="line">            if (!date) &#123; // 1996-12-19T16:39:57-0800</span><br><span class="line">                [dateFormatter setDateFormat:@&quot;yyyy&apos;-&apos;MM&apos;-&apos;dd&apos;T&apos;HH&apos;:&apos;mm&apos;:&apos;ssZZZ&quot;]; </span><br><span class="line">                date = [dateFormatter dateFromString:RFC3339String];</span><br><span class="line">            &#125;</span><br><span class="line">            if (!date) &#123; // 1937-01-01T12:00:27.87+0020</span><br><span class="line">                [dateFormatter setDateFormat:@&quot;yyyy&apos;-&apos;MM&apos;-&apos;dd&apos;T&apos;HH&apos;:&apos;mm&apos;:&apos;ss.SSSZZZ&quot;]; </span><br><span class="line">                date = [dateFormatter dateFromString:RFC3339String];</span><br><span class="line">            &#125;</span><br><span class="line">            if (!date) &#123; // 1937-01-01T12:00:27</span><br><span class="line">                [dateFormatter setDateFormat:@&quot;yyyy&apos;-&apos;MM&apos;-&apos;dd&apos;T&apos;HH&apos;:&apos;mm&apos;:&apos;ss&quot;]; </span><br><span class="line">                date = [dateFormatter dateFromString:RFC3339String];</span><br><span class="line">            &#125;</span><br><span class="line">            if (!date) NSLog(@&quot;Could not parse RFC3339 date: \&quot;%@\&quot; Possible invalid format.&quot;, dateString);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     // Finished with date string</span><br><span class="line">	return date;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>来源：<a href="https://github.com/mwaterfall/MWFeedParser/blob/master/Classes/NSDate+InternetDateTime.m（ARC）" target="_blank" rel="noopener">https://github.com/mwaterfall/MWFeedParser/blob/master/Classes/NSDate+InternetDateTime.m（ARC）</a></p>
+</blockquote>
+<p>在项目中封装一个AFN的请求基类</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> AFNetworking</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">HttpMethod</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">GET</span> = <span class="string">"GET"</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">POST</span> = <span class="string">"POST"</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpClient</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> baseURLString = <span class="string">"http://base.url/"</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> minResponseTime = <span class="type">Int</span>.<span class="built_in">max</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> sharedClient: <span class="type">AFHTTPSessionManager</span> = &#123;</span><br><span class="line">        <span class="keyword">let</span> baseUrl = <span class="type">URL</span>(string: baseURLString)</span><br><span class="line">        <span class="keyword">let</span> client = <span class="type">AFHTTPSessionManager</span>(baseURL: baseUrl!)</span><br><span class="line">        <span class="comment">// 设置请求格式</span></span><br><span class="line">        client.requestSerializer = <span class="type">AFJSONRequestSerializer</span>()</span><br><span class="line">        <span class="comment">// 设置返回格式</span></span><br><span class="line">        client.responseSerializer = <span class="type">AFJSONResponseSerializer</span>()</span><br><span class="line">        <span class="comment">// 设置禁止缓存</span></span><br><span class="line">        client.requestSerializer.cachePolicy = .reloadIgnoringLocalCacheData</span><br><span class="line">        <span class="comment">// 设置超时</span></span><br><span class="line">        client.requestSerializer.timeoutInterval = <span class="number">10</span></span><br><span class="line">        <span class="comment">// 以防解析格式不支持</span></span><br><span class="line">        client.responseSerializer.acceptableContentTypes?.insert(<span class="string">"text/html"</span>)</span><br><span class="line">        client.responseSerializer.acceptableContentTypes?.insert(<span class="string">"text/plain"</span>)</span><br><span class="line">        <span class="keyword">return</span> client</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">HttpClient</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// MARK: 请求方式</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 项目公共请求类</span></span><br><span class="line">    <span class="comment">/// - Parameters:</span></span><br><span class="line">    <span class="comment">///   - httpMethod: httpMethod</span></span><br><span class="line">    <span class="comment">///   - URLString: URLString</span></span><br><span class="line">    <span class="comment">///   - parameters: 参数</span></span><br><span class="line">    <span class="comment">///   - headers: 请求头</span></span><br><span class="line">    <span class="comment">///   - progress: 进度</span></span><br><span class="line">    <span class="comment">///   - success: 成功回调</span></span><br><span class="line">    <span class="comment">///   - failure: 失败回调</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">request</span>(<span class="title">httpMethod</span>: <span class="title">HttpMethod</span>, <span class="title">URLString</span>: <span class="title">String</span>, <span class="title">parameters</span>: [<span class="title">String</span> : <span class="title">Any</span>]?,</span></span><br><span class="line"><span class="class">                       <span class="title">headers</span>: [<span class="title">String</span> : <span class="title">String</span>]?, <span class="title">progress</span>: ((<span class="title">Progress</span>) -&gt; <span class="title">Void</span>)?,</span></span><br><span class="line"><span class="class">                       <span class="title">success</span>: ((<span class="title">URLSessionDataTask</span>, <span class="title">Any</span>?) -&gt; <span class="title">Void</span>)?, <span class="title">failure</span>: ((<span class="title">URLSessionDataTask</span>?, <span class="title">Error</span>) -&gt; <span class="title">Void</span>)?) </span>&#123;</span><br><span class="line">        <span class="comment">// 记录当前请求开始时间</span></span><br><span class="line">        <span class="keyword">let</span> startTime = <span class="type">Date</span>().timestamp</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 定义通用成功回调</span></span><br><span class="line">        <span class="keyword">let</span> successCallback = &#123; (task: <span class="type">URLSessionDataTask</span>, result: <span class="type">Any?</span>) -&gt; () <span class="keyword">in</span></span><br><span class="line">            <span class="comment">// 当前请求响应的时间间隔</span></span><br><span class="line">            <span class="keyword">let</span> responseTime = <span class="type">Date</span>().timestamp - startTime</span><br><span class="line">            <span class="comment">//如果这一次的请求响应时间小于上一次，则更新本地维护的时间</span></span><br><span class="line">            <span class="keyword">if</span> responseTime &lt;= minResponseTime &#123;</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> response = task.response <span class="keyword">as</span>? <span class="type">HTTPURLResponse</span> &#123;</span><br><span class="line">                    <span class="comment">// 网络响应头包含Date字段（世界时间）</span></span><br><span class="line">                    <span class="keyword">if</span> response.allHeaderFields[<span class="string">"Date"</span>] <span class="keyword">is</span> <span class="type">String</span> &#123;</span><br><span class="line">                        <span class="keyword">let</span> dateString = response.allHeaderFields[<span class="string">"Date"</span>]! <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="keyword">let</span> date = <span class="type">NSDate</span>(fromInternetDateTime: dateString, formatHint: <span class="type">DateFormatHintRFC822</span>) &#123;</span><br><span class="line">                            <span class="keyword">let</span> <span class="number">_</span> = <span class="type">TimeUtils</span>.calibrationTime(lastServerTime: <span class="type">Int</span>(date.timeIntervalSince1970))</span><br><span class="line">                            minResponseTime = responseTime</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            success?(task, result)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> httpMethod == .<span class="type">GET</span> &#123;</span><br><span class="line">            <span class="keyword">self</span>.sharedClient.<span class="keyword">get</span>(<span class="type">URLString</span>, parameters: parameters, headers: safeHeaders, progress: progress, success: successCallback, failure: failure)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> httpMethod == .<span class="type">POST</span> &#123;</span><br><span class="line">            <span class="keyword">self</span>.sharedClient.post(<span class="type">URLString</span>, parameters: parameters, headers: safeHeaders, progress: progress, success: successCallback, failure: failure)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不足：连接服务器的过程是需要时间的，服务器收到请求时刻的时间与应用收到响应存在一定的时间差，导致误差的存在（误差=服务器发出响应-&gt;到本机收到响应这个时间）。</p>
+<p>但是通过上面的AFN每次判断，可以使得误差逐渐降低</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.jianshu.com/p/48ac0bb1392e" target="_blank" rel="noopener">https://www.jianshu.com/p/48ac0bb1392e</a></p>
+<p><a href="https://www.jianshu.com/p/bb2cbfad3e77" target="_blank" rel="noopener">https://www.jianshu.com/p/bb2cbfad3e77</a></p>
+<p><a href="https://www.jianshu.com/p/df41659b06a9" target="_blank" rel="noopener">https://www.jianshu.com/p/df41659b06a9</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ios/" rel="tag"><i class="fa fa-tag"></i> Ios</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/08/IOS填坑之URL编码问题/" rel="next" title="IOS填坑之URL编码问题">
+                <i class="fa fa-chevron-left"></i> IOS填坑之URL编码问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">“被窝是天堂开设在人间的分店。”</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">120</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.si-yee.com" title="思忆技术" target="_blank">思忆技术</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lover.si-yee.com" title="我与她的爱情计时器" target="_blank">我与她的爱情计时器</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预备知识"><span class="nav-number">2.</span> <span class="nav-text">预备知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间的获取"><span class="nav-number">3.</span> <span class="nav-text">时间的获取</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TimeUtils编写"><span class="nav-number">4.</span> <span class="nav-text">TimeUtils编写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用AFNetworking同步时间"><span class="nav-number">5.</span> <span class="nav-text">利用AFNetworking同步时间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy <a class="theme-link" target="_blank" rel="external nofollow" href="http://www.beian.miit.gov.cn/">粤ICP备19140352号</a></span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>284.4k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2020/05/12/IOS客户端与服务端时间同步方案/';
+        this.page.identifier = '2020/05/12/IOS客户端与服务端时间同步方案/';
+        this.page.title = 'IOS客户端与服务端时间同步方案';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
