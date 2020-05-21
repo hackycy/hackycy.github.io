@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>iOS之日志打印优化</title>
+    <url>/2020/05/21/iOS%E4%B9%8B%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在日常工作当中，Debug模式的打印调试是基操了。而唯一的一招不是<code>NSLog</code>就是<code>print</code>。但项目开发中使用Swift后<code>NSLog</code>已经不常用了。</p>
+<a id="more"></a>
+<p>而在日常工作当中使用Swift的<code>debugPrint</code>来进行对一些网络请求的输出等的调试已经习以为常。但是Swift编译器并不会将<code>print</code>和<code>debugPrint</code>删除。在最终发布的App会把内容输出到终端。造成了性能的损失。</p>
+<p>但是你也不可能随时都能在上线前把这些打印语句都删去。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>但是更好的方法是通过添加条件编译来将这些语句排除在 Release 版本外。在 Xcode 的 Build Setting 中，在 <strong>Other Swift flags</strong> 的 Debug 栏中加入 <code>-D DEBUG</code> 即可加入一个编译标识。</p>
+<p><img src="https://user-images.githubusercontent.com/26972260/82533675-5738ae00-9b76-11ea-960b-a5d59d636aee.png" alt="image"></p>
+<p>之后我们就可以通过将 <code>print</code> 或者 <code>debugPrint</code> 包装一下：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dPrint</span><span class="params">(item: <span class="keyword">Any</span>)</span></span> &#123;</span><br><span class="line">    #<span class="keyword">if</span> <span class="type">DEBUG</span></span><br><span class="line">    <span class="built_in">print</span>(item)</span><br><span class="line">    #endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，在 Release 版本中，<code>dPrint</code> 将会是一个空方法，所有对这个方法的调用都会被编译器剔除掉。需要注意的是，在这种封装下，如果你传入的 <code>items</code> 是一个表达式而不是直接的变量的话，这个表达式还是会被先执行求值的。如果这对性能也产生了可测的影响的话，我们最好用 <code>@autoclosure</code> 修饰参数来重新包装 <code>print</code>。这可以将求值运行推迟到方法内部，这样在 Release 时这个求值也会被一并去掉：</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dPrint</span><span class="params">(@autoclosure item: <span class="params">()</span></span></span> -&gt; <span class="type">Any</span>) &#123;</span><br><span class="line">    #<span class="keyword">if</span> <span class="type">DEBUG</span></span><br><span class="line">    <span class="built_in">print</span>(item())</span><br><span class="line">    #endif</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dPrint(resultFromHeavyWork())</span><br><span class="line"><span class="comment">// Release 版本中 resultFromHeavyWork() 不会被执行</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用Time Profiler + 真机测试可以验证</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://onevcat.com/2016/02/swift-performance/" target="_blank" rel="noopener">https://onevcat.com/2016/02/swift-performance/</a></p>
+]]></content>
+      <categories>
+        <category>Ios</category>
+      </categories>
+      <tags>
+        <tag>Ios</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IOS客户端与服务端时间同步方案</title>
     <url>/2020/05/12/IOS%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目的编写中，接口需要提交精确到秒级的时间戳用作校验。但是仅靠<code>new Date().timeIntervalSince1970</code>会面临着本地的时间与服务器时间不一致的问题。那么本文方案能让本地应用时间与服务器时间存在误差范围内保持同步，减少应用出错率。</p>
@@ -13517,8 +13542,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>PHP</tag>
       </tags>
   </entry>
@@ -14337,9 +14362,9 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
         <tag>Composer</tag>
+        <tag>Mac</tag>
       </tags>
   </entry>
   <entry>
@@ -14365,8 +14390,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Mac</tag>
         <tag>Homebrew</tag>
+        <tag>Mac</tag>
         <tag>Maven</tag>
       </tags>
   </entry>
