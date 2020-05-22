@@ -14481,11 +14481,12 @@
 <h1 id="Mac-升级到10-13之后-Cocoapods-不能用"><a href="#Mac-升级到10-13之后-Cocoapods-不能用" class="headerlink" title="Mac 升级到10.13之后 Cocoapods 不能用"></a>Mac 升级到10.13之后 Cocoapods 不能用</h1><p>两句话：</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">sudo gem update --system</span><br><span class="line">sudo gem install cocoapods -n /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
 <p>两行解决问题。或者可以尝试重新安装。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://juejin.im/entry/5c067eb56fb9a04a0a5ef583?utm_source=gold_browser_extension" target="_blank" rel="noopener">https://juejin.im/entry/5c067eb56fb9a04a0a5ef583?utm_source=gold_browser_extension</a></li>
-<li><a href="https://guides.cocoapods.org/syntax/podfile.html#podfile" target="_blank" rel="noopener">https://guides.cocoapods.org/syntax/podfile.html#podfile</a></li>
-<li><a href="https://www.jianshu.com/p/91f3b9d8f402" target="_blank" rel="noopener">https://www.jianshu.com/p/91f3b9d8f402</a></li>
-</ul>
+<h1 id="ERROR-While-executing-gem-…-Gem-FilePermissionError"><a href="#ERROR-While-executing-gem-…-Gem-FilePermissionError" class="headerlink" title="ERROR: While executing gem … (Gem::FilePermissionError)"></a>ERROR: While executing gem … (Gem::FilePermissionError)</h1><p>更换语句<code>sudo gem install -n /usr/local/bin</code>加上 项目名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin fastlane</span><br><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin cocoapods</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>建议的是用 <a href="http://brew.sh/" target="_blank" rel="noopener">homebrew</a> 再装一个 ruby, 这样 local 归 local, system 归 system. 反正也不大.</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://juejin.im/entry/5c067eb56fb9a04a0a5ef583?utm_source=gold_browser_extension" target="_blank" rel="noopener">https://juejin.im/entry/5c067eb56fb9a04a0a5ef583?utm_source=gold_browser_extension</a><br><a href="https://guides.cocoapods.org/syntax/podfile.html#podfile" target="_blank" rel="noopener">https://guides.cocoapods.org/syntax/podfile.html#podfile</a><br><a href="https://www.jianshu.com/p/91f3b9d8f402" target="_blank" rel="noopener">https://www.jianshu.com/p/91f3b9d8f402</a><br><a href="https://blog.csdn.net/u014599371/article/details/89916513" target="_blank" rel="noopener">https://blog.csdn.net/u014599371/article/details/89916513</a></p>
 ]]></content>
       <categories>
         <category>Ios</category>
