@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决Github网页上图片显示失败问题</title>
+    <url>/2020/05/29/%E8%A7%A3%E5%86%B3Github%E7%BD%91%E9%A1%B5%E4%B8%8A%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>最近科学上网失效的有些频繁，上Github的时候图片总是加载不出来，之前没有在意，但是自己博客中的图片也是依赖Github的时候就留意到了这个问题。<strong>（如果有科学上网请随意）</strong></p>
+<a id="more"></a>
+<p><img src="https://user-images.githubusercontent.com/26972260/83236893-dc4f4300-a1c6-11ea-9103-5135fdf7211a.png" alt="image"></p>
+<p>主要报错是<code>Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID</code>以及<code>Failed to load resource: net::ERR_CONNECTION_RESET</code></p>
+<p><strong>来自网友的解释：</strong></p>
+<p>实际上，可以认为，<code>ERR_CERT_COMMON_NAME_INVALID</code>就是用一个错误的域名访问了某个节点的<code>https</code>资源。导致这个错误的原因，基本是：</p>
+<ol>
+<li>dns污染</li>
+<li>host设置错误</li>
+<li>官方更新了dns，但是dns缓存没有被更新，导致错误解析。</li>
+</ol>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><p>打开<code>github</code>任意未显示图片的网页，使用元素选择器（<code>Ctrl+Shift+C</code>）放在显示不了的图片上，或者在无法显示的图片上右键-检查元素，定位到该图片的标签，那么你得到了它的URL，叫做<code>src</code>属性。</p>
+<p><img src="https://user-images.githubusercontent.com/26972260/83237027-17ea0d00-a1c7-11ea-9b4e-ad3eaaa3e9e1.png" alt="image"></p>
+<p>将URL复制出来后，打开<a href="https://www.ipaddress.com/" target="_blank" rel="noopener">IPAddress.com</a>这个网站，搜索它的域名:<code>avatars2.githubusercontent.com</code></p>
+<p><img src="https://user-images.githubusercontent.com/26972260/83237520-9e9eea00-a1c7-11ea-9ac5-e333e23d8faa.png" alt="image"></p>
+<p>搜索后会看到该域名的信息和<code>IP</code>地址：</p>
+<p><img src="https://user-images.githubusercontent.com/26972260/83237201-639cb680-a1c7-11ea-99a5-7c9297fa36ff.png" alt="image"></p>
+<p>当前该域名的IP是：199.232.68.133，那么我们就可以使这个<strong>IP</strong>和<strong>域名</strong>映射起来。</p>
+<p><strong>修改hosts</strong></p>
+<p>Window下路径<code>C:\Windows\System32\drivers\etc\hosts</code></p>
+<p>Mac、Linux下路径<code>/etc/hosts</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># GitHub Start </span><br><span class="line">140.82.113.3      github.com</span><br><span class="line">140.82.114.20     gist.github.com</span><br><span class="line"></span><br><span class="line">151.101.184.133    assets-cdn.github.com</span><br><span class="line">151.101.184.133    raw.githubusercontent.com</span><br><span class="line">151.101.184.133    gist.githubusercontent.com</span><br><span class="line">151.101.184.133    cloud.githubusercontent.com</span><br><span class="line">151.101.184.133    camo.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars0.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars1.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars2.githubusercontent.com</span><br><span class="line">199.232.28.133     avatars2.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars3.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars4.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars5.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars6.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars7.githubusercontent.com</span><br><span class="line">151.101.184.133    avatars8.githubusercontent.com</span><br><span class="line">199.232.68.133     avatars8.githubusercontent.com</span><br><span class="line"></span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+<p>保存即可，<strong>该文件随时可能变更，请随时自行更新</strong></p>
+<blockquote>
+<p>window下无法保存，没有修改权限，鼠标右键-属性-安全-修改权限；或将<code>hosts</code>文件复制一份，修改之后，复制到原文件夹替换！</p>
+</blockquote>
+<h2 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h2><p><strong>Window系统下</strong></p>
+<p>还可以使用<code>ipconfig/flush</code>对本地DNS缓存进行一次刷新，如果遇到网络异常，可能是DNS缓存的问题，刷新一下，步骤。</p>
+<p>windows开始→运行→输入：CMD 按回车键，打开命令提示符窗口。<br>再输入： <code>ipconfig /flushdns</code> 回车，执行命令，可以重建本地DNS缓存。</p>
+<p><strong>Mac系统下</strong></p>
+<p>OS X Mountain Lion or Lion</p>
+<p>Use the following Terminal command to reset the DNS cache:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo killall -HUP mDNSResponder</span><br></pre></td></tr></table></figure>
+<p>Mac OS X v10.6</p>
+<p>Use the following Terminal command to reset the DNS cache:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo dscacheutil -flushcache</span><br></pre></td></tr></table></figure>
+<p>mac Mojave</p>
+<p>搬运from：<a href="https://link.zhihu.com/?target=https%3A//www.hongkiat.com/blog/how-to-clear-dns-cache-in-macos-mojave/" target="_blank" rel="noopener">https://www.hongkiat.com/blog/how-to-clear-dns-cache-in-macos-mojave/</a></p>
+<ol>
+<li>打开终端：launchpad里面的“终端”</li>
+<li>输入：sudo killall -HUP mDNSResponder; sleep 2; 然后敲回车；</li>
+<li>输入密码；然后敲回车</li>
+<li>command+Q退出，就好啦</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.zhihu.com/question/19679715" target="_blank" rel="noopener">https://www.zhihu.com/question/19679715</a></p>
+<p><a href="https://www.ipaddress.com/" target="_blank" rel="noopener">https://www.ipaddress.com/</a></p>
+<p><a href="https://www.jianshu.com/p/30e2703a5647" target="_blank" rel="noopener">https://www.jianshu.com/p/30e2703a5647</a></p>
+<p><a href="https://blog.csdn.net/qq_38232598/article/details/91346392" target="_blank" rel="noopener">https://blog.csdn.net/qq_38232598/article/details/91346392</a></p>
+]]></content>
+      <categories>
+        <category>程序人生</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Eggjs实现文件下载</title>
     <url>/2020/05/28/Eggjs%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在最近的编写的一个个人的工具站点中想实现一个网站提交数据后把特定文件压缩打包后浏览器出现下载的功能。找的资料实现也残缺不全。所以记录一下目前能实现的方案。</p>
