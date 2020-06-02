@@ -14497,6 +14497,7 @@
 <p>跳转APP Store的话因为app store的网页已经配置了Universal Link跳转，所以不需要额外的配置即可跳转。</p>
 <p>注意：必需要在真机上测试。</p>
 </blockquote>
+<h2 id="WKWebView的3Dtouch预览功能"><a href="#WKWebView的3Dtouch预览功能" class="headerlink" title="WKWebView的3Dtouch预览功能"></a>WKWebView的3Dtouch预览功能</h2><p><strong>将WKWebView的<code>allowsLinkPreview</code>属性设置<code>NO</code>即可关闭</strong></p>
 <h1 id="仿微信WebView"><a href="#仿微信WebView" class="headerlink" title="仿微信WebView"></a>仿微信WebView</h1><p>运行效果：</p>
 <p><img src="https://user-images.githubusercontent.com/26972260/83226604-eb2cfa00-a1b4-11ea-85b3-36d8909c4488.png" alt="image"></p>
 <p>实现代码：</p>
