@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="在学习Flutter的第一步从安装就开始踩坑了。安装Dart硬是安装不上。科学上网也有就是安不上。找了些资料，记录了一下解决方案。">
+<meta name="keywords" content="Dart">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决Mac通过Brew安装Dart报错：Failed to download resource dart">
+<meta property="og:url" content="http://hackycy.github.io/2020/06/03/解决Mac通过Brew安装Dart报错：Failed-to-download-resource-dart/index.html">
+<meta property="og:site_name" content="思忆技术">
+<meta property="og:description" content="在学习Flutter的第一步从安装就开始踩坑了。安装Dart硬是安装不上。科学上网也有就是安不上。找了些资料，记录了一下解决方案。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26972260/83595208-e6d95600-a593-11ea-86d0-36e06d1a7c49.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26972260/83594943-2a7f9000-a593-11ea-9fd4-99d845819711.png">
+<meta property="og:updated_time" content="2020-06-03T05:08:54.705Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决Mac通过Brew安装Dart报错：Failed to download resource dart">
+<meta name="twitter:description" content="在学习Flutter的第一步从安装就开始踩坑了。安装Dart硬是安装不上。科学上网也有就是安不上。找了些资料，记录了一下解决方案。">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26972260/83595208-e6d95600-a593-11ea-86d0-36e06d1a7c49.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="思忆技术" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2020/06/03/解决Mac通过Brew安装Dart报错：Failed-to-download-resource-dart/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>解决Mac通过Brew安装Dart报错：Failed to download resource dart | 思忆技术</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">思忆技术</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">思忆，分享技术</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">60</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">25</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">126</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2020/06/03/解决Mac通过Brew安装Dart报错：Failed-to-download-resource-dart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="“被窝是天堂开设在人间的分店。”">
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="思忆技术">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">解决Mac通过Brew安装Dart报错：Failed to download resource dart
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-06-03 12:12:35 / 修改时间：05:08:54" itemprop="dateCreated datePublished" datetime="2020-06-03T12:12:35+00:00">2020-06-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/03/解决Mac通过Brew安装Dart报错：Failed-to-download-resource-dart/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/03/解决Mac通过Brew安装Dart报错：Failed-to-download-resource-dart/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:1.4k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:7分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学习Flutter的第一步从安装就开始踩坑了。安装Dart硬是安装不上。科学上网也有就是安不上。找了些资料，记录了一下解决方案。</p>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先是dart官网推荐使用brew命令安装dart，如下图：</p>
+<p><img src="https://user-images.githubusercontent.com/26972260/83595208-e6d95600-a593-11ea-86d0-36e06d1a7c49.png" alt></p>
+<p>但是出现了以下的错误：</p>
+<p><img src="https://user-images.githubusercontent.com/26972260/83594943-2a7f9000-a593-11ea-9fd4-99d845819711.png" alt></p>
+<p>详细报错如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ brew install dart</span><br><span class="line">Updating Homebrew...</span><br><span class="line">==&gt; Installing dart from dart-lang/dart</span><br><span class="line">==&gt; Downloading https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-macos-x64-release.zip</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-=O=-               <span class="comment">#    #     #     #                                        </span></span><br><span class="line">curl: (7) Failed to connect to storage.googleapis.com port 443: Operation timed out</span><br><span class="line">Error: An exception occurred within a child process:</span><br><span class="line">  DownloadError: Failed to download resource <span class="string">"dart"</span></span><br><span class="line">Download failed: https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-macos-x64-release.zip</span><br></pre></td></tr></table></figure>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>报错中有回显资源的地址链接，这时候我们可以通过自己浏览器或者迅雷去下载到本地。</p>
+<p>然后使用终端查看Homebrew的缓存地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew --cache</span><br><span class="line">/Users/zjyzy/Library/Caches/Homebrew</span><br></pre></td></tr></table></figure>
+<p>最后将下载下来的文件 拷贝到 上面缓存地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp ~/Downloads/dartsdk-macos-x64-release.zip /Users/zjyzy/Library/Caches/Homebrew</span><br></pre></td></tr></table></figure>
+<p>接着再执行命令就可以正常安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install dart</span><br></pre></td></tr></table></figure>
+<p>如果没有意外，那么就可以直接解决问题了。但是不幸，我还是不能解决问题。继续查找了一些资料：</p>
+<p>安装时给命令加个 <code>-v</code> 打印命令的详细日志看看:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ brew install dart -v</span><br><span class="line">==&gt; Installing dart from dart-lang/dart</span><br><span class="line">/usr/bin/sandbox-exec -f /private/tmp/homebrew20200603-12459-1ulm7yo.sb nice ruby -W0 -I <span class="variable">$LOAD_PATH</span> -- /usr/<span class="built_in">local</span>/Homebrew/Library/Homebrew/build.rb /usr/<span class="built_in">local</span>/Homebrew/Library/Taps/dart-lang/homebrew-dart/dart.rb --verbose</span><br><span class="line">==&gt; Downloading https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-macos-x64-release.zip</span><br><span class="line">/usr/bin/curl -q --globoff --show-error --user-agent Homebrew/2.2.2\ \(Macintosh\;\ Intel\ Mac\ OS\ X\ 10.15.4\)\ curl/7.64.1 --fail --location --remote-time --<span class="built_in">continue</span>-at 0 --output /Users/zjyzy/Library/Caches/Homebrew/downloads/a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip.incomplete https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-macos-x64-release.zip</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0     0    0     0    0     0      0      0 --:--:--  0:01:15 --:--:--     0</span><br><span class="line">curl: (7) Failed to connect to storage.googleapis.com port 443: Operation timed out</span><br><span class="line">Error: An exception occurred within a child process:</span><br><span class="line">  DownloadError: Failed to download resource <span class="string">"dart"</span></span><br><span class="line">Download failed: https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-macos-x64-release.zip</span><br></pre></td></tr></table></figure>
+<p><strong>注意看这条信息</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/curl -q --globoff --show-error --user-agent Homebrew/2.2.2\ \(Macintosh\;\ Intel\ Mac\ OS\ X\ 10.15.4\)\ curl/7.64.1 --fail --location --remote-time --<span class="built_in">continue</span>-at 0 --output /Users/zjyzy/Library/Caches/Homebrew/downloads/a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip.incomplete https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-macos-x64-release.zip</span><br></pre></td></tr></table></figure>
+<p>我们看到 Homebrew 下载 dart 的缓存地址为:<code>/Users/zjyzy/Library/Caches/Homebrew/downloads/a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip.incomplete</code></p>
+<p><code>XXX.incomplete</code> 表示下载未完成，但这是 Homebrew 期望的下载文件路径。那么我们将从浏览器下载好的包放到该目录下，并去除<code>.incomplete</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp ~/Downloads/dartsdk-macos-x64-release.zip /Users/zjyzy/Library/Caches/Homebrew/downloads/a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip</span><br></pre></td></tr></table></figure>
+<p><strong>先去下载文件路径删除掉未下载好的包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /Users/zjyzy/Library/Caches/Homebrew/downloads</span><br><span class="line">$ rm -rf a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip.incomplete</span><br></pre></td></tr></table></figure>
+<p>此时在安装查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">$ brew install dart -v</span><br><span class="line">Updating Homebrew...</span><br><span class="line">==&gt; Installing dart from dart-lang/dart</span><br><span class="line">/usr/bin/sandbox-exec -f /private/tmp/homebrew20200603-14161-iaxt0b.sb nice ruby -W0 -I <span class="variable">$LOAD_PATH</span> -- /usr/<span class="built_in">local</span>/Homebrew/Library/Homebrew/build.rb /usr/<span class="built_in">local</span>/Homebrew/Library/Taps/dart-lang/homebrew-dart/dart.rb --verbose</span><br><span class="line">==&gt; Downloading https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-macos-x64-release.zip</span><br><span class="line">Already downloaded: /Users/zjyzy/Library/Caches/Homebrew/downloads/a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip</span><br><span class="line">==&gt; Verifying a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip checksum</span><br><span class="line">unzip -o /Users/zjyzy/Library/Caches/Homebrew/downloads/a21b0f967308afab39b415842adf710f903b479ccb472feb7f13960160733911--dartsdk-macos-x64-release.zip -d /private/tmp/d20200603-14162-sr2oas</span><br><span class="line">cp -pR /private/tmp/d20200603-14162-sr2oas/dart-sdk/. /private/tmp/dart-20200603-14162-bg4o22/dart-sdk</span><br><span class="line">chmod -Rf +w /private/tmp/d20200603-14162-sr2oas</span><br><span class="line">==&gt; Cleaning</span><br><span class="line">==&gt; Finishing up</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dart dart</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dart2js dart2js</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dart2native dart2native</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dartanalyzer dartanalyzer</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dartaotruntime dartaotruntime</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dartdevc dartdevc</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dartdoc dartdoc</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/dartfmt dartfmt</span><br><span class="line">ln -s ../Cellar/dart/2.8.3/bin/pub pub</span><br><span class="line">/usr/bin/sandbox-exec -f /private/tmp/homebrew20200603-14268-12qkciz.sb nice ruby -W0 -I <span class="variable">$LOAD_PATH</span> -- /usr/<span class="built_in">local</span>/Homebrew/Library/Homebrew/postinstall.rb /usr/<span class="built_in">local</span>/Homebrew/Library/Taps/dart-lang/homebrew-dart/dart.rb -v</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Please note the path to the Dart SDK:</span><br><span class="line">  /usr/<span class="built_in">local</span>/opt/dart/libexec</span><br><span class="line">==&gt; Summary</span><br><span class="line">🍺  /usr/<span class="built_in">local</span>/Cellar/dart/2.8.3: 502 files, 486MB, built <span class="keyword">in</span> 7 seconds</span><br><span class="line">==&gt; `brew cleanup` has not been run <span class="keyword">in</span> 30 days, running now...</span><br><span class="line">Removing: /Users/zjyzy/Library/Caches/Homebrew/openssl@1.1--1.1.1d.mojave.bottle.tar.gz... (5.2MB)</span><br><span class="line">Removing: /Users/zjyzy/Library/Caches/Homebrew/python--3.7.4_1.mojave.bottle.tar.gz... (14.6MB)</span><br><span class="line">Removing: /Users/zjyzy/Library/Caches/Homebrew/readline--8.0.1.mojave.bottle.tar.gz... (517.9KB)</span><br><span class="line">Removing: /Users/zjyzy/Library/Caches/Homebrew/sqlite--3.29.0.mojave.bottle.tar.gz... (1.9MB)</span><br><span class="line">Removing: /Users/zjyzy/Library/Caches/Homebrew/watchman--4.9.0_3.mojave.bottle.tar.gz... (536.8KB)</span><br><span class="line">Removing: /Users/zjyzy/Library/Caches/Homebrew/Cask/motrix--1.4.1.dmg... (63MB)</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man5/npm-folders.5</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man5/npm-global.5</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man5/npm-json.5</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man5/npm-package-locks.5</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man5/npm-shrinkwrap.json.5</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man5/package-lock.json.5</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man5/package.json.5</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-coding-style.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-config.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-developers.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-disputes.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-index.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-orgs.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-registry.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-scope.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/npm-scripts.7</span><br><span class="line">rm /usr/<span class="built_in">local</span>/share/man/man7/removing-npm.7</span><br><span class="line">rmdir /usr/<span class="built_in">local</span>/lib/node_modules/@vue/cli/node_modules/@apollo/protobufjs/cli/node_modules</span><br><span class="line">Pruned 17 symbolic links and 1 directories from /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+<p>命令验证dart安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ brew info dart</span><br><span class="line">dart-lang/dart/dart: stable 2.8.3, devel 2.9.0-13.0.dev</span><br><span class="line">The Dart SDK</span><br><span class="line">https://dart.dev</span><br><span class="line">Conflicts with:</span><br><span class="line">  dart-beta (because dart-beta ships the same binaries)</span><br><span class="line">/usr/<span class="built_in">local</span>/Cellar/dart/2.8.3 (502 files, 486MB) *</span><br><span class="line">  Built from <span class="built_in">source</span> on 2020-06-03 at 13:04:47</span><br><span class="line">From: https://github.com/dart-lang/homebrew-dart/blob/master/dart.rb</span><br><span class="line">==&gt; Options</span><br><span class="line">--devel</span><br><span class="line">	Install development version 2.9.0-13.0.dev</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Please note the path to the Dart SDK:</span><br><span class="line">  /usr/<span class="built_in">local</span>/opt/dart/libexec</span><br></pre></td></tr></table></figure>
+<p>至此，dartSDK已经安装成功。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://shockerli.net/post/homebrew-install-download-error/" target="_blank" rel="noopener">https://shockerli.net/post/homebrew-install-download-error/</a></p>
+<p><a href="https://www.cnblogs.com/lmyupupblogs/p/12785753.html" target="_blank" rel="noopener">https://www.cnblogs.com/lmyupupblogs/p/12785753.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dart/" rel="tag"><i class="fa fa-tag"></i> Dart</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/01/JavaScript工具函数大全/" rel="next" title="JavaScript工具函数大全">
+                <i class="fa fa-chevron-left"></i> JavaScript工具函数大全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">“被窝是天堂开设在人间的分店。”</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">126</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.si-yee.com" title="思忆技术" target="_blank">思忆技术</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lover.si-yee.com" title="我与她的爱情计时器" target="_blank">我与她的爱情计时器</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy <a class="theme-link" target="_blank" rel="external nofollow" href="http://www.beian.miit.gov.cn/">粤ICP备19140352号</a></span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>295.3k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2020/06/03/解决Mac通过Brew安装Dart报错：Failed-to-download-resource-dart/';
+        this.page.identifier = '2020/06/03/解决Mac通过Brew安装Dart报错：Failed-to-download-resource-dart/';
+        this.page.title = '解决Mac通过Brew安装Dart报错：Failed to download resource dart';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
