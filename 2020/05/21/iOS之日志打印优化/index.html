@@ -143,12 +143,12 @@
 <meta property="og:site_name" content="思忆技术">
 <meta property="og:description" content="前言在日常工作当中，Debug模式的打印调试是基操了。而唯一的一招不是NSLog就是print。但项目开发中使用Swift后NSLog已经不常用了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://user-images.githubusercontent.com/26972260/82534186-4dfc1100-9b77-11ea-891e-f5403fdb5960.png">
-<meta property="og:updated_time" content="2020-06-03T05:08:54.661Z">
+<meta property="og:image" content="https://github.static.si-yee.com/posts/iOS之日志打印优化-20200604133855.png">
+<meta property="og:updated_time" content="2020-06-04T05:49:50.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS之日志打印优化">
 <meta name="twitter:description" content="前言在日常工作当中，Debug模式的打印调试是基操了。而唯一的一招不是NSLog就是print。但项目开发中使用Swift后NSLog已经不常用了。">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/26972260/82534186-4dfc1100-9b77-11ea-891e-f5403fdb5960.png">
+<meta name="twitter:image" content="https://github.static.si-yee.com/posts/iOS之日志打印优化-20200604133855.png">
 
 
 
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-06-03 05:08:54" itemprop="dateModified" datetime="2020-06-03T05:08:54+00:00">2020-06-03</time>
+                <time title="修改时间：2020-06-04 05:49:50" itemprop="dateModified" datetime="2020-06-04T05:49:50+00:00">2020-06-04</time>
               
             
           </span>
@@ -497,7 +497,7 @@
 <p>而在日常工作当中使用Swift的<code>debugPrint</code>来进行对一些网络请求的输出等的调试已经习以为常。但是Swift编译器并不会将<code>print</code>和<code>debugPrint</code>删除。在最终发布的App会把内容输出到终端。造成了性能的损失。</p>
 <p>但是你也不可能随时都能在上线前把这些打印语句都删去。</p>
 <h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>但是更好的方法是通过添加条件编译来将这些语句排除在 Release 版本外。在 Xcode 的 Build Setting 中，在 <strong>Other Swift flags</strong> 的 Debug 栏中加入 <code>-D DEBUG</code> 即可加入一个编译标识。</p>
-<p><img src="https://user-images.githubusercontent.com/26972260/82534186-4dfc1100-9b77-11ea-891e-f5403fdb5960.png" alt="image"></p>
+<p><img src="https://github.static.si-yee.com/posts/iOS之日志打印优化-20200604133855.png" alt></p>
 <p>之后我们就可以通过将 <code>print</code> 或者 <code>debugPrint</code> 包装一下：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dPrint</span><span class="params">(item: <span class="keyword">Any</span>)</span></span> &#123;</span><br><span class="line">    #<span class="keyword">if</span> <span class="type">DEBUG</span></span><br><span class="line">    <span class="built_in">print</span>(item)</span><br><span class="line">    #endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样，在 Release 版本中，<code>dPrint</code> 将会是一个空方法，所有对这个方法的调用都会被编译器剔除掉。需要注意的是，在这种封装下，如果你传入的 <code>items</code> 是一个表达式而不是直接的变量的话，这个表达式还是会被先执行求值的。如果这对性能也产生了可测的影响的话，我们最好用 <code>@autoclosure</code> 修饰参数来重新包装 <code>print</code>。这可以将求值运行推迟到方法内部，这样在 Release 时这个求值也会被一并去掉：</p>
