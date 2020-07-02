@@ -3,7 +3,7 @@
   <entry>
     <title>Flutter引入第三方Icon图标</title>
     <url>/2020/07/02/Flutter%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9Icon%E5%9B%BE%E6%A0%87/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Flutter虽然内置了很多Icon图标，但是还是需要引入自己或第三方图标库提供的Icon。下面是解决办法。改文章以<a href="http://iconfont.cn/" target="_blank" rel="noopener">阿里巴巴图标库</a>为例。</strong></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>Flutter虽然内置了很多Icon图标，但是还是需要引入自己或第三方图标库提供的Icon。下面是解决办法。本文以<a href="http://iconfont.cn/" target="_blank" rel="noopener">阿里巴巴图标库</a>为例。</strong></p>
 <a id="more"></a>
 <p>1、在阿里图标库选好需要用的图标，添加进购物车将选好的图标打包下载到本地（下载代码），复制<code>iconfont.ttf</code>文件到项目中。</p>
 <p>2、将该文件放置于你的flutter项目下的<code>assets/fonts/</code>下。</p>
