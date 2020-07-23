@@ -135,22 +135,22 @@
     })();
 </script>
 
-  <meta name="description" content="泛型的定义泛型，即参数化类型。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。例如：GenericClass**&amp;lt;T&amp;gt;**{}  一些常用的泛型类型变量：E：元素（Element），多用于java集合框架K：关键字（Key）N：数字（Number）T：类型（Type）V：值（Val">
+  <meta name="description" content="泛型的定义泛型，即参数化类型。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。例如：GenericClass**&amp;lt;T&amp;gt;**{}">
 <meta name="keywords" content="JAVA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解Java泛型">
 <meta property="og:url" content="http://hackycy.github.io/2020/07/23/深入理解Java泛型/index.html">
 <meta property="og:site_name" content="思忆技术">
-<meta property="og:description" content="泛型的定义泛型，即参数化类型。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。例如：GenericClass**&amp;lt;T&amp;gt;**{}  一些常用的泛型类型变量：E：元素（Element），多用于java集合框架K：关键字（Key）N：数字（Number）T：类型（Type）V：值（Val">
+<meta property="og:description" content="泛型的定义泛型，即参数化类型。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。例如：GenericClass**&amp;lt;T&amp;gt;**{}">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.static.si-yee.com/posts/generic/1.png">
 <meta property="og:image" content="https://github.static.si-yee.com/posts/generic/2.png">
 <meta property="og:image" content="https://github.static.si-yee.com/posts/generic/3.png">
 <meta property="og:image" content="https://github.static.si-yee.com/posts/generic/4.png">
-<meta property="og:updated_time" content="2020-07-23T07:39:18.761Z">
+<meta property="og:updated_time" content="2020-07-23T08:37:09.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Java泛型">
-<meta name="twitter:description" content="泛型的定义泛型，即参数化类型。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。例如：GenericClass**&amp;lt;T&amp;gt;**{}  一些常用的泛型类型变量：E：元素（Element），多用于java集合框架K：关键字（Key）N：数字（Number）T：类型（Type）V：值（Val">
+<meta name="twitter:description" content="泛型的定义泛型，即参数化类型。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。例如：GenericClass**&amp;lt;T&amp;gt;**{}">
 <meta name="twitter:image" content="https://github.static.si-yee.com/posts/generic/1.png">
 
 
@@ -405,7 +405,7 @@
                 
               
 
-              <time title="创建时间：2020-07-23 13:21:29 / 修改时间：07:39:18" itemprop="dateCreated datePublished" datetime="2020-07-23T13:21:29+00:00">2020-07-23</time>
+              <time title="创建时间：2020-07-23 13:21:29 / 修改时间：08:37:09" itemprop="dateCreated datePublished" datetime="2020-07-23T13:21:29+00:00">2020-07-23</time>
             
 
             
@@ -484,10 +484,10 @@
 
       
         <h1 id="泛型的定义"><a href="#泛型的定义" class="headerlink" title="泛型的定义"></a>泛型的定义</h1><p><strong>泛型</strong>，即<code>参数化类型</code>。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。<br>例如：<code>GenericClass**&lt;T&gt;**{}</code></p>
+<a id="more"></a>
 <blockquote>
 <p>一些常用的泛型类型变量：<br>E：元素（Element），多用于java集合框架<br>K：关键字（Key）<br>N：数字（Number）<br>T：类型（Type）<br>V：值（Value）</p>
 </blockquote>
-<a id="more"></a>
 <p>先来看个简单的例子，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">list.add(<span class="string">"1"</span>);</span><br><span class="line">list.add(<span class="string">"2"</span>);</span><br><span class="line">list.add(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 <p>运行后会发现报了一个错误</p>

@@ -4,10 +4,10 @@
     <title>深入理解Java泛型</title>
     <url>/2020/07/23/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E6%B3%9B%E5%9E%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="泛型的定义"><a href="#泛型的定义" class="headerlink" title="泛型的定义"></a>泛型的定义</h1><p><strong>泛型</strong>，即<code>参数化类型</code>。就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。<br>例如：<code>GenericClass**&lt;T&gt;**{}</code></p>
+<a id="more"></a>
 <blockquote>
 <p>一些常用的泛型类型变量：<br>E：元素（Element），多用于java集合框架<br>K：关键字（Key）<br>N：数字（Number）<br>T：类型（Type）<br>V：值（Value）</p>
 </blockquote>
-<a id="more"></a>
 <p>先来看个简单的例子，</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">list.add(<span class="string">"1"</span>);</span><br><span class="line">list.add(<span class="string">"2"</span>);</span><br><span class="line">list.add(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 <p>运行后会发现报了一个错误</p>
