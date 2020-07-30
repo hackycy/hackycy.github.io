@@ -3,7 +3,7 @@
   <entry>
     <title>科学上网搭建</title>
     <url>/2020/07/28/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近蓝灯挂的厉害，没翻墙Google Download的东西实在是太慢了。同事给了一些SSR的搭建方法。以此记录了下来。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近某灯挂的厉害，导致Google Download的东西实在是太慢了。同事给了一些SSR的搭建方法。以此记录了下来。</p>
 <a id="more"></a>
 <h1 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h1><p><strong>选服务器</strong></p>
 <p>我是使用<a href="https://www.vultr.com/" target="_blank" rel="noopener">vultr</a>，新建主机这里就不多详细叙述了。选择CentOS 7的即可。</p>
