@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="前言项目之前使用了第三方库的时候，对于FileProvider的适配还不是很了解，因为使用时第三方库已经进行了适配。但是自己去覆写别人的第三方库的时候了解到了FileProvider的适配。 对于Android 7.0，提供了非常多的变化，详细的可以阅读官方文档Android 7.0 行为变更，但是该文章主要叙述关于FileProvider的适配。   在官方7.0的以上的系统中，尝试传递 fil">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学Android之FileProvider">
+<meta property="og:url" content="http://hackycy.github.io/2020/08/19/重学Android之FileProvider/index.html">
+<meta property="og:site_name" content="思忆技术">
+<meta property="og:description" content="前言项目之前使用了第三方库的时候，对于FileProvider的适配还不是很了解，因为使用时第三方库已经进行了适配。但是自己去覆写别人的第三方库的时候了解到了FileProvider的适配。 对于Android 7.0，提供了非常多的变化，详细的可以阅读官方文档Android 7.0 行为变更，但是该文章主要叙述关于FileProvider的适配。   在官方7.0的以上的系统中，尝试传递 fil">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-19T03:34:15.858Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学Android之FileProvider">
+<meta name="twitter:description" content="前言项目之前使用了第三方库的时候，对于FileProvider的适配还不是很了解，因为使用时第三方库已经进行了适配。但是自己去覆写别人的第三方库的时候了解到了FileProvider的适配。 对于Android 7.0，提供了非常多的变化，详细的可以阅读官方文档Android 7.0 行为变更，但是该文章主要叙述关于FileProvider的适配。   在官方7.0的以上的系统中，尝试传递 fil">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="思忆技术" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2020/08/19/重学Android之FileProvider/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>重学Android之FileProvider | 思忆技术</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">思忆技术</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">思忆，分享技术</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">61</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">25</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">131</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2020/08/19/重学Android之FileProvider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="“被窝是天堂开设在人间的分店。”">
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="思忆技术">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">重学Android之FileProvider
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-19 10:55:20 / 修改时间：03:34:15" itemprop="dateCreated datePublished" datetime="2020-08-19T10:55:20+00:00">2020-08-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/19/重学Android之FileProvider/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/19/重学Android之FileProvider/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:3.7k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:15分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目之前使用了第三方库的时候，对于<code>FileProvider</code>的适配还不是很了解，因为使用时第三方库已经进行了适配。但是自己去覆写别人的第三方库的时候了解到了<code>FileProvider</code>的适配。</p>
+<p>对于Android 7.0，提供了非常多的变化，详细的可以阅读官方文档<a href="https://developer.android.com/about/versions/nougat/android-7.0-changes.html" target="_blank" rel="noopener">Android 7.0 行为变更</a>，但是该文章主要叙述关于<code>FileProvider</code>的适配。</p>
+<blockquote>
+<p> 在官方7.0的以上的系统中，尝试传递 <code>file://URI</code>可能会触发<code>FileUriExposedException</code>。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="出错案例"><a href="#出错案例" class="headerlink" title="出错案例"></a>出错案例</h1><p>先来一个常用的例子，大家应该对于手机拍照一定都不陌生，在希望得到一张高清拍照图的时候，我们通过Intent会传递一个File的Uri给相机应用。</p>
+<p>大致代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> REQUEST_CODE_TAKE_PHOTO = <span class="number">0x110</span>;</span><br><span class="line">    <span class="keyword">private</span> String mCurrentPhotoPath;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takePhotoNoCompress</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        Intent takePictureIntent = <span class="keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);</span><br><span class="line">        <span class="keyword">if</span> (takePictureIntent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">            String filename = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd-HHmmss"</span>, Locale.CHINA)</span><br><span class="line">                    .format(<span class="keyword">new</span> Date()) + <span class="string">".png"</span>;</span><br><span class="line">            File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), filename);</span><br><span class="line">            mCurrentPhotoPath = file.getAbsolutePath();</span><br><span class="line">						<span class="comment">// File -&gt; Uri </span></span><br><span class="line">            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));</span><br><span class="line">            startActivityForResult(takePictureIntent, REQUEST_CODE_TAKE_PHOTO);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</span><br><span class="line">        <span class="keyword">if</span> (resultCode == RESULT_OK &amp;&amp; requestCode == REQUEST_CODE_TAKE_PHOTO) &#123;</span><br><span class="line">            mIvPhoto.setImageBitmap(BitmapFactory.decodeFile(mCurrentPhotoPath));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// else tip?</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>未处理6.0权限，有需要的自行处理下，nexus系列如果未处理，需要手动在设置页开启存储权限。</p>
+</blockquote>
+<p>此时如果我们使用Android 7.0或者以上的原生系统，再次运行一下，你会发现应用直接停止运行，抛出了<code>android.os.FileUriExposedException</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Caused by: android.os.FileUriExposedException: </span><br><span class="line">    file:///storage/emulated/0/20170601-030254.png </span><br><span class="line">        exposed beyond app through ClipData.Item.getUri()</span><br><span class="line">    at android.os.StrictMode.onFileUriExposed(StrictMode.java:1932)</span><br><span class="line">    at android.net.Uri.checkFileUriExposed(Uri.java:2348)</span><br></pre></td></tr></table></figure>
+<p>原因在官网已经给了解释：</p>
+<blockquote>
+<p>对于面向 Android 7.0 的应用，Android 框架执行的 StrictMode API 政策禁止在您的应用外部公开 file:// URI。如果一项包含文件 URI 的 intent 离开您的应用，则应用出现故障，并出现 FileUriExposedException 异常。</p>
+</blockquote>
+<p>同样的，官网也给出了解决方案：</p>
+<blockquote>
+<p>要在应用间共享文件，您应发送一项 content:// URI，并授予 URI 临时访问权限。进行此授权的最简单方式是使用 FileProvider 类。如需了解有关权限和共享文件的详细信息，请参阅共享文件。<br><a href="https://developer.android.com/about/versions/nougat/android-7.0-changes.html#accessibility" target="_blank" rel="noopener">https://developer.android.com/about/versions/nougat/android-7.0-changes.html#accessibility</a></p>
+</blockquote>
+<h1 id="使用FileProvider"><a href="#使用FileProvider" class="headerlink" title="使用FileProvider"></a>使用FileProvider</h1><p><code>FileProvider</code>属于Android 7.0新增的一个类，该类位于v4或者androidx包下，详情可见<code>android.support.v4.content.FileProvider</code>或者<code>androidx.core.content.FileProvider</code>，使用方法类似与<code>ContentProvider</code>，简单概括为三个步骤，这里先以调用系统相机拍照并保存<strong>sdcard</strong>公共目录为例，演示使用过程：</p>
+<ul>
+<li>在资源文件夹<code>res/xml</code>下新建<code>file_paths.xml</code>文件，文件声明权限请求的路径，代码如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">paths</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--3、对应外部内存卡根目录：Environment.getExternalStorageDirectory()--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">external-path</span> <span class="attr">name</span>=<span class="string">"external"</span> <span class="attr">path</span>=<span class="string">"/"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>要使用<code>content://uri</code>替代<code>file://uri</code>，需要一个虚拟的路径对文件路径进行映射，所以需要编写个xml文件，通过path以及xml节点确定可访问的目录，通过name属性来映射真实的文件路径。</p>
+</blockquote>
+<ul>
+<li>在<code>AndroidManifest.xml</code>添加组件<code>provider</code>相关信息，类似组件<code>activity</code>，指定<code>resource</code>属性引用上一步创建的xml文件（后面会详细介绍各个属性的用法），代码如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义FileProvider --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:name</span>=<span class="string">"androidx.core.content.FileProvider"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:authorities</span>=<span class="string">"com.siyee.android7.fileprovider"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:exported</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">		<span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">android:resource</span>=<span class="string">"@xml/file_paths"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后一步，Java代码申请权限，使用新增的方法<code>getUriForFile()</code>和<code>grantUriPermission()</code>，代码如下（后面会详细介绍方法对应参数的使用）：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takePhotoNoCompress</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        Intent takePictureIntent = <span class="keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);</span><br><span class="line">        <span class="keyword">if</span> (takePictureIntent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">            String filename = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd-HHmmss"</span>, Locale.CHINA)</span><br><span class="line">                    .format(<span class="keyword">new</span> Date()) + <span class="string">".png"</span>;</span><br><span class="line">            File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), filename);</span><br><span class="line">            mCurrentPhotoPath = file.getAbsolutePath();</span><br><span class="line">          </span><br><span class="line">						<span class="comment">// 核心就是这一行代码</span></span><br><span class="line">            Uri fileUri = FileProvider.getUriForFile(<span class="keyword">this</span>, <span class="string">"com.siyee.android7.fileprovider"</span>, file);</span><br><span class="line">            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);</span><br><span class="line">            startActivityForResult(takePictureIntent, REQUEST_CODE_TAKE_PHOTO);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过FileProvider把<code>file</code>转化为<code>content://uri</code>了</p>
+</blockquote>
+<p>核心代码就这一行了~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileProvider.getUriForFile(this, &quot;com.siyee.android7.fileprovider&quot;, file);</span><br></pre></td></tr></table></figure>
+<p>第二个参数就是我们配置的<code>authorities</code>，这个很正常了，总得映射到确定的ContentProvider吧~所以需要这个参数。</p>
+<p>然后再看一眼我们生成的uri：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">content:<span class="comment">//com.siyee.android7.fileprovider/external/20200819-041411.png</span></span><br></pre></td></tr></table></figure>
+<p>可以看到格式为：<code>content://authorities/定义的name属性/文件的相对路径</code>，即<code>name</code>隐藏了可存储的文件夹路径。</p>
+<h1 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h1><p>如果使用以上代码跑在7.0以上系统的手机没有问题，但是拿回到低版本的手机又会出现崩溃：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.lang.SecurityException: Permission Denial: opening provider androidx.core.content.FileProvider from ProcessRecord&#123;52b029b8 1670:com.android.camera/u0a36&#125; (pid=1670, uid=10036) that is not exported from uid 10052</span><br><span class="line">at android.os.Parcel.readException(Parcel.java:1465)</span><br><span class="line">at android.os.Parcel.readException(Parcel.java:1419)</span><br><span class="line">at android.app.ActivityManagerProxy.getContentProvider(ActivityManagerNative.java:2848)</span><br><span class="line">at android.app.ActivityThread.acquireProvider(ActivityThread.java:4399)</span><br></pre></td></tr></table></figure>
+<p>因为低版本的系统，仅仅是把这个当成一个普通的Provider在使用，而我们没有授权，<code>contentprovider</code>的export设置的也是false；导致<code>Permission Denial</code>。</p>
+<p>而解决的办法就是授权了。通过<code>grantUriPermission(String toPackage, Uri uri,
+int modeFlags)</code>和<code>revokeUriPermission(Uri uri, int modeFlags)</code>方法。</p>
+<p>可以看到<code>grantUriPermission</code>需要传递一个包名，就是你给哪个应用授权，但是很多时候，比如分享，我们并不知道最终用户会选择哪个app，所以我们可以这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;ResolveInfo&gt; resInfoList = context.getPackageManager()</span><br><span class="line">            .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);</span><br><span class="line"><span class="keyword">for</span> (ResolveInfo resolveInfo : resInfoList) &#123;</span><br><span class="line">    String packageName = resolveInfo.activityInfo.packageName;</span><br><span class="line">    context.grantUriPermission(packageName, uri, flag);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据Intent查询出的所以符合的应用，都给他们授权~~</p>
+<p>恩，你可以在不需要的时候通过<code>revokeUriPermission</code>移除权限~</p>
+<p>那么增加了授权后的代码是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takePhotoNoCompress</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">    Intent takePictureIntent = <span class="keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);</span><br><span class="line">    <span class="keyword">if</span> (takePictureIntent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">        String filename = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd-HHmmss"</span>, Locale.CHINA)</span><br><span class="line">                .format(<span class="keyword">new</span> Date()) + <span class="string">".png"</span>;</span><br><span class="line">        File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), filename);</span><br><span class="line">        mCurrentPhotoPath = file.getAbsolutePath();</span><br><span class="line"></span><br><span class="line">        Uri fileUri = FileProvider.getUriForFile(<span class="keyword">this</span>, <span class="string">"com.siyee.android7.fileprovider"</span>, file);</span><br><span class="line"></span><br><span class="line">        List&lt;ResolveInfo&gt; resInfoList = getPackageManager()</span><br><span class="line">                .queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);</span><br><span class="line">        <span class="keyword">for</span> (ResolveInfo resolveInfo : resInfoList) &#123;</span><br><span class="line">            String packageName = resolveInfo.activityInfo.packageName;</span><br><span class="line">            grantUriPermission(packageName, fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION</span><br><span class="line">                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);</span><br><span class="line">        startActivityForResult(takePictureIntent, REQUEST_CODE_TAKE_PHOTO);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这样的做法相对麻烦，我们可以对系统版本进行判断高版本用<code>FileProvider.getUriForFile</code>，低版本继续使用<code>Uri.fromFile</code>即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Uri fileUri = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">24</span>) &#123;</span><br><span class="line">    fileUri = FileProvider.getUriForFile(<span class="keyword">this</span>, <span class="string">"com.siyee.android7.fileprovider"</span>, file);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    fileUri = Uri.fromFile(file);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="理解FileProvider"><a href="#理解FileProvider" class="headerlink" title="理解FileProvider"></a>理解FileProvider</h1><h2 id="定义FileProvider"><a href="#定义FileProvider" class="headerlink" title="定义FileProvider"></a>定义FileProvider</h2><p>直接使用<code>FileProvider</code>本身或者它的子类，需要在<code>AndroidManifest.xml</code>文件中声明组件的相关属性，包括：</p>
+<ul>
+<li><code>android:name</code>，对应属性值：<code>android.support.v4.content.FileProvider</code>或者子类完整路径</li>
+<li><code>android:authorities</code>，对应属性值是一个常量，通常定义的方式<code>packagename.fileprovider</code>，例如：<code>cn.teachcourse.fileprovider</code></li>
+<li><code>android:exported</code>，对应属性值是一个boolean变量，设置为<code>false</code></li>
+<li><code>android:grantUriPermissions</code>，对应属性值也是一个boolean变量，设置为<code>true</code>，允许获得文件临时的访问权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">					<span class="attr">android:name</span>=<span class="string">"androidx.core.content.FileProvider"</span></span></span><br><span class="line"><span class="tag">					<span class="attr">android:authorities</span>=<span class="string">"com.siyee.android7.fileprovider"</span></span></span><br><span class="line"><span class="tag">					<span class="attr">android:exported</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">					<span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">						<span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></span></span><br><span class="line"><span class="tag">						<span class="attr">android:resource</span>=<span class="string">"@xml/file_paths"</span>/&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="指定授予临时访问权限的文件目录"><a href="#指定授予临时访问权限的文件目录" class="headerlink" title="指定授予临时访问权限的文件目录"></a>指定授予临时访问权限的文件目录</h2><p>想要关联<code>res/xml</code>文件夹下创建的<code>file_paths.xml</code>文件，需要在<code>&lt;provider&gt;</code>标签内，添加<code>&lt;meta-data&gt;</code>子标签，设置<code>&lt;meta-data&gt;</code>标签的属性值，包括：</p>
+<ul>
+<li><code>android:name</code>，对应属性值是一个固定的系统常量<code>android.support.FILE_PROVIDER_PATHS</code></li>
+<li><code>android:resource</code>，对应属性值指向我们的xml文件<code>@xml/file_paths</code></li>
+</ul>
+<p>在xml文件中指定文件存储的区块和区块的相对路径，在<code>&lt;paths&gt;</code>根标签中添加<code>&lt;files-path&gt;</code>子标签（稍后详细列出所有子标签），设置子标签的属性值，包括：</p>
+<ul>
+<li><code>name</code>，是一个虚设的文件名（可以自由命名），对外可见路径的一部分，隐藏真实文件目录</li>
+<li><code>path</code>，是一个相对目录，相对于当前的子标签<code>&lt;files-path&gt;</code>根目录</li>
+<li><code>&lt;files-path&gt;</code>，表示内部内存卡根目录，对应根目录等价于<code>Context.getFilesDir()</code>，查看完整路径：<br><code>/data/user/0/com.siyee.demos/files</code></li>
+<li>代码如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">paths</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">files-path</span> <span class="attr">name</span>=<span class="string">"my_images"</span> <span class="attr">path</span>=<span class="string">"images/"</span>/&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>&lt;paths&gt;</code>根标签下可以添加的子标签也是有限的，参考官网的开发文档，除了上述的提到的<code>&lt;files-path&gt;</code>这个子标签外，还包括下面几个：</p>
+<ol>
+<li><code>&lt;cache-path&gt;</code>，表示应用默认缓存根目录，对应根目录等价于<code>getCacheDir()</code>，查看完整路径：<code>/data/user/0/com.siyee.demos/cache</code></li>
+<li><code>&lt;external-path&gt;</code>，表示外部内存卡根目录，对应根目录等价于<br><code>Environment.getExternalStorageDirectory()</code>，<br>查看完整路径：<code>/storage/emulated/0</code></li>
+<li><code>&lt;external-files-path&gt;</code>，表示外部内存卡根目录下的APP公共目录，对应根目录等价于<br><code>Context#getExternalFilesDir(String) Context.getExternalFilesDir(null)</code>，<br>查看完整路径：<br><code>/storage/emulated/0/Android/data/com.siyee.demos/files/Download</code></li>
+<li><code>&lt;external-cache-path&gt;</code>，表示外部内存卡根目录下的APP缓存目录，对应根目录等价于<code>Context.getExternalCacheDir()</code>，查看完整路径：<br><code>/storage/emulated/0/Android/data/com.siyee.demos/cache</code></li>
+</ol>
+<p>最终，在<code>file_provider.xml</code>文件中，添加上述5种类型的临时访问权限的文件目录，代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">paths</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    1、name对应的属性值，开发者可以自由定义；</span></span><br><span class="line"><span class="comment">    2、path对应的属性值，当前external-path标签下的相对路径</span></span><br><span class="line"><span class="comment">    比如：/storage/emulated/0/92Recycle-release.apk</span></span><br><span class="line"><span class="comment">    sdcard路径：/storage/emulated/0(WriteToReadActivity.java:176)</span></span><br><span class="line"><span class="comment">                      at cn.teachcourse.nougat.WriteToReadActivity.onClick(WriteToReadActivity.java:97)</span></span><br><span class="line"><span class="comment">                      at android.view.View.performClick(View.java:5610)</span></span><br><span class="line"><span class="comment">                      at android.view.View$PerformClick.run(View.java:22265)</span></span><br><span class="line"><span class="comment">    相对路径：/</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--1、对应内部内存卡根目录：Context.getFileDir()--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">files-path</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"int_root"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">path</span>=<span class="string">"/"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--2、对应应用默认缓存根目录：Context.getCacheDir()--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">cache-path</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"app_cache"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">path</span>=<span class="string">"/"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--3、对应外部内存卡根目录：Environment.getExternalStorageDirectory()--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">external-path</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"ext_root"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">path</span>=<span class="string">"pictures/"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--4、对应外部内存卡根目录下的APP公共目录：Context.getExternalFileDir(String)--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">external-files-path</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"ext_pub"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">path</span>=<span class="string">"/"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--5、对应外部内存卡根目录下的APP缓存目录：Context.getExternalCacheDir()--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">external-cache-path</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"ext_cache"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">path</span>=<span class="string">"/"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="生成指定文件的Content-URI"><a href="#生成指定文件的Content-URI" class="headerlink" title="生成指定文件的Content URI"></a>生成指定文件的Content URI</h2><p>Content URI方便与另一个APP应用程序共享同一个文件，共享的方式通过<code>ContentResolver.openFileDescriptor</code>获得一个<code>ParcelFileDescriptor</code>对象，读取文件内容。那么，如何生成一条完整的Content URI呢？TeachCourse总结后，概括为三个步骤，<strong>第一步：</strong>明确上述5种类型中的哪一种，<strong>第二步：</strong>明确指定文件的完整路径（包括目录、文件名），<strong>第三步：</strong>调用<code>getUriForFile()</code>方法生成URI</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File imagePath = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"download"</span>);</span><br><span class="line">File newFile = <span class="keyword">new</span> File(imagePath, <span class="string">"default_image.jpg"</span>);</span><br><span class="line">Uri contentUri = getUriForFile(getContext(), <span class="string">"com.siyee.android7.fileprovider"</span>, newFile);</span><br></pre></td></tr></table></figure>
+<h2 id="授予Content-URI临时访问权限"><a href="#授予Content-URI临时访问权限" class="headerlink" title="授予Content URI临时访问权限"></a>授予Content URI临时访问权限</h2><p>上一步获得的Content URI，并没有获得指定文件的读写权限，想要获得文件的读写权限需要调用<code>Context.grantUriPermission(package, Uri, mode_flags)</code>方法，该方法向指定包名的应用程序申请获得读取或者写入文件的权限，参数说明如下：</p>
+<ul>
+<li><code>package</code>，指定应用程序的包名，Android Studio真正的包名指<code>build.gradle</code>声明的<em>applicationId</em>属性值；<code>getPackageName()</code>指<code>AndroidManifest.xml</code>文件声明的<em>package</em>属性值，如果两者不一致，就不能提供<code>getPackageName()</code>获取包名，否则报错！</li>
+<li><code>Uri</code>，指定请求授予临时权限的URI，例如：<code>contentUri</code></li>
+<li><code>mode_flags</code>，指定授予临时权限的类型，选择其中一个常量或两个：<code>Intent.FLAG_GRANT_READ_URI_PERMISSION</code>，<code>Intent.FLAG_GRANT_WRITE_URI_PERMISSION</code></li>
+</ul>
+<p>授予文件的临时读取或写入权限，如果不再需要了，TeachCourse该如何撤销授予呢？撤销权限有两种方式：<strong>第一种：</strong>通过调用<code>revokeUriPermission()</code>撤销，<strong>第二种：</strong>重启系统后自动撤销</p>
+<h1 id="使用FileProvider兼容安装apk"><a href="#使用FileProvider兼容安装apk" class="headerlink" title="使用FileProvider兼容安装apk"></a><a href="https://blog.csdn.net/lmj623565791/article/details/72859156" target="_blank" rel="noopener">使用FileProvider兼容安装apk</a></h1><p>正常我们在编写安装apk的时候，是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">installApk</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">    File file = <span class="keyword">new</span> File(Environment.getExternalStorageDirectory(), <span class="string">"testandroid7-debug.apk"</span>);</span><br><span class="line"></span><br><span class="line">    Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</span><br><span class="line">    intent.setDataAndType(Uri.fromFile(file),</span><br><span class="line">            <span class="string">"application/vnd.android.package-archive"</span>);</span><br><span class="line">    startActivity(intent);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>拿个7.0的原生手机跑一下，<code>android.os.FileUriExposedException</code>又来了~~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.os.FileUriExposedException: file:///storage/emulated/0/testandroid7-debug.apk exposed beyond app through Intent.getData()</span><br></pre></td></tr></table></figure>
+<p>好在有经验了，简单修改下uri的获取方式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">24</span>) &#123;</span><br><span class="line">    fileUri = FileProvider.getUriForFile(<span class="keyword">this</span>, <span class="string">"com.zhy.android7.fileprovider"</span>, file);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    fileUri = Uri.fromFile(file);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再跑一次，没想到还是抛出了异常（警告，没有Crash）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java.lang.SecurityException: Permission Denial: </span><br><span class="line">opening provider android.support.v4.content.FileProvider </span><br><span class="line">        from ProcessRecord&#123;18570a 27107:com.google.android.packageinstaller/u0a26&#125; (pid=27107, uid=10026) that is not exported from UID 10004123</span><br></pre></td></tr></table></figure>
+<p>可以看到是权限问题，对于权限我们刚说了一种方式为<code>grantUriPermission</code>，这种方式当然是没问题的啦~</p>
+<p>加上后运行即可。</p>
+<p>其实对于权限，还提供了一种方式，即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);</span><br></pre></td></tr></table></figure>
+<p>我们可以在安装包之前加上上述代码，再次运行正常啦~</p>
+<p>现在我有两个非常疑惑的问题：</p>
+<ul>
+<li>问题1：为什么刚才拍照的时候，Android 7的设备并没有遇到<code>Permission Denial</code>的问题？</li>
+</ul>
+<p>恩，之所以不需要权限，主要是因为Intent的action为<code>ACTION_IMAGE_CAPTURE</code>，当我们<code>startActivity</code>后，会辗转调用<code>Instrumentation的execStartActivity</code>方法，在该方法内部，会调用<code>intent.migrateExtraStreamToClipData();</code>方法。</p>
+<p>该方法中包含：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (MediaStore.ACTION_IMAGE_CAPTURE.equals(action)</span><br><span class="line">        || MediaStore.ACTION_IMAGE_CAPTURE_SECURE.equals(action)</span><br><span class="line">        || MediaStore.ACTION_VIDEO_CAPTURE.equals(action)) &#123;</span><br><span class="line">    <span class="keyword">final</span> Uri output;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        output = getParcelableExtra(MediaStore.EXTRA_OUTPUT);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ClassCastException e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (output != <span class="keyword">null</span>) &#123;</span><br><span class="line">        setClipData(ClipData.newRawUri(<span class="string">""</span>, output));</span><br><span class="line">        addFlags(FLAG_GRANT_WRITE_URI_PERMISSION|FLAG_GRANT_READ_URI_PERMISSION);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到将我们的<code>EXTRA_OUTPUT</code>，转为了<code>setClipData</code>，并直接给我们添加了<code>WRITE</code>和<code>READ</code>权限。</p>
+<blockquote>
+<p>注：该部分逻辑应该是21之后添加的。</p>
+</blockquote>
+<ul>
+<li>问题2：为什么刚才拍照案例的时候，Android 4.4设备遇到权限问题，不通过addFlags这种方式解决？</li>
+</ul>
+<p>因为addFlags主要用于<code>setData</code>，<code>setDataAndType</code>以及<code>setClipData</code>（注意：4.4时，并没有将<code>ACTION_IMAGE_CAPTURE</code>转为<code>setClipData</code>实现）这种方式。</p>
+<p>所以<code>addFlags</code>方式对于<code>ACTION_IMAGE_CAPTURE</code>在5.0以下是无效的，所以需要使用<code>grantUriPermission</code>，如果是正常的通过setData分享的uri，使用<code>addFlags</code>是没有问题的（可以写个简单的例子测试下，两个app交互，通过<code>content://</code>）。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>使用<code>content://</code>替代<code>file://</code>，主要需要<code>FileProvider</code>的支持，而因为<code>FileProvider</code>是<code>ContentProvider</code>的子类，所以需要在<code>AndroidManifest.xml</code>中注册；而又因为需要对真实的<code>filepath</code>进行映射，所以需要编写一个<code>xml</code>文档，用于描述可使用的文件夹目录，以及通过<code>name</code>去映射该文件夹目录。</p>
+<p>对于权限，有两种方式：</p>
+<ul>
+<li>方式一为<code>Intent.addFlags</code>，该方式主要用于针对<code>intent.setData</code>，<code>setDataAndType</code>以及<code>setClipData</code>相关方式传递<code>uri</code>的。</li>
+<li>方式二为<code>grantUriPermission</code>来进行授权</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/lmj623565791/article/details/72859156" target="_blank" rel="noopener">https://blog.csdn.net/lmj623565791/article/details/72859156</a></p>
+<p><a href="https://www.cnblogs.com/dazhao/p/6547811.html" target="_blank" rel="noopener">https://www.cnblogs.com/dazhao/p/6547811.html</a></p>
+<p><a href="https://www.jianshu.com/p/bce6a4c779dd" target="_blank" rel="noopener">https://www.jianshu.com/p/bce6a4c779dd</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/28/科学上网搭建/" rel="next" title="科学上网搭建">
+                <i class="fa fa-chevron-left"></i> 科学上网搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">“被窝是天堂开设在人间的分店。”</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">131</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.si-yee.com" title="思忆技术" target="_blank">思忆技术</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lover.si-yee.com" title="我与她的爱情计时器" target="_blank">我与她的爱情计时器</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#出错案例"><span class="nav-number">2.</span> <span class="nav-text">出错案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用FileProvider"><span class="nav-number">3.</span> <span class="nav-text">使用FileProvider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#兼容"><span class="nav-number">4.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#理解FileProvider"><span class="nav-number">5.</span> <span class="nav-text">理解FileProvider</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义FileProvider"><span class="nav-number">5.1.</span> <span class="nav-text">定义FileProvider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定授予临时访问权限的文件目录"><span class="nav-number">5.2.</span> <span class="nav-text">指定授予临时访问权限的文件目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成指定文件的Content-URI"><span class="nav-number">5.3.</span> <span class="nav-text">生成指定文件的Content URI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授予Content-URI临时访问权限"><span class="nav-number">5.4.</span> <span class="nav-text">授予Content URI临时访问权限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用FileProvider兼容安装apk"><span class="nav-number">6.</span> <span class="nav-text">使用FileProvider兼容安装apk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy <a class="theme-link" target="_blank" rel="external nofollow" href="http://www.beian.miit.gov.cn/">粤ICP备19140352号</a></span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>306k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2020/08/19/重学Android之FileProvider/';
+        this.page.identifier = '2020/08/19/重学Android之FileProvider/';
+        this.page.title = '重学Android之FileProvider';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
