@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>发布npm包填坑小记</title>
+    <url>/2020/09/21/%E5%8F%91%E5%B8%83npm%E5%8C%85%E5%A1%AB%E5%9D%91%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>发布NPM包时遇到的一些问题记录</strong></p>
+<h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm ERR! publish Failed PUT 403</span><br><span class="line">npm ERR! code E403</span><br><span class="line">npm ERR! you must verify your email before publishing a new package: https://www.npmjs.com/email-edit : your-package</span><br></pre></td></tr></table></figure>
+<p>这是注册的npm账号邮箱未进行验证，先去验证。一开始出现这个原因我是邮箱填错一直没收到邮件。</p>
+<a id="more"></a>
+<h1 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h1><p>在发布<code>npm</code>包的时候可能会出现报错信息：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm ERR! 403 403 Forbidden - PUT https://registry.npm.taobao.org/@hackycy%2fegg-typeorm - [no_perms] Private mode <span class="built_in">enable</span>, only admin can publish this module</span><br><span class="line">npm ERR! 403 In most cases, you or one of your dependencies are requesting</span><br><span class="line">npm ERR! 403 a package version that is forbidden by your security policy.</span><br></pre></td></tr></table></figure>
+<p>出现这个问题是因为当前设置的是<code>cnpm</code>登录到的是<code>cnpm</code>，所以需要切换回来。<br>之前登录的时候就提出登录的是<code>taobao</code>只不过那个时候没注意。</p>
+<p>可以输入一下命令查看当前的登录源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm config get registry</span><br><span class="line">https://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+<p>可以看到返回的地址是淘宝源，需要切回到npmjs源，输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm config <span class="built_in">set</span> registry=http://registry.npmjs.org</span><br></pre></td></tr></table></figure>
+<p>设置完之后在查看当前登录的源地址：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm config get registry</span><br><span class="line">http://registry.npmjs.org/</span><br></pre></td></tr></table></figure>
+<p>然后重新<code>npm login</code>再发布即可。</p>
+<h1 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm ERR! publish Failed PUT 403</span><br><span class="line">npm ERR! code E403</span><br><span class="line">npm ERR! You <span class="keyword">do</span> not have permission to publish <span class="string">"your-package"</span>. Are you logged <span class="keyword">in</span> as the correct user? : your-package</span><br></pre></td></tr></table></figure>
+<p>你的包和别人的包重名了，npm 里的包不允许重名，所以去 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.npmjs.com%2F" target="_blank" rel="noopener">npm</a> 搜一下，改个没人用的名字就可以了。或者用<code>@your-name/your-package</code>来命名。</p>
+<h1 id="问题4"><a href="#问题4" class="headerlink" title="问题4"></a>问题4</h1><p>无法发布私有包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm ERR! publish Failed PUT 402</span><br><span class="line">npm ERR! code E402</span><br><span class="line">npm ERR! You must sign up <span class="keyword">for</span> private packages :</span><br></pre></td></tr></table></figure>
+<p>大多数是因为当你的包名为<code>@your-name/your-package</code>时才会出现，原因是当包名以<code>@your-name</code>开头时，<code>npm publish</code>会默认发布为私有包，但是 npm 的私有包需要付费，所以需要添加如下参数进行发布：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm publish --access public</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/weixin_38080573/article/details/88080556" target="_blank" rel="noopener">https://blog.csdn.net/weixin_38080573/article/details/88080556</a></p>
+]]></content>
+      <categories>
+        <category>NodeJS</category>
+      </categories>
+      <tags>
+        <tag>NPM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解决Element-UI el-tree有关子、父节点选中问题</title>
     <url>/2020/09/15/%E8%A7%A3%E5%86%B3Element-UI-el-tree%E6%9C%89%E5%85%B3%E5%AD%90%E3%80%81%E7%88%B6%E8%8A%82%E7%82%B9%E9%80%89%E4%B8%AD%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><p>在使用el-tree组件在获取完数据进行页面回显数据时，因为后端返回的数据中包含父节点的关系，但是子节点并没有全部选中，就把不该选中的子节点也全部勾上了。</p>
