@@ -160,10 +160,10 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Nodejs</category>
+        <category>NodeJS</category>
       </categories>
       <tags>
-        <tag>Nodejs</tag>
+        <tag>NodeJS</tag>
         <tag>Egg</tag>
       </tags>
   </entry>
@@ -806,10 +806,10 @@ int modeFlags)</code>和<code>revokeUriPermission(Uri uri, int modeFlags)</code>
 <p><a href="https://www.jianshu.com/p/2689a38cf643" target="_blank" rel="noopener">https://www.jianshu.com/p/2689a38cf643</a></p>
 ]]></content>
       <categories>
-        <category>Nodejs</category>
+        <category>NodeJS</category>
       </categories>
       <tags>
-        <tag>Nodejs</tag>
+        <tag>NodeJS</tag>
         <tag>Egg</tag>
       </tags>
   </entry>
