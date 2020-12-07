@@ -154,10 +154,10 @@
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/caniusedevicepixelratio.png">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/tvandphone.jpeg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/visualviewport.jpg">
-<meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/vv=lv.jpg">
-<meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/lv%3Evv.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/vvlv.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/lvvv.jpg">
 <meta property="og:image" content="http://hackycy.github.io/2019/04/11/移动端前端开发之viewport/getviewport.png">
-<meta property="og:updated_time" content="2020-12-04T07:02:04.070Z">
+<meta property="og:updated_time" content="2020-12-07T01:40:36.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端前端开发之viewport">
 <meta name="twitter:description" content="背景浏览器的viewport是可以看到Web内容的窗口区域，通常与渲染出的页面的大小不同，这种情况下，浏览器会提供滚动条以滚动访问所有内容。 窄屏幕设备（如移动设备）在一个虚拟窗口或视口中渲染页面，这个窗口或视口通常比屏幕宽；然后缩小渲染的结果，以便在一屏内显示所有内容。然后用户可以移动、缩放以查看页面的不同区域。例如，如果移动屏幕的宽度为640px，则可能会用980px的虚拟视口渲染页面，然后缩">
@@ -296,7 +296,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">64</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">65</span></a>
   </li>
         
         
@@ -312,7 +312,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">135</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">136</span></a>
   </li>
         
         
@@ -432,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-04 07:02:04" itemprop="dateModified" datetime="2020-12-04T07:02:04+00:00">2020-12-04</time>
+                <time title="修改时间：2020-12-07 01:40:36" itemprop="dateModified" datetime="2020-12-07T01:40:36+00:00">2020-12-07</time>
               
             
           </span>
@@ -660,10 +660,10 @@
 </blockquote>
 <h2 id="布局视口"><a href="#布局视口" class="headerlink" title="布局视口"></a>布局视口</h2><p>一般移动设备的浏览器都默认设置了一个 viewport 元标签，定义一个虚拟的布局视口（layout viewport），用于解决早期的页面在手机上显示的问题。iOS, Android 基本都将这个视口分辨率设置为 980px，所以 PC 上的网页基本能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页。</p>
 <p><strong>完全缩小的情况下：visual viewport = layout viewport</strong></p>
-<p><img src="vv=lv.jpg" alt></p>
+<p><img src="vvlv.jpg" alt></p>
 <p>浏览器选择了布局视口的尺寸，使其在完全缩小模式下完全覆盖屏幕（因此等于可视视口）.</p>
 <p><strong>不完全缩小的情况下：layout viewport &gt; visual viewport</strong></p>
-<p><img src="lv&gt;vv.jpg" alt></p>
+<p><img src="lvvv.jpg" alt></p>
 <p>布局视口的宽度和高度等于在不完全缩小模式下可以在屏幕上显示的任何宽度和高度。当用户放大这些尺寸时保持不变。</p>
 <p>在放大和缩小的过程中，<code>visual viewport</code>和<code>layout viewport</code>的宽，高都没发生任何的变化,变化的仅仅就像是用户拿着这个<code>visual viewport</code>去远离或者靠近<code>layout viewport</code>，在远离或者靠近的过程中，就会呈现出缩放的效果来。</p>
 <blockquote>
@@ -946,7 +946,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-count">136</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1154,7 +1154,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">64</span>
+                      
+                    
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1283,7 +1285,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>316.5k</span>字
+    本站总字数:<span>317.2k</span>字
     </span>
     &nbsp|&nbsp
   </div>
