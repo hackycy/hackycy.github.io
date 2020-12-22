@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script type="text/javascript">
+    (function () {
+        if ('') {
+            if (prompt('请输入访问密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://hackycy.github.io");
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+  <meta name="description" content="前言今天分享的面试题是： Android在版本迭代中，总会进行很多改动，那么你熟知各版本都改动了什么内容？又要怎么适配呢？">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android各版本迭代信息集合">
+<meta property="og:url" content="http://hackycy.github.io/2020/12/22/Android各版本迭代信息集合/index.html">
+<meta property="og:site_name" content="思忆技术">
+<meta property="og:description" content="前言今天分享的面试题是： Android在版本迭代中，总会进行很多改动，那么你熟知各版本都改动了什么内容？又要怎么适配呢？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-12-22T06:34:44.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android各版本迭代信息集合">
+<meta name="twitter:description" content="前言今天分享的面试题是： Android在版本迭代中，总会进行很多改动，那么你熟知各版本都改动了什么内容？又要怎么适配呢？">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="思忆技术" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://hackycy.github.io/2020/12/22/Android各版本迭代信息集合/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android各版本迭代信息集合 | 思忆技术</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8a525e92400d0ab6fc5484cce235a326";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">思忆技术</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">思忆，分享技术</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">65</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">27</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">139</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+    <a href="/schedule/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2020/12/22/Android各版本迭代信息集合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="“被窝是天堂开设在人间的分店。”">
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="思忆技术">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Android各版本迭代信息集合
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-22 14:29:43 / 修改时间：06:34:44" itemprop="dateCreated datePublished" datetime="2020-12-22T14:29:43+00:00">2020-12-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/12/22/Android各版本迭代信息集合/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/22/Android各版本迭代信息集合/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:2.4k字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:10分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天分享的面试题是：</p>
+<p>Android在版本迭代中，总会进行很多改动，那么你熟知各版本都改动了什么内容？又要怎么适配呢？</p>
+<a id="more"></a>
+<h1 id="Android4-4"><a href="#Android4-4" class="headerlink" title="Android4.4"></a>Android4.4</h1><ul>
+<li>发布<code>ART</code>虚拟机，提供选项可以开启。</li>
+<li><code>HttpURLConnection</code>的底层实现改为了OkHttp。</li>
+</ul>
+<h1 id="Android5-0"><a href="#Android5-0" class="headerlink" title="Android5.0"></a>Android5.0</h1><ul>
+<li><code>ART</code>成为默认虚拟机，完全代替Dalvik虚拟机。</li>
+<li><code>Context.bindService()</code> 方法需要显式 Intent，如果提供隐式 intent，将引发异常。</li>
+</ul>
+<h1 id="Android6-0"><a href="#Android6-0" class="headerlink" title="Android6.0"></a>Android6.0</h1><ul>
+<li>增加运行时权限限制</li>
+</ul>
+<p>如果你的应用使用到了危险权限，比如在运行时进行检查和请求权限。<code>checkSelfPermission()</code>方法用于检查权限，<code>requestPermissions()</code> 方法用于请求权限。</p>
+<ul>
+<li>取消支持Apache HTTP</li>
+</ul>
+<p>Android 6.0 版移除了对 <code>Apache HTTP</code>相关类库的支持。要继续使用 Apache HTTP API，您必须先在 build.gradle 文件中声明以下编译时依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android &#123;useLibrary &apos;org.apache.http.legacy&apos;&#125;</span><br></pre></td></tr></table></figure>
+<p>有的小伙伴可能不熟悉这是啥，简单说下：</p>
+<blockquote>
+<p>Apache HttpClient 是Apache开源组织提供的一个开源的项目,它是一个简单的HTTP客户端（并不是浏览器），可以发送HTTP请求，接受HTTP响应。</p>
+</blockquote>
+<p>所以说白了，其实就是一个请求网络的项目框架。</p>
+<h1 id="Android-7-0"><a href="#Android-7-0" class="headerlink" title="Android 7.0"></a>Android 7.0</h1><ul>
+<li>Android 7.0 引入一项新的应用签名方案 APK Signature Scheme v2</li>
+<li>Toast导致的BadTokenException</li>
+<li>在Android7.0系统上，Android 框架强制执行了 StrictMode API 政策禁止向你的应用外公开 file:// URI。如果一项包含文件 file:// URI类型 的 Intent 离开你的应用，应用失败，并出现 <code>FileUriExposedException</code> 异常，如调用系统相机拍照录制视频，或裁切照片。</li>
+</ul>
+<p>这一点其实就是限制了在应用间共享文件，如果需要在应用间共享，需要授予要访问的URI临时访问权限，我们要做的就是注册<code>FileProvider</code>：</p>
+<p>1）声明FileProvider。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:authorities</span>=<span class="string">"app的包名.fileProvider"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:resource</span>=<span class="string">"@xml/file_paths"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--androidx版本类路径为：androidx.core.content.FileProvider--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2）编写xml文件，确定可访问的目录</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">paths</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"> //代表设备的根目录new File("/");</span><br><span class="line">    <span class="tag">&lt;<span class="name">root-path</span> <span class="attr">name</span>=<span class="string">"root"</span> <span class="attr">path</span>=<span class="string">"."</span> /&gt;</span> </span><br><span class="line">    //context.getFilesDir()</span><br><span class="line">    <span class="tag">&lt;<span class="name">files-path</span> <span class="attr">name</span>=<span class="string">"files"</span> <span class="attr">path</span>=<span class="string">"."</span> /&gt;</span> </span><br><span class="line">    //context.getCacheDir()</span><br><span class="line">    <span class="tag">&lt;<span class="name">cache-path</span> <span class="attr">name</span>=<span class="string">"cache"</span> <span class="attr">path</span>=<span class="string">"."</span> /&gt;</span> </span><br><span class="line">    //Environment.getExternalStorageDirectory()</span><br><span class="line">    <span class="tag">&lt;<span class="name">external-path</span> <span class="attr">name</span>=<span class="string">"external"</span> <span class="attr">path</span>=<span class="string">"."</span> /&gt;</span></span><br><span class="line">    //context.getExternalFilesDirs()</span><br><span class="line">    <span class="tag">&lt;<span class="name">external-files-path</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">path</span>=<span class="string">"path"</span> /&gt;</span></span><br><span class="line">    //getExternalCacheDirs()</span><br><span class="line">     <span class="tag">&lt;<span class="name">external-cache-path</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">path</span>=<span class="string">"path"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3）使用FileProvider</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</span><br><span class="line">    Uri uri = FileProvider.getUriForFile(CameraActivity.<span class="keyword">this</span>, <span class="string">"app的包名.fileProvider"</span>, photoFile);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Uri uri = Uri.fromFile(photoFile);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Android8-0"><a href="#Android8-0" class="headerlink" title="Android8.0"></a>Android8.0</h1><ul>
+<li>修改运行时权限错误</li>
+</ul>
+<p>在 <code>Android 8.0</code> 之前，如果应用在运行时请求权限并且被授予该权限，系统会错误地将属于同一权限组并且在清单中注册的其他权限也一起授予应用。对于针对 Android 8.0 的应用，系统只会授予应用明确请求的权限。然而，一旦用户为应用授予某个权限，则所有后续对该权限组中权限的请求都将被自动批准。</p>
+<p>也就是说，以前你申请了<code>READ_EXTERNAL_STORAGE</code>权限，应用会同时给你授予同权限组的<code>WRITE_EXTERNAL_STORAGE</code>权限。如果Android8.0以上，只会给你授予你请求的<code>READ_EXTERNAL_STORAGE</code>权限。如果需要<code>WRITE_EXTERNAL_STORAGE</code>权限，还要单独申请，不过系统会立即授予，不会提示。</p>
+<ul>
+<li>修改通知</li>
+</ul>
+<p>Android 8.0 对于通知修改了很多，比如通知渠道、通知标志、通知超时、背景颜色。其中比较重要的就是通知渠道，其允许您为要显示的每种通知类型创建用户可自定义的渠道。</p>
+<p>这样的好处就是对于某个应用可以把权限分成很多类，用户来控制是否显示哪些类别的通知。而开发者要做的就是必须设置这个渠道id，否则通知可能会失效。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createNotificationChannel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line"></span><br><span class="line">            NotificationManager notificationManager = (NotificationManager)</span><br><span class="line">                    getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//分组（可选）</span></span><br><span class="line">            <span class="comment">//groupId要唯一</span></span><br><span class="line">            String groupId = <span class="string">"group_001"</span>;</span><br><span class="line">            NotificationChannelGroup group = <span class="keyword">new</span> NotificationChannelGroup(groupId, <span class="string">"广告"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//创建group</span></span><br><span class="line">            notificationManager.createNotificationChannelGroup(group);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//channelId要唯一</span></span><br><span class="line">            String channelId = <span class="string">"channel_001"</span>;</span><br><span class="line"></span><br><span class="line">            NotificationChannel adChannel = <span class="keyword">new</span> NotificationChannel(channelId,</span><br><span class="line">                    <span class="string">"推广信息"</span>, NotificationManager.IMPORTANCE_DEFAULT);</span><br><span class="line">            <span class="comment">//补充channel的含义（可选）</span></span><br><span class="line">            adChannel.setDescription(<span class="string">"推广信息"</span>);</span><br><span class="line">            <span class="comment">//将渠道添加进组（先创建组才能添加）</span></span><br><span class="line">            adChannel.setGroup(groupId);</span><br><span class="line">            <span class="comment">//创建channel</span></span><br><span class="line">            notificationManager.createNotificationChannel(adChannel);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建通知时，标记你的渠道id</span></span><br><span class="line">            Notification notification = <span class="keyword">new</span> Notification.Builder(MainActivity.<span class="keyword">this</span>, channelId)</span><br><span class="line">                    .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))</span><br><span class="line">                    .setContentTitle(<span class="string">"一条新通知"</span>)</span><br><span class="line">                    .setContentText(<span class="string">"这是一条测试消息"</span>)</span><br><span class="line">                    .setAutoCancel(<span class="keyword">true</span>)</span><br><span class="line">                    .build();</span><br><span class="line">            notificationManager.notify(<span class="number">1</span>, notification);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>悬浮窗</li>
+</ul>
+<p>Android8.0以上必须使用新的窗口类型(<code>TYPE_APPLICATION_OVERLAY</code>)才能显示提醒悬浮窗：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">    mWindowParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    mWindowParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不允许安装未知来源的应用</li>
+</ul>
+<p>Android 8.0去除了“允许未知来源”选项，所以如果我们的App有安装App的功能（检查更新之类的），那么会无法正常安装。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">installAPK</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">            <span class="keyword">boolean</span> hasInstallPermission = getPackageManager().canRequestPackageInstalls();</span><br><span class="line">            <span class="keyword">if</span> (hasInstallPermission) &#123;</span><br><span class="line">                <span class="comment">//安装应用</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//跳转至“安装未知应用”权限界面，引导用户开启权限</span></span><br><span class="line">                Uri selfPackageUri = Uri.parse(<span class="string">"package:"</span> + <span class="keyword">this</span>.getPackageName());</span><br><span class="line">                Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, selfPackageUri);</span><br><span class="line">                startActivityForResult(intent, <span class="number">100</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//安装应用</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接收“安装未知应用”权限的开启结果</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</span><br><span class="line">        <span class="keyword">if</span> (requestCode == <span class="number">100</span>) &#123;</span><br><span class="line">            installAPK();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Only fullscreen opaque activities can request orientation</li>
+</ul>
+<p>只有全屏不透明的<code>activity</code>才可以设置方向。这应该是个bug，在Android8.0中出现，8.1中被修复。</p>
+<p>我们的处理办法就是要么去掉设置方向的代码，要么舍弃透明效果。</p>
+<h1 id="Android9-0"><a href="#Android9-0" class="headerlink" title="Android9.0"></a>Android9.0</h1><ul>
+<li>在9.0中默认情况下启用网络传输层安全协议 (TLS)，默认情况下已停用明文支持。也就是不允许使用http请求，要求使用<code>https</code>。解决办法就是添加网络安全配置：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span> <span class="attr">android:networkSecurityConfig</span>=<span class="string">"@xml/network_security_config"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">network-security-config</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">base-config</span> <span class="attr">cleartextTrafficPermitted</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">network-security-config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--或者在AndroidManifest.xml中配置：</span></span><br><span class="line"><span class="comment">android:usesCleartextTraffic="true"</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>移除Apache HTTP 客户端</li>
+</ul>
+<p>在6.0中取消了对<code>Apache HTTP</code> 客户端的支持，Android9.0中直接移除了该库，要使用的话需要添加配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-library</span> <span class="attr">android:name</span>=<span class="string">"org.apache.http.legacy"</span> <span class="attr">android:required</span>=<span class="string">"false"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>前台服务调用</li>
+</ul>
+<p>Android 9.0 要求创建一个前台服务需要请求 FOREGROUND_SERVICE 权限，否则系统会引发 SecurityException。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;uses-permission android:name="android.permission.FOREGROUND_SERVICE" /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (android.os.Build.VERSION.SDK_INT &gt;= android.os.Build.VERSION_CODES.O) &#123;</span><br><span class="line">    startForegroundService(intentService);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    startService(intentService);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不能在非Acitivity环境中启动Activity</li>
+</ul>
+<p>在9.0 中，不能直接非 Activity 环境中（比如Service，Application）启动 Activity，否则会崩溃报错，解决办法就是加上<code>FLAG_ACTIVITY_NEW_TASK</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, TestActivity<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<h1 id="Android10"><a href="#Android10" class="headerlink" title="Android10"></a>Android10</h1><ul>
+<li>分区存储</li>
+</ul>
+<p>Android10中默认开启了分区存储，也就是沙盒模式。应用只能看到本应用专有的目录（通过 <code>Context.getExternalFilesDir()</code> 访问）以及特定类型的媒体。</p>
+<p>如果需要关闭这个功能可以配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:requestLegacyExternalStorage="true"</span><br></pre></td></tr></table></figure>
+<p>分区存储下，访问文件的方法：</p>
+<p>1）应用专属目录</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分区存储空间</span></span><br><span class="line"><span class="keyword">val</span> file = File(context.filesDir, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment">//应用专属外部存储空间</span></span><br><span class="line"><span class="keyword">val</span> appSpecificExternalDir = File(context.getExternalFilesDir(), filename)</span><br></pre></td></tr></table></figure>
+<p>2）访问公共媒体目录文件</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">"<span class="subst">$&#123;MediaStore.MediaColumns.DATE_ADDED&#125;</span> desc"</span>)</span><br><span class="line"><span class="keyword">if</span> (cursor != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">while</span> (cursor.moveToNext()) &#123;</span><br><span class="line">        <span class="keyword">val</span> id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))</span><br><span class="line">        <span class="keyword">val</span> uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)</span><br><span class="line">        println(<span class="string">"image uri is <span class="variable">$uri</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    cursor.close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3）SAF(存储访问框架–Storage Access Framework)</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> intent = Intent(Intent.ACTION_OPEN_DOCUMENT)</span><br><span class="line">intent.addCategory(Intent.CATEGORY_OPENABLE)</span><br><span class="line">intent.type = <span class="string">"image/*"</span></span><br><span class="line">startActivityForResult(intent, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequiresApi(Build.VERSION_CODES.KITKAT)</span></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityResult</span><span class="params">(requestCode: <span class="type">Int</span>, resultCode: <span class="type">Int</span>, <span class="keyword">data</span>: <span class="type">Intent</span>?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, <span class="keyword">data</span>)</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">data</span> == <span class="literal">null</span> || resultCode != Activity.RESULT_OK) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> (requestCode == <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="keyword">val</span> uri = <span class="keyword">data</span>.<span class="keyword">data</span></span><br><span class="line">        println(<span class="string">"image uri is <span class="variable">$uri</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>权限再次升级</li>
+</ul>
+<p>从Android10开始普通应用不再允许请求权限android.permission.READ_PHONE_STATE。而且，无论你的App是否适配过Android Q（既targetSdkVersion是否大于等于29），均无法再获取到设备IMEI等设备信息。</p>
+<p>如果Android10以下设备获取设备IMEI等信息，可以配置最大sdk版本：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxSdkVersion</span>=<span class="string">"28"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="Android-11"><a href="#Android-11" class="headerlink" title="Android 11"></a>Android 11</h1><ul>
+<li>分区存储强制执行</li>
+</ul>
+<p>没错，Android11强制执行分区存储，也就是沙盒模式。这次真的没有关闭功能了，离Android11出来也有一段时间了，还是抓紧适配把。</p>
+<ul>
+<li>修改电话权限</li>
+</ul>
+<p>改动了两个API：getLine1Number()和 getMsisdn() ，需要加上READ_PHONE_NUMBERS权限</p>
+<ul>
+<li>不允许自定义toast从后台显示了</li>
+<li>必须加上v2签名</li>
+<li>增加5g相关API</li>
+<li>后台位置访问权限再次限制</li>
+</ul>
+<p>你一定很奇怪，为什么<code>Android11</code>的适配就这么草草收尾了？这可是我们最需要的啊？</p>
+<p>哈哈，因为改动还是挺多的，所以给你推荐文章—<code>Android11最全适配指南</code>，应该有很多朋友都看过了：<a href="https://juejin.cn/post/6860370635664261128，或者点击文末的“阅读原文”即可。" target="_blank" rel="noopener">https://juejin.cn/post/6860370635664261128，或者点击文末的“阅读原文”即可。</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://juejin.cn/post/6898176468661059597" target="_blank" rel="noopener">https://juejin.cn/post/6898176468661059597</a> <a href="https://blog.csdn.net/qq_17766199/article/details/80965631" target="_blank" rel="noopener">https://blog.csdn.net/qq_17766199/article/details/80965631</a> <a href="https://weilu.blog.csdn.net/article/details/98336225" target="_blank" rel="noopener">https://weilu.blog.csdn.net/article/details/98336225</a></p>
+<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><p><a href="http://mp.weixin.qq.com/s?__biz=MzIxNzU1Nzk3OQ==&amp;mid=2247488324&amp;idx=1&amp;sn=617d63108f012d02d426817ee62978cd&amp;chksm=97f6adf0a08124e652c7c03bfb956c6a3823a1aab4d1ace50042a2db2c76cce2c903379355b4&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">Android 适配之版本适配</a></p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxNzU1Nzk3OQ==&amp;mid=2247491967&amp;idx=1&amp;sn=631436731bd07a3f6b8dbb90ec513ce0&amp;chksm=97f55fcba082d6dd0e1180ab7d505ce4d5786d8acb4f81d44afc47360739f2e4d7d0705d1e7b&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">谷歌：未来 Android 手机将获得 4 年软件更新</a></p>
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxNzU1Nzk3OQ==&amp;mid=2247487853&amp;idx=1&amp;sn=1ab4a680b0d9e76f2226311f1e2ae53f&amp;chksm=97f6afd9a08126cfef73a185fd984bf8cfda36c24573134fde196fb9ade4278f5a61f4a6a14e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">Android-图片的选择，裁剪，压缩，适配高版本</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="hackycy 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hackycy 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/15/多线程NSThread基础小记/" rel="next" title="多线程NSThread基础小记">
+                <i class="fa fa-chevron-left"></i> 多线程NSThread基础小记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg" alt="hackycy">
+            
+              <p class="site-author-name" itemprop="name">hackycy</p>
+              <p class="site-description motion-element" itemprop="description">“被窝是天堂开设在人间的分店。”</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">139</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hackycy" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:qa894178522@qq.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/101705678931630585525" target="_blank" title="Google" rel="external nofollow"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.si-yee.com" title="思忆技术" target="_blank">思忆技术</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lover.si-yee.com" title="我与她的爱情计时器" target="_blank">我与她的爱情计时器</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.aliyun.com" title="阿里云" target="_blank">阿里云</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android4-4"><span class="nav-number">2.</span> <span class="nav-text">Android4.4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android5-0"><span class="nav-number">3.</span> <span class="nav-text">Android5.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android6-0"><span class="nav-number">4.</span> <span class="nav-text">Android6.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-7-0"><span class="nav-number">5.</span> <span class="nav-text">Android 7.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android8-0"><span class="nav-number">6.</span> <span class="nav-text">Android8.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android9-0"><span class="nav-number">7.</span> <span class="nav-text">Android9.0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android10"><span class="nav-number">8.</span> <span class="nav-text">Android10</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-11"><span class="nav-number">9.</span> <span class="nav-text">Android 11</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">10.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关阅读"><span class="nav-number">11.</span> <span class="nav-text">相关阅读</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hackycy <a class="theme-link" target="_blank" rel="external nofollow" href="http://beian.miit.gov.cn/">粤ICP备19140352号-1</a></span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">
+    <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>次
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">
+    <span>
+    本站总字数:<span>320.9k</span>字
+    </span>
+    &nbsp|&nbsp
+  </div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://zjyzy.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://hackycy.github.io/2020/12/22/Android各版本迭代信息集合/';
+        this.page.identifier = '2020/12/22/Android各版本迭代信息集合/';
+        this.page.title = 'Android各版本迭代信息集合';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zjyzy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+<!-- ҳ����С���� --> 
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
