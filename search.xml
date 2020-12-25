@@ -1,6 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Flutter屏幕适配攻略</title>
+    <url>/2020/12/25/Flutter%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D%E6%94%BB%E7%95%A5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>目前移动端的设备已经非常多，并且不同的设备手机屏幕也不相同。</strong></p>
+<p><strong>目前做移动端开发都要针对不同的设备进行一定的适配，无论是移动原生开发、小程序、H5页面。</strong></p>
+<a id="more"></a>
+<h1 id="Flutter中的单位"><a href="#Flutter中的单位" class="headerlink" title="Flutter中的单位"></a>Flutter中的单位</h1><p>在进行Flutter开发时，我们通常不需要传入尺寸的单位，那么Flutter使用的是什么单位呢？</p>
+<ul>
+<li>Flutter使用的是类似于iOS中的点pt，也就是point。</li>
+<li>所以我们经常说iPhone6的尺寸是375x667，但是它的分辨率其实是750x1334。</li>
+<li>因为iPhone6的dpr（devicePixelRatio）是2.0，iPhone6plus的dpr是3.0</li>
+</ul>
+<p><img src="1.png" alt></p>
+<blockquote>
+<p> 在Flutter开发中，我们使用的是对应的逻辑分辨率</p>
+</blockquote>
+<h1 id="Flutter设备信息"><a href="#Flutter设备信息" class="headerlink" title="Flutter设备信息"></a>Flutter设备信息</h1><p>获取屏幕上的一些信息，可以通过MediaQuery：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.媒体查询信息</span></span><br><span class="line"><span class="keyword">final</span> mediaQueryData = MediaQuery.of(context);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.获取宽度和高度</span></span><br><span class="line"><span class="keyword">final</span> screenWidth = mediaQueryData.size.width;</span><br><span class="line"><span class="keyword">final</span> screenHeight = mediaQueryData.size.height;</span><br><span class="line"><span class="keyword">final</span> physicalWidth = <span class="built_in">window</span>.physicalSize.width;</span><br><span class="line"><span class="keyword">final</span> physicalHeight = <span class="built_in">window</span>.physicalSize.height;</span><br><span class="line"><span class="keyword">final</span> dpr = <span class="built_in">window</span>.devicePixelRatio;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"屏幕width:<span class="subst">$screenWidth</span> height:<span class="subst">$screenHeight</span>"</span>);</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"分辨率: <span class="subst">$physicalWidth</span> - <span class="subst">$physicalHeight</span>"</span>);</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"dpr: <span class="subst">$dpr</span>"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.状态栏的高度</span></span><br><span class="line"><span class="comment">// 有刘海的屏幕:44 没有刘海的屏幕为20</span></span><br><span class="line"><span class="keyword">final</span> statusBarHeight = mediaQueryData.padding.top;</span><br><span class="line"><span class="comment">// 有刘海的屏幕:34 没有刘海的屏幕0</span></span><br><span class="line"><span class="keyword">final</span> bottomHeight = mediaQueryData.padding.bottom;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"状态栏height: <span class="subst">$statusBarHeight</span> 底部高度:<span class="subst">$bottomHeight</span>"</span>);</span><br></pre></td></tr></table></figure>
+<p>获取一些设备相关的信息，可以使用官方提供的一个库：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">dependencies:</span><br><span class="line">  device_info: ^<span class="number">0.4</span><span class="number">.2</span>+<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h1 id="适配方案"><a href="#适配方案" class="headerlink" title="适配方案"></a>适配方案</h1><p>假如我们有下面这样一段代码：</p>
+<ul>
+<li>在屏幕中间显示一个200*200的Container</li>
+<li>Container中有一段文字是30</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HYHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"首页"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Container(</span><br><span class="line">          width: <span class="number">200</span>,</span><br><span class="line">          height: <span class="number">200</span>,</span><br><span class="line">          color: Colors.red,</span><br><span class="line">          alignment: Alignment.center,</span><br><span class="line">          child: Text(<span class="string">"Hello World"</span>, style: TextStyle(fontSize: <span class="number">30</span>, color: Colors.white),),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码在不同屏幕上会有不同的表现：</p>
+<ul>
+<li>很明显，如果按照上面的规则，在iPhone5上面，尺寸过大，在iPhone6plus上面尺寸过小</li>
+<li>在开发中，我们应该可以根据不同的屏幕来完成尺寸的缩放</li>
+</ul>
+<p><img src="2.png" alt></p>
+<p>在前端开发中，针对不同的屏幕常见的适配方案有下面几种：</p>
+<ul>
+<li>rem：<ul>
+<li>rem是给根标签（HTML标签）设置一个字体大小；</li>
+<li>但是不同的屏幕要动画设置不同的字体大小（可以通过媒体查询，也可以通过js动态计算）；</li>
+<li>其它所有的单位都使用rem单位（相对于根标签）；</li>
+</ul>
+</li>
+<li>vw、wh：<ul>
+<li>vw和vh是将屏幕（视口）分成100等份，一个1vw相当于是1%的大小；</li>
+<li>其它所有的单位都使用vw或wh单位；</li>
+</ul>
+</li>
+<li>rpx：<ul>
+<li>rpx是小程序中的适配方案，它将750px作为设计稿，1rpx=屏幕宽度/750；</li>
+<li>其它所有的单位都使用rpx单位；</li>
+</ul>
+</li>
+</ul>
+<p><strong>该文采用类似小程序的rpx方案来完成Flutter的适配</strong></p>
+<h1 id="rpx适配"><a href="#rpx适配" class="headerlink" title="rpx适配"></a>rpx适配</h1><p>小程序中rpx的原理是什么呢？</p>
+<ul>
+<li>不管是什么屏幕，统一分成750份</li>
+<li>在iPhone5上：1rpx = 320/750 = 0.4266 ≈ 0.42px</li>
+<li>在iPhone6上： 1rpx = 375/750 = 0.5px</li>
+<li>在iPhone6plus上：1rpx = 414/750 = 0.552px</li>
+</ul>
+<p>那么我们就可以通过上面的计算方式，算出一个rpx，再将自己的size和rpx单位相乘即可：</p>
+<ul>
+<li>比如100px的宽度：100 <em> 2 </em> rpx</li>
+<li>在iPhone5上计算出的结果是84px</li>
+<li>在iPhone6上计算出的结果是100px</li>
+<li>在iPhone6plus上计算出的结果是110.4px</li>
+</ul>
+<p>我们自己来封装一个工具类：</p>
+<ul>
+<li>工具类需要进行初始化，传入context</li>
+<li>可以通过传入context，利用媒体查询获取屏幕的宽度和高度</li>
+<li>也可以传入一个可选的参数，以什么尺寸作为设计稿</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HYSizeFit</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> MediaQueryData _mediaQueryData;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">double</span> screenWidth;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">double</span> screenHeight;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">double</span> rpx;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">double</span> px;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">void</span> initialize(BuildContext context, &#123;<span class="built_in">double</span> standardWidth = <span class="number">750</span>&#125;) &#123;</span><br><span class="line">    _mediaQueryData = MediaQuery.of(context);</span><br><span class="line">    screenWidth = _mediaQueryData.size.width;</span><br><span class="line">    screenHeight = _mediaQueryData.size.height;</span><br><span class="line">    rpx = screenWidth / standardWidth;</span><br><span class="line">    px = screenWidth / standardWidth * <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 按照像素来设置</span></span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">double</span> setPx(<span class="built_in">double</span> size) &#123;</span><br><span class="line">    <span class="keyword">return</span> HYSizeFit.rpx * size * <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 按照rxp来设置</span></span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">double</span> setRpx(<span class="built_in">double</span> size) &#123;</span><br><span class="line">    <span class="keyword">return</span> HYSizeFit.rpx * size;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化HYSizeFit类的属性：</p>
+<ul>
+<li>注意：必须在已经有MaterialApp的Widget中使用context，否则是无效的</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HYHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// 初始化HYSizeFit</span></span><br><span class="line">    HYSizeFit.initialize(context);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用rpx来完成屏幕适配：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HYHomePage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    HYSizeFit.initialize(context);</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"首页"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        child: Container(</span><br><span class="line">          width: HYSizeFit.setPx(<span class="number">200</span>),</span><br><span class="line">          height: HYSizeFit.setRpx(<span class="number">400</span>),</span><br><span class="line">          color: Colors.red,</span><br><span class="line">          alignment: Alignment.center,</span><br><span class="line">          child: Text(<span class="string">"Hello World"</span>, style: TextStyle(fontSize: HYSizeFit.setPx(<span class="number">30</span>), color: Colors.white),),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现效果：</p>
+<p><img src="4.png" alt></p>
+<h1 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h1><p>如果每次我们需要将现在的宽度或者高度，去使用HYSizeFit.setPx(200)或者HYSizeFit.setRpx(400)类似的方式去适配，显然看起来非常麻烦。</p>
+<p><strong>有没有更好的方案可以实现了？比如 200.px或者400.rpx，非常的清晰简洁</strong></p>
+<p>当然可以，我们需要依赖Dart语言的一个特性：extension</p>
+<ul>
+<li>Dart从2.7.0开始，可以通过extension来给现有的类进行扩展（事实上Swift里面也有）</li>
+<li>对现有的类包括：自定义的类、第三方库的类、系统的类</li>
+</ul>
+<p>比如我们现在对String类型扩展：</p>
+<ul>
+<li>扩展一个parseInt的方法，当然内部调用的是int.parse(this)，只是调用者变成了String本身</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 步骤一：扩展代码</span></span><br><span class="line"><span class="keyword">extension</span> NumberParsing <span class="keyword">on</span> <span class="built_in">String</span> &#123;</span><br><span class="line">  <span class="built_in">int</span> parseInt() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>.parse(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ···</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 步骤二：调用代码</span></span><br><span class="line"><span class="comment">// 导入扩展类对应的模块</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'string_apis.dart'</span>;</span><br><span class="line"><span class="comment">// 使用里面的方法</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'42'</span>.padLeft(<span class="number">5</span>)); <span class="comment">// 使用String原有的方法</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'42'</span>.parseInt()); <span class="comment">// 使用String扩展的方法</span></span><br></pre></td></tr></table></figure>
+<p>显然，数字（比如200、200.0）有对应的包装类int、double，我们可以对其进行扩展：</p>
+<p><strong>对int类型扩展</strong></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'../shared/size_fit.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extension</span> IntFit <span class="keyword">on</span> <span class="built_in">int</span> &#123;</span><br><span class="line">  <span class="built_in">double</span> <span class="keyword">get</span> px &#123;</span><br><span class="line">    <span class="keyword">return</span> HYSizeFit.setPx(<span class="keyword">this</span>.toDouble());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">double</span> <span class="keyword">get</span> rpx &#123;</span><br><span class="line">    <span class="keyword">return</span> HYSizeFit.setRpx(<span class="keyword">this</span>.toDouble());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>对double类型扩展</strong></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'../shared/size_fit.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extension</span> DoubleFit <span class="keyword">on</span> <span class="built_in">double</span> &#123;</span><br><span class="line">  <span class="built_in">double</span> <span class="keyword">get</span> px &#123;</span><br><span class="line">    <span class="keyword">return</span> HYSizeFit.setPx(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">double</span> <span class="keyword">get</span> rpx &#123;</span><br><span class="line">    <span class="keyword">return</span> HYSizeFit.setRpx(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>使用</strong></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./extension/double_extension.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./extension/int_extension.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="number">200.</span>px); <span class="comment">// 在不同屏幕下200px是不同的值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">400.</span>rpx); <span class="comment">// 在不同屏幕下400rpx是不同的值</span></span><br></pre></td></tr></table></figure>
+<h1 id="转载"><a href="#转载" class="headerlink" title="转载"></a>转载</h1><p>来源：掘金 - <a href="https://juejin.cn/post/6844904176489594893" target="_blank" rel="noopener">https://juejin.cn/post/6844904176489594893</a></p>
+]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>Flutter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android各版本迭代信息集合</title>
     <url>/2020/12/22/Android%E5%90%84%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3%E4%BF%A1%E6%81%AF%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天分享的面试题是：</p>
