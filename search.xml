@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>解决Mac出现Kotlin could not find the required JDK tools in the Java installation</title>
+    <url>/2020/12/25/%E8%A7%A3%E5%86%B3Mac%E5%87%BA%E7%8E%B0Kotlin-could-not-find-the-required-JDK-tools-in-the-Java-installation/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&gt; Task :compileKotlin FAILED</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">Execution failed <span class="keyword">for</span> task <span class="string">':compileKotlin'</span>.</span><br><span class="line">&gt; Kotlin could not find the require JDK tools <span class="keyword">in</span> the Java installtion <span class="string">'/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home'</span> used by Gradle. Make sure is running on a JDK, not JRE.</span><br></pre></td></tr></table></figure>
+<p>在混编开发过程中，打包的时候出现了该问题，排查很久，总算找到了原因：<strong>没有配置JAVA_HOME环境变量</strong>。</p>
+<a id="more"></a>
+<p><strong>解决方案</strong></p>
+<p>安装好JDK后，获取JAVA的安装路径</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/libexec/java_home -V</span><br><span class="line">Matching Java Virtual Machines (2):</span><br><span class="line">    1.8.201.09 (x86_64) <span class="string">"Oracle Corporation"</span> - <span class="string">"Java"</span> /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span><br><span class="line">    1.8.0_201 (x86_64) <span class="string">"Oracle Corporation"</span> - <span class="string">"Java SE 8"</span> /Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home</span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+<p>mac下编辑profile：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># android</span></span><br><span class="line"><span class="built_in">export</span> ANDROID_HOME=/Users/zjyzy/Library/Android/sdk</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;PATH&#125;</span>:<span class="variable">$&#123;ANDROID_HOME&#125;</span>/tools</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;PATH&#125;</span>:<span class="variable">$&#123;ANDROID_HOME&#125;</span>/platform-tools</span><br><span class="line"></span><br><span class="line"><span class="comment"># java</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home</span><br><span class="line"><span class="built_in">export</span> CLASSPAHT=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>:</span><br></pre></td></tr></table></figure>
+<p>编辑完成后，按<code>esc</code>退出插入模式，输入<code>:wq</code>退出保存即可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>生效后验证：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+<p>问题解决。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flutter屏幕适配攻略</title>
     <url>/2020/12/25/Flutter%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D%E6%94%BB%E7%95%A5/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>目前移动端的设备已经非常多，并且不同的设备手机屏幕也不相同。</strong></p>

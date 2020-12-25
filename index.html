@@ -297,7 +297,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">140</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">141</span></a>
   </li>
         
         
@@ -340,6 +340,193 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+      	
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2020/12/25/解决Mac出现Kotlin-could-not-find-the-required-JDK-tools-in-the-Java-installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hackycy">
+      <meta itemprop="description" content="“被窝是天堂开设在人间的分店。”">
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="思忆技术">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/25/解决Mac出现Kotlin-could-not-find-the-required-JDK-tools-in-the-Java-installation/" itemprop="url">
+                  解决Mac出现Kotlin could not find the required JDK tools in the Java installation
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-25 18:17:38 / 修改时间：10:25:52" itemprop="dateCreated datePublished" datetime="2020-12-25T18:17:38+00:00">2020-12-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/12/25/解决Mac出现Kotlin-could-not-find-the-required-JDK-tools-in-the-Java-installation/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/12/25/解决Mac出现Kotlin-could-not-find-the-required-JDK-tools-in-the-Java-installation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+          
+            <span class="post-letters-count">
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-right"></i>
+              <span>字数统计:260字</span>
+                &nbsp; | &nbsp;
+              <i class="fa fa-align-left"></i>
+              <span>阅读时长:1分</span>
+            </span>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; Task :compileKotlin FAILED</span><br><span class="line"></span><br><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">Execution failed <span class="keyword">for</span> task <span class="string">':compileKotlin'</span>.</span><br><span class="line">&gt; Kotlin could not find the require JDK tools <span class="keyword">in</span> the Java installtion <span class="string">'/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home'</span> used by Gradle. Make sure is running on a JDK, not JRE.</span><br></pre></td></tr></table></figure>
+<p>在混编开发过程中，打包的时候出现了该问题，排查很久，总算找到了原因：<strong>没有配置JAVA_HOME环境变量</strong>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/12/25/解决Mac出现Kotlin-could-not-find-the-required-JDK-tools-in-the-Java-installation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+      
     
       
       	
@@ -403,7 +590,7 @@
                 
               
 
-              <time title="创建时间：2020-12-25 10:08:58 / 修改时间：07:20:55" itemprop="dateCreated datePublished" datetime="2020-12-25T10:08:58+00:00">2020-12-25</time>
+              <time title="创建时间：2020-12-25 10:08:58 / 修改时间：10:25:52" itemprop="dateCreated datePublished" datetime="2020-12-25T10:08:58+00:00">2020-12-25</time>
             
 
             
@@ -607,7 +794,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:55" itemprop="dateModified" datetime="2020-12-25T07:20:55+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -806,7 +993,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:56" itemprop="dateModified" datetime="2020-12-25T07:20:56+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -1006,7 +1193,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:55" itemprop="dateModified" datetime="2020-12-25T07:20:55+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -1204,7 +1391,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:56" itemprop="dateModified" datetime="2020-12-25T07:20:56+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -1402,7 +1589,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:56" itemprop="dateModified" datetime="2020-12-25T07:20:56+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -1602,7 +1789,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:56" itemprop="dateModified" datetime="2020-12-25T07:20:56+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -1809,7 +1996,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:56" itemprop="dateModified" datetime="2020-12-25T07:20:56+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -2007,7 +2194,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-25 07:20:56" itemprop="dateModified" datetime="2020-12-25T07:20:56+00:00">2020-12-25</time>
+                <time title="修改时间：2020-12-25 10:25:52" itemprop="dateModified" datetime="2020-12-25T10:25:52+00:00">2020-12-25</time>
               
             
           </span>
@@ -2129,213 +2316,11 @@
 
       
     
-      
-      	
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hackycy.github.io/2020/08/19/重学Android之FileProvider/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hackycy">
-      <meta itemprop="description" content="“被窝是天堂开设在人间的分店。”">
-      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.1006.1006.180/006oXysjly8g5r75wnp14j30ry0rydi1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="思忆技术">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/19/重学Android之FileProvider/" itemprop="url">
-                  重学Android之FileProvider
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-19 10:55:20" itemprop="dateCreated datePublished" datetime="2020-08-19T10:55:20+00:00">2020-08-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-12-25 07:20:56" itemprop="dateModified" datetime="2020-12-25T07:20:56+00:00">2020-12-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/19/重学Android之FileProvider/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/08/19/重学Android之FileProvider/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-          
-            <span class="post-letters-count">
-                &nbsp; | &nbsp;
-              <i class="fa fa-align-right"></i>
-              <span>字数统计:3.7k字</span>
-                &nbsp; | &nbsp;
-              <i class="fa fa-align-left"></i>
-              <span>阅读时长:15分</span>
-            </span>
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目之前使用了第三方库的时候，对于<code>FileProvider</code>的适配还不是很了解，因为使用时第三方库已经进行了适配。但是自己去覆写别人的第三方库的时候了解到了<code>FileProvider</code>的适配。</p>
-<p>对于Android 7.0，提供了非常多的变化，详细的可以阅读官方文档<a href="https://developer.android.com/about/versions/nougat/android-7.0-changes.html" target="_blank" rel="noopener">Android 7.0 行为变更</a>，但是该文章主要叙述关于<code>FileProvider</code>的适配。</p>
-<blockquote>
-<p> 在官方7.0的以上的系统中，尝试传递 <code>file://URI</code>可能会触发<code>FileUriExposedException</code>。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/19/重学Android之FileProvider/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-      
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2380,7 +2365,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">140</span>
+                    <span class="site-state-item-count">141</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2703,7 +2688,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>322.6k</span>字
+    本站总字数:<span>322.9k</span>字
     </span>
     &nbsp|&nbsp
   </div>
