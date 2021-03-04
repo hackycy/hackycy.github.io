@@ -843,11 +843,16 @@ int modeFlags)</code>和<code>revokeUriPermission(Uri uri, int modeFlags)</code>
 <p>我是使用<a href="https://www.vultr.com/" target="_blank" rel="noopener">vultr</a>，新建主机这里就不多详细叙述了。选择CentOS 7的即可。</p>
 <p>新建主机后拿到IP地址查看下是否能够Ping通，Ping不同也无法使用SSH连接的。</p>
 <p><strong>SSH连接后敲命令搭建好SSR的服务器环境：</strong></p>
+<p><strong>CentOS:</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yum install python-setuptools &amp;&amp; easy_install pip</span><br><span class="line">$ pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<p><strong>Debian / Ubuntu:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install python-pip</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<p><strong>Windows:</strong></p>
+<p>See <a href="https://github.com/shadowsocks/shadowsocks/wiki/Install-Shadowsocks-Server-on-Windows" target="_blank" rel="noopener">Install Server on Windows</a></p>
 <p><strong>简单用法</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssserver -p 443 -k password -m aes-256-cfb</span><br></pre></td></tr></table></figure>
 <p><strong>后台运行</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ssserver -p 12345 -k pas0swo0rd -m aes-256-cfb --user nobody -d start</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo ssserver -p 443 -k password -m aes-256-cfb --user nobody -d start</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>-p</code>指定端口，<code>-k</code>指定密码，<code>-m</code>指定加密方式，客户端连接时都需要对应上</p>
 </blockquote>

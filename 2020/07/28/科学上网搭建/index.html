@@ -143,7 +143,7 @@
 <meta property="og:site_name" content="思忆技术">
 <meta property="og:description" content="前言最近某灯挂的厉害，导致Google Download的东西实在是太慢了。同事给了一些SSR的搭建方法。以此记录了下来。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-02-26T02:21:25.944Z">
+<meta property="og:updated_time" content="2021-03-04T08:59:03.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网搭建">
 <meta name="twitter:description" content="前言最近某灯挂的厉害，导致Google Download的东西实在是太慢了。同事给了一些SSR的搭建方法。以此记录了下来。">
@@ -417,7 +417,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2021-02-26 02:21:25" itemprop="dateModified" datetime="2021-02-26T02:21:25+00:00">2021-02-26</time>
+                <time title="修改时间：2021-03-04 08:59:03" itemprop="dateModified" datetime="2021-03-04T08:59:03+00:00">2021-03-04</time>
               
             
           </span>
@@ -470,7 +470,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:271字</span>
+              <span>字数统计:287字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:1分</span>
@@ -496,11 +496,16 @@
 <p>我是使用<a href="https://www.vultr.com/" target="_blank" rel="noopener">vultr</a>，新建主机这里就不多详细叙述了。选择CentOS 7的即可。</p>
 <p>新建主机后拿到IP地址查看下是否能够Ping通，Ping不同也无法使用SSH连接的。</p>
 <p><strong>SSH连接后敲命令搭建好SSR的服务器环境：</strong></p>
+<p><strong>CentOS:</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yum install python-setuptools &amp;&amp; easy_install pip</span><br><span class="line">$ pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<p><strong>Debian / Ubuntu:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python-pip</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<p><strong>Windows:</strong></p>
+<p>See <a href="https://github.com/shadowsocks/shadowsocks/wiki/Install-Shadowsocks-Server-on-Windows" target="_blank" rel="noopener">Install Server on Windows</a></p>
 <p><strong>简单用法</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssserver -p 443 -k password -m aes-256-cfb</span><br></pre></td></tr></table></figure>
 <p><strong>后台运行</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ssserver -p 12345 -k pas0swo0rd -m aes-256-cfb --user nobody -d start</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ssserver -p 443 -k password -m aes-256-cfb --user nobody -d start</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>-p</code>指定端口，<code>-k</code>指定密码，<code>-m</code>指定加密方式，客户端连接时都需要对应上</p>
 </blockquote>
