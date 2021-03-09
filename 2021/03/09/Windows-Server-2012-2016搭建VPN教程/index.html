@@ -203,7 +203,7 @@
 <meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/test_2.png">
 <meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/test_3.png">
 <meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/test_4.png">
-<meta property="og:updated_time" content="2021-03-09T03:50:28.493Z">
+<meta property="og:updated_time" content="2021-03-09T04:28:48.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows Server 2012&#x2F;2016搭建VPN教程">
 <meta name="twitter:description" content="前置准备 Windows Server 2012/2016版服务器   该文以腾讯云创建的Server 2016服务器为例">
@@ -461,7 +461,7 @@
                 
               
 
-              <time title="创建时间：2021-03-09 10:17:53 / 修改时间：03:50:28" itemprop="dateCreated datePublished" datetime="2021-03-09T10:17:53+00:00">2021-03-09</time>
+              <time title="创建时间：2021-03-09 10:17:53 / 修改时间：04:28:48" itemprop="dateCreated datePublished" datetime="2021-03-09T10:17:53+00:00">2021-03-09</time>
             
 
             
@@ -519,7 +519,7 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:880字</span>
+              <span>字数统计:871字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
               <span>阅读时长:3分</span>
@@ -546,9 +546,9 @@
 <p>该文以腾讯云创建的Server 2016服务器为例</p>
 </blockquote>
 <a id="more"></a>
-<p>需要先放通服务器安全组所有端口，以腾讯云服务器为例，如果知道哪些是VPN所需端口可以自行配置放通。</p>
-<p>以及关闭服务器的防火墙。</p>
+<p>需要先放通服务器安全组端口，以腾讯云服务器为例：</p>
 <p><img src="server_port.png" alt></p>
+<p>以及关闭服务器的防火墙。</p>
 <h1 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h1><p>连接远程服务器，打开服务器管理器。</p>
 <p><img src="open_manager.png" alt></p>
 <p>点击<code>添加角色和功能</code>，进行下图所示配置。</p>
@@ -618,7 +618,10 @@
 <p><img src="config_31.png" alt></p>
 <p><img src="config_32.png" alt></p>
 <p>再次配置本地服务器属性</p>
-<p>选择<code>安全</code>标签页，配置允许L2TP策略选项，并填入预共享密钥，点击确定</p>
+<p>选择<code>安全</code>标签页，配置允许L2TP策略选项，并填入<strong>预共享密钥</strong>，点击确定</p>
+<blockquote>
+<p>务必记住该密钥，后续需要填写</p>
+</blockquote>
 <p><img src="config_33.png" alt></p>
 <p>点击确定</p>
 <p><img src="config_34.png" alt></p>
