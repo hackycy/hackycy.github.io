@@ -1,6 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Windows Server 2012/2016搭建VPN教程</title>
+    <url>/2021/03/09/Windows-Server-2012-2016%E6%90%AD%E5%BB%BAVPN%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h1><ul>
+<li>Windows Server 2012/2016版服务器</li>
+</ul>
+<blockquote>
+<p>该文以腾讯云创建的Server 2016服务器为例</p>
+</blockquote>
+<a id="more"></a>
+<p>需要先放通服务器安全组所有端口，以腾讯云服务器为例，如果知道哪些是VPN所需端口可以自行配置放通。</p>
+<p>以及关闭服务器的防火墙。</p>
+<p><img src="server_port.png" alt></p>
+<h1 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h1><p>连接远程服务器，打开服务器管理器。</p>
+<p><img src="open_manager.png" alt></p>
+<p>点击<code>添加角色和功能</code>，进行下图所示配置。</p>
+<p><img src="add_role.png" alt></p>
+<p>开始之前直接点击下一步</p>
+<p><img src="config_1.png" alt></p>
+<p>安装类型直接点击下一步</p>
+<p><img src="config_2.png" alt></p>
+<p>服务器选择直接点击下一步</p>
+<p><img src="config_3.png" alt></p>
+<p>服务器角色增加<code>网络策略和访问服务</code>以及<code>远程访问</code></p>
+<p><img src="config_4.png" alt></p>
+<p>选择添加功能</p>
+<p><img src="config_5.png" alt></p>
+<p>勾选后点击下一步</p>
+<p><img src="config_6.png" alt></p>
+<p>功能默认即可，直接点击下一步</p>
+<p><img src="config_7.png" alt></p>
+<p>网络策略和访问服务直接点击下一步</p>
+<p><img src="config_8.png" alt></p>
+<p>远程访问直接点击下一步</p>
+<p><img src="config_9.png" alt></p>
+<p>角色服务增加<code>DirectAccess和VPN(RAS)</code>以及路由</p>
+<p><img src="config_10.png" alt></p>
+<p>选择添加功能即可</p>
+<p><img src="config_11.png" alt></p>
+<p>勾选后点击下一步</p>
+<p><img src="config_12.png" alt></p>
+<p>Web服务器角色直接点击下一步</p>
+<p><img src="config_13.png" alt></p>
+<p>角色服务默认即可直接点击下一步</p>
+<p><img src="config_14.png" alt></p>
+<p>确认安装</p>
+<p><img src="config_15.png" alt></p>
+<p>点击安装后等待安装完毕关闭即可。</p>
+<p><img src="config_16.png" alt></p>
+<p>打开服务器管理器，点击工具，选择路由和远程访问</p>
+<p><img src="config_17.png" alt></p>
+<p>右键本地服务器，选择“配置并启用路由和远程访问”，启动配置向导。</p>
+<p><img src="config_18.png" alt></p>
+<p>点击下一步</p>
+<p><img src="config_19.png" alt></p>
+<p>选择自定义配置</p>
+<p><img src="config_20.png" alt></p>
+<p>全部勾选，并点击下一步</p>
+<p><img src="config_21.png" alt></p>
+<p>点击完成</p>
+<p><img src="config_22.png" alt></p>
+<p>如出现该提示直接点击确定</p>
+<p><img src="config_23.png" alt></p>
+<p>点击启动服务</p>
+<p><img src="config_24.png" alt></p>
+<p>展开本地服务器，展开<code>IPv4</code>，右键<code>NAT</code>，选择<code>新建接口</code></p>
+<p><img src="config_25.png" alt></p>
+<p>选择<code>以太网</code>，点击确定</p>
+<p><img src="config_26.png" alt></p>
+<p>勾选公用以及启用NAT，如图所示，点击确定</p>
+<p><img src="config_27.png" alt></p>
+<p>再次展开本地服务器，展开<code>IPv4</code>，右键<code>NAT</code>，选择<code>新建接口</code></p>
+<p>选择<code>内部</code>，点击确定</p>
+<p><img src="config_28.png" alt></p>
+<p>勾选专用，点击确定</p>
+<p><img src="config_29.png" alt></p>
+<p>配置本地服务器属性</p>
+<p><img src="config_30.png" alt></p>
+<p>点击<code>IPv4</code>标签页为远端连接分配IP地址池</p>
+<p><img src="config_31.png" alt></p>
+<p><img src="config_32.png" alt></p>
+<p>再次配置本地服务器属性</p>
+<p>选择<code>安全</code>标签页，配置允许L2TP策略选项，并填入预共享密钥，点击确定</p>
+<p><img src="config_33.png" alt></p>
+<p>点击确定</p>
+<p><img src="config_34.png" alt></p>
+<p>打开服务器管理器，点击工具选择计算机管理</p>
+<p><img src="config_35.png" alt></p>
+<p>展开本地用户和组，选择新建组</p>
+<p><img src="config_36.png" alt></p>
+<p>展开本地用户和组，选择新用户</p>
+<p><img src="config_37.png" alt></p>
+<p>点击新建的用户名右键选择属性</p>
+<p><img src="config_38.png" alt></p>
+<p>按图中依次点击<code>隶属于</code>–<code>添加</code>–<code>高级</code>—<code>立即查找</code>—<code>VPNGroup（刚刚创建的组）</code>—<code>确定</code></p>
+<p><img src="config_39.png" alt></p>
+<p>点击确定</p>
+<p><img src="config_40.png" alt></p>
+<p>配置 VPN 访问权限，回到服务器管理器，点击<code>NAPS</code>–<code>选择服务器</code>–启动<code>网络策略服务器</code>配置</p>
+<p><img src="config_41.png" alt></p>
+<p>展开策略，右键点击网络策略并新建</p>
+<p><img src="config_42.png" alt></p>
+<p>填写名称并在“网络访问服务器的类型”中选择<code>远程访问服务器(VPN 拨号)</code>，点击下一步</p>
+<p><img src="config_43.png" alt></p>
+<p>在指定条件中，根据实际需求，选择合适的匹配条件。比如，文中选择了域中的<code>VPNGroup</code>用户组。</p>
+<p><img src="config_44.png" alt></p>
+<p><img src="config_45.png" alt></p>
+<p><img src="config_46.png" alt></p>
+<p>点击下一步</p>
+<p><img src="config_47.png" alt></p>
+<p>点击下一步</p>
+<p><img src="config_48.png" alt></p>
+<p>点击下一步</p>
+<p><img src="config_49.png" alt></p>
+<p>点击下一步</p>
+<p><img src="config_50.png" alt></p>
+<p>点击完成</p>
+<p><img src="config_51.png" alt></p>
+<p>然后重启服务器（重启服务）但懒得找服务直接重启服务器了。</p>
+<p>重启完成后打开服务器管理器，找到远程访问，并启动对应的服务。</p>
+<p><img src="config_52.png" alt></p>
+<p>右键启动即可</p>
+<p><img src="config_53.png" alt></p>
+<h1 id="连接测试"><a href="#连接测试" class="headerlink" title="连接测试"></a>连接测试</h1><h2 id="Mac环境"><a href="#Mac环境" class="headerlink" title="Mac环境"></a>Mac环境</h2><p>打开<code>设置</code>—<code>网络</code>，点击<code>+</code>号新建</p>
+<p><img src="test_1.png" alt></p>
+<p>选择图中对应类型</p>
+<p><img src="test_2.png" alt></p>
+<p><img src="test_3.png" alt></p>
+<p><img src="test_4.png" alt></p>
+<h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a href="https://www.365jz.com/article/24912" target="_blank" rel="noopener">https://www.365jz.com/article/24912</a></p>
+<p><a href="https://me.jinchuang.org/archives/381.html" target="_blank" rel="noopener">https://me.jinchuang.org/archives/381.html</a></p>
+]]></content>
+      <categories>
+        <category>程序人生</category>
+      </categories>
+  </entry>
+  <entry>
     <title>利用Canvas进行前端图片压缩</title>
     <url>/2021/02/25/%E5%88%A9%E7%94%A8Canvas%E8%BF%9B%E8%A1%8C%E5%89%8D%E7%AB%AF%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>纯前端利用Canvas来进行图片压缩的方法</strong></p>
