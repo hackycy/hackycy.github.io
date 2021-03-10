@@ -132,6 +132,34 @@
 <p><img src="test_2.png" alt></p>
 <p><img src="test_3.png" alt></p>
 <p><img src="test_4.png" alt></p>
+<h2 id="Win10环境"><a href="#Win10环境" class="headerlink" title="Win10环境"></a>Win10环境</h2><p>打开<code>设置</code>—<code>网络和Internet</code>—<code>VPN</code></p>
+<p><img src="wtest_1.png" alt></p>
+<p>配置如图所示</p>
+<p><img src="wtest_2.png" alt></p>
+<p><img src="wtest_3.png" alt></p>
+<h1 id="错误修复"><a href="#错误修复" class="headerlink" title="错误修复"></a>错误修复</h1><p>这边测试在Win7或Win10连接时会出现<code>无法建立计算机与VPN服务器之间的网络连接,因为远程服务器未响应</code>的问题。查找了文章修复了问题。</p>
+<h2 id="错误1：因为没有修改过注册表，所以是报这样的错误"><a href="#错误1：因为没有修改过注册表，所以是报这样的错误" class="headerlink" title="错误1：因为没有修改过注册表，所以是报这样的错误"></a>错误1：因为没有修改过注册表，所以是报这样的错误</h2><p><img src="fix_1.jpg" alt></p>
+<p><strong>解决办法</strong></p>
+<p>按<code>windows图标键 + R键</code> &gt;在运行中输入<code>regedit</code>，单击<code>确定</code>，进入<code>注册表编辑器</code></p>
+<p><img src="fix_2.png" alt></p>
+<p>在注册表编辑器”页面的左侧导航树点开 <code>HKEY_LOCAL_MACHINE</code>&gt;<code>SYSTEM</code>&gt;<code>CurrentControlSet</code>&gt;<code>Services</code>&gt;<code>PolicyAgent</code></p>
+<p><img src="fix_3.jpg" alt></p>
+<p>在右边空白处新建 &gt; <code>DWORD值</code>，名称为<code>AssumeUDPEncapsulationContextOnSendRule</code></p>
+<p><img src="fix_4.jpg" alt></p>
+<p>右键单击<code>AssumeUDPEncapsulationContextOnSendRule</code>，选择“修改”，进入修改界面，修改值为<code>2</code>(表示可以与位于NAT设备后方的服务器建立安全关联)</p>
+<p><img src="fix_5.jpg" alt></p>
+<blockquote>
+<p>重启电脑即可。一般Win7配置完该步骤后即可连接，但Win10还会出现问题。</p>
+</blockquote>
+<h2 id="错误2：修改完注册表，错误就变了，是因为认证的协议问题"><a href="#错误2：修改完注册表，错误就变了，是因为认证的协议问题" class="headerlink" title="错误2：修改完注册表，错误就变了，是因为认证的协议问题"></a>错误2：修改完注册表，错误就变了，是因为认证的协议问题</h2><p><img src="fix_6.jpg" alt></p>
+<p><strong>解决办法</strong></p>
+<p>打开更改适配器选项，找到对应的VPN名称的适配器，右键属性</p>
+<p><img src="fix_7.jpg" alt></p>
+<p>打开安全选项，选择使用这些协议勾上；注意此处还有高级设置里面的L2TP身份验证类型，这里也要填写的（秘钥方式还是证书方式）</p>
+<p><img src="fix_8.jpg" alt></p>
+<blockquote>
+<p>再次连接，即可修复</p>
+</blockquote>
 <h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a href="https://www.365jz.com/article/24912" target="_blank" rel="noopener">https://www.365jz.com/article/24912</a></p>
 <p><a href="https://me.jinchuang.org/archives/381.html" target="_blank" rel="noopener">https://me.jinchuang.org/archives/381.html</a></p>
 ]]></content>

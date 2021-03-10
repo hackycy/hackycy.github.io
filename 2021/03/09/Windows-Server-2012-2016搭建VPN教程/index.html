@@ -203,7 +203,18 @@
 <meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/test_2.png">
 <meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/test_3.png">
 <meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/test_4.png">
-<meta property="og:updated_time" content="2021-03-09T04:28:48.419Z">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/wtest_1.png">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/wtest_2.png">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/wtest_3.png">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_1.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_2.png">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_3.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_4.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_5.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_6.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_7.jpg">
+<meta property="og:image" content="http://hackycy.github.io/2021/03/09/Windows-Server-2012-2016搭建VPN教程/fix_8.jpg">
+<meta property="og:updated_time" content="2021-03-10T02:55:14.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows Server 2012&#x2F;2016搭建VPN教程">
 <meta name="twitter:description" content="前置准备 Windows Server 2012/2016版服务器   该文以腾讯云创建的Server 2016服务器为例">
@@ -461,12 +472,24 @@
                 
               
 
-              <time title="创建时间：2021-03-09 10:17:53 / 修改时间：04:28:48" itemprop="dateCreated datePublished" datetime="2021-03-09T10:17:53+00:00">2021-03-09</time>
+              <time title="创建时间：2021-03-09 10:17:53" itemprop="dateCreated datePublished" datetime="2021-03-09T10:17:53+00:00">2021-03-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-03-10 02:55:14" itemprop="dateModified" datetime="2021-03-10T02:55:14+00:00">2021-03-10</time>
               
             
           </span>
@@ -519,10 +542,10 @@
             <span class="post-letters-count">
                 &nbsp; | &nbsp;
               <i class="fa fa-align-right"></i>
-              <span>字数统计:871字</span>
+              <span>字数统计:1.2k字</span>
                 &nbsp; | &nbsp;
               <i class="fa fa-align-left"></i>
-              <span>阅读时长:3分</span>
+              <span>阅读时长:4分</span>
             </span>
           
 
@@ -668,6 +691,34 @@
 <p><img src="test_2.png" alt></p>
 <p><img src="test_3.png" alt></p>
 <p><img src="test_4.png" alt></p>
+<h2 id="Win10环境"><a href="#Win10环境" class="headerlink" title="Win10环境"></a>Win10环境</h2><p>打开<code>设置</code>—<code>网络和Internet</code>—<code>VPN</code></p>
+<p><img src="wtest_1.png" alt></p>
+<p>配置如图所示</p>
+<p><img src="wtest_2.png" alt></p>
+<p><img src="wtest_3.png" alt></p>
+<h1 id="错误修复"><a href="#错误修复" class="headerlink" title="错误修复"></a>错误修复</h1><p>这边测试在Win7或Win10连接时会出现<code>无法建立计算机与VPN服务器之间的网络连接,因为远程服务器未响应</code>的问题。查找了文章修复了问题。</p>
+<h2 id="错误1：因为没有修改过注册表，所以是报这样的错误"><a href="#错误1：因为没有修改过注册表，所以是报这样的错误" class="headerlink" title="错误1：因为没有修改过注册表，所以是报这样的错误"></a>错误1：因为没有修改过注册表，所以是报这样的错误</h2><p><img src="fix_1.jpg" alt></p>
+<p><strong>解决办法</strong></p>
+<p>按<code>windows图标键 + R键</code> &gt;在运行中输入<code>regedit</code>，单击<code>确定</code>，进入<code>注册表编辑器</code></p>
+<p><img src="fix_2.png" alt></p>
+<p>在注册表编辑器”页面的左侧导航树点开 <code>HKEY_LOCAL_MACHINE</code>&gt;<code>SYSTEM</code>&gt;<code>CurrentControlSet</code>&gt;<code>Services</code>&gt;<code>PolicyAgent</code></p>
+<p><img src="fix_3.jpg" alt></p>
+<p>在右边空白处新建 &gt; <code>DWORD值</code>，名称为<code>AssumeUDPEncapsulationContextOnSendRule</code></p>
+<p><img src="fix_4.jpg" alt></p>
+<p>右键单击<code>AssumeUDPEncapsulationContextOnSendRule</code>，选择“修改”，进入修改界面，修改值为<code>2</code>(表示可以与位于NAT设备后方的服务器建立安全关联)</p>
+<p><img src="fix_5.jpg" alt></p>
+<blockquote>
+<p>重启电脑即可。一般Win7配置完该步骤后即可连接，但Win10还会出现问题。</p>
+</blockquote>
+<h2 id="错误2：修改完注册表，错误就变了，是因为认证的协议问题"><a href="#错误2：修改完注册表，错误就变了，是因为认证的协议问题" class="headerlink" title="错误2：修改完注册表，错误就变了，是因为认证的协议问题"></a>错误2：修改完注册表，错误就变了，是因为认证的协议问题</h2><p><img src="fix_6.jpg" alt></p>
+<p><strong>解决办法</strong></p>
+<p>打开更改适配器选项，找到对应的VPN名称的适配器，右键属性</p>
+<p><img src="fix_7.jpg" alt></p>
+<p>打开安全选项，选择使用这些协议勾上；注意此处还有高级设置里面的L2TP身份验证类型，这里也要填写的（秘钥方式还是证书方式）</p>
+<p><img src="fix_8.jpg" alt></p>
+<blockquote>
+<p>再次连接，即可修复</p>
+</blockquote>
 <h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a href="https://www.365jz.com/article/24912" target="_blank" rel="noopener">https://www.365jz.com/article/24912</a></p>
 <p><a href="https://me.jinchuang.org/archives/381.html" target="_blank" rel="noopener">https://me.jinchuang.org/archives/381.html</a></p>
 
@@ -1112,7 +1163,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前置准备"><span class="nav-number">1.</span> <span class="nav-text">前置准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置步骤"><span class="nav-number">2.</span> <span class="nav-text">配置步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接测试"><span class="nav-number">3.</span> <span class="nav-text">连接测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac环境"><span class="nav-number">3.1.</span> <span class="nav-text">Mac环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考教程"><span class="nav-number">4.</span> <span class="nav-text">参考教程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前置准备"><span class="nav-number">1.</span> <span class="nav-text">前置准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置步骤"><span class="nav-number">2.</span> <span class="nav-text">配置步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接测试"><span class="nav-number">3.</span> <span class="nav-text">连接测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac环境"><span class="nav-number">3.1.</span> <span class="nav-text">Mac环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Win10环境"><span class="nav-number">3.2.</span> <span class="nav-text">Win10环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#错误修复"><span class="nav-number">4.</span> <span class="nav-text">错误修复</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#错误1：因为没有修改过注册表，所以是报这样的错误"><span class="nav-number">4.1.</span> <span class="nav-text">错误1：因为没有修改过注册表，所以是报这样的错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误2：修改完注册表，错误就变了，是因为认证的协议问题"><span class="nav-number">4.2.</span> <span class="nav-text">错误2：修改完注册表，错误就变了，是因为认证的协议问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考教程"><span class="nav-number">5.</span> <span class="nav-text">参考教程</span></a></li></ol></div>
             
 
           </div>
@@ -1157,7 +1208,7 @@
   </div>
   <div class="powered-by">
     <span>
-    本站总字数:<span>324.1k</span>字
+    本站总字数:<span>324.4k</span>字
     </span>
     &nbsp|&nbsp
   </div>
