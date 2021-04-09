@@ -751,6 +751,9 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> res = [<span class="number">1</span>,<span class="number">11</span>,<span class="number">23</span>,<span class="number">25</span>,<span class="number">28</span>,<span class="number">37</span>];</span><br><span class="line">res.map(<span class="function">(<span class="params">i, n</span>) =&gt;</span> &#123;     </span><br><span class="line">     <span class="comment">//根据i获取tree中的节点     </span></span><br><span class="line">     <span class="keyword">const</span> node = that.$refs.menuListTree.getNode(i);     </span><br><span class="line">     <span class="keyword">if</span> (node &amp;&amp; node.isLeaf) &#123;          </span><br><span class="line">         <span class="comment">//设置某个节点的勾选状态          </span></span><br><span class="line">         that.$refs.menuListTree.setChecked(node, <span class="literal">true</span>);      </span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
+<blockquote>
+<p>注意，手动更新节点后无需在用回显数据赋值给data中绑定的值，否则会无效</p>
+</blockquote>
 <h1 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h1><p>在获取选择的节点数据时，子节点未全部选中时，<code>getCheckedKeys</code>中没有包含父节点id。</p>
 <h2 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a><strong>解决方案</strong></h2><ul>
 <li>halfCheckedKeys中为半选中的节点（具体可查看官方API）</li>
