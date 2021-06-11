@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>尝试手写实现Promise</title>
-    <url>/2021/06/11/%E5%B0%9D%E8%AF%95%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0Promise/</url>
+    <title>手把手实现简易Promise</title>
+    <url>/2021/06/11/%E6%89%8B%E6%8A%8A%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93Promise/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise的出现"><a href="#Promise的出现" class="headerlink" title="Promise的出现"></a>Promise的出现</h1><p>在 Promise 出现以前，在我们处理多个异步请求嵌套时，代码往往是个回掉地狱</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">'./name.txt'</span>,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">  fs.readFile(data, <span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">    fs.readFile(data,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>为了拿到回调的结果，我们必须一层一层的嵌套，可以说是相当恶心了。而且基本上我们还要对每次请求的结果进行一系列的处理，使得代码变的更加难以阅读和难以维护，这就是传说中臭名昭著的<strong>回调地狱</strong>～产生<strong>回调地狱</strong>的原因归结起来有两点：</p>
