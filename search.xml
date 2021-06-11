@@ -10,6 +10,7 @@
 <li><strong>嵌套调用</strong>，第一个函数的输出往往是第二个函数的输入；</li>
 <li><strong>处理多个异步请求并发</strong>，开发时往往需要同步请求最终的结果。</li>
 </ol>
+<a id="more"></a>
 <p>原因分析出来后，那么问题的解决思路就很清晰了：</p>
 <ol>
 <li><strong>消灭嵌套调用</strong>：通过 Promise 的链式调用可以解决；</li>
