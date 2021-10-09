@@ -621,6 +621,7 @@
 </blockquote>
 <h2 id="Window自动修复注册表bat脚本"><a href="#Window自动修复注册表bat脚本" class="headerlink" title="Window自动修复注册表bat脚本"></a>Window自动修复注册表bat脚本</h2><p>新建一个<code>.bat</code>文件，如<code>修复注册表.bat</code>，右键编辑增加以下代码：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line"></span><br><span class="line">reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PolicyAgent" /v "AssumeUDPEncapsulationContextOnSendRule" /t REG_DWORD /d 2 /f</span><br><span class="line"></span><br><span class="line">echo 注册表导入完成按任意键退出...</span><br><span class="line"></span><br><span class="line">pause&gt;nul</span><br><span class="line"></span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>保存后双击运行即可。</p>
 <h1 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h1><p><a href="https://www.365jz.com/article/24912" target="_blank" rel="noopener">https://www.365jz.com/article/24912</a></p>
 <p><a href="https://me.jinchuang.org/archives/381.html" target="_blank" rel="noopener">https://me.jinchuang.org/archives/381.html</a></p>
 ]]></content>
